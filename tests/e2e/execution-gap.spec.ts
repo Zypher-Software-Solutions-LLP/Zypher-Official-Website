@@ -89,7 +89,10 @@ test.describe("homepage execution gap section", () => {
     const media = section.getByTestId("execution-gap-media");
     const firstBox = await media.boundingBox();
 
-    await section.getByRole("button").nth(1).click();
+    await section
+      .getByRole("button")
+      .nth(1)
+      .evaluate((button) => (button as HTMLButtonElement).click());
     await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
       "data-image-src",
       /Problem%20-%202\.png/,

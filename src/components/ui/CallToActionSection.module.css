@@ -1,0 +1,181 @@
+.ctaSection {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: 28.125rem;
+  overflow: hidden;
+  place-items: center;
+  padding: 4.75rem 1rem 3rem;
+  background: var(--color-brand-dark);
+  color: var(--color-brand-mist);
+}
+
+.ctaBackgroundImage {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(4px);
+  transform: scale(1.02);
+}
+
+.ctaOverlay {
+  position: absolute;
+  z-index: -1;
+  inset: -0.5rem;
+  background: rgb(0 0 0 / 60%);
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 42rem);
+  text-align: center;
+}
+
+.ctaEyebrow {
+  margin: 0;
+  color: var(--color-brand-neon);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.9375rem;
+  line-height: 1.3125;
+}
+
+.ctaTitle {
+  margin: 1.5rem auto 0;
+  max-width: 42rem;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.ctaTitleLine {
+  display: block;
+}
+
+.ctaTitleAccent {
+  color: var(--color-brand-neon);
+}
+
+.ctaDescription {
+  max-width: 26rem;
+  margin: 1.25rem auto 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3125;
+}
+
+.ctaActions {
+  display: grid;
+  justify-items: center;
+  gap: 0.875rem;
+  margin-top: 1.25rem;
+}
+
+.ctaPrimaryActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ctaButton {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border: 0;
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.ctaButtonPrimary {
+  background: var(--color-brand-ink);
+  color: var(--color-brand-mist);
+  box-shadow: -2px 5px 7px rgb(0 0 0 / 50%);
+}
+
+.ctaButtonSecondary {
+  border: 1px solid var(--color-brand-neon);
+  background: transparent;
+  color: var(--color-brand-mist);
+}
+
+.ctaButtonWhatsApp {
+  min-width: 12.25rem;
+  background: var(--color-brand-dark);
+  color: var(--color-brand-mist);
+  box-shadow: -2px 5px 7px rgb(0 0 0 / 50%);
+}
+
+.ctaButton:disabled {
+  cursor: not-allowed;
+}
+
+.ctaButtonWhatsApp:hover,
+.ctaButtonWhatsApp:focus-visible {
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+  transform: translateY(-1px);
+}
+
+.ctaButton:focus-visible {
+  outline: 2px solid var(--color-brand-mist);
+  outline-offset: 3px;
+}
+
+@media (max-width: 47.999rem) {
+  .ctaSection {
+    min-height: 0;
+    padding: 4rem 1rem 3.5rem;
+  }
+
+  .ctaEyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.55rem;
+  }
+
+  .ctaTitle {
+    font-size: clamp(2rem, 8.5vw, 2.75rem);
+  }
+
+  .ctaDescription {
+    max-width: 24rem;
+  }
+
+  .ctaPrimaryActions {
+    width: min(100%, 19rem);
+    flex-direction: column;
+  }
+
+  .ctaPrimaryActions .ctaButton {
+    width: 100%;
+  }
+
+  .ctaButtonWhatsApp {
+    width: min(100%, 19rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaButton {
+    transition: none;
+  }
+}

@@ -41,7 +41,7 @@ const hankenGrotesk = Hanken_Grotesk({
 });
 
 export const metadata = buildPageMetadata({
-  title: "Zypher",
+  title: "Your Vision, Our Code",
   description:
     "Software development, automation, CRM/ERP, mobile, and UI/UX solutions for teams ready to scale.",
   path: "/",

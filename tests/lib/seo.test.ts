@@ -27,4 +27,14 @@ describe("buildPageMetadata", () => {
 
     expect(metadata.robots).toEqual({ index: false, follow: false });
   });
+
+  it("should produce a descriptive homepage title", () => {
+    const metadata = buildPageMetadata({
+      title: "Your Vision, Our Code",
+      description: "Zypher Software Solutions homepage.",
+      path: "/",
+    });
+
+    expect(metadata.title).toBe("Your Vision, Our Code | Zypher Software Solutions");
+  });
 });
