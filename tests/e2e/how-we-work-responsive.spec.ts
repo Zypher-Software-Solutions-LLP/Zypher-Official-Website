@@ -60,9 +60,7 @@ test.describe("responsive homepage How We Work section", () => {
     ).toBe(true);
   });
 
-  test("should show a compact dock as soon as the section enters the viewport", async ({
-    page,
-  }) => {
+  test("should switch dock stages on one click", async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
     await openPage(page);
 
@@ -74,9 +72,58 @@ test.describe("responsive homepage How We Work section", () => {
 
     await page.evaluate(
       (scrollTop) => window.scrollTo({ behavior: "auto", top: scrollTop }),
-      sectionTop - 8,
+      sectionTop - 512,
+    );
+    await expect(dock).toHaveAttribute("data-state", "visible");
+
+    const buildButton = dock.getByTestId("how-we-work-jump-button").nth(2);
+    await buildButton.click();
+
+    await expect(buildButton).toHaveAttribute("aria-current", "true");
+    await expect(section.getByTestId("how-we-work-panel-built-from-scratch")).toHaveAttribute(
+      "data-active",
+      "true",
+    );
+  });
+
+  test("should show the dock after section entry and hide it after section exit", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await openPage(page);
+
+    const section = page.getByTestId("how-we-work-section");
+    const sectionTop = await section.evaluate(
+      (element) => element.getBoundingClientRect().top + window.scrollY,
+    );
+    const dock = page.getByTestId("how-we-work-jump-dock");
+
+    const sectionBounds = await section.evaluate((element) => {
+      const box = element.getBoundingClientRect();
+
+      return {
+        bottom: box.bottom + window.scrollY,
+        top: box.top + window.scrollY,
+      };
+    });
+
+    await page.evaluate(
+      (scrollTop) => window.scrollTo({ behavior: "auto", top: scrollTop }),
+      sectionTop - 1024 + 8,
+    );
+    await expect(dock).toHaveCSS("opacity", "0");
+
+    await page.evaluate(
+      (scrollTop) => window.scrollTo({ behavior: "auto", top: scrollTop }),
+      sectionTop - 512,
     );
     await expect(dock).toHaveCSS("opacity", "1");
+
+    await page.evaluate(
+      (scrollTop) => window.scrollTo({ behavior: "auto", top: scrollTop }),
+      sectionBounds.bottom + 20,
+    );
+    await expect(dock).toHaveCSS("opacity", "0");
 
     const dockWidth = await dock.evaluate((element) =>
       Number.parseFloat(getComputedStyle(element).width),

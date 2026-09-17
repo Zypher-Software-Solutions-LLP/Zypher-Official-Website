@@ -77,6 +77,77 @@ test.describe("homepage execution gap section", () => {
     expect(fourthBox.height).toBeCloseTo(firstBox.height, 0);
     expect(fourthBox.width / fourthBox.height).toBeGreaterThan(1.3);
   });
+  test("should keep the media frame independent from accordion content", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1080 });
+    await openPage(page);
+
+    const section = page.getByTestId("execution-gap-section");
+    await section.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1_300);
+
+    const media = section.getByTestId("execution-gap-media");
+    const before = await media.boundingBox();
+    const layout = await media.evaluate((element) => ({
+      alignSelf: getComputedStyle(element).alignSelf,
+      aspectRatio: getComputedStyle(element).aspectRatio,
+    }));
+
+    await section
+      .getByRole("button")
+      .nth(1)
+      .evaluate((button) => (button as HTMLButtonElement).click());
+    await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
+      "data-image-src",
+      /Problem%20-%202\.png/,
+    );
+    await page.waitForTimeout(600);
+
+    const after = await media.boundingBox();
+
+    if (!before || !after) {
+      throw new Error("Execution-gap media geometry is unavailable");
+    }
+
+    expect(layout.alignSelf).toBe("start");
+    expect(layout.aspectRatio).toBe("466 / 620");
+    expect(after.x).toBeCloseTo(before.x, 0);
+    expect(after.y).toBeCloseTo(before.y, 0);
+    expect(after.width).toBeCloseTo(before.width, 0);
+    expect(after.height).toBeCloseTo(before.height, 0);
+  });
+
+  test("should keep Learn More at the top of the desktop details column", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1080 });
+    await openPage(page);
+
+    const section = page.getByTestId("execution-gap-section");
+    await section.scrollIntoViewIfNeeded();
+
+    const geometry = await section.evaluate((element) => {
+      const details = element.querySelector<HTMLElement>('[data-testid="execution-gap-details"]');
+      const learnMore = element.querySelector<HTMLElement>('a[href="/contact"]');
+
+      if (!details || !learnMore) {
+        throw new Error("Execution-gap Learn More geometry is unavailable");
+      }
+
+      const detailsBox = details.getBoundingClientRect();
+      const learnMoreBox = learnMore.getBoundingClientRect();
+
+      return {
+        detailsRight: detailsBox.right,
+        detailsTop: detailsBox.top,
+        learnMorePosition: getComputedStyle(learnMore).position,
+        learnMoreRight: learnMoreBox.right,
+        learnMoreTop: learnMoreBox.top,
+      };
+    });
+
+    expect(geometry.learnMorePosition).toBe("absolute");
+    expect(geometry.learnMoreTop).toBeLessThanOrEqual(geometry.detailsTop + 48);
+    expect(geometry.learnMoreRight).toBeCloseTo(geometry.detailsRight, 0);
+  });
+
   test("should keep the image frame stable while changing accordion items on a laptop", async ({
     page,
   }) => {
@@ -223,7 +294,7 @@ test.describe("homepage execution gap section", () => {
     expect(spacing.paddingBottom).toBeGreaterThanOrEqual(136);
   });
 
-  test("should keep the media aligned with the final accordion row", async ({ page }) => {
+  test("should keep the media frame independent from the final accordion row", async ({ page }) => {
     await openPage(page);
 
     const section = page.getByTestId("execution-gap-section");
@@ -231,21 +302,27 @@ test.describe("homepage execution gap section", () => {
 
     await expect(section.locator('[data-testid="execution-gap-flow-line"]')).toHaveCount(0);
 
-    await expect
-      .poll(
-        async () => {
-          const mediaBox = await section.getByTestId("execution-gap-media").boundingBox();
-          const detailsBox = await section.getByTestId("execution-gap-details").boundingBox();
+    const alignment = await section.evaluate((element) => {
+      const media = element.querySelector<HTMLElement>('[data-testid="execution-gap-media"]');
+      const details = element.querySelector<HTMLElement>('[data-testid="execution-gap-details"]');
 
-          if (!mediaBox || !detailsBox) {
-            return Number.POSITIVE_INFINITY;
-          }
+      if (!media || !details) {
+        throw new Error("Execution-gap frame alignment is unavailable");
+      }
 
-          return Math.abs(mediaBox.y + mediaBox.height - (detailsBox.y + detailsBox.height));
-        },
-        { timeout: 2_000 },
-      )
-      .toBeLessThanOrEqual(2);
+      const mediaBox = media.getBoundingClientRect();
+      const detailsBox = details.getBoundingClientRect();
+
+      return {
+        mediaBottom: mediaBox.bottom,
+        detailsBottom: detailsBox.bottom,
+        mediaHeight: mediaBox.height,
+        mediaWidth: mediaBox.width,
+      };
+    });
+
+    expect(alignment.mediaWidth / alignment.mediaHeight).toBeCloseTo(466 / 620, 2);
+    expect(alignment.mediaBottom).toBeLessThan(alignment.detailsBottom);
   });
 
   test("should not render em dashes in the execution-gap copy", async ({ page }) => {

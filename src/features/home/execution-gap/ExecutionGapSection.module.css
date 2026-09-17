@@ -96,6 +96,7 @@
   position: relative;
   overflow: hidden;
   aspect-ratio: 466 / 620;
+  align-self: start;
   border-radius: 1.875rem;
   background: var(--color-brand-slate);
 }
@@ -131,8 +132,8 @@
   pointer-events: none;
 }
 
-.executionGapSectionLearnMore {
-  position: absolute;
+.executionGapSection .executionGapSectionLearnMore {
+  position: absolute !important;
   top: 1.375rem;
   right: 0;
   z-index: 1;
@@ -310,8 +311,8 @@
     display: none !important;
   }
 
-  .executionGapSectionLearnMore {
-    position: relative;
+  .executionGapSection .executionGapSectionLearnMore {
+    position: relative !important;
     top: auto;
     right: auto;
     margin: 0 0 1.5rem auto;

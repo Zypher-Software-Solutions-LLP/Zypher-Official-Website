@@ -56,24 +56,40 @@ function useHowWeWorkNavigation(
   }, []);
 
   const scrollToPanel = useCallback((panelId: string): void => {
-    const panel = panelRefs.current.get(panelId);
+    const panel =
+      panelRefs.current.get(panelId) ?? document.getElementById(`how-we-work-panel-${panelId}`);
+
+    setActivePanelId(panelId);
 
     if (!panel) {
       return;
     }
 
     scrollTargetIdRef.current = panelId;
-    setActivePanelId(panelId);
     panel.scrollIntoView?.({ behavior: getScrollBehavior(), block: "start" });
   }, []);
 
   useEffect((): (() => void) => {
     const section = sectionRef.current;
-    let sectionObserver: IntersectionObserver | null = null;
     let animationFrame: number | null = null;
+
+    const updateDockVisibility = (): void => {
+      if (!section) {
+        return;
+      }
+
+      const sectionRect = section.getBoundingClientRect();
+      const entryThreshold = window.innerHeight * 0.8;
+      const shouldShowDock = sectionRect.top <= entryThreshold && sectionRect.bottom > 0;
+
+      setIsDockVisible((currentVisibility) =>
+        currentVisibility === shouldShowDock ? currentVisibility : shouldShowDock,
+      );
+    };
 
     const updateActivePanel = (): void => {
       animationFrame = null;
+      updateDockVisibility();
       const anchor = window.innerHeight * 0.35;
       const scrollTargetId = scrollTargetIdRef.current;
 
@@ -131,18 +147,11 @@ function useHowWeWorkNavigation(
     window.addEventListener("scroll", scheduleActivePanelUpdate, { passive: true });
     window.addEventListener("resize", scheduleActivePanelUpdate);
 
-    if (section && "IntersectionObserver" in window) {
-      sectionObserver = new IntersectionObserver(
-        ([entry]) => setIsDockVisible(Boolean(entry?.isIntersecting)),
-        { rootMargin: "0px", threshold: 0 },
-      );
-      sectionObserver.observe(section);
-    }
+    updateDockVisibility();
 
     return (): void => {
       window.removeEventListener("scroll", scheduleActivePanelUpdate);
       window.removeEventListener("resize", scheduleActivePanelUpdate);
-      sectionObserver?.disconnect();
 
       if (animationFrame !== null && typeof window.cancelAnimationFrame === "function") {
         window.cancelAnimationFrame(animationFrame);
