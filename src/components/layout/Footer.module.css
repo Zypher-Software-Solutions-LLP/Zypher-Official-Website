@@ -1,11 +1,9 @@
 /* Shared marketing footer */
 .siteFooter {
-  --site-footer-artwork-top: clamp(2.5rem, 6vw, 6rem);
-  --site-footer-artwork-bottom: clamp(3rem, 6vw, 6rem);
+  --site-footer-artwork-top: clamp(1.5rem, 3vw, 3rem);
+  --site-footer-artwork-height: clamp(24rem, 33.3333vw, 32rem);
   position: relative;
-  min-height: calc(
-    var(--site-footer-artwork-top) + (100vw * 0.5666666667) + var(--site-footer-artwork-bottom)
-  );
+  min-height: calc(var(--site-footer-artwork-top) + var(--site-footer-artwork-height));
   overflow: hidden;
   background: var(--color-brand-dark);
   color: var(--color-brand-mist);
@@ -233,12 +231,12 @@
 .siteFooterIllustration {
   position: absolute;
   z-index: 0;
-  top: var(--site-footer-artwork-top);
+  top: auto;
   right: 0;
   left: 0;
+  bottom: 0;
   width: 100%;
-  height: auto;
-  aspect-ratio: 1920 / 1088;
+  height: var(--site-footer-artwork-height);
   margin-top: 0;
   transform: none;
   overflow: hidden;
@@ -249,9 +247,9 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center bottom;
-  opacity: 0.5;
+  opacity: 0.35;
 }
 
 @media (max-width: 899px) {
@@ -260,9 +258,13 @@
     gap: 3.5rem;
   }
 
+  .siteFooter {
+    min-height: 0;
+  }
+
   .siteFooterIllustration {
     top: auto;
-    bottom: var(--site-footer-artwork-bottom);
+    bottom: 0;
   }
 }
 

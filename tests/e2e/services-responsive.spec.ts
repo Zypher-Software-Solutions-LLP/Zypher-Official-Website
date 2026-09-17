@@ -113,6 +113,7 @@ test.describe("responsive Services hero", () => {
         illustrationPosition: getComputedStyle(illustration).position,
         illustrationTop: Number.parseFloat(getComputedStyle(illustration).top),
         illustrationRatio: illustrationRect.width / illustrationRect.height,
+        footerHeight: footerRect.height,
         footerBottomGap: footerRect.bottom - illustrationRect.bottom,
         pointerEvents: getComputedStyle(illustration).pointerEvents,
         illustrationZIndex: getComputedStyle(illustration).zIndex,
@@ -125,12 +126,14 @@ test.describe("responsive Services hero", () => {
       "https://media.zypher-solutions.com/footer/Footer%20Illustration.png",
     );
     expect(layers.imagePresent).toBe(true);
-    expect(layers.imageObjectFit).toBe("contain");
-    expect(layers.imageOpacity).toBe("0.5");
+    expect(layers.imageObjectFit).toBe("cover");
+    expect(layers.imageOpacity).toBe("0.35");
     expect(layers.illustrationPosition).toBe("absolute");
     expect(layers.illustrationTop).toBeGreaterThan(0);
-    expect(layers.illustrationRatio).toBeCloseTo(1920 / 1088, 2);
-    expect(layers.footerBottomGap).toBeGreaterThan(0);
+    expect(layers.illustrationTop).toBeLessThan(48);
+    expect(layers.illustrationRatio).toBeCloseTo(3, 2);
+    expect(layers.footerHeight).toBeLessThan(800);
+    expect(layers.footerBottomGap).toBe(0);
     expect(layers.pointerEvents).toBe("none");
     expect(layers.illustrationZIndex).toBe("0");
     expect(layers.mainZIndex).toBe("1");
