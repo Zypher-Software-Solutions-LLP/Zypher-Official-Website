@@ -1,0 +1,417 @@
+.aiAutomationSection {
+  position: relative;
+  isolation: isolate;
+  min-height: 58.75rem;
+  overflow: hidden;
+  border-radius: 0 0 1.875rem 1.875rem;
+  background: var(--color-brand-dark);
+  color: var(--color-brand-mist);
+}
+
+.aiAutomationGrid {
+  display: grid;
+  width: min(calc(100% - 2rem), 80vw, 72rem);
+  min-height: 58.75rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(12px, 1.6667vw, 24px);
+  align-content: start;
+  margin-inline: auto;
+  padding-block: 3.25rem 1rem;
+}
+
+.aiAutomationHeader {
+  grid-column: 1 / span 6;
+}
+
+.aiAutomationTitle {
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 3.3333vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.aiAutomationIntro {
+  width: min(100%, 32.875rem);
+  margin: 2rem 0 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3125;
+}
+
+.aiCapabilitiesTitle,
+.aiDeliverablesTitle {
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3333;
+}
+
+.aiCapabilitiesTitle {
+  grid-column: 1 / -1;
+  margin-top: 3rem;
+}
+
+.aiNodeWorkflow {
+  position: relative;
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.6667vw, 1.5rem);
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aiNodeWorkflow::before {
+  position: absolute;
+  z-index: 0;
+  top: 2.5rem;
+  right: 7%;
+  left: 7%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgb(244 248 246 / 0.8), transparent);
+  content: "";
+}
+
+.aiCapabilityNode {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.aiNodeVisual {
+  position: relative;
+  display: grid;
+  width: min(100%, 8.875rem);
+  aspect-ratio: 142 / 80;
+  place-items: center;
+  overflow: hidden;
+  border: 2px solid rgb(244 248 246 / 0.75);
+  border-radius: 0.75rem;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(21 193 150 / 0.4) 0 6%, transparent 7%),
+    radial-gradient(circle at 25% 30%, rgb(244 248 246 / 0.2) 0 1%, transparent 2%),
+    radial-gradient(circle at 72% 68%, rgb(21 193 150 / 0.24) 0 1.5%, transparent 2.5%),
+    rgb(16 23 21 / 0.32);
+  box-shadow: 0 0 1.5rem rgb(21 193 150 / 0.08);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.aiNodeVisual::before,
+.aiNodeVisual::after {
+  position: absolute;
+  border: 1px solid rgb(244 248 246 / 0.2);
+  content: "";
+}
+
+.aiNodeVisual::before {
+  width: 45%;
+  height: 55%;
+  border-radius: 50%;
+  transform: rotate(25deg);
+}
+
+.aiNodeVisual::after {
+  width: 28%;
+  height: 28%;
+  border-radius: 0.25rem;
+  transform: rotate(45deg);
+}
+
+.aiNodeGlyph {
+  position: relative;
+  z-index: 1;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.aiNodePoint {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.75rem;
+  border: 1px solid var(--color-brand-slate);
+  border-radius: 50%;
+  background: var(--color-brand-neon);
+  box-shadow: 0 0 1.25rem 0.35rem var(--color-brand-neon);
+  animation: ai-node-pulse 2.8s ease-in-out infinite;
+}
+
+.aiNodeNumber {
+  margin-top: 0.5rem;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.1667;
+}
+
+.aiNodeLabel {
+  width: min(100%, 10rem);
+  margin: 0.375rem 0 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 0.9375;
+}
+
+.aiCapabilityNode:hover .aiNodeVisual,
+.aiCapabilityNode:focus-within .aiNodeVisual {
+  border-color: var(--color-brand-neon);
+  box-shadow: 0 0 1.75rem rgb(21 193 150 / 0.3);
+  transform: translateY(-0.125rem);
+}
+
+.aiCapabilityNode:hover .aiNodePoint,
+.aiCapabilityNode:focus-within .aiNodePoint {
+  animation-play-state: paused;
+  box-shadow: 0 0 1.5rem 0.5rem var(--color-brand-neon);
+}
+
+.aiAutomationBottomGrid {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(12px, 1.6667vw, 24px);
+  align-items: end;
+  margin-top: 3.5rem;
+}
+
+.aiDeliverables {
+  grid-column: 1 / span 6;
+}
+
+.aiDeliverablesList {
+  display: grid;
+  gap: 0.125rem;
+  margin: 1.5rem 0 0;
+  padding-left: 1rem;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.3125;
+}
+
+.aiAutomationCta {
+  min-width: 13.875rem;
+  min-height: 2.1875rem;
+  height: 2.1875rem;
+  margin-top: 1.75rem;
+  padding-block: 0;
+  border-color: transparent;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+  box-shadow: -2px 5px 7px rgb(0 0 0 / 0.5);
+}
+
+.aiAutomationCta:hover,
+.aiAutomationCta:focus-visible {
+  border-color: var(--color-brand-neon);
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+  box-shadow: none;
+}
+
+.aiLaptopArtwork {
+  position: relative;
+  grid-column: 7 / -1;
+  width: min(54vw, 41rem);
+  aspect-ratio: 654 / 482;
+  justify-self: end;
+  margin-right: -4rem;
+  opacity: 0;
+  transform: translate3d(0, 3rem, 0);
+  animation: ai-laptop-rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 180ms forwards;
+}
+
+.aiLaptopImage {
+  object-fit: contain;
+  object-position: center;
+}
+
+@keyframes ai-node-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    box-shadow: 0 0 0.75rem 0.15rem var(--color-brand-neon);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 1.5rem 0.45rem var(--color-brand-neon);
+  }
+}
+
+@keyframes ai-laptop-rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 63.9375rem) {
+  .aiAutomationSection,
+  .aiAutomationGrid {
+    min-height: 54rem;
+  }
+
+  .aiAutomationGrid {
+    width: calc(100% - 2rem);
+  }
+
+  .aiAutomationHeader,
+  .aiCapabilitiesTitle,
+  .aiNodeWorkflow,
+  .aiAutomationBottomGrid {
+    grid-column: 1 / -1;
+  }
+
+  .aiAutomationTitle {
+    font-size: clamp(2.25rem, 5.75vw, 3rem);
+  }
+
+  .aiNodeWorkflow {
+    gap: 0.5rem;
+  }
+
+  .aiNodeLabel {
+    font-size: 0.75rem;
+  }
+
+  .aiNodeVisual {
+    width: min(100%, 7rem);
+  }
+
+  .aiDeliverables {
+    grid-column: 1 / span 8;
+  }
+
+  .aiLaptopArtwork {
+    display: none;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .aiAutomationSection,
+  .aiAutomationGrid {
+    min-height: 0;
+  }
+
+  .aiAutomationGrid {
+    display: block;
+    width: calc(100% - 2rem);
+    padding-block: 3.5rem 4rem;
+  }
+
+  .aiAutomationIntro {
+    margin-top: 1.5rem;
+  }
+
+  .aiCapabilitiesTitle {
+    margin-top: 2.75rem;
+  }
+
+  .aiNodeWorkflow {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .aiNodeWorkflow::before {
+    top: 2rem;
+    right: auto;
+    bottom: 2rem;
+    left: 3rem;
+    width: 2px;
+    height: auto;
+  }
+
+  .aiCapabilityNode {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 0.75rem;
+    align-items: center;
+    text-align: left;
+  }
+
+  .aiNodeVisual {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 4.25rem;
+  }
+
+  .aiNodePoint {
+    position: absolute;
+    top: 50%;
+    left: 2.55rem;
+    margin: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  .aiNodeNumber {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: 0;
+  }
+
+  .aiNodeLabel {
+    grid-column: 2;
+    grid-row: 2;
+    width: auto;
+    margin-top: 0.2rem;
+    font-size: 0.875rem;
+    line-height: 1.1;
+  }
+
+  .aiAutomationBottomGrid {
+    display: block;
+    margin-top: 3.5rem;
+  }
+
+  .aiDeliverablesList {
+    margin-top: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .aiAutomationCta {
+    width: min(100%, 14rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aiNodeVisual,
+  .aiNodePoint {
+    transition: none;
+    animation: none;
+  }
+
+  .aiLaptopArtwork {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
