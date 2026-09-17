@@ -20,22 +20,51 @@ test.describe("AI and LLM automation section", () => {
         '[data-testid="ai-automation-bottom-grid"]',
       );
       const node = document.querySelector<HTMLElement>('[data-testid="ai-capability-node"]');
+      const deliverablesList = document.querySelector<HTMLElement>(
+        '[data-testid="business-deliverables-list"]',
+      );
+      const points = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-testid="ai-node-point"]'),
+      );
 
-      if (!section || !grid || !laptop || !workflow || !workflowImage || !bottomGrid || !node) {
+      if (
+        !section ||
+        !grid ||
+        !laptop ||
+        !workflow ||
+        !workflowImage ||
+        !bottomGrid ||
+        !node ||
+        !deliverablesList ||
+        points.length !== 5
+      ) {
         throw new Error("Missing AI automation section geometry");
       }
+
+      const workflowImageRect = workflowImage.getBoundingClientRect();
+      const pointOffsets = points.map((point) => {
+        const pointRect = point.getBoundingClientRect();
+        return (
+          (pointRect.left + pointRect.width / 2 - workflowImageRect.left) / workflowImageRect.width
+        );
+      });
 
       return {
         gridWidth: grid.getBoundingClientRect().width,
         laptopDisplay: getComputedStyle(laptop).display,
         laptopWidth: laptop.getBoundingClientRect().width,
         laptopBottom: laptop.getBoundingClientRect().bottom,
-        laptopMarginBottom: Number.parseFloat(getComputedStyle(laptop).marginBottom),
+        laptopPosition: getComputedStyle(laptop).position,
+        laptopBottomOffset: Number.parseFloat(getComputedStyle(laptop).bottom),
         sectionBottom: section.getBoundingClientRect().bottom,
-        workflowColumns: getComputedStyle(workflow).gridTemplateColumns,
+        sectionHeight: section.getBoundingClientRect().height,
+        workflowDisplay: getComputedStyle(workflow).display,
         workflowImageSrc: workflowImage.getAttribute("data-image-src"),
+        pointOffsets,
         deliverablesGap:
           bottomGrid.getBoundingClientRect().top - workflow.getBoundingClientRect().bottom,
+        deliverableListGap: Number.parseFloat(getComputedStyle(deliverablesList).rowGap),
+        deliverableListStyle: getComputedStyle(deliverablesList).listStyleType,
         nodeWidth: node.getBoundingClientRect().width,
         sectionRadius: getComputedStyle(section).borderBottomLeftRadius,
         laptopAnimationName: getComputedStyle(laptop).animationName,
@@ -46,11 +75,20 @@ test.describe("AI and LLM automation section", () => {
     expect(layout.gridWidth).toBeLessThan(1200);
     expect(layout.laptopDisplay).not.toBe("none");
     expect(layout.laptopWidth).toBeGreaterThan(700);
-    expect(layout.laptopMarginBottom).toBeLessThan(0);
+    expect(layout.laptopPosition).toBe("absolute");
+    expect(layout.laptopBottomOffset).toBeLessThan(0);
     expect(layout.laptopBottom).toBeGreaterThan(layout.sectionBottom);
-    expect(layout.workflowColumns.split(" ")).toHaveLength(5);
+    expect(layout.sectionHeight).toBeLessThan(900);
+    expect(layout.workflowDisplay).toBe("block");
     expect(layout.workflowImageSrc).toContain("services-page/section-2/Group%2022.png");
+    expect(layout.pointOffsets[0]).toBeCloseTo(0.0626, 2);
+    expect(layout.pointOffsets[1]).toBeCloseTo(0.2783, 2);
+    expect(layout.pointOffsets[2]).toBeCloseTo(0.4957, 2);
+    expect(layout.pointOffsets[3]).toBeCloseTo(0.7122, 2);
+    expect(layout.pointOffsets[4]).toBeCloseTo(0.9304, 2);
     expect(layout.deliverablesGap).toBeLessThan(48);
+    expect(layout.deliverableListGap).toBeGreaterThan(8);
+    expect(layout.deliverableListStyle).toBe("disc");
     expect(layout.nodeWidth).toBeGreaterThan(120);
     expect(layout.sectionRadius).not.toBe("0px");
     expect(layout.laptopAnimationName.endsWith("ai-laptop-rise-in")).toBe(true);

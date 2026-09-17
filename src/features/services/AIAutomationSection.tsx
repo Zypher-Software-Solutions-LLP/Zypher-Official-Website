@@ -87,7 +87,7 @@ export function AIAutomationSection(): ReactNode {
         <div className={styles.aiAutomationBottomGrid} data-testid="ai-automation-bottom-grid">
           <div className={styles.aiDeliverables}>
             <h3 className={styles.aiDeliverablesTitle}>Business Deliverables</h3>
-            <ul className={styles.aiDeliverablesList}>
+            <ul className={styles.aiDeliverablesList} data-testid="business-deliverables-list">
               {deliverables.map((deliverable) => (
                 <li data-testid="business-deliverable" key={deliverable}>
                   {deliverable}
