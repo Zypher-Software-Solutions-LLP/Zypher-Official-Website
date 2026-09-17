@@ -79,12 +79,20 @@ function useHowWeWorkNavigation(
       }
 
       const sectionRect = section.getBoundingClientRect();
+      const finalPanel = panelRecords.at(-1);
+      const finalPanelElement = finalPanel ? panelRefs.current.get(finalPanel.id) : undefined;
+      const finalPanelRect = finalPanelElement?.getBoundingClientRect();
       const entryThreshold = window.innerHeight * 0.8;
-      const shouldShowDock = sectionRect.top <= entryThreshold && sectionRect.bottom > 0;
+      const hasNotFinished = finalPanelRect ? finalPanelRect.bottom > 0 : sectionRect.bottom > 0;
+      const shouldShowDock = sectionRect.top <= entryThreshold && hasNotFinished;
 
       setIsDockVisible((currentVisibility) =>
         currentVisibility === shouldShowDock ? currentVisibility : shouldShowDock,
       );
+    };
+
+    const cancelProgrammaticNavigation = (): void => {
+      scrollTargetIdRef.current = null;
     };
 
     const updateActivePanel = (): void => {
@@ -146,12 +154,16 @@ function useHowWeWorkNavigation(
 
     window.addEventListener("scroll", scheduleActivePanelUpdate, { passive: true });
     window.addEventListener("resize", scheduleActivePanelUpdate);
+    window.addEventListener("wheel", cancelProgrammaticNavigation, { passive: true });
+    window.addEventListener("touchmove", cancelProgrammaticNavigation, { passive: true });
 
     updateDockVisibility();
 
     return (): void => {
       window.removeEventListener("scroll", scheduleActivePanelUpdate);
       window.removeEventListener("resize", scheduleActivePanelUpdate);
+      window.removeEventListener("wheel", cancelProgrammaticNavigation);
+      window.removeEventListener("touchmove", cancelProgrammaticNavigation);
 
       if (animationFrame !== null && typeof window.cancelAnimationFrame === "function") {
         window.cancelAnimationFrame(animationFrame);
@@ -177,7 +189,12 @@ function HowWeWorkStepButton({
       aria-current={isActive ? "true" : undefined}
       className={styles.howWeWorkStepButton}
       data-testid="how-we-work-step-button"
-      onClick={onClick}
+      onClick={(event): void => {
+        if (event.detail === 0) {
+          onClick();
+        }
+      }}
+      onPointerDown={onClick}
       type="button"
     >
       <span aria-hidden="true" className={styles.howWeWorkStepNumber}>
@@ -239,7 +256,12 @@ export function HowWeWorkSection(): ReactNode {
                             aria-current={activePanelId === panel.id ? "true" : undefined}
                             className={styles.howWeWorkSubstepButton}
                             key={panel.id}
-                            onClick={(): void => scrollToPanel(panel.id)}
+                            onClick={(event): void => {
+                              if (event.detail === 0) {
+                                scrollToPanel(panel.id);
+                              }
+                            }}
+                            onPointerDown={(): void => scrollToPanel(panel.id)}
                             type="button"
                           >
                             <span aria-hidden="true" className={styles.howWeWorkSubstepMarker} />
@@ -316,17 +338,14 @@ export function HowWeWorkSection(): ReactNode {
               className={styles.howWeWorkJumpButton}
               data-testid="how-we-work-jump-button"
               key={step.id}
-              onClick={(): void => {
-                if (firstPanel) {
+              onClick={(event): void => {
+                if (event.detail === 0 && firstPanel) {
                   scrollToPanel(firstPanel.id);
                 }
               }}
-              onPointerDown={(event): void => {
-                if (event.pointerType === "touch") {
-                  event.preventDefault();
-                  if (firstPanel) {
-                    scrollToPanel(firstPanel.id);
-                  }
+              onPointerDown={(): void => {
+                if (firstPanel) {
+                  scrollToPanel(firstPanel.id);
                 }
               }}
               type="button"

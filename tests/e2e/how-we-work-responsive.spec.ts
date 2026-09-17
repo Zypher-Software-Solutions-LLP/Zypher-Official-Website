@@ -117,6 +117,54 @@ test.describe("responsive homepage How We Work section", () => {
     );
   });
 
+  test("should activate desktop rail stages on pointer-down while scrolling", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1080 });
+    await openPage(page);
+
+    const section = page.getByTestId("how-we-work-section");
+    await section.scrollIntoViewIfNeeded();
+    await page.evaluate(() => window.scrollTo({ behavior: "smooth", top: window.scrollY + 256 }));
+
+    const scopeButton = page.getByTestId("how-we-work-rail").getByRole("button", {
+      name: "Scope & Quote",
+    });
+    await scopeButton.dispatchEvent("pointerdown", { pointerType: "mouse" });
+
+    await expect(scopeButton).toHaveAttribute("aria-current", "true");
+    await expect(section.getByTestId("how-we-work-panel-scope-quote")).toHaveAttribute(
+      "data-active",
+      "true",
+    );
+  });
+
+  test("should resume scroll-based active stages after a user wheel gesture", async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await openPage(page);
+
+    const section = page.getByTestId("how-we-work-section");
+    const sectionTop = await section.evaluate(
+      (element) => element.getBoundingClientRect().top + window.scrollY,
+    );
+    const dock = page.getByTestId("how-we-work-jump-dock");
+
+    await page.evaluate(
+      (scrollTop) => window.scrollTo({ behavior: "auto", top: scrollTop }),
+      sectionTop - 512,
+    );
+    await expect(dock).toHaveAttribute("data-state", "visible");
+
+    await dock.getByTestId("how-we-work-jump-button").nth(2).click();
+    await page.evaluate(() => {
+      window.dispatchEvent(new WheelEvent("wheel", { deltaY: -400 }));
+      window.scrollTo({ behavior: "auto", top: window.scrollY - 256 });
+    });
+
+    await expect(dock.getByTestId("how-we-work-jump-button").nth(0)).toHaveAttribute(
+      "aria-current",
+      "true",
+    );
+  });
+
   test("should show the dock after section entry and hide it after section exit", async ({
     page,
   }) => {
@@ -149,6 +197,16 @@ test.describe("responsive homepage How We Work section", () => {
       sectionTop - 512,
     );
     await expect(dock).toHaveCSS("opacity", "1");
+
+    const lastPanelBottom = await section
+      .getByTestId("how-we-work-panel-launch-stay-on")
+      .evaluate((element) => element.getBoundingClientRect().bottom + window.scrollY);
+
+    await page.evaluate(
+      (scrollTop) => window.scrollTo({ behavior: "auto", top: scrollTop }),
+      lastPanelBottom + 20,
+    );
+    await expect(dock).toHaveCSS("opacity", "0");
 
     await page.evaluate(
       (scrollTop) => window.scrollTo({ behavior: "auto", top: scrollTop }),
