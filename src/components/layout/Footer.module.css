@@ -2,8 +2,12 @@
 .siteFooter {
   --site-footer-artwork-top: clamp(1.5rem, 3vw, 3rem);
   --site-footer-artwork-height: clamp(24rem, 33.3333vw, 32rem);
+  --site-footer-artwork-offset: clamp(1.25rem, 2vw, 2rem);
   position: relative;
-  min-height: calc(var(--site-footer-artwork-top) + var(--site-footer-artwork-height));
+  min-height: calc(
+    var(--site-footer-artwork-top) + var(--site-footer-artwork-height) +
+      var(--site-footer-artwork-offset)
+  );
   overflow: hidden;
   background: var(--color-brand-dark);
   color: var(--color-brand-mist);
@@ -248,7 +252,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center bottom;
+  object-position: center top;
   opacity: 0.35;
 }
 

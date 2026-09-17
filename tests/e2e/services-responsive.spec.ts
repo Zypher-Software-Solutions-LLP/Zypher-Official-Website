@@ -109,6 +109,7 @@ test.describe("responsive Services hero", () => {
         source: illustration.getAttribute("data-image-src"),
         imagePresent: Boolean(image),
         imageObjectFit: getComputedStyle(image).objectFit,
+        imageObjectPosition: getComputedStyle(image).objectPosition,
         imageOpacity: getComputedStyle(image).opacity,
         illustrationPosition: getComputedStyle(illustration).position,
         illustrationTop: Number.parseFloat(getComputedStyle(illustration).top),
@@ -127,11 +128,13 @@ test.describe("responsive Services hero", () => {
     );
     expect(layers.imagePresent).toBe(true);
     expect(layers.imageObjectFit).toBe("cover");
+    expect(layers.imageObjectPosition).toBe("50% 0%");
     expect(layers.imageOpacity).toBe("0.35");
     expect(layers.illustrationPosition).toBe("absolute");
-    expect(layers.illustrationTop).toBeGreaterThan(0);
-    expect(layers.illustrationTop).toBeLessThan(48);
+    expect(layers.illustrationTop).toBeGreaterThan(48);
+    expect(layers.illustrationTop).toBeLessThan(96);
     expect(layers.illustrationRatio).toBeCloseTo(3, 2);
+    expect(layers.footerHeight).toBeGreaterThan(540);
     expect(layers.footerHeight).toBeLessThan(800);
     expect(layers.footerBottomGap).toBe(0);
     expect(layers.pointerEvents).toBe("none");
