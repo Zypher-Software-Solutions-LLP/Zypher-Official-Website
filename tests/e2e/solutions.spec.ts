@@ -1,0 +1,214 @@
+import { expect, test, type Page } from "@playwright/test";
+
+async function dismissConsent(page: Page): Promise<void> {
+  const consentDialog = page.getByRole("dialog", { name: "Cookie consent" });
+  if (await consentDialog.isVisible()) {
+    await consentDialog.getByRole("button", { name: "Reject optional" }).click();
+  }
+}
+
+test.describe("homepage solutions section", () => {
+  test("should use the shared desktop grid with alternating brand surfaces", async ({
+    page,
+  }, testInfo) => {
+    test.skip(
+      testInfo.project.name === "mobile",
+      "Desktop layout check runs in the desktop project.",
+    );
+    await page.setViewportSize({ width: 1440, height: 1080 });
+    await page.goto("/");
+    await dismissConsent(page);
+
+    const section = page.locator("#solutions");
+    await section.scrollIntoViewIfNeeded();
+
+    const layout = await section.evaluate((element) => {
+      const inner = element.querySelector<HTMLElement>(".solutions-section__inner");
+      const grid = element.querySelector<HTMLElement>(".solutions-section__grid");
+      const cards = Array.from(element.querySelectorAll<HTMLElement>(".solutions-card"));
+      const titleSpans = Array.from(
+        element.querySelectorAll<HTMLElement>(".solutions-section__title > span"),
+      );
+
+      if (!inner || !grid || cards.length !== 4 || titleSpans.length !== 2) {
+        throw new Error("Solutions section geometry is unavailable");
+      }
+
+      const cardBoxes = cards.map((card) => {
+        const box = card.getBoundingClientRect();
+
+        return { left: box.left, right: box.right, width: box.width };
+      });
+
+      const titleLineCounts = titleSpans.map((span) => {
+        const range = document.createRange();
+        range.selectNodeContents(span);
+        return range.getClientRects().length;
+      });
+
+      const titleTextRight = Math.max(
+        ...titleSpans.flatMap((span) => {
+          const range = document.createRange();
+          range.selectNodeContents(span);
+          return Array.from(range.getClientRects()).map((rect) => rect.right);
+        }),
+      );
+
+      return {
+        innerWidth: inner.getBoundingClientRect().width,
+        innerRight: inner.getBoundingClientRect().right,
+        titleTextRight,
+        columns: getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length,
+        cardBoxes,
+        backgrounds: cards.map((card) => getComputedStyle(card).backgroundColor),
+        titleColors: titleSpans.map((span) => getComputedStyle(span).color),
+        titleLineCounts,
+      };
+    });
+    expect(layout.titleTextRight).toBeLessThanOrEqual(layout.innerRight + 1);
+    expect(layout.columns).toBe(2);
+    expect(layout.cardBoxes[0].width).toBeCloseTo(layout.cardBoxes[1].width, 0);
+    expect(layout.cardBoxes[1].left - layout.cardBoxes[0].right).toBeCloseTo(24, 0);
+    expect(layout.backgrounds).toEqual([
+      "rgb(244, 248, 246)",
+      "rgb(16, 23, 21)",
+      "rgb(15, 71, 67)",
+      "rgb(244, 248, 246)",
+    ]);
+    expect(layout.titleColors).toEqual(["rgb(15, 71, 67)", "rgb(16, 23, 21)"]);
+    expect(layout.titleLineCounts).toEqual([1, 1]);
+  });
+
+  test("should stack the cards inside the grid without phone overflow", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await dismissConsent(page);
+
+    const section = page.locator("#solutions");
+    const layout = await section.evaluate((element) => {
+      const grid = element.querySelector<HTMLElement>(".solutions-section__grid");
+      const cards = Array.from(element.querySelectorAll<HTMLElement>(".solutions-card"));
+
+      if (!grid || cards.length !== 4) {
+        throw new Error("Mobile solutions section geometry is unavailable");
+      }
+
+      return {
+        columns: getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length,
+        cardWidths: cards.map((card) => Math.round(card.getBoundingClientRect().width)),
+        sectionRight: element.getBoundingClientRect().right,
+        viewportWidth: window.innerWidth,
+      };
+    });
+
+    expect(layout.columns).toBe(1);
+    expect(layout.cardWidths.every((width) => width <= 358)).toBe(true);
+    expect(layout.sectionRight).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+      390,
+    );
+    await expect(section.getByRole("link", { name: /About Zypher/ })).toHaveAttribute(
+      "href",
+      "/about",
+    );
+  });
+
+  test("should preserve a bounded two-column frame at 4K", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === "mobile", "4K layout check runs in the desktop project.");
+    await page.setViewportSize({ width: 3840, height: 2160 });
+    await page.goto("/");
+    await dismissConsent(page);
+
+    const geometry = await page.locator("#solutions").evaluate((element) => {
+      const inner = element.querySelector<HTMLElement>(".solutions-section__inner");
+      const cards = Array.from(element.querySelectorAll<HTMLElement>(".solutions-card"));
+      const titleSpans = Array.from(
+        element.querySelectorAll<HTMLElement>(".solutions-section__title > span"),
+      );
+
+      if (!inner || cards.length !== 4 || titleSpans.length !== 2) {
+        throw new Error("4K solutions section geometry is unavailable");
+      }
+
+      const titleLineCounts = titleSpans.map((span) => {
+        const range = document.createRange();
+        range.selectNodeContents(span);
+        return range.getClientRects().length;
+      });
+
+      const titleTextRight = Math.max(
+        ...titleSpans.flatMap((span) => {
+          const range = document.createRange();
+          range.selectNodeContents(span);
+          return Array.from(range.getClientRects()).map((rect) => rect.right);
+        }),
+      );
+
+      return {
+        innerWidth: inner.getBoundingClientRect().width,
+        innerRight: inner.getBoundingClientRect().right,
+        titleTextRight,
+        cardWidths: cards.map((card) => card.getBoundingClientRect().width),
+        titleLineCounts,
+      };
+    });
+
+    expect(geometry.innerWidth).toBeCloseTo(1440, 0);
+    expect(geometry.titleTextRight).toBeLessThanOrEqual(geometry.innerRight + 1);
+    expect(geometry.cardWidths[0]).toBeCloseTo(geometry.cardWidths[1], 0);
+    expect(geometry.titleLineCounts).toEqual([1, 1]);
+  });
+  test("should center only the heading on tablet", async ({ page }, testInfo) => {
+    test.skip(
+      testInfo.project.name === "mobile",
+      "Tablet alignment check runs in the desktop project.",
+    );
+    await page.setViewportSize({ width: 1024, height: 768 });
+    await page.goto("/");
+    await dismissConsent(page);
+
+    const section = page.locator("#solutions");
+    const innerBox = await section.locator(".solutions-section__inner").boundingBox();
+    const titleBox = await section.locator(".solutions-section__title").boundingBox();
+    if (!innerBox || !titleBox) {
+      throw new Error("Tablet heading geometry is unavailable");
+    }
+
+    expect(titleBox.x + titleBox.width / 2).toBeCloseTo(innerBox.x + innerBox.width / 2, 0);
+    await expect(section.locator(".solutions-section__title")).toHaveCSS("text-align", "center");
+    await expect(section.locator(".solutions-section__subtitle")).toHaveCSS("text-align", "right");
+  });
+  test("should keep the heading inside the grid on smaller tablets", async ({ page }, testInfo) => {
+    test.skip(
+      testInfo.project.name === "mobile",
+      "Tablet layout check runs in the desktop project.",
+    );
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await page.goto("/");
+    await dismissConsent(page);
+
+    const bounds = await page.locator("#solutions").evaluate((element) => {
+      const inner = element.querySelector<HTMLElement>(".solutions-section__inner");
+      const title = element.querySelector<HTMLElement>(".solutions-section__title");
+      if (!inner || !title) {
+        throw new Error("Tablet heading bounds are unavailable");
+      }
+
+      const titleRects = Array.from(title.querySelectorAll<HTMLElement>("span")).flatMap((span) => {
+        const range = document.createRange();
+        range.selectNodeContents(span);
+        return Array.from(range.getClientRects());
+      });
+      const innerBox = inner.getBoundingClientRect();
+      return {
+        innerLeft: innerBox.left,
+        innerRight: innerBox.right,
+        titleLeft: Math.min(...titleRects.map((rect) => rect.left)),
+        titleRight: Math.max(...titleRects.map((rect) => rect.right)),
+      };
+    });
+
+    expect(bounds.titleLeft).toBeGreaterThanOrEqual(bounds.innerLeft - 1);
+    expect(bounds.titleRight).toBeLessThanOrEqual(bounds.innerRight + 1);
+  });
+});
