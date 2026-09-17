@@ -86,6 +86,37 @@ test.describe("responsive homepage How We Work section", () => {
     );
   });
 
+  test("should respond to a dock touch while the page is still scrolling", async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await openPage(page);
+
+    const section = page.getByTestId("how-we-work-section");
+    const sectionTop = await section.evaluate(
+      (element) => element.getBoundingClientRect().top + window.scrollY,
+    );
+    const dock = page.getByTestId("how-we-work-jump-dock");
+
+    await page.evaluate(
+      (scrollTop) => window.scrollTo({ behavior: "auto", top: scrollTop }),
+      sectionTop - 512,
+    );
+    await expect(dock).toHaveAttribute("data-state", "visible");
+
+    await page.evaluate(
+      (scrollTop) => window.scrollTo({ behavior: "smooth", top: scrollTop }),
+      sectionTop - 256,
+    );
+
+    const buildButton = dock.getByTestId("how-we-work-jump-button").nth(2);
+    await buildButton.dispatchEvent("pointerdown", { pointerType: "touch" });
+
+    await expect(buildButton).toHaveAttribute("aria-current", "true");
+    await expect(section.getByTestId("how-we-work-panel-built-from-scratch")).toHaveAttribute(
+      "data-active",
+      "true",
+    );
+  });
+
   test("should show the dock after section entry and hide it after section exit", async ({
     page,
   }) => {

@@ -12,7 +12,8 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: 62.4375rem;
+  height: 72rem;
+  min-height: 72rem;
   background: var(--color-brand-mist);
   color: var(--color-brand-mist);
   padding: clamp(5.5rem, 6.5vw, 7rem) 0 clamp(8.5rem, 10vw, 11rem);
@@ -276,6 +277,7 @@
 
 @media (max-width: 1199px) {
   .executionGapSection {
+    height: auto;
     min-height: 0;
     padding: clamp(5rem, 8vw, 7rem) 0 clamp(6rem, 10vw, 9rem);
   }

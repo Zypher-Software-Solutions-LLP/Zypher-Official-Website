@@ -321,6 +321,14 @@ export function HowWeWorkSection(): ReactNode {
                   scrollToPanel(firstPanel.id);
                 }
               }}
+              onPointerDown={(event): void => {
+                if (event.pointerType === "touch") {
+                  event.preventDefault();
+                  if (firstPanel) {
+                    scrollToPanel(firstPanel.id);
+                  }
+                }
+              }}
               type="button"
             >
               {step.number}

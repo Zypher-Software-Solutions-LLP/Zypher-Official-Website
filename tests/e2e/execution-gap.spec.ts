@@ -325,6 +325,52 @@ test.describe("homepage execution gap section", () => {
     expect(alignment.mediaBottom).toBeLessThan(alignment.detailsBottom);
   });
 
+  test("should keep desktop section curves fixed while accordion content changes", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 1080 });
+    await openPage(page);
+
+    const section = page.getByTestId("execution-gap-section");
+    await section.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1_300);
+
+    const readGeometry = async (): Promise<{
+      bottomBoundaryTop: number;
+      sectionHeight: number;
+    }> =>
+      section.evaluate((element) => {
+        const boundary = element.querySelector<HTMLElement>(
+          '[data-testid="execution-gap-boundary-bottom"]',
+        );
+
+        if (!boundary) {
+          throw new Error("Execution-gap bottom boundary geometry is unavailable");
+        }
+
+        return {
+          bottomBoundaryTop: boundary.getBoundingClientRect().top,
+          sectionHeight: element.getBoundingClientRect().height,
+        };
+      });
+
+    const before = await readGeometry();
+
+    await section
+      .getByRole("button")
+      .nth(1)
+      .evaluate((button) => (button as HTMLButtonElement).click());
+    await page.waitForTimeout(120);
+    const during = await readGeometry();
+
+    await page.waitForTimeout(600);
+    const after = await readGeometry();
+
+    expect(during.sectionHeight).toBeCloseTo(before.sectionHeight, 0);
+    expect(after.sectionHeight).toBeCloseTo(before.sectionHeight, 0);
+    expect(after.bottomBoundaryTop).toBeCloseTo(before.bottomBoundaryTop, 0);
+  });
+
   test("should not render em dashes in the execution-gap copy", async ({ page }) => {
     await openPage(page);
 
