@@ -105,6 +105,10 @@ test.describe("responsive Services hero", () => {
       return {
         source: illustration.getAttribute("data-image-src"),
         imagePresent: Boolean(image),
+        imageObjectFit: getComputedStyle(image).objectFit,
+        imageOpacity: getComputedStyle(image).opacity,
+        illustrationPosition: getComputedStyle(illustration).position,
+        illustrationTop: Number.parseFloat(getComputedStyle(illustration).top),
         pointerEvents: getComputedStyle(illustration).pointerEvents,
         illustrationZIndex: getComputedStyle(illustration).zIndex,
         mainZIndex: getComputedStyle(main).zIndex,
@@ -116,6 +120,10 @@ test.describe("responsive Services hero", () => {
       "https://media.zypher-solutions.com/footer/Footer%20Illustration.png",
     );
     expect(layers.imagePresent).toBe(true);
+    expect(layers.imageObjectFit).toBe("contain");
+    expect(layers.imageOpacity).toBe("0.5");
+    expect(layers.illustrationPosition).toBe("absolute");
+    expect(layers.illustrationTop).toBeGreaterThan(0);
     expect(layers.pointerEvents).toBe("none");
     expect(layers.illustrationZIndex).toBe("0");
     expect(layers.mainZIndex).toBe("1");

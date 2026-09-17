@@ -226,11 +226,14 @@
 }
 
 .siteFooterIllustration {
-  position: relative;
+  position: absolute;
   z-index: 0;
+  top: clamp(2.5rem, 6vw, 6rem);
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: auto;
-  aspect-ratio: 1916 / 429;
   margin-top: 0;
   transform: none;
   overflow: hidden;
@@ -241,8 +244,9 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center bottom;
+  opacity: 0.5;
 }
 
 @media (max-width: 899px) {
@@ -292,10 +296,7 @@
   }
 
   .siteFooterIllustration {
-    height: auto;
-    aspect-ratio: 1916 / 429;
-    margin-top: 0;
-    transform: none;
+    top: 2.5rem;
   }
 }
 

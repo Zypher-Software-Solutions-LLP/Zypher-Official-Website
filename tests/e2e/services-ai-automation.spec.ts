@@ -131,6 +131,48 @@ test.describe("AI and LLM automation section", () => {
     expect(geometry.closestPointTop).toBeLessThan(geometry.artworkBottom);
   });
 
+  test("should align mobile labels to shared diagram rows across phone widths", async ({
+    page,
+  }) => {
+    for (const width of [320, 390, 430, 540, 767]) {
+      await page.setViewportSize({ width, height: 844 });
+      await openPage(page, "/services");
+
+      const geometry = await page.evaluate(() => {
+        const artwork = document.querySelector<HTMLElement>(
+          '[data-testid="ai-node-workflow-mobile-image"]',
+        );
+        const workflow = document.querySelector<HTMLElement>('[data-testid="ai-node-workflow"]');
+        const nodes = Array.from(
+          document.querySelectorAll<HTMLElement>('[data-testid="ai-capability-node"]'),
+        );
+
+        if (!artwork || !workflow || nodes.length !== 5) {
+          throw new Error("Missing mobile workflow row geometry");
+        }
+
+        const nodeTops = nodes.map((node) => node.getBoundingClientRect().top);
+        const rowSteps = nodeTops.slice(1).map((top, index) => top - nodeTops[index]);
+
+        return {
+          artworkHeight: artwork.getBoundingClientRect().height,
+          workflowHeight: workflow.getBoundingClientRect().height,
+          workflowDisplay: getComputedStyle(workflow).display,
+          workflowRows: getComputedStyle(workflow).gridTemplateRows,
+          rowGap: getComputedStyle(workflow).rowGap,
+          rowSteps,
+        };
+      });
+
+      expect(geometry.workflowDisplay).toBe("grid");
+      expect(geometry.workflowRows.split(" ").length).toBe(5);
+      expect(geometry.rowGap).toBe("0px");
+      expect(geometry.artworkHeight).toBeCloseTo(geometry.workflowHeight, 1);
+      expect(geometry.rowSteps.every((step) => Math.abs(step - geometry.rowSteps[0]) < 0.5)).toBe(
+        true,
+      );
+    }
+  });
   test("should stack the node diagram and hide the laptop on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await openPage(page, "/services");
