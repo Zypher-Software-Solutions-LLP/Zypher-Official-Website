@@ -1,0 +1,308 @@
+.skipLink {
+  position: absolute;
+  top: 0.75rem;
+  left: -10000px;
+  z-index: 100;
+  border-radius: 0.5rem;
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+}
+
+.skipLink:focus {
+  left: 1rem;
+}
+
+.siteHeader {
+  position: fixed;
+  top: 1.25rem;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  padding-inline: 1rem;
+  pointer-events: none;
+}
+
+.siteHeader .skipLink {
+  pointer-events: auto;
+}
+
+.siteHeaderInner {
+  display: flex;
+  pointer-events: none;
+  width: min(calc(100% - 2rem), clamp(46.25rem, calc(40.25rem + 6.6667vw), 56.25rem));
+  min-height: clamp(3.125rem, calc(2.825rem + 0.3333vw), 3.625rem);
+  height: clamp(3.125rem, calc(2.825rem + 0.3333vw), 3.625rem);
+  align-items: center;
+  gap: 0;
+  margin-inline: auto;
+  border: 0.5px solid rgb(15 71 67 / 0.28);
+  border-radius: 9999px;
+  background: rgb(244 248 246 / 0.78);
+  box-shadow: 0 0.75rem 2rem rgb(15 71 67 / 0.08);
+  padding: 0 clamp(1rem, calc(0.75rem + 0.2604vw), 1.375rem);
+  backdrop-filter: blur(1rem);
+}
+
+.siteHeaderBrand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  pointer-events: auto;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+
+.siteHeaderLogo {
+  display: block;
+  width: clamp(6.875rem, calc(6rem + 0.9722vw), 8.25rem);
+  height: auto;
+}
+
+.siteHeaderNav {
+  display: none;
+  flex: 0 0 clamp(30rem, calc(26.4rem + 4vw), 36rem);
+  pointer-events: none;
+  width: clamp(30rem, calc(26.4rem + 4vw), 36rem);
+  max-width: none;
+  min-width: 0;
+  margin-inline: auto;
+  border-radius: 9999px;
+  background: #cecece;
+  height: clamp(1.875rem, calc(1.65rem + 0.25vw), 2.25rem);
+}
+
+.siteHeaderNavList,
+.siteHeaderMobileList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.siteHeaderNavList > li {
+  height: 100%;
+  flex: 0 0 clamp(5rem, calc(4.4rem + 0.6667vw), 6rem);
+}
+
+.siteHeaderNavList {
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.siteHeaderLink {
+  display: inline-flex;
+  width: 100%;
+  pointer-events: auto;
+  min-height: 100%;
+  height: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: var(--color-brand-dark);
+  padding: 0;
+  font-size: clamp(0.8125rem, calc(0.775rem + 0.04167vw), 0.875rem);
+  font-weight: 400;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.siteHeaderLink:hover,
+.siteHeaderLink:focus-visible {
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+}
+
+.siteHeaderLink[data-state="active"] {
+  background: var(--color-brand-dark);
+  color: var(--color-brand-mist);
+}
+
+.siteHeaderContact,
+.siteHeaderMobileContact {
+  display: none;
+  pointer-events: auto;
+  width: clamp(6.375rem, calc(5.85rem + 0.5833vw), 7.25rem);
+  min-height: 0;
+  height: clamp(1.875rem, calc(1.65rem + 0.25vw), 2.25rem);
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--color-brand-dark);
+  color: var(--color-brand-mist);
+  padding: 0;
+  font-size: clamp(0.8125rem, calc(0.775rem + 0.04167vw), 0.875rem);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.siteHeaderContact:hover,
+.siteHeaderContact:focus-visible,
+.siteHeaderMobileContact:hover,
+.siteHeaderMobileContact:focus-visible {
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+}
+
+.siteHeaderMenuButton {
+  display: inline-flex;
+  min-height: 2.5rem;
+  pointer-events: auto;
+  min-width: 2.5rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  border: 1px solid rgb(15 71 67 / 0.24);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-brand-dark);
+  cursor: pointer;
+}
+
+.siteHeaderMenuButton:hover,
+.siteHeaderMenuButton:focus-visible {
+  background: var(--color-brand-neon);
+}
+
+.siteHeaderMenuIcon {
+  position: relative;
+  display: block;
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: 0 0 auto;
+}
+
+.siteHeaderMenuLine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.125rem;
+  height: 0.09375rem;
+  border-radius: 9999px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 180ms ease,
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.siteHeaderMenuLineTop {
+  transform: translate(-50%, calc(-50% - 0.3125rem));
+}
+
+.siteHeaderMenuLineBottom {
+  transform: translate(-50%, calc(-50% + 0.3125rem));
+}
+
+.siteHeaderMenuIcon[data-state="open"] .siteHeaderMenuLineTop {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.siteHeaderMenuIcon[data-state="open"] .siteHeaderMenuLineMiddle {
+  opacity: 0;
+  transform: translate(-50%, -50%) scaleX(0.4);
+}
+
+.siteHeaderMenuIcon[data-state="open"] .siteHeaderMenuLineBottom {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.siteHeaderMobileNav {
+  width: min(calc(100% - 2rem), 80vw);
+  margin: 0.5rem auto 0;
+  border: 0.5px solid rgb(15 71 67 / 0.28);
+  border-radius: 1.25rem;
+  background: rgb(244 248 246 / 0.96);
+  box-shadow: 0 1rem 2rem rgb(15 71 67 / 0.12);
+  padding: 0.5rem;
+  backdrop-filter: blur(1rem);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -0.75rem, 0) scaleY(0.96);
+  transform-origin: top center;
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 320ms;
+  visibility: hidden;
+}
+
+.siteHeaderMobileNav[data-state="open"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scaleY(1);
+  transition-delay: 0s;
+  visibility: visible;
+}
+
+.siteHeaderMobileNav[data-state="closed"] {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, -0.75rem, 0) scaleY(0.96);
+  visibility: hidden;
+}
+
+.siteHeaderMobileList {
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.siteHeaderMobileLink {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  border-radius: 0.75rem;
+  color: var(--color-brand-dark);
+  padding: 0 0.875rem;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.siteHeaderMobileLink:hover,
+.siteHeaderMobileLink:focus-visible {
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+}
+
+.siteHeaderMobileContact {
+  display: flex;
+  width: 100%;
+  min-height: 3rem;
+  height: 3rem;
+  margin-top: 0.5rem;
+  padding-inline: 0.875rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 900px) {
+  .siteHeaderNav,
+  .siteHeaderContact {
+    display: flex;
+  }
+
+  .siteHeaderMenuButton {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .siteHeaderInner {
+    width: calc(100% - 2rem);
+    min-height: 3.25rem;
+    height: 3.25rem;
+    padding-inline: 0.75rem;
+  }
+
+  .siteHeaderLogo {
+    width: 8.25rem;
+  }
+}

@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import styles from "./HowWeWorkSection.module.css";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { ReactNode } from "react";
-import { howWeWorkSteps, type HowWeWorkPanel } from "@/features/home/how-we-work-data";
-
+import type { ReactNode, RefObject } from "react";
+import { howWeWorkSteps, type HowWeWorkPanel } from "./how-we-work-data";
 type HowWeWorkPanelRecord = HowWeWorkPanel & {
   stepId: (typeof howWeWorkSteps)[number]["id"];
   stepNumber: string;
@@ -31,42 +31,21 @@ function getScrollBehavior(): ScrollBehavior {
     : "smooth";
 }
 
-function HowWeWorkStepButton({
-  isActive,
-  label,
-  number,
-  onClick,
-}: {
-  isActive: boolean;
-  label: string;
-  number: string;
-  onClick: () => void;
-}): ReactNode {
-  return (
-    <button
-      aria-current={isActive ? "true" : undefined}
-      className="how-we-work__step-button"
-      onClick={onClick}
-      type="button"
-    >
-      <span aria-hidden="true" className="how-we-work__step-number">
-        {number}
-      </span>
-      <span>{label}</span>
-    </button>
-  );
-}
+type HowWeWorkNavigation = {
+  activePanelId: string;
+  isDockVisible: boolean;
+  registerPanel: (panelId: string, node: HTMLElement | null) => void;
+  scrollToPanel: (panelId: string) => void;
+};
 
-export function HowWeWorkSection(): ReactNode {
-  const panelRecords = useMemo<HowWeWorkPanelRecord[]>(() => getPanelRecords(), []);
+function useHowWeWorkNavigation(
+  panelRecords: HowWeWorkPanelRecord[],
+  sectionRef: RefObject<HTMLElement | null>,
+): HowWeWorkNavigation {
   const [activePanelId, setActivePanelId] = useState(panelRecords[0]?.id ?? "");
-  const [isJumpDockVisible, setIsJumpDockVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const [isDockVisible, setIsDockVisible] = useState(false);
   const panelRefs = useRef<Map<string, HTMLElement>>(new Map());
   const scrollTargetIdRef = useRef<string | null>(null);
-
-  const activePanel = panelRecords.find((panel) => panel.id === activePanelId) ?? panelRecords[0];
-  const activeStepId = activePanel?.stepId;
 
   const registerPanel = useCallback((panelId: string, node: HTMLElement | null): void => {
     if (node) {
@@ -122,9 +101,10 @@ export function HowWeWorkSection(): ReactNode {
         .filter((candidate): candidate is { panel: HowWeWorkPanelRecord; rect: DOMRect } =>
           Boolean(candidate),
         )
-        .filter(({ rect }) => rect.top <= anchor && rect.bottom >= anchor)
         .sort(
-          (first, second) => Math.abs(first.rect.top - anchor) - Math.abs(second.rect.top - anchor),
+          (first, second) =>
+            Math.abs(first.rect.top + first.rect.height / 2 - anchor) -
+            Math.abs(second.rect.top + second.rect.height / 2 - anchor),
         );
       const nextPanel = candidates[0]?.panel;
 
@@ -153,7 +133,7 @@ export function HowWeWorkSection(): ReactNode {
 
     if (section && "IntersectionObserver" in window) {
       sectionObserver = new IntersectionObserver(
-        ([entry]) => setIsJumpDockVisible(Boolean(entry?.isIntersecting)),
+        ([entry]) => setIsDockVisible(Boolean(entry?.isIntersecting)),
         { rootMargin: "0px", threshold: 0 },
       );
       sectionObserver.observe(section);
@@ -168,31 +148,71 @@ export function HowWeWorkSection(): ReactNode {
         window.cancelAnimationFrame(animationFrame);
       }
     };
-  }, [panelRecords]);
+  }, [panelRecords, sectionRef]);
+
+  return { activePanelId, isDockVisible, registerPanel, scrollToPanel };
+}
+function HowWeWorkStepButton({
+  isActive,
+  label,
+  number,
+  onClick,
+}: {
+  isActive: boolean;
+  label: string;
+  number: string;
+  onClick: () => void;
+}): ReactNode {
+  return (
+    <button
+      aria-current={isActive ? "true" : undefined}
+      className={styles.howWeWorkStepButton}
+      data-testid="how-we-work-step-button"
+      onClick={onClick}
+      type="button"
+    >
+      <span aria-hidden="true" className={styles.howWeWorkStepNumber}>
+        {number}
+      </span>
+      <span>{label}</span>
+    </button>
+  );
+}
+
+export function HowWeWorkSection(): ReactNode {
+  const panelRecords = useMemo<HowWeWorkPanelRecord[]>(() => getPanelRecords(), []);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { activePanelId, isDockVisible, registerPanel, scrollToPanel } = useHowWeWorkNavigation(
+    panelRecords,
+    sectionRef,
+  );
+
+  const activePanel = panelRecords.find((panel) => panel.id === activePanelId) ?? panelRecords[0];
+  const activeStepId = activePanel?.stepId;
 
   return (
     <section
       aria-labelledby="how-we-work-title"
-      className="how-we-work-section"
+      className={styles.howWeWorkSection}
       data-testid="how-we-work-section"
       id="how-we-work"
       ref={sectionRef}
     >
-      <div className="how-we-work-section__inner">
-        <div className="how-we-work-section__layout">
-          <aside className="how-we-work__rail" data-testid="how-we-work-rail">
-            <h2 aria-label="HOW WE WORK" className="how-we-work__title" id="how-we-work-title">
+      <div className={styles.howWeWorkSectionInner}>
+        <div className={styles.howWeWorkSectionLayout}>
+          <aside className={styles.howWeWorkRail} data-testid="how-we-work-rail">
+            <h2 aria-label="HOW WE WORK" className={styles.howWeWorkTitle} id="how-we-work-title">
               <span>HOW</span>
               <strong>WE WORK</strong>
             </h2>
 
-            <nav aria-label="How we work stages" className="how-we-work__navigation">
+            <nav aria-label="How we work stages" className={styles.howWeWorkNavigation}>
               {howWeWorkSteps.map((step) => {
                 const firstPanel = step.children?.[0] ?? step.panels[0];
                 const isStepActive = activeStepId === step.id;
 
                 return (
-                  <div className="how-we-work__step-group" key={step.id}>
+                  <div className={styles.howWeWorkStepGroup} key={step.id}>
                     <HowWeWorkStepButton
                       isActive={isStepActive}
                       label={step.label}
@@ -204,16 +224,16 @@ export function HowWeWorkSection(): ReactNode {
                       }}
                     />
                     {step.children ? (
-                      <div className="how-we-work__subnavigation">
+                      <div className={styles.howWeWorkSubnavigation}>
                         {step.children.map((panel) => (
                           <button
                             aria-current={activePanelId === panel.id ? "true" : undefined}
-                            className="how-we-work__substep-button"
+                            className={styles.howWeWorkSubstepButton}
                             key={panel.id}
                             onClick={(): void => scrollToPanel(panel.id)}
                             type="button"
                           >
-                            <span aria-hidden="true" className="how-we-work__substep-marker" />
+                            <span aria-hidden="true" className={styles.howWeWorkSubstepMarker} />
                             <span>{panel.label}</span>
                           </button>
                         ))}
@@ -225,45 +245,43 @@ export function HowWeWorkSection(): ReactNode {
             </nav>
           </aside>
 
-          <div className="how-we-work__content">
+          <div className={styles.howWeWorkContent}>
             {panelRecords.map((panel) => {
               const isActive = panel.id === activePanelId;
 
               return (
                 <article
-                  className="how-we-work__panel"
+                  className={styles.howWeWorkPanel}
                   data-active={isActive ? "true" : "false"}
                   data-testid={`how-we-work-panel-${panel.id}`}
                   id={`how-we-work-panel-${panel.id}`}
                   key={panel.id}
                   ref={(node): void => registerPanel(panel.id, node)}
                 >
-                  <header className="how-we-work__panel-header">
-                    <div className="how-we-work__icon-frame" data-testid="how-we-work-icon">
+                  <header className={styles.howWeWorkPanelHeader}>
+                    <div className={styles.howWeWorkIconFrame} data-testid="how-we-work-icon">
                       <Image
                         alt=""
                         fill
                         loading={panel.id === panelRecords[0]?.id ? "eager" : "lazy"}
                         sizes="(max-width: 767px) 2.75rem, 3.5rem"
                         src={panel.iconSrc}
-                        unoptimized
                       />
                     </div>
                     <h3>{panel.heading}</h3>
                   </header>
 
-                  <p className="how-we-work__description">{panel.description}</p>
+                  <p className={styles.howWeWorkDescription}>{panel.description}</p>
 
-                  <div className="how-we-work__media">
+                  <div className={styles.howWeWorkMedia}>
                     <Image
                       alt={panel.imageAlt}
-                      className="how-we-work__image"
+                      className={styles.howWeWorkImage}
                       data-testid="how-we-work-image"
                       fill
                       loading={panel.id === panelRecords[0]?.id ? "eager" : "lazy"}
                       sizes="(max-width: 767px) min(100vw - 2rem, 36rem), (max-width: 1199px) min(100vw - 4rem, 48rem), 54vw"
                       src={panel.imageSrc}
-                      unoptimized
                     />
                   </div>
                 </article>
@@ -275,9 +293,8 @@ export function HowWeWorkSection(): ReactNode {
 
       <nav
         aria-label="How we work quick navigation"
-        className={
-          "how-we-work__jump-dock" + (isJumpDockVisible ? " how-we-work__jump-dock--visible" : "")
-        }
+        className={styles.howWeWorkJumpDock}
+        data-state={isDockVisible ? "visible" : "hidden"}
         data-testid="how-we-work-jump-dock"
       >
         {howWeWorkSteps.map((step) => {
@@ -287,7 +304,8 @@ export function HowWeWorkSection(): ReactNode {
             <button
               aria-current={activeStepId === step.id ? "true" : undefined}
               aria-label={step.label}
-              className="how-we-work__jump-button"
+              className={styles.howWeWorkJumpButton}
+              data-testid="how-we-work-jump-button"
               key={step.id}
               onClick={(): void => {
                 if (firstPanel) {

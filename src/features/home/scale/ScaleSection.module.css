@@ -1,0 +1,724 @@
+/* Homepage scale section */
+.scaleSection {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+  padding: clamp(1rem, 1.32vw, 1.5rem) 0 clamp(1.5rem, 2.25vw, 2.5rem);
+}
+
+.scaleSectionInner {
+  position: relative;
+  width: min(calc(100% - 2rem), 80vw, 72rem);
+  margin-inline: auto;
+}
+
+.scaleSectionTop {
+  position: relative;
+  min-height: 7rem;
+}
+
+.scaleSectionTitle {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 3.3333vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1.14;
+  text-transform: uppercase;
+}
+
+.scaleSectionTitle span,
+.scaleSectionTitle strong {
+  display: block;
+}
+
+.scaleSectionTitle strong {
+  color: var(--color-brand-dark);
+  font-weight: 700;
+}
+
+.scaleSectionIllustration {
+  position: absolute;
+  z-index: 0;
+  top: clamp(-2rem, -2.2222vw, -1rem);
+  right: 0;
+  width: clamp(25rem, 40.1389vw, 36.125rem);
+  aspect-ratio: 578 / 385;
+  opacity: 0.86;
+  pointer-events: none;
+}
+
+.scaleSectionIllustrationImage {
+  object-fit: contain;
+  object-position: center;
+}
+
+.scaleSectionMetrics {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 75%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.6667vw, 1.5rem);
+  margin: 2.125rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scaleSectionMetricCard {
+  min-width: 0;
+  min-height: 10.625rem;
+  border-radius: clamp(1.5rem, 2.0833vw, 1.875rem);
+  background: rgb(244 248 246 / 0.82);
+  box-shadow: -2px 5px 7px rgb(92 107 103 / 0.5);
+  padding: clamp(1rem, 1.1111vw, 1.25rem);
+  opacity: 0;
+  transform: translate3d(0, 2rem, 0);
+  animation: scale-card-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.scaleSectionMetricCard:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.scaleSectionMetricCard:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.scaleSectionMetricTitle {
+  max-width: 14rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 1.6667vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.scaleSectionMetricValue {
+  color: var(--color-brand-dark);
+}
+
+.scaleSectionMetricLabel {
+  color: var(--color-brand-ink);
+}
+
+.scaleSectionMetricCard p {
+  max-width: 15rem;
+  margin: 1.5rem 0 0;
+  color: var(--color-brand-slate);
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 0.8333vw, 0.875rem);
+  font-weight: 300;
+  line-height: 1.35;
+}
+
+.scaleSectionLogoViewport {
+  position: relative;
+  width: min(68.0556%, 49rem);
+  height: clamp(4.5rem, 5.7639vw, 5.5rem);
+  margin: clamp(2rem, 2.7778vw, 3rem) auto 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / 0.95) 10%,
+    rgb(0 0 0 / 0.95) 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / 0.95) 10%,
+    rgb(0 0 0 / 0.95) 90%,
+    transparent 100%
+  );
+}
+
+.scaleSectionLogoTrack {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: scale-logo-loop 32s linear infinite;
+  will-change: transform;
+}
+
+.scaleSectionLogoGroup {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: clamp(1rem, 1.6667vw, 1.5rem);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scaleSectionLogoGroup li {
+  display: grid;
+  width: clamp(5.5rem, 7.3611vw, 8.25rem);
+  height: clamp(2rem, 3.0556vw, 2.75rem);
+  place-items: center;
+}
+
+.scaleSectionLogoGroup img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.scaleSectionProjectsHeader {
+  display: grid;
+  grid-template-columns: minmax(10.75rem, 1fr) minmax(0, 4fr);
+  align-items: center;
+  gap: clamp(1.5rem, 2.7778vw, 2.5rem);
+  margin-top: clamp(2rem, 2.7778vw, 3rem);
+}
+
+.scaleSectionViewAll {
+  width: clamp(10.75rem, 11.9444vw, 14rem);
+  min-height: clamp(2.1875rem, 2.4306vw, 3.5rem);
+  height: clamp(2.1875rem, 2.4306vw, 3.5rem);
+  padding: 0;
+  font-size: clamp(0.75rem, 0.9722vw, 1rem);
+}
+
+.scaleSectionProjectsTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 3.3333vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.14;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.scaleSectionProjectsTitle span,
+.scaleSectionProjectsTitle strong {
+  display: block;
+}
+
+.scaleSectionProjectsTitle span {
+  color: var(--color-brand-ink);
+}
+
+.scaleSectionProjectsTitle strong {
+  color: var(--color-brand-dark);
+  font-weight: 700;
+}
+
+.scaleSectionProjectsRow {
+  position: relative;
+  display: block;
+  margin-top: clamp(1.5rem, 2.0833vw, 2rem);
+}
+
+.scaleSectionProjectsViewport {
+  min-width: 0;
+}
+
+.scaleSectionSwipeHint {
+  display: none;
+}
+
+.scaleSectionProjects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.6667vw, 1.5rem);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scaleSectionProjectItem {
+  min-width: 0;
+}
+
+.scaleSectionProjectCard {
+  position: relative;
+  display: block;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: clamp(1.5rem, 2.0833vw, 1.875rem);
+  background: var(--color-brand-ink);
+  color: var(--color-brand-mist);
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+}
+
+.scaleSectionProjectCard::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+  transition: border-color 220ms ease;
+}
+
+.scaleSectionProjectCard:focus-visible::after {
+  border-color: var(--color-brand-neon);
+}
+
+.scaleSectionProjectImage {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    filter 400ms ease,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scaleSectionProjectOverlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: rgb(0 0 0 / 0.4);
+}
+
+.scaleSectionProjectContent {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  padding: clamp(0.875rem, 0.9722vw, 1rem);
+}
+
+.scaleSectionProjectEyebrow {
+  position: absolute;
+  bottom: clamp(3.25rem, 4.1667vw, 4.75rem);
+  left: clamp(0.875rem, 0.9722vw, 1rem);
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: clamp(0.6875rem, 0.8333vw, 0.875rem);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scaleSectionProjectTitle {
+  position: absolute;
+  bottom: clamp(0.875rem, 0.9722vw, 1rem);
+  left: clamp(0.875rem, 0.9722vw, 1rem);
+  max-width: calc(100% - 2rem);
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 2.5vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scaleSectionProjectDescription {
+  position: absolute;
+  right: clamp(4.75rem, 5.5556vw, 6rem);
+  bottom: clamp(0.875rem, 0.9722vw, 1rem);
+  left: clamp(0.875rem, 0.9722vw, 1rem);
+  max-width: 18rem;
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: clamp(0.6875rem, 0.8333vw, 0.875rem);
+  font-weight: 300;
+  line-height: 1.28;
+  opacity: 0;
+  transform: translate3d(0, 1.5rem, 0);
+  transition:
+    opacity 260ms ease,
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scaleSectionProjectArrow {
+  position: absolute;
+  right: clamp(0.875rem, 0.9722vw, 1rem);
+  bottom: clamp(3.125rem, 3.4722vw, 4rem);
+  display: grid;
+  width: clamp(2.75rem, 3.0556vw, 3.5rem);
+  height: clamp(2.75rem, 3.0556vw, 3.5rem);
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 1.9444vw, 2.25rem);
+  line-height: 1;
+  opacity: 0;
+  transform: translate3d(0, 1rem, 0) scale(0.8);
+  transition:
+    opacity 260ms ease,
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scaleSectionProjectCard:hover .scaleSectionProjectImage,
+.scaleSectionProjectCard:focus-within .scaleSectionProjectImage {
+  filter: blur(2.5px);
+  transform: scale(1.025);
+}
+
+.scaleSectionProjectCard:hover .scaleSectionProjectEyebrow,
+.scaleSectionProjectCard:focus-within .scaleSectionProjectEyebrow,
+.scaleSectionProjectCard:hover .scaleSectionProjectTitle,
+.scaleSectionProjectCard:focus-within .scaleSectionProjectTitle {
+  transform: translate3d(0, -3.625rem, 0);
+}
+
+.scaleSectionProjectCard:hover .scaleSectionProjectDescription,
+.scaleSectionProjectCard:focus-within .scaleSectionProjectDescription {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.scaleSectionProjectCard:hover .scaleSectionProjectArrow,
+.scaleSectionProjectCard:focus-within .scaleSectionProjectArrow {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.scaleSectionCarouselButton {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  width: clamp(2.75rem, 3.0556vw, 3.5rem);
+  height: clamp(2.75rem, 3.0556vw, 3.5rem);
+  place-items: center;
+  border: 1px solid rgb(15 71 67 / 0.28);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-brand-dark);
+  cursor: not-allowed;
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 1.6667vw, 1.75rem);
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.scaleSectionCarouselButton:first-child {
+  left: max(-6.125rem, calc((100vw - 100%) / -2 + 1rem));
+}
+
+.scaleSectionCarouselButton:last-child {
+  right: max(-6.125rem, calc((100vw - 100%) / -2 + 1rem));
+}
+
+.scaleSectionCarouselButton:disabled {
+  opacity: 0.34;
+}
+
+@keyframes scale-card-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scale-logo-loop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 899px) {
+  .scaleSectionTitle,
+  .scaleSectionProjectsTitle {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .scaleSectionMetrics {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .scaleSectionMetricCard {
+    padding: 1rem;
+  }
+
+  .scaleSectionMetricCard p {
+    margin-top: 1.5rem;
+  }
+
+  .scaleSectionProjectTitle {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+
+  .scaleSectionProjectDescription {
+    right: 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  .scaleSectionProjectsHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .scaleSectionProjectsTitle {
+    order: 1;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .scaleSectionViewAll {
+    order: 2;
+    align-self: flex-start;
+  }
+
+  .scaleSectionProjectsViewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    touch-action: pan-x;
+  }
+
+  .scaleSectionProjectsViewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scaleSectionProjects {
+    grid-template-columns: none;
+    grid-auto-columns: calc((100% - clamp(1rem, 1.6667vw, 1.5rem)) / 2);
+    grid-auto-flow: column;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+  }
+
+  .scaleSectionProjectItem {
+    scroll-snap-align: start;
+  }
+
+  .scaleSectionCarouselButton {
+    cursor: pointer;
+  }
+
+  .scaleSectionCarouselButton:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .scaleSectionMetrics {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scaleSectionMetricCard:last-child {
+    width: calc((100% - clamp(1rem, 1.6667vw, 1.5rem)) / 2);
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .scaleSectionTop {
+    min-height: clamp(14rem, 52vw, 20rem);
+  }
+
+  .scaleSectionIllustration {
+    top: clamp(1.75rem, 10vw, 4rem);
+    right: auto;
+    left: 50%;
+    width: min(90vw, 36.125rem);
+    transform: translateX(-50%);
+  }
+
+  .scaleSectionProjectsTitle {
+    font-size: clamp(1rem, 5.6vw, 2rem);
+  }
+
+  .scaleSectionProjectsTitle span,
+  .scaleSectionProjectsTitle strong {
+    white-space: nowrap;
+  }
+
+  .scaleSectionViewAll {
+    width: clamp(10.75rem, 50vw, 14rem);
+  }
+
+  .scaleSectionMetrics {
+    grid-template-columns: 1fr;
+  }
+
+  .scaleSectionMetricCard:last-child {
+    width: auto;
+    grid-column: auto;
+  }
+
+  .scaleSectionProjects {
+    grid-auto-columns: 100%;
+  }
+
+  .scaleSectionCarouselButton {
+    display: none;
+  }
+
+  .scaleSectionSwipeHint {
+    display: flex;
+    justify-content: center;
+    margin: 0.875rem 0 0;
+    color: var(--color-brand-slate);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 3000px) {
+  .scaleSectionInner {
+    width: min(calc(100% - 2rem), 90rem);
+  }
+
+  .scaleSectionTop {
+    min-height: 9rem;
+  }
+
+  .scaleSectionTitle,
+  .scaleSectionProjectsTitle {
+    font-size: 3.75rem;
+  }
+
+  .scaleSectionIllustration {
+    width: 45rem;
+  }
+
+  .scaleSectionMetrics {
+    gap: 2rem;
+  }
+
+  .scaleSectionMetricCard {
+    height: 12.5rem;
+    padding: 1.5rem;
+  }
+
+  .scaleSectionMetricTitle {
+    max-width: 18rem;
+    font-size: 2.125rem;
+  }
+
+  .scaleSectionMetricCard p {
+    max-width: 18rem;
+    font-size: 1rem;
+  }
+
+  .scaleSectionLogoViewport {
+    width: min(68.0556%, 60rem);
+    height: 7rem;
+  }
+
+  .scaleSectionLogoGroup {
+    gap: 2rem;
+  }
+
+  .scaleSectionLogoGroup li {
+    width: 10rem;
+    height: 3.5rem;
+  }
+
+  .scaleSectionProjectsHeader {
+    grid-template-columns: minmax(13.5rem, 1fr) minmax(0, 4fr);
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+
+  .scaleSectionViewAll {
+    width: 17.5rem;
+    height: 4rem;
+    min-height: 4rem;
+    font-size: 1.25rem;
+  }
+
+  .scaleSectionProjectsRow {
+    margin-top: 2.5rem;
+  }
+
+  .scaleSectionProjects {
+    gap: 2rem;
+  }
+
+  .scaleSectionProjectCard {
+    border-radius: 2.5rem;
+  }
+
+  .scaleSectionProjectContent {
+    padding: 1.5rem;
+  }
+
+  .scaleSectionProjectEyebrow {
+    bottom: 5.75rem;
+    left: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .scaleSectionProjectTitle {
+    bottom: 1.5rem;
+    left: 1.5rem;
+    font-size: 3rem;
+  }
+
+  .scaleSectionProjectDescription {
+    right: 7.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    max-width: 24rem;
+    font-size: 1rem;
+  }
+
+  .scaleSectionProjectArrow {
+    right: 1.5rem;
+    bottom: 4rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 3rem;
+  }
+
+  .scaleSectionCarouselButton {
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 2.25rem;
+  }
+
+  .scaleSectionCarouselButton:first-child {
+    left: -8rem;
+  }
+
+  .scaleSectionCarouselButton:last-child {
+    right: -8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scaleSectionProjectsViewport {
+    scroll-behavior: auto;
+  }
+}

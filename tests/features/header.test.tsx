@@ -10,7 +10,7 @@ describe("site header", () => {
   it("should expose the brand home link, primary navigation, and contact CTA", () => {
     render(<Header />);
 
-    expect(screen.getByRole("banner")).toHaveClass("site-header--compact");
+    expect(screen.getByRole("banner")).toHaveAttribute("data-variant", "compact");
     expect(screen.getByRole("banner")).toHaveAttribute("data-width", "responsive");
     expect(screen.getByRole("link", { name: "Zypher Software Solutions home" })).toHaveAttribute(
       "href",

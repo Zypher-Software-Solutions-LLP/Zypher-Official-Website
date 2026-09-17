@@ -1,0 +1,344 @@
+.solutionsSection {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+}
+
+.solutionsSectionInner {
+  width: min(calc(100% - 2rem), 80vw, 72rem);
+  margin-inline: auto;
+  padding: clamp(4rem, 6.5vw, 6rem) 0 clamp(5rem, 8vw, 7rem);
+}
+
+.solutionsSectionHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(2rem, 5.5vw, 6rem);
+  align-items: end;
+}
+
+.solutionsSectionCopy {
+  grid-column: 2;
+  min-width: 0;
+  width: 100%;
+  text-align: right;
+}
+
+.solutionsSectionTitle {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  color: var(--color-brand-dark);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 3.333vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.15;
+}
+
+.solutionsSectionTitle span {
+  display: block;
+}
+
+.solutionsSectionTitleRest {
+  color: var(--color-brand-ink);
+}
+
+.solutionsSectionSubtitle {
+  margin: 1rem 0 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.667vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.solutionsSectionCta {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+  justify-self: start;
+  width: clamp(10.75rem, 11.9444vw, 14rem);
+  min-height: clamp(2.1875rem, 2.4306vw, 3.5rem);
+  height: clamp(2.1875rem, 2.4306vw, 3.5rem);
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.solutionsSectionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: clamp(2rem, 2.25vw, 2.125rem);
+}
+
+.solutionsCard {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  aspect-ratio: 564 / 347;
+  border-radius: 1.875rem;
+  box-shadow: -2px 5px 7px rgb(92 107 103 / 0.5);
+}
+
+.solutionsCard01,
+.solutionsCard04 {
+  --solutions-card-foreground: var(--color-brand-ink);
+  background: var(--color-brand-mist);
+}
+
+.solutionsCard02 {
+  --solutions-card-foreground: var(--color-brand-mist);
+  background: var(--color-brand-ink);
+  box-shadow: 2px 5px 7px rgb(92 107 103 / 0.5);
+}
+
+.solutionsCard04 {
+  box-shadow: 2px 5px 7px rgb(92 107 103 / 0.5);
+}
+
+.solutionsCard03 {
+  --solutions-card-foreground: var(--color-brand-mist);
+  background: var(--color-brand-dark);
+}
+
+.solutionsCardArt {
+  position: absolute;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.solutionsCard01 .solutionsCardArt {
+  top: 27.4%;
+  left: 16.5%;
+  width: 67%;
+  height: 72.6%;
+}
+
+.solutionsCard02 .solutionsCardArt {
+  top: 21.6%;
+  left: 30.7%;
+  width: 38.7%;
+  height: 94.2%;
+}
+
+.solutionsCard03 .solutionsCardArt {
+  top: 25.9%;
+  left: 26.4%;
+  width: 47.2%;
+  height: 76.7%;
+}
+
+.solutionsCard04 .solutionsCardArt {
+  top: 18.7%;
+  left: 26.1%;
+  width: 47.9%;
+  height: 81.3%;
+}
+
+.solutionsCardArt img {
+  object-fit: cover;
+}
+
+.solutionsCardContent {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 2rem;
+}
+
+.solutionsCardNumber {
+  margin: 0;
+  color: var(--solutions-card-foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.solutionsCardHeading {
+  max-width: 23rem;
+  margin: 0.75rem 0 0;
+  color: var(--solutions-card-foreground);
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+}
+
+.solutionsCardDescription {
+  max-width: 31rem;
+  margin: 0.75rem 0 0;
+  color: var(--solutions-card-foreground);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+}
+
+@media (max-width: 1199px) {
+  .solutionsSectionInner {
+    width: min(calc(100% - 2rem), 80vw, 72rem);
+  }
+
+  .solutionsCardContent {
+    padding: 1.5rem;
+  }
+
+  .solutionsCardHeading {
+    max-width: 20rem;
+    font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+  }
+
+  .solutionsCardDescription {
+    max-width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .solutionsCard {
+    min-height: 20rem;
+    aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .solutionsSectionInner {
+    width: min(calc(100% - 2rem), 36rem);
+    padding: 4rem 0 5rem;
+  }
+
+  .solutionsSectionHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .solutionsSectionCopy {
+    order: 1;
+    text-align: center;
+  }
+
+  .solutionsSectionTitle {
+    max-width: none;
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    line-height: 1.08;
+  }
+
+  .solutionsSectionSubtitle {
+    font-size: 1.125rem;
+  }
+
+  .solutionsSectionCta {
+    order: 2;
+    align-self: flex-start;
+  }
+
+  .solutionsSectionGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .solutionsCard {
+    min-height: 17.5rem;
+    aspect-ratio: auto;
+    border-radius: 1.5rem;
+  }
+
+  .solutionsCardContent {
+    padding: 1.5rem;
+  }
+
+  .solutionsCardHeading {
+    max-width: 21rem;
+    margin-top: 0.875rem;
+    font-size: clamp(1.375rem, 7vw, 1.5rem);
+  }
+
+  .solutionsCardDescription {
+    max-width: 100%;
+    margin-top: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.35;
+  }
+}
+
+@media (min-width: 3000px) {
+  .solutionsSectionInner {
+    width: min(calc(100% - 2rem), 90rem);
+  }
+
+  .solutionsSectionSubtitle {
+    font-size: 1.5rem;
+  }
+
+  .solutionsSectionGrid {
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .solutionsCard {
+    border-radius: 2.5rem;
+  }
+
+  .solutionsCardContent {
+    padding: 2.5rem;
+  }
+
+  .solutionsCardNumber {
+    font-size: 1.125rem;
+  }
+
+  .solutionsCardHeading {
+    max-width: 30rem;
+    font-size: 2.125rem;
+  }
+
+  .solutionsCardDescription {
+    max-width: 40rem;
+    font-size: 1.125rem;
+  }
+
+  .solutionsSectionCta {
+    width: 14rem;
+    height: 3.5rem;
+    min-height: 3.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .solutionsSectionTitle > span {
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .solutionsSectionTitle {
+    width: 165%;
+    max-width: none;
+    text-align: center;
+    transform: translateX(-39.5%);
+  }
+
+  .solutionsSectionSubtitle {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .solutionsSectionTitle {
+    font-size: clamp(2rem, 3.2vw, 2.5rem);
+    transform: translateX(-39.75%);
+  }
+}

@@ -33,9 +33,9 @@ describe("homepage hero", () => {
       "background-illustration",
     );
     expect(screen.getByTestId("hero-background")).toHaveAttribute("data-opacity", "0.13");
-    expect(screen.getByTestId("hero-subject")).toHaveClass("hero-subject--anchored");
+    expect(screen.getByTestId("hero-subject")).toHaveAttribute("data-position", "anchored");
     expect(screen.getByTestId("hero-subject")).toHaveAttribute("data-opacity", "0.4");
-    expect(screen.getByTestId("hero-grid-overlay")).toHaveClass("hero-grid-overlay--top-left");
+    expect(screen.getByTestId("hero-grid-overlay")).toHaveAttribute("data-position", "top-left");
   });
 });
 
@@ -110,7 +110,7 @@ describe("homepage scale section", () => {
     expect(accordionButtons[1]).toHaveAttribute("aria-expanded", "false");
     expect(screen.getByText(/Most software is built for the average customer/)).toBeVisible();
     expect(screen.getByTestId("execution-gap-image")).toHaveAttribute(
-      "src",
+      "data-image-src",
       expect.stringContaining("Problem%20-%201.png"),
     );
   });
@@ -129,7 +129,7 @@ describe("homepage scale section", () => {
     expect(accordionButtons[1]).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByText(/Scope and price are fixed before work starts/)).toBeVisible();
     expect(screen.getByTestId("execution-gap-image")).toHaveAttribute(
-      "src",
+      "data-image-src",
       expect.stringContaining("Problem%20-%202.png"),
     );
   });
@@ -151,13 +151,13 @@ describe("homepage solutions section", () => {
     const titleSpans = title.querySelectorAll(":scope > span");
 
     expect(titleSpans).toHaveLength(2);
-    expect(titleSpans[0]).toHaveClass("solutions-section__title-accent");
+    expect(titleSpans[0]).toHaveAttribute("data-testid", "solutions-title-accent");
     expect(titleSpans[0]).toHaveTextContent("Why Zypher is different");
     expect(titleSpans[0]).not.toHaveTextContent("from");
-    expect(titleSpans[1]).toHaveClass("solutions-section__title-rest");
+    expect(titleSpans[1]).toHaveAttribute("data-testid", "solutions-title-rest");
     expect(titleSpans[1]).toHaveTextContent(/from Everyone else you.?ve worked with/);
 
-    expect(section).toHaveClass("solutions-section");
+    expect(section).toHaveAttribute("data-testid", "solutions-section");
     expect(cards).toHaveLength(4);
     expect(cards.map((card) => card.getAttribute("data-card-number"))).toEqual([
       "/01",
@@ -175,7 +175,7 @@ describe("homepage solutions section", () => {
 
     cards.forEach((card, index) => {
       expect(card.querySelector("img")).toHaveAttribute(
-        "src",
+        "data-image-src",
         expect.stringContaining("Solution%20-%20" + (index + 1) + ".png"),
       );
     });

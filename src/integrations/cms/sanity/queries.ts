@@ -15,6 +15,10 @@ const blogPostProjection = `{
   seo
 }`;
 
+function logSanityQueryFailure(operation: string, error: unknown): void {
+  const message = error instanceof Error ? error.message : "Unknown Sanity query error";
+  console.error(JSON.stringify({ event: "sanity_query_failed", operation, error: message }));
+}
 export type SanityQueryOptions = {
   preview?: boolean;
 };
@@ -31,7 +35,8 @@ export async function getFeaturedPosts(
       `*[_type == "blogPost" && defined(publishedAt)] | order(publishedAt desc)[0...$limit]${blogPostProjection}`,
       { limit },
     );
-  } catch {
+  } catch (error) {
+    logSanityQueryFailure("getFeaturedPosts", error);
     return [];
   }
 }
@@ -48,7 +53,8 @@ export async function getBlogPost(
       `*[_type == "blogPost" && slug.current == $slug][0]${blogPostProjection}`,
       { slug },
     );
-  } catch {
+  } catch (error) {
+    logSanityQueryFailure("getBlogPost", error);
     return null;
   }
 }
@@ -61,7 +67,8 @@ export async function getBlogPostSlugs(options: SanityQueryOptions = {}): Promis
     return await client.fetch<string[]>(
       `*[_type == "blogPost" && defined(publishedAt)].slug.current`,
     );
-  } catch {
+  } catch (error) {
+    logSanityQueryFailure("getBlogPostSlugs", error);
     return [];
   }
 }

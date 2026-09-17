@@ -1,33 +1,22 @@
-import { expect, test, type Page } from "@playwright/test";
-
-async function dismissConsent(page: Page): Promise<void> {
-  const consentDialog = page.getByRole("dialog", { name: "Cookie consent" });
-  if (await consentDialog.isVisible()) {
-    await consentDialog.getByRole("button", { name: "Reject optional" }).click();
-  }
-}
+import { expect, test } from "@playwright/test";
+import { openPage } from "./helpers/site";
 
 test.describe("homepage solutions section", () => {
-  test("should use the shared desktop grid with alternating brand surfaces", async ({
-    page,
-  }, testInfo) => {
-    test.skip(
-      testInfo.project.name === "mobile",
-      "Desktop layout check runs in the desktop project.",
-    );
+  test("should use the shared desktop grid with alternating brand surfaces", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1080 });
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
-    const section = page.locator("#solutions");
+    const section = page.getByTestId("solutions-section");
     await section.scrollIntoViewIfNeeded();
 
     const layout = await section.evaluate((element) => {
-      const inner = element.querySelector<HTMLElement>(".solutions-section__inner");
-      const grid = element.querySelector<HTMLElement>(".solutions-section__grid");
-      const cards = Array.from(element.querySelectorAll<HTMLElement>(".solutions-card"));
+      const inner = element.querySelector<HTMLElement>('[data-testid="solutions-inner"]');
+      const grid = element.querySelector<HTMLElement>('[data-testid="solutions-grid"]');
+      const cards = Array.from(
+        element.querySelectorAll<HTMLElement>('[data-testid="solution-card"]'),
+      );
       const titleSpans = Array.from(
-        element.querySelectorAll<HTMLElement>(".solutions-section__title > span"),
+        element.querySelectorAll<HTMLElement>('[data-testid="solutions-title"] > span'),
       );
 
       if (!inner || !grid || cards.length !== 4 || titleSpans.length !== 2) {
@@ -81,13 +70,14 @@ test.describe("homepage solutions section", () => {
 
   test("should stack the cards inside the grid without phone overflow", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
-    const section = page.locator("#solutions");
+    const section = page.getByTestId("solutions-section");
     const layout = await section.evaluate((element) => {
-      const grid = element.querySelector<HTMLElement>(".solutions-section__grid");
-      const cards = Array.from(element.querySelectorAll<HTMLElement>(".solutions-card"));
+      const grid = element.querySelector<HTMLElement>('[data-testid="solutions-grid"]');
+      const cards = Array.from(
+        element.querySelectorAll<HTMLElement>('[data-testid="solution-card"]'),
+      );
 
       if (!grid || cards.length !== 4) {
         throw new Error("Mobile solutions section geometry is unavailable");
@@ -113,17 +103,17 @@ test.describe("homepage solutions section", () => {
     );
   });
 
-  test("should preserve a bounded two-column frame at 4K", async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name === "mobile", "4K layout check runs in the desktop project.");
+  test("should preserve a bounded two-column frame at 4K", async ({ page }) => {
     await page.setViewportSize({ width: 3840, height: 2160 });
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
-    const geometry = await page.locator("#solutions").evaluate((element) => {
-      const inner = element.querySelector<HTMLElement>(".solutions-section__inner");
-      const cards = Array.from(element.querySelectorAll<HTMLElement>(".solutions-card"));
+    const geometry = await page.getByTestId("solutions-section").evaluate((element) => {
+      const inner = element.querySelector<HTMLElement>('[data-testid="solutions-inner"]');
+      const cards = Array.from(
+        element.querySelectorAll<HTMLElement>('[data-testid="solution-card"]'),
+      );
       const titleSpans = Array.from(
-        element.querySelectorAll<HTMLElement>(".solutions-section__title > span"),
+        element.querySelectorAll<HTMLElement>('[data-testid="solutions-title"] > span'),
       );
 
       if (!inner || cards.length !== 4 || titleSpans.length !== 2) {
@@ -158,38 +148,34 @@ test.describe("homepage solutions section", () => {
     expect(geometry.cardWidths[0]).toBeCloseTo(geometry.cardWidths[1], 0);
     expect(geometry.titleLineCounts).toEqual([1, 1]);
   });
-  test("should center only the heading on tablet", async ({ page }, testInfo) => {
-    test.skip(
-      testInfo.project.name === "mobile",
-      "Tablet alignment check runs in the desktop project.",
-    );
+  test("should center only the heading on tablet", async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 });
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
-    const section = page.locator("#solutions");
-    const innerBox = await section.locator(".solutions-section__inner").boundingBox();
-    const titleBox = await section.locator(".solutions-section__title").boundingBox();
+    const section = page.getByTestId("solutions-section");
+    const innerBox = await section.locator('[data-testid="solutions-inner"]').boundingBox();
+    const titleBox = await section.locator('[data-testid="solutions-title"]').boundingBox();
     if (!innerBox || !titleBox) {
       throw new Error("Tablet heading geometry is unavailable");
     }
 
     expect(titleBox.x + titleBox.width / 2).toBeCloseTo(innerBox.x + innerBox.width / 2, 0);
-    await expect(section.locator(".solutions-section__title")).toHaveCSS("text-align", "center");
-    await expect(section.locator(".solutions-section__subtitle")).toHaveCSS("text-align", "right");
-  });
-  test("should keep the heading inside the grid on smaller tablets", async ({ page }, testInfo) => {
-    test.skip(
-      testInfo.project.name === "mobile",
-      "Tablet layout check runs in the desktop project.",
+    await expect(section.locator('[data-testid="solutions-title"]')).toHaveCSS(
+      "text-align",
+      "center",
     );
+    await expect(section.locator('[data-testid="solutions-subtitle"]')).toHaveCSS(
+      "text-align",
+      "right",
+    );
+  });
+  test("should keep the heading inside the grid on smaller tablets", async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
-    const bounds = await page.locator("#solutions").evaluate((element) => {
-      const inner = element.querySelector<HTMLElement>(".solutions-section__inner");
-      const title = element.querySelector<HTMLElement>(".solutions-section__title");
+    const bounds = await page.getByTestId("solutions-section").evaluate((element) => {
+      const inner = element.querySelector<HTMLElement>('[data-testid="solutions-inner"]');
+      const title = element.querySelector<HTMLElement>('[data-testid="solutions-title"]');
       if (!inner || !title) {
         throw new Error("Tablet heading bounds are unavailable");
       }

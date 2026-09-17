@@ -1,27 +1,22 @@
-import { expect, test, type Page } from "@playwright/test";
-
-async function dismissConsent(page: Page): Promise<void> {
-  const consentDialog = page.getByRole("dialog", { name: "Cookie consent" });
-  if (await consentDialog.isVisible()) {
-    await consentDialog.getByRole("button", { name: "Reject optional" }).click();
-  }
-}
+import { expect, test } from "@playwright/test";
+import { openPage } from "./helpers/site";
 
 test.describe("homepage execution gap section", () => {
   test("should expose an accessible exclusive accordion with a matching image", async ({
     page,
   }) => {
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
     const section = page.getByTestId("execution-gap-section");
+    await section.scrollIntoViewIfNeeded();
+    await expect(section).toHaveAttribute("data-reveal-state", "visible");
     const buttons = section.getByRole("button");
 
     await expect(buttons).toHaveCount(4);
     await expect(buttons.nth(0)).toHaveAttribute("aria-expanded", "true");
     await expect(buttons.nth(1)).toHaveAttribute("aria-expanded", "false");
     await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
-      "src",
+      "data-image-src",
       /Problem%20-%201\.png/,
     );
 
@@ -30,15 +25,14 @@ test.describe("homepage execution gap section", () => {
     await expect(buttons.nth(0)).toHaveAttribute("aria-expanded", "false");
     await expect(buttons.nth(1)).toHaveAttribute("aria-expanded", "true");
     await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
-      "src",
+      "data-image-src",
       /Problem%20-%202\.png/,
     );
     await expect(section.getByText(/Scope and price are fixed before work starts/)).toBeVisible();
   });
 
   test("should reveal the section as it approaches the viewport", async ({ page }) => {
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
     const section = page.getByTestId("execution-gap-section");
     await section.scrollIntoViewIfNeeded();
@@ -47,7 +41,7 @@ test.describe("homepage execution gap section", () => {
 
   test("should preserve the section without horizontal overflow on a phone", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    await openPage(page);
 
     await expect(page.getByTestId("execution-gap-section")).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
@@ -59,22 +53,21 @@ test.describe("homepage execution gap section", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
     const section = page.getByTestId("execution-gap-section");
     await section.scrollIntoViewIfNeeded();
 
-    await expect(section.locator(".execution-gap-section__illustration")).toBeHidden();
+    await expect(section.getByTestId("execution-gap-illustration")).toBeHidden();
     await expect(section.locator("picture source")).toHaveAttribute(
       "srcset",
       /Problem%20-%201%20Mobile\.png/,
     );
 
-    const firstBox = await section.locator(".execution-gap-section__media").boundingBox();
+    const firstBox = await section.getByTestId("execution-gap-media").boundingBox();
     const buttons = section.getByRole("button");
     await buttons.nth(3).click();
-    const fourthBox = await section.locator(".execution-gap-section__media").boundingBox();
+    const fourthBox = await section.getByTestId("execution-gap-media").boundingBox();
 
     if (!firstBox || !fourthBox) {
       throw new Error("Small-screen execution-gap media geometry is unavailable");
@@ -86,24 +79,19 @@ test.describe("homepage execution gap section", () => {
   });
   test("should keep the image frame stable while changing accordion items on a laptop", async ({
     page,
-  }, testInfo) => {
-    test.skip(
-      testInfo.project.name === "mobile",
-      "Laptop geometry does not apply to the mobile project.",
-    );
+  }) => {
     await page.setViewportSize({ width: 1440, height: 1080 });
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
     const section = page.getByTestId("execution-gap-section");
     await section.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1_300);
-    const media = section.locator(".execution-gap-section__media");
+    const media = section.getByTestId("execution-gap-media");
     const firstBox = await media.boundingBox();
 
     await section.getByRole("button").nth(1).click();
     await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
-      "src",
+      "data-image-src",
       /Problem%20-%202\.png/,
     );
     await page.waitForTimeout(600);
@@ -121,16 +109,16 @@ test.describe("homepage execution gap section", () => {
 
   test("should overlap boundary artwork to prevent visible transition seams", async ({ page }) => {
     await page.setViewportSize({ width: 3840, height: 2160 });
-    await page.goto("/");
+    await openPage(page);
 
     const geometry = await page.getByTestId("execution-gap-section").evaluate((section) => {
       const topBoundary = section.querySelector<HTMLElement>(
-        ".execution-gap-section__boundary--top",
+        '[data-testid="execution-gap-boundary-top"]',
       );
       const bottomBoundary = section.querySelector<HTMLElement>(
-        ".execution-gap-section__boundary--bottom",
+        '[data-testid="execution-gap-boundary-bottom"]',
       );
-      const surface = section.querySelector<HTMLElement>(".execution-gap-section__surface");
+      const surface = section.querySelector<HTMLElement>('[data-testid="execution-gap-surface"]');
 
       if (!topBoundary || !bottomBoundary || !surface) {
         throw new Error("Execution-gap boundary geometry is unavailable");
@@ -156,17 +144,18 @@ test.describe("homepage execution gap section", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 1024, height: 1366 });
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
     const section = page.getByTestId("execution-gap-section");
     await section.scrollIntoViewIfNeeded();
 
     const layout = await section.evaluate((element) => {
-      const content = element.querySelector<HTMLElement>(".execution-gap-section__content");
-      const media = element.querySelector<HTMLElement>(".execution-gap-section__media");
-      const details = element.querySelector<HTMLElement>(".execution-gap-section__details");
-      const boundary = element.querySelector<HTMLElement>(".execution-gap-section__boundary");
+      const content = element.querySelector<HTMLElement>('[data-testid="execution-gap-content"]');
+      const media = element.querySelector<HTMLElement>('[data-testid="execution-gap-media"]');
+      const details = element.querySelector<HTMLElement>('[data-testid="execution-gap-details"]');
+      const boundary = element.querySelector<HTMLElement>(
+        '[data-testid^="execution-gap-boundary-"]',
+      );
 
       if (!content || !media || !details || !boundary) {
         throw new Error("Tablet execution-gap layout is unavailable");
@@ -188,11 +177,10 @@ test.describe("homepage execution gap section", () => {
     expect(layout.boundaryDisplay).toBe("none");
   });
   test("should render shallow parallel section boundaries", async ({ page }) => {
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
     const section = page.getByTestId("execution-gap-section");
-    const boundaries = section.locator(".execution-gap-section__boundary");
+    const boundaries = section.locator('[data-testid^="execution-gap-boundary-"]');
 
     await expect(boundaries).toHaveCount(2);
 
@@ -217,7 +205,7 @@ test.describe("homepage execution gap section", () => {
 
   test("should preserve breathing room above and below the section content", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1080 });
-    await page.goto("/");
+    await openPage(page);
 
     const spacing = await page.getByTestId("execution-gap-section").evaluate((section) => {
       const styles = getComputedStyle(section);
@@ -232,25 +220,19 @@ test.describe("homepage execution gap section", () => {
     expect(spacing.paddingBottom).toBeGreaterThanOrEqual(136);
   });
 
-  test("should keep the media aligned with the final accordion row", async ({ page }, testInfo) => {
-    test.skip(
-      testInfo.project.name === "mobile",
-      "Media and details are intentionally stacked on mobile.",
-    );
-
-    await page.goto("/");
-    await dismissConsent(page);
+  test("should keep the media aligned with the final accordion row", async ({ page }) => {
+    await openPage(page);
 
     const section = page.getByTestId("execution-gap-section");
     await section.scrollIntoViewIfNeeded();
 
-    await expect(section.locator(".execution-gap-section__flow-line")).toHaveCount(0);
+    await expect(section.locator('[data-testid="execution-gap-flow-line"]')).toHaveCount(0);
 
     await expect
       .poll(
         async () => {
-          const mediaBox = await section.locator(".execution-gap-section__media").boundingBox();
-          const detailsBox = await section.locator(".execution-gap-section__details").boundingBox();
+          const mediaBox = await section.getByTestId("execution-gap-media").boundingBox();
+          const detailsBox = await section.getByTestId("execution-gap-details").boundingBox();
 
           if (!mediaBox || !detailsBox) {
             return Number.POSITIVE_INFINITY;
@@ -264,7 +246,7 @@ test.describe("homepage execution gap section", () => {
   });
 
   test("should not render em dashes in the execution-gap copy", async ({ page }) => {
-    await page.goto("/");
+    await openPage(page);
 
     const sectionText = await page.getByTestId("execution-gap-section").textContent();
     expect(sectionText).not.toContain("\u2014");

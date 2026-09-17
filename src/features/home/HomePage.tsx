@@ -1,11 +1,11 @@
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ExecutionGapSection } from "@/features/home/ExecutionGapSection";
-import { FaqSection } from "@/features/home/FaqSection";
-import { HeroSection } from "@/features/home/HeroSection";
-import { HowWeWorkSection } from "@/features/home/HowWeWorkSection";
-import { ScaleSection } from "@/features/home/ScaleSection";
-import { SolutionsSection } from "@/features/home/SolutionsSection";
+import { ExecutionGapSection } from "@/features/home/execution-gap/ExecutionGapSection";
+import { FaqSection } from "@/features/home/faq/FaqSection";
+import { HeroSection } from "@/features/home/hero/HeroSection";
+import { HowWeWorkSection } from "@/features/home/how-we-work/HowWeWorkSection";
+import { ScaleSection } from "@/features/home/scale/ScaleSection";
+import { SolutionsSection } from "@/features/home/solutions/SolutionsSection";
 
 export function HomePage(): React.ReactNode {
   return (

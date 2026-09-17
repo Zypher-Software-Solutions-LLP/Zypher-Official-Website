@@ -1,0 +1,420 @@
+/* How we work */
+.howWeWorkSection {
+  position: relative;
+  overflow: clip;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(6rem, 10vw, 10rem);
+}
+
+.howWeWorkSectionInner {
+  width: min(calc(100% - 2rem), 80vw, 72rem);
+  margin-inline: auto;
+}
+
+.howWeWorkSectionLayout {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.howWeWorkRail {
+  position: sticky;
+  top: clamp(5rem, 8vw, 7rem);
+  align-self: start;
+  min-height: calc(100svh - clamp(8rem, 12vw, 11rem));
+}
+
+.howWeWorkTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  color: var(--color-brand-ink);
+  text-align: center;
+}
+
+.howWeWorkTitle span {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.333vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.howWeWorkTitle strong {
+  color: var(--color-brand-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.167vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.howWeWorkNavigation {
+  position: relative;
+  display: grid;
+  gap: 1.25rem;
+  max-width: 15rem;
+  margin: clamp(5rem, 10vw, 9rem) auto 0;
+  padding-left: 1.75rem;
+}
+
+.howWeWorkNavigation::before {
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  left: 0.65rem;
+  width: 1px;
+  background: rgb(15 71 67 / 0.18);
+  content: "";
+}
+
+.howWeWorkStepGroup {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.howWeWorkStepButton,
+.howWeWorkSubstepButton {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--color-brand-slate);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+  transition: color 220ms ease;
+}
+
+.howWeWorkStepButton {
+  gap: 0.75rem;
+  font-weight: 500;
+}
+
+.howWeWorkStepButton[aria-current="true"],
+.howWeWorkSubstepButton[aria-current="true"] {
+  color: var(--color-brand-ink);
+  font-weight: 700;
+}
+
+.howWeWorkStepButton:focus-visible,
+.howWeWorkSubstepButton:focus-visible,
+.howWeWorkJumpButton:focus-visible {
+  outline: 2px solid var(--color-brand-neon);
+  outline-offset: 0.3rem;
+}
+
+.howWeWorkStepNumber {
+  display: inline-grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 1.5rem;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(15 71 67 / 0.1);
+  color: var(--color-brand-slate);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+.howWeWorkStepButton[aria-current="true"] .howWeWorkStepNumber {
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+}
+
+.howWeWorkSubnavigation {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 2.25rem;
+}
+
+.howWeWorkSubstepButton {
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.howWeWorkSubstepMarker {
+  width: 0.35rem;
+  height: 0.35rem;
+  flex: 0 0 0.35rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.howWeWorkSubstepButton[aria-current="true"] .howWeWorkSubstepMarker {
+  border-color: var(--color-brand-neon);
+  background: var(--color-brand-neon);
+}
+
+.howWeWorkContent {
+  min-width: 0;
+}
+
+.howWeWorkPanel {
+  display: grid;
+  min-height: calc(100svh - 6rem);
+  align-content: start;
+  gap: clamp(1.25rem, 2vw, 2rem);
+  padding: 0 0 clamp(6rem, 10vw, 9rem);
+  scroll-margin-top: 7rem;
+}
+
+.howWeWorkPanel + .howWeWorkPanel {
+  border-top: 1px solid rgb(15 71 67 / 0.16);
+  padding-top: clamp(4rem, 8vw, 7rem);
+}
+
+.howWeWorkPanelHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+  max-width: 48rem;
+}
+
+.howWeWorkIconFrame {
+  position: relative;
+  width: clamp(2.75rem, 3.333vw, 3.5rem);
+  height: clamp(2.75rem, 3.333vw, 3.5rem);
+  flex: 0 0 clamp(2.75rem, 3.333vw, 3.5rem);
+}
+
+.howWeWorkIconFrame img {
+  object-fit: contain;
+}
+
+.howWeWorkPanel h3 {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--color-brand-dark);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.333vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.howWeWorkDescription {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.howWeWorkMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.32;
+  overflow: hidden;
+  border-radius: clamp(1.5rem, 2.5vw, 2rem);
+  background: var(--color-brand-dark);
+}
+
+.howWeWorkImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.howWeWorkJumpDock {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .howWeWorkSection {
+    padding-bottom: clamp(8rem, 14vw, 11rem);
+  }
+
+  .howWeWorkSectionInner {
+    width: min(calc(100% - 2rem), 80vw, 60rem);
+  }
+
+  .howWeWorkSectionLayout {
+    display: block;
+  }
+
+  .howWeWorkRail {
+    position: static;
+    min-height: 0;
+  }
+
+  .howWeWorkNavigation {
+    display: none;
+  }
+
+  .howWeWorkTitle {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .howWeWorkContent {
+    width: min(100%, 48rem);
+    margin-inline: auto;
+  }
+
+  .howWeWorkPanel {
+    min-height: 0;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .howWeWorkPanelHeader {
+    flex-direction: column;
+    align-items: center;
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .howWeWorkDescription {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .howWeWorkJumpDock {
+    position: fixed;
+    z-index: 30;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: 50%;
+    display: flex;
+    width: fit-content;
+    max-width: calc(100% - 2rem);
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    margin-inline: 0;
+    border: 1px solid rgb(244 248 246 / 0.1);
+    border-radius: 1.75rem;
+    background: var(--color-brand-ink);
+    box-shadow:
+      0 1rem 2rem rgb(15 71 67 / 0.26),
+      inset 0 1px 0 rgb(244 248 246 / 0.08);
+    padding: 0.35rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 140%);
+    transition:
+      opacity 220ms ease,
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .howWeWorkJumpDock[data-state="visible"] {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+
+  .howWeWorkJumpButton {
+    display: inline-grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: 0 0 2.25rem;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-brand-slate);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .howWeWorkJumpButton[aria-current="true"] {
+    background: var(--color-brand-neon);
+    color: var(--color-brand-ink);
+  }
+}
+
+@media (max-width: 767px) {
+  .howWeWorkSection {
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+  }
+
+  .howWeWorkSectionInner {
+    width: min(calc(100% - 2rem), 36rem);
+  }
+
+  .howWeWorkTitle {
+    margin-bottom: 3rem;
+  }
+
+  .howWeWorkTitle span {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+  }
+
+  .howWeWorkTitle strong {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .howWeWorkPanel {
+    gap: 1.25rem;
+    padding-bottom: 5rem;
+  }
+
+  .howWeWorkPanel + .howWeWorkPanel {
+    padding-top: 4rem;
+  }
+
+  .howWeWorkIconFrame {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-basis: 2.75rem;
+  }
+
+  .howWeWorkPanel h3 {
+    font-size: clamp(1.875rem, 8.5vw, 2.5rem);
+    line-height: 1.05;
+  }
+
+  .howWeWorkDescription {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .howWeWorkMedia {
+    aspect-ratio: 1.18;
+    border-radius: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 2999px) {
+  .howWeWorkPanel {
+    min-height: min(calc(100svh - 6rem), 58rem);
+  }
+}
+
+@media (min-width: 3000px) {
+  .howWeWorkSectionInner {
+    width: min(calc(100% - 2rem), 90rem);
+  }
+
+  .howWeWorkPanel {
+    min-height: min(calc(100svh - 6rem), 64rem);
+    padding-bottom: 4rem;
+  }
+
+  .howWeWorkPanel + .howWeWorkPanel {
+    padding-top: 4rem;
+  }
+
+  .howWeWorkPanel h3 {
+    font-size: 3.5rem;
+  }
+
+  .howWeWorkDescription {
+    font-size: 1.25rem;
+  }
+}

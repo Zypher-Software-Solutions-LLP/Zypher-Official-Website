@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import { faqItems } from "@/features/home/faq-data";
+import { faqItems } from "@/features/home/faq/faq-data";
 import { HomePage } from "@/features/home/HomePage";
 
 describe("homepage FAQ section", () => {
@@ -45,11 +45,9 @@ describe("homepage FAQ section", () => {
     const answerQuestion = within(section).getByTestId("faq-answer-question");
     expect(answerQuestion).toHaveTextContent("01");
     expect(
-      within(answerQuestion).getByRole("heading", {
-        level: 4,
-        name: "How much does custom software development cost?",
-      }),
+      within(answerQuestion).getByText("How much does custom software development cost?"),
     ).toBeInTheDocument();
+    expect(within(answerQuestion).queryByRole("heading")).not.toBeInTheDocument();
   });
 
   it("should contain no em dashes in FAQ answers", () => {

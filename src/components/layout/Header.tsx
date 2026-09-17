@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import styles from "./Header.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { trackEvent } from "@/integrations/analytics/events";
-
 const navigationItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
@@ -32,21 +32,27 @@ export function Header(): React.ReactNode {
   }
 
   return (
-    <header className="site-header site-header--compact" data-width="responsive">
-      <a className="skip-link" href="#main-content">
+    <header
+      className={styles.siteHeader + " " + styles.siteHeaderCompact}
+      data-testid="site-header"
+      data-variant="compact"
+      data-width="responsive"
+    >
+      <a className={styles.skipLink} href="#main-content">
         Skip to content
       </a>
 
-      <div className="site-header__inner">
+      <div className={styles.siteHeaderInner} data-testid="site-header-inner">
         <Link
           aria-label="Zypher Software Solutions home"
-          className="site-header__brand"
+          className={styles.siteHeaderBrand}
           href="/"
           onClick={() => handleNavigation("Home", "/")}
         >
           <Image
             alt="Zypher Software Solutions"
-            className="site-header__logo"
+            className={styles.siteHeaderLogo}
+            data-testid="site-header-logo"
             height={28}
             priority
             src="/brand/Zypher%20Software%20Solutions%20Logo%20Dark.svg"
@@ -54,15 +60,20 @@ export function Header(): React.ReactNode {
           />
         </Link>
 
-        <nav aria-label="Primary navigation" className="site-header__nav">
-          <ul className="site-header__nav-list">
+        <nav
+          aria-label="Primary navigation"
+          className={styles.siteHeaderNav}
+          data-testid="site-header-nav"
+        >
+          <ul className={styles.siteHeaderNavList} data-testid="site-header-nav-list">
             {navigationItems.map((item) => {
               const isActive = isNavigationItemActive(pathname, item.href);
               return (
                 <li key={item.href}>
                   <Link
                     aria-current={isActive ? "page" : undefined}
-                    className={`site-header__link${isActive ? " is-active" : ""}`}
+                    className={styles.siteHeaderLink}
+                    data-state={isActive ? "active" : "inactive"}
                     href={item.href}
                     onClick={() => handleNavigation(item.label, item.href)}
                   >
@@ -76,7 +87,7 @@ export function Header(): React.ReactNode {
 
         <Link
           aria-label="Contact Us"
-          className="site-header__contact"
+          className={styles.siteHeaderContact}
           href="/contact"
           onClick={() => handleNavigation("Contact", "/contact")}
         >
@@ -87,17 +98,19 @@ export function Header(): React.ReactNode {
           aria-controls="mobile-navigation"
           aria-expanded={mobileOpen}
           aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
-          className="site-header__menu-button"
+          className={styles.siteHeaderMenuButton}
           onClick={() => setMobileOpen((open) => !open)}
           type="button"
         >
           <span
             aria-hidden="true"
-            className={`site-header__menu-icon${mobileOpen ? " is-open" : ""}`}
+            className={styles.siteHeaderMenuIcon}
+            data-state={mobileOpen ? "open" : "closed"}
+            data-testid="site-header-menu-icon"
           >
-            <span className="site-header__menu-line site-header__menu-line--top" />
-            <span className="site-header__menu-line site-header__menu-line--middle" />
-            <span className="site-header__menu-line site-header__menu-line--bottom" />
+            <span className={styles.siteHeaderMenuLine + " " + styles.siteHeaderMenuLineTop} />
+            <span className={styles.siteHeaderMenuLine + " " + styles.siteHeaderMenuLineMiddle} />
+            <span className={styles.siteHeaderMenuLine + " " + styles.siteHeaderMenuLineBottom} />
           </span>
         </button>
       </div>
@@ -105,15 +118,16 @@ export function Header(): React.ReactNode {
       <nav
         aria-hidden={!mobileOpen}
         aria-label="Mobile navigation"
-        className={`site-header__mobile-nav ${mobileOpen ? "is-open" : "is-closed"}`}
+        className={styles.siteHeaderMobileNav}
+        data-state={mobileOpen ? "open" : "closed"}
         id="mobile-navigation"
         inert={!mobileOpen}
       >
-        <ul className="site-header__mobile-list">
+        <ul className={styles.siteHeaderMobileList}>
           {navigationItems.map((item) => (
             <li key={item.href}>
               <Link
-                className="site-header__mobile-link"
+                className={styles.siteHeaderMobileLink}
                 href={item.href}
                 onClick={() => handleNavigation(item.label, item.href)}
               >
@@ -123,7 +137,7 @@ export function Header(): React.ReactNode {
           ))}
           <li>
             <Link
-              className="site-header__mobile-contact"
+              className={styles.siteHeaderMobileContact}
               href="/contact"
               onClick={() => handleNavigation("Contact", "/contact")}
             >

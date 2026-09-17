@@ -1,9 +1,10 @@
 import { expect, test } from "@playwright/test";
+import { openPage } from "./helpers/site";
 
 test.describe("responsive homepage hero", () => {
   test("should scale the hero composition for a 4K viewport", async ({ page }) => {
     await page.setViewportSize({ width: 3840, height: 2160 });
-    await page.goto("/");
+    await openPage(page);
     await page.waitForTimeout(1300);
 
     const layout = await page.evaluate(() => {
@@ -16,21 +17,21 @@ test.describe("responsive homepage hero", () => {
         return { width: rect.width, height: rect.height, bottom: rect.bottom };
       };
 
-      const title = document.querySelector<HTMLElement>(".hero-title");
-      const description = document.querySelector<HTMLElement>(".hero-description");
-      const button = document.querySelector<HTMLElement>(".hero-actions .button-link");
-      const logo = document.querySelector<HTMLElement>(".site-header__logo");
+      const title = document.querySelector<HTMLElement>('[data-testid="hero-title"]');
+      const description = document.querySelector<HTMLElement>('[data-testid="hero-description"]');
+      const button = document.querySelector<HTMLElement>('[data-testid="hero-actions"] a');
+      const logo = document.querySelector<HTMLElement>('[data-testid="site-header-logo"]');
       if (!title || !description || !button || !logo) {
         throw new Error("Missing responsive hero element");
       }
 
       return {
-        subject: read(".hero-subject"),
+        subject: read('[data-testid="hero-subject"]'),
         titleFontSize: Number.parseFloat(getComputedStyle(title).fontSize),
         descriptionFontSize: Number.parseFloat(getComputedStyle(description).fontSize),
         buttonFontSize: Number.parseFloat(getComputedStyle(button).fontSize),
         logoWidth: logo.getBoundingClientRect().width,
-        headerWidth: read(".site-header__inner").width,
+        headerWidth: read('[data-testid="site-header-inner"]').width,
       };
     });
 
@@ -48,22 +49,22 @@ test.describe("responsive homepage hero", () => {
 
   test("should select the mobile hero artwork on a phone viewport", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    await openPage(page);
 
-    await expect(page.locator(".hero-subject picture source")).toHaveAttribute(
+    await expect(page.getByTestId("hero-subject-picture").locator("source")).toHaveAttribute(
       "srcset",
       /Hero%20section%20-%20Mobile\.png/,
     );
   });
   test("should preserve the subject aspect ratio on a phone viewport", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    await openPage(page);
     await page.waitForTimeout(1300);
 
     const layout = await page.evaluate(() => {
-      const subject = document.querySelector<HTMLElement>(".hero-subject");
-      const crop = document.querySelector<HTMLElement>(".hero-subject-image-crop");
-      const image = document.querySelector<HTMLElement>(".hero-subject-image");
+      const subject = document.querySelector<HTMLElement>('[data-testid="hero-subject"]');
+      const crop = document.querySelector<HTMLElement>('[data-testid="hero-subject-image-crop"]');
+      const image = document.querySelector<HTMLElement>('[data-testid="hero-subject-image"]');
       if (!subject || !crop || !image) {
         throw new Error("Missing subject illustration element");
       }
@@ -90,7 +91,7 @@ test.describe("responsive homepage hero", () => {
       { width: 3840, height: 2160 },
     ]) {
       await page.setViewportSize(viewport);
-      await page.goto("/");
+      await openPage(page);
 
       const layout = await page.evaluate(() => {
         const lineCount = (selector: string): number => {
@@ -102,13 +103,13 @@ test.describe("responsive homepage hero", () => {
           range.selectNodeContents(element);
           return new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size;
         };
-        const accent = document.querySelector<HTMLElement>(".hero-title-accent");
-        const nav = document.querySelector<HTMLElement>(".site-header__nav-list");
-        const navContainer = document.querySelector<HTMLElement>(".site-header__nav");
-        const activeLink = document.querySelector<HTMLElement>(".site-header__link.is-active");
-        const logo = document.querySelector<HTMLElement>(".site-header__logo");
-        const header = document.querySelector<HTMLElement>(".site-header__inner");
-        const headerRoot = document.querySelector<HTMLElement>(".site-header");
+        const accent = document.querySelector<HTMLElement>('[data-testid="hero-title-accent"]');
+        const nav = document.querySelector<HTMLElement>('[data-testid="site-header-nav-list"]');
+        const navContainer = document.querySelector<HTMLElement>('[data-testid="site-header-nav"]');
+        const activeLink = document.querySelector<HTMLElement>('[aria-current="page"]');
+        const logo = document.querySelector<HTMLElement>('[data-testid="site-header-logo"]');
+        const header = document.querySelector<HTMLElement>('[data-testid="site-header-inner"]');
+        const headerRoot = document.querySelector<HTMLElement>('[data-testid="site-header"]');
         if (!accent || !nav || !navContainer || !activeLink || !logo || !header || !headerRoot) {
           throw new Error("Missing title or navigation element");
         }
@@ -118,9 +119,9 @@ test.describe("responsive homepage hero", () => {
           gradientDirection: getComputedStyle(accent)
             .getPropertyValue("--hero-title-gradient-direction")
             .trim(),
-          accentLines: lineCount(".hero-title-accent"),
-          mainLines: lineCount(".hero-title-main"),
-          descriptionLines: lineCount(".hero-description"),
+          accentLines: lineCount('[data-testid="hero-title-accent"]'),
+          mainLines: lineCount('[data-testid="hero-title-main"]'),
+          descriptionLines: lineCount('[data-testid="hero-description"]'),
           navJustification: navStyle.justifyContent,
           navGap: navStyle.columnGap,
           navWidth: navContainer.getBoundingClientRect().width,

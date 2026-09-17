@@ -1,9 +1,9 @@
 "use client";
 
+import styles from "./FaqSection.module.css";
 import { useState } from "react";
 import type { ChangeEvent, ReactNode } from "react";
-import { faqItems } from "@/features/home/faq-data";
-
+import { faqItems } from "./faq-data";
 function formatQuestionNumber(index: number): string {
   return String(index + 1).padStart(2, "0");
 }
@@ -27,18 +27,27 @@ export function FaqSection(): ReactNode {
   };
 
   return (
-    <section aria-labelledby="faq-title" className="faq-section" data-testid="faq-section" id="faq">
-      <header className="faq-section__intro">
-        <div className="faq-section__intro-inner">
+    <section
+      aria-labelledby="faq-title"
+      className={styles.faqSection}
+      data-testid="faq-section"
+      id="faq"
+    >
+      <header className={styles.faqSectionIntro}>
+        <div className={styles.faqSectionIntroInner}>
           <h2 id="faq-title">Questions you’re probably already asking</h2>
           <p>No generic answers, just what you’d actually want to know before reaching out.</p>
         </div>
       </header>
 
-      <div className="faq-section__inner">
-        <div className="faq-section__layout">
-          <aside className="faq-section__rail">
-            <nav aria-label="Frequently asked questions" className="faq-section__navigation">
+      <div className={styles.faqSectionInner}>
+        <div className={styles.faqSectionLayout}>
+          <aside className={styles.faqSectionRail}>
+            <nav
+              aria-label="Frequently asked questions"
+              className={styles.faqSectionNavigation}
+              data-testid="faq-question-navigation"
+            >
               {faqItems.map((item, index) => {
                 const isActive = item.id === activeFaqItem.id;
 
@@ -46,13 +55,13 @@ export function FaqSection(): ReactNode {
                   <button
                     aria-controls="faq-answer"
                     aria-current={isActive ? "true" : undefined}
-                    className="faq-section__question-button"
+                    className={styles.faqSectionQuestionButton}
                     data-testid="faq-question"
                     key={item.id}
                     onClick={(): void => setActiveFaqId(item.id)}
                     type="button"
                   >
-                    <span aria-hidden="true" className="faq-section__question-number">
+                    <span aria-hidden="true" className={styles.faqSectionQuestionNumber}>
                       {formatQuestionListNumber(index)}
                     </span>
                     <span>{item.question}</span>
@@ -62,14 +71,14 @@ export function FaqSection(): ReactNode {
             </nav>
           </aside>
 
-          <div className="faq-section__content">
-            <div className="faq-section__selector-wrap">
+          <div className={styles.faqSectionContent}>
+            <div className={styles.faqSectionSelectorWrap}>
               <label className="sr-only" htmlFor="faq-question-select">
                 Choose a frequently asked question
               </label>
               <select
                 aria-label="Choose a frequently asked question"
-                className="faq-section__selector"
+                className={styles.faqSectionSelector}
                 id="faq-question-select"
                 onChange={handleFaqChange}
                 value={activeFaqItem.id}
@@ -80,24 +89,31 @@ export function FaqSection(): ReactNode {
                   </option>
                 ))}
               </select>
-              <span aria-hidden="true" className="faq-section__selector-chevron" />
+              <span aria-hidden="true" className={styles.faqSectionSelectorChevron} />
             </div>
 
             <article
               aria-live="polite"
-              className="faq-section__answer"
+              className={styles.faqSectionAnswer}
               data-testid="faq-answer"
               id="faq-answer"
             >
-              <h3 className="faq-section__answer-title">The Answers to the Questions</h3>
-              <div className="faq-section__answer-detail">
-                <div className="faq-section__answer-question" data-testid="faq-answer-question">
-                  <p className="faq-section__answer-number">
+              <h3 className={styles.faqSectionAnswerTitle}>The Answers to the Questions</h3>
+              <div className={styles.faqSectionAnswerDetail}>
+                <div className={styles.faqSectionAnswerQuestion} data-testid="faq-answer-question">
+                  <p className={styles.faqSectionAnswerNumber} data-testid="faq-answer-number">
                     {formatQuestionNumber(activeFaqIndex)}
                   </p>
-                  <h4>{activeFaqItem.question}</h4>
+                  <p
+                    className={styles.faqSectionAnswerQuestionText}
+                    data-testid="faq-answer-question-text"
+                  >
+                    {activeFaqItem.question}
+                  </p>
                 </div>
-                <p className="faq-section__answer-copy">{activeFaqItem.answer}</p>
+                <p className={styles.faqSectionAnswerCopy} data-testid="faq-answer-copy">
+                  {activeFaqItem.answer}
+                </p>
               </div>
             </article>
           </div>

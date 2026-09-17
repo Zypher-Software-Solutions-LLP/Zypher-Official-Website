@@ -1,8 +1,8 @@
 import Image from "next/image";
+import styles from "./Footer.module.css";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { CookieSettingsButton } from "@/components/privacy/CookieSettingsButton";
-
 type FooterLink = {
   label: string;
   href: string;
@@ -90,14 +90,14 @@ const footerIllustrationSrc =
 function FooterLinkItem({ link }: { link: FooterLink }): ReactNode {
   if (link.external) {
     return (
-      <a className="site-footer__link" href={link.href}>
+      <a className={styles.siteFooterLink} href={link.href}>
         {link.label}
       </a>
     );
   }
 
   return (
-    <Link className="site-footer__link" href={link.href}>
+    <Link className={styles.siteFooterLink} href={link.href}>
       {link.label}
     </Link>
   );
@@ -107,33 +107,33 @@ export function Footer(): ReactNode {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="site-footer">
-      <div className="site-footer__main">
-        <div className="site-footer__brand">
+    <footer className={styles.siteFooter} data-testid="site-footer">
+      <div className={styles.siteFooterMain}>
+        <div className={styles.siteFooterBrand}>
           <Link
             aria-label="Zypher Software Solutions home"
-            className="site-footer__logo-link"
+            className={styles.siteFooterLogoLink}
             href="/"
           >
             <Image
               alt="Zypher Software Solutions"
-              className="site-footer__logo"
+              className={styles.siteFooterLogo}
               height={575}
               src="/brand/Zypher%20Software%20Solutions%20Logo%20Dark.svg"
               width={2085}
             />
           </Link>
-          <p className="site-footer__tagline">
+          <p className={styles.siteFooterTagline}>
             <span>Your vision</span>
             <span>Our code</span>
           </p>
-          <p className="site-footer__description">
+          <p className={styles.siteFooterDescription}>
             A software agency building tailored systems for businesses across UAE, Qatar, USA, UK,
             India, Netherlands &amp; More.
           </p>
-          <p className="site-footer__location">Headquartered in Calicut, Kerala</p>
+          <p className={styles.siteFooterLocation}>Headquartered in Calicut, Kerala</p>
 
-          <div aria-label="Social links" className="site-footer__socials">
+          <div aria-label="Social links" className={styles.siteFooterSocials}>
             {footerSocialLinks.map((social) => {
               const iconStyle = {
                 "--site-footer-icon": `url("${social.iconSrc}")`,
@@ -142,24 +142,28 @@ export function Footer(): ReactNode {
               return (
                 <a
                   aria-label={social.label}
-                  className="site-footer__social-link"
+                  className={styles.siteFooterSocialLink}
                   href={social.href}
                   key={social.label}
                   rel={social.href === "#" ? undefined : "noreferrer"}
                   target={social.href === "#" ? undefined : "_blank"}
                 >
-                  <span aria-hidden="true" className="site-footer__social-icon" style={iconStyle} />
+                  <span
+                    aria-hidden="true"
+                    className={styles.siteFooterSocialIcon}
+                    style={iconStyle}
+                  />
                 </a>
               );
             })}
           </div>
         </div>
 
-        <nav aria-label="Footer navigation" className="site-footer__nav">
+        <nav aria-label="Footer navigation" className={styles.siteFooterNav}>
           {footerGroups.map((group) => (
-            <section className="site-footer__group" key={group.title}>
-              <h2 className="site-footer__group-title">{group.title}</h2>
-              <ul className="site-footer__link-list">
+            <section className={styles.siteFooterGroup} key={group.title}>
+              <h2 className={styles.siteFooterGroupTitle}>{group.title}</h2>
+              <ul className={styles.siteFooterLinkList}>
                 {group.links.map((link) => (
                   <li key={link.href + link.label}>
                     <FooterLinkItem link={link} />
@@ -171,35 +175,37 @@ export function Footer(): ReactNode {
         </nav>
       </div>
 
-      <div className="site-footer__meta">
-        <div className="site-footer__meta-inner">
-          <p className="site-footer__copyright">© {currentYear} Zypher Software Solutions LLP.</p>
-          <nav aria-label="Utility navigation" className="site-footer__utility">
-            <Link className="site-footer__utility-link" href="/privacy-policy">
+      <div className={styles.siteFooterMeta}>
+        <div className={styles.siteFooterMetaInner}>
+          <p className={styles.siteFooterCopyright}>
+            © {currentYear} Zypher Software Solutions LLP.
+          </p>
+          <nav aria-label="Utility navigation" className={styles.siteFooterUtility}>
+            <Link className={styles.siteFooterUtilityLink} href="/privacy-policy">
               Privacy
             </Link>
             <span aria-hidden="true">•</span>
-            <Link className="site-footer__utility-link" href="/terms-of-service">
+            <Link className={styles.siteFooterUtilityLink} href="/terms-of-service">
               Terms
             </Link>
             <span aria-hidden="true">•</span>
-            <Link className="site-footer__utility-link" href="/cookie-policy">
+            <Link className={styles.siteFooterUtilityLink} href="/cookie-policy">
               Cookies
             </Link>
             <span aria-hidden="true">•</span>
-            <Link className="site-footer__utility-link" href="/careers">
+            <Link className={styles.siteFooterUtilityLink} href="/careers">
               Careers
             </Link>
             <span aria-hidden="true">•</span>
-            <CookieSettingsButton className="site-footer__settings" />
+            <CookieSettingsButton className={styles.siteFooterSettings} />
           </nav>
         </div>
       </div>
 
-      <div aria-hidden="true" className="site-footer__illustration">
+      <div aria-hidden="true" className={styles.siteFooterIllustration}>
         <Image
           alt=""
-          className="site-footer__illustration-image"
+          className={styles.siteFooterIllustrationImage}
           fill
           sizes="100vw"
           src={footerIllustrationSrc}

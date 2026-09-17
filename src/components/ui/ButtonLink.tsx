@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import styles from "./ButtonLink.module.css";
 import type { ReactNode } from "react";
 import { trackEvent } from "@/integrations/analytics/events";
-
 type ButtonLinkProps = {
   children: ReactNode;
   href: string;
@@ -23,10 +23,10 @@ export function ButtonLink({
 }: ButtonLinkProps): ReactNode {
   const variantClass =
     variant === "primary"
-      ? "button-link--primary"
+      ? styles.buttonLinkPrimary
       : variant === "secondary"
-        ? "button-link--secondary"
-        : "button-link--tertiary";
+        ? styles.buttonLinkSecondary
+        : styles.buttonLinkTertiary;
 
   function handleClick(): void {
     trackEvent({
@@ -41,7 +41,7 @@ export function ButtonLink({
 
   return (
     <Link
-      className={"button-link " + variantClass + " " + className}
+      className={styles.buttonLink + " " + variantClass + " " + className}
       href={href}
       onClick={handleClick}
     >

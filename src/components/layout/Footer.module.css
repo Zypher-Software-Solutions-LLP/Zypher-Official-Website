@@ -1,0 +1,313 @@
+/* Shared marketing footer */
+.siteFooter {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-brand-dark);
+  color: var(--color-brand-mist);
+}
+
+.siteFooterMain,
+.siteFooterMetaInner {
+  width: min(calc(100% - 2rem), 80vw, 72rem);
+  margin-inline: auto;
+}
+
+.siteFooterMain {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1.8fr);
+  gap: clamp(2.5rem, 5.5vw, 5rem);
+  padding: clamp(3.5rem, 5vw, 4.5rem) 0 3rem;
+}
+
+.siteFooterBrand {
+  min-width: 0;
+}
+
+.siteFooterLogoLink {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.25rem;
+}
+
+.siteFooterLogo {
+  display: block;
+  width: clamp(11rem, 18.75vw, 16.9375rem);
+  height: auto;
+  filter: brightness(0) invert(1);
+}
+
+.siteFooterTagline {
+  display: grid;
+  gap: 0.125rem;
+  margin: 1.25rem 0 0;
+  color: var(--color-brand-mist);
+  font-size: clamp(1.125rem, 1.667vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: clamp(0.3em, 0.525em, 0.525em);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.siteFooterDescription,
+.siteFooterLocation {
+  color: rgb(244 248 246 / 0.76);
+  font-size: clamp(0.875rem, 1.111vw, 1rem);
+  line-height: 1.3;
+}
+
+.siteFooterDescription {
+  max-width: 30rem;
+  margin: 1.5rem 0 0;
+}
+
+.siteFooterLocation {
+  margin: 1.25rem 0 0;
+}
+
+.siteFooterSocials {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0 0;
+}
+
+.siteFooterSocialLink {
+  display: inline-flex;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  color: var(--color-brand-mist);
+  transition: color 180ms ease;
+}
+
+.siteFooterSocialLink:hover,
+.siteFooterSocialLink:focus-visible {
+  color: var(--color-brand-neon);
+}
+
+.siteFooterSocialIcon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  mask: var(--site-footer-icon) center / contain no-repeat;
+  -webkit-mask: var(--site-footer-icon) center / contain no-repeat;
+}
+
+.siteFooterNav {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(12rem, 1fr);
+  gap: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+.siteFooterGroup {
+  min-width: 0;
+}
+
+.siteFooterGroupTitle {
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.667vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.siteFooterLinkList {
+  display: grid;
+  gap: 1.15rem;
+  margin: clamp(1.25rem, 2.5vw, 1.75rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.siteFooterLink,
+.siteFooterUtilityLink,
+.siteFooterSettings {
+  position: relative;
+  display: inline-block;
+  color: rgb(244 248 246 / 0.9);
+  font-size: clamp(0.875rem, 1.111vw, 1rem);
+  line-height: 1.3;
+  text-decoration: none;
+  text-underline-offset: 0.25em;
+  overflow-wrap: anywhere;
+  transition: color 180ms ease;
+}
+
+.siteFooterLink:hover,
+.siteFooterLink:focus-visible,
+.siteFooterUtilityLink:hover,
+.siteFooterUtilityLink:focus-visible,
+.siteFooterSettings:hover,
+.siteFooterSettings:focus-visible {
+  color: var(--color-brand-mist);
+}
+
+.siteFooterLink::after,
+.siteFooterUtilityLink::after,
+.siteFooterSettings::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.18em;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    opacity 260ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.siteFooterLink:hover::after,
+.siteFooterLink:focus-visible::after,
+.siteFooterUtilityLink:hover::after,
+.siteFooterUtilityLink:focus-visible::after,
+.siteFooterSettings:hover::after,
+.siteFooterSettings:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.siteFooterMeta {
+  position: relative;
+  z-index: 1;
+}
+
+.siteFooterMetaInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+  border-top: 1px solid rgb(244 248 246 / 0.38);
+  padding: 0.875rem 0;
+  color: rgb(244 248 246 / 0.76);
+  flex-wrap: wrap;
+}
+
+.siteFooterCopyright {
+  margin: 0;
+  font-size: clamp(0.75rem, 0.972vw, 0.875rem);
+  line-height: 1.4;
+}
+
+.siteFooterUtility {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: rgb(244 248 246 / 0.76);
+  flex-wrap: wrap;
+}
+
+.siteFooterUtilityLink,
+.siteFooterSettings {
+  font-size: clamp(0.75rem, 0.972vw, 0.875rem);
+}
+
+.siteFooterSettings {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.siteFooterGroup:last-child .siteFooterLink {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+.siteFooterIllustration {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1916 / 429;
+  margin-top: 0;
+  transform: none;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.siteFooterIllustrationImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 899px) {
+  .siteFooterMain {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .siteFooterMain,
+  .siteFooterMetaInner {
+    width: min(calc(100% - 2rem), 36rem);
+  }
+
+  .siteFooterMain {
+    gap: 3rem;
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .siteFooterTagline {
+    letter-spacing: 0.3em;
+  }
+
+  .siteFooterSocials {
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .siteFooterNav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2.75rem;
+  }
+
+  .siteFooterGroup:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .siteFooterMetaInner {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem 0;
+  }
+
+  .siteFooterUtility {
+    justify-content: flex-start;
+  }
+
+  .siteFooterIllustration {
+    height: auto;
+    aspect-ratio: 1916 / 429;
+    margin-top: 0;
+    transform: none;
+  }
+}
+
+@media (min-width: 3000px) {
+  .siteFooterMain,
+  .siteFooterMetaInner {
+    width: min(calc(100% - 2rem), 90rem);
+  }
+
+  .siteFooterMain {
+    padding-top: 5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .siteFooterLinkList {
+    gap: 1.5rem;
+  }
+}

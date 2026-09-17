@@ -1,21 +1,9 @@
-import { expect, test, type Page } from "@playwright/test";
-
-async function dismissConsent(page: Page): Promise<void> {
-  const consentDialog = page.getByRole("dialog", { name: "Cookie consent" });
-  if (await consentDialog.isVisible()) {
-    await consentDialog.getByRole("button", { name: "Reject optional" }).click();
-  }
-}
+import { expect, test } from "@playwright/test";
+import { openPage } from "./helpers/site";
 
 test.describe("responsive homepage Scale section", () => {
-  test("should preserve all metrics, projects, logos, and CTA on desktop", async ({
-    page,
-  }, testInfo) => {
-    test.skip(
-      testInfo.project.name === "mobile",
-      "Desktop assertions do not apply to the mobile project.",
-    );
-    await page.goto("/");
+  test("should preserve all metrics, projects, logos, and CTA on desktop", async ({ page }) => {
+    await openPage(page);
 
     const section = page.getByTestId("scale-section");
     await expect(section).toBeVisible();
@@ -32,14 +20,8 @@ test.describe("responsive homepage Scale section", () => {
     await expect(section.getByRole("button", { name: "Next projects" })).toBeDisabled();
   });
 
-  test("should render valid arrow glyphs for scale controls and cards", async ({
-    page,
-  }, testInfo) => {
-    test.skip(
-      testInfo.project.name === "mobile",
-      "Desktop arrow assertions do not apply to the mobile project.",
-    );
-    await page.goto("/");
+  test("should render valid arrow glyphs for scale controls and cards", async ({ page }) => {
+    await openPage(page);
 
     const rightArrow = String.fromCodePoint(0x2192);
     const leftArrow = String.fromCodePoint(0x2190);
@@ -59,17 +41,13 @@ test.describe("responsive homepage Scale section", () => {
 
   test("should align 368px project cards to the desktop content grid", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1080 });
-    await page.goto("/");
+    await openPage(page);
 
     const geometry = await page.evaluate(() => {
-      const inner = document.querySelector(".scale-section__inner");
-      const cards = Array.from(document.querySelectorAll(".scale-section__project-card"));
-      const previousButton = document.querySelector(
-        '.scale-section__carousel-button[aria-label="Previous projects"]',
-      );
-      const nextButton = document.querySelector(
-        '.scale-section__carousel-button[aria-label="Next projects"]',
-      );
+      const inner = document.querySelector('[data-testid="scale-section-inner"]');
+      const cards = Array.from(document.querySelectorAll('[data-testid="scale-project-card"]'));
+      const previousButton = document.querySelector('button[aria-label="Previous projects"]');
+      const nextButton = document.querySelector('button[aria-label="Next projects"]');
 
       if (!inner || cards.length !== 3 || !previousButton || !nextButton) {
         throw new Error("Scale project geometry is unavailable");
@@ -102,14 +80,15 @@ test.describe("responsive homepage Scale section", () => {
 
   test("should overlap section 3 over section 2 at 4K to prevent a boundary seam", async ({
     page,
-  }, testInfo) => {
-    test.skip(testInfo.project.name === "mobile", "4K boundary check runs in the desktop project.");
+  }) => {
     await page.setViewportSize({ width: 3840, height: 2160 });
-    await page.goto("/");
+    await openPage(page);
 
     const geometry = await page.evaluate(() => {
-      const scaleSection = document.querySelector<HTMLElement>(".scale-section");
-      const executionGapSection = document.querySelector<HTMLElement>(".execution-gap-section");
+      const scaleSection = document.querySelector<HTMLElement>('[data-testid="scale-section"]');
+      const executionGapSection = document.querySelector<HTMLElement>(
+        '[data-testid="execution-gap-section"]',
+      );
 
       if (!scaleSection || !executionGapSection) {
         throw new Error("Section boundary geometry is unavailable");
@@ -126,11 +105,11 @@ test.describe("responsive homepage Scale section", () => {
   });
   test("should hand off to section 3 without excessive empty space", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1080 });
-    await page.goto("/");
+    await openPage(page);
 
     const gap = await page.evaluate(() => {
-      const finalCard = document.querySelector(".scale-section__project-card");
-      const executionGapSection = document.querySelector(".execution-gap-section");
+      const finalCard = document.querySelector('[data-testid="scale-project-card"]');
+      const executionGapSection = document.querySelector('[data-testid="execution-gap-section"]');
 
       if (!finalCard || !executionGapSection) {
         throw new Error("Section handoff geometry is unavailable");
@@ -146,11 +125,11 @@ test.describe("responsive homepage Scale section", () => {
 
   test("should center the scale illustration on a phone viewport", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    await openPage(page);
 
     const geometry = await page.getByTestId("scale-section").evaluate((section) => {
-      const inner = section.querySelector<HTMLElement>(".scale-section__inner");
-      const illustration = section.querySelector<HTMLElement>(".scale-section__illustration");
+      const inner = section.querySelector<HTMLElement>('[data-testid="scale-section-inner"]');
+      const illustration = section.querySelector<HTMLElement>('[data-testid="scale-illustration"]');
 
       if (!inner || !illustration) {
         throw new Error("Mobile scale illustration geometry is unavailable");
@@ -170,10 +149,10 @@ test.describe("responsive homepage Scale section", () => {
 
   test("should arrange tablet metrics as two cards and one centered card", async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 1366 });
-    await page.goto("/");
+    await openPage(page);
 
-    const cards = page.getByTestId("scale-section").locator(".scale-section__metric-card");
-    const inner = page.getByTestId("scale-section").locator(".scale-section__inner");
+    const cards = page.getByTestId("scale-section").locator('[data-testid="scale-metric-card"]');
+    const inner = page.getByTestId("scale-section").locator('[data-testid="scale-section-inner"]');
     const cardBoxes = await Promise.all([
       cards.nth(0).boundingBox(),
       cards.nth(1).boundingBox(),
@@ -194,28 +173,28 @@ test.describe("responsive homepage Scale section", () => {
 
   test("should use a swipe hint instead of carousel arrows on a phone", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    await openPage(page);
 
     const section = page.getByTestId("scale-section");
-    await expect(section.locator(".scale-section__swipe-hint")).toBeVisible();
+    await expect(section.locator('[data-testid="scale-swipe-hint"]')).toBeVisible();
     await expect(section.getByRole("button", { name: "Previous projects" })).toBeHidden();
     await expect(section.getByRole("button", { name: "Next projects" })).toBeHidden();
   });
 
   test("should keep the desktop-style carousel arrows visible on a tablet", async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 1366 });
-    await page.goto("/");
+    await openPage(page);
 
     const section = page.getByTestId("scale-section");
     await expect(section.getByRole("button", { name: "Previous projects" })).toBeVisible();
     await expect(section.getByRole("button", { name: "Next projects" })).toBeVisible();
-    await expect(section.locator(".scale-section__swipe-hint")).toBeHidden();
+    await expect(section.locator('[data-testid="scale-swipe-hint"]')).toBeHidden();
   });
   test("should show one project card per view and support swipe guidance on mobile", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    await openPage(page);
 
     const viewport = page.getByTestId("scale-projects-viewport");
     const cards = page.getByTestId("scale-project-card");
@@ -231,7 +210,7 @@ test.describe("responsive homepage Scale section", () => {
     expect(secondCardBox.x).toBeGreaterThan(firstCardBox.x + firstCardBox.width);
     await expect(page.getByRole("button", { name: "Previous projects" })).toBeHidden();
     await expect(page.getByRole("button", { name: "Next projects" })).toBeHidden();
-    await expect(page.locator(".scale-section__swipe-hint")).toBeVisible();
+    await expect(page.locator('[data-testid="scale-swipe-hint"]')).toBeVisible();
 
     await viewport.evaluate((element) =>
       element.scrollTo({ behavior: "auto", left: element.clientWidth }),
@@ -243,14 +222,14 @@ test.describe("responsive homepage Scale section", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 1024, height: 1366 });
-    await page.goto("/");
+    await openPage(page);
 
     const viewport = page.getByTestId("scale-projects-viewport");
     const cards = page.getByTestId("scale-project-card");
     const viewportBox = await viewport.boundingBox();
     const cardBoxes = await Promise.all([cards.nth(0).boundingBox(), cards.nth(1).boundingBox()]);
     const projectGap = await viewport
-      .locator(".scale-section__projects")
+      .locator('[data-testid="scale-projects"]')
       .evaluate((element) => Number.parseFloat(getComputedStyle(element).columnGap));
 
     if (!viewportBox || !cardBoxes[0] || !cardBoxes[1] || !projectGap) {
@@ -269,10 +248,10 @@ test.describe("responsive homepage Scale section", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    await openPage(page);
 
     const section = page.getByTestId("scale-section");
-    const titleBox = await section.locator(".scale-section__projects-title").boundingBox();
+    const titleBox = await section.locator('[data-testid="scale-projects-title"]').boundingBox();
     const ctaBox = await section.getByRole("link", { name: "View All Works" }).boundingBox();
     const cardBox = await section.getByTestId("scale-project-card").first().boundingBox();
 
@@ -285,12 +264,12 @@ test.describe("responsive homepage Scale section", () => {
   });
   test("should scale the section up on a 4K viewport", async ({ page }) => {
     await page.setViewportSize({ width: 3840, height: 2160 });
-    await page.goto("/");
+    await openPage(page);
 
     const geometry = await page.evaluate(() => {
-      const inner = document.querySelector(".scale-section__inner");
-      const title = document.querySelector(".scale-section__title");
-      const card = document.querySelector(".scale-section__project-card");
+      const inner = document.querySelector('[data-testid="scale-section-inner"]');
+      const title = document.querySelector('[data-testid="scale-section-title"]');
+      const card = document.querySelector('[data-testid="scale-project-card"]');
 
       if (!inner || !title || !card) {
         throw new Error("Scale section geometry is unavailable");
@@ -310,7 +289,7 @@ test.describe("responsive homepage Scale section", () => {
 
   test("should remove the decorative section marker at the tablet boundary", async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 1366 });
-    await page.goto("/");
+    await openPage(page);
 
     const pseudoElement = await page.getByTestId("scale-section").evaluate((section) => {
       const styles = getComputedStyle(section, "::after");
@@ -321,8 +300,7 @@ test.describe("responsive homepage Scale section", () => {
   });
 
   test("should reveal project details on hover", async ({ page }) => {
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
     const card = page.getByTestId("scale-project-card").nth(1);
     await card.focus();
@@ -333,8 +311,7 @@ test.describe("responsive homepage Scale section", () => {
   test("should keep hero calls to action clickable when scrolled beneath the fixed header", async ({
     page,
   }) => {
-    await page.goto("/");
-    await dismissConsent(page);
+    await openPage(page);
 
     const cta = page.getByRole("link", { name: "Book a Discovery Call" });
     const documentTop = await cta.evaluate(
@@ -348,9 +325,9 @@ test.describe("responsive homepage Scale section", () => {
 
   test("should keep metric copy inside its cards on a tablet", async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto("/");
+    await openPage(page);
 
-    const metricCards = page.locator(".scale-section__metric-card");
+    const metricCards = page.locator('[data-testid="scale-metric-card"]');
     await expect(metricCards).toHaveCount(3);
 
     const overflowStates = await metricCards.evaluateAll((cards) =>
@@ -366,7 +343,7 @@ test.describe("responsive homepage Scale section", () => {
 
   test("should stack cards without horizontal overflow on a phone", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    await openPage(page);
 
     await expect(page.getByTestId("scale-section")).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(

@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import styles from "./ExecutionGapSection.module.css";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { executionGapItems } from "@/features/home/execution-gap-data";
-
+import { executionGapItems } from "./execution-gap-data";
 const executionGapIllustrationSrc =
   "https://media.zypher-solutions.com/home-page/section-3/Problem%20Overall%20Graphic.png";
 const initialItemId = executionGapItems[0].id;
@@ -43,7 +43,7 @@ export function ExecutionGapSection(): ReactNode {
   return (
     <section
       aria-labelledby="execution-gap-title"
-      className="execution-gap-section"
+      className={styles.executionGapSection}
       data-reveal-state={hasEnteredViewport ? "visible" : "hidden"}
       data-testid="execution-gap-section"
       id="execution-gap"
@@ -51,7 +51,8 @@ export function ExecutionGapSection(): ReactNode {
     >
       <svg
         aria-hidden="true"
-        className="execution-gap-section__boundary execution-gap-section__boundary--top"
+        className={styles.executionGapSectionBoundary + " " + styles.executionGapSectionBoundaryTop}
+        data-testid="execution-gap-boundary-top"
         preserveAspectRatio="none"
         viewBox="0 0 1440 140"
       >
@@ -63,7 +64,10 @@ export function ExecutionGapSection(): ReactNode {
 
       <svg
         aria-hidden="true"
-        className="execution-gap-section__boundary execution-gap-section__boundary--bottom"
+        className={
+          styles.executionGapSectionBoundary + " " + styles.executionGapSectionBoundaryBottom
+        }
+        data-testid="execution-gap-boundary-bottom"
         preserveAspectRatio="none"
         viewBox="0 0 1440 140"
       >
@@ -73,12 +77,16 @@ export function ExecutionGapSection(): ReactNode {
         />
       </svg>
 
-      <div aria-hidden="true" className="execution-gap-section__surface" />
+      <div
+        aria-hidden="true"
+        className={styles.executionGapSectionSurface}
+        data-testid="execution-gap-surface"
+      />
 
-      <div className="execution-gap-section__inner">
-        <header className="execution-gap-section__header">
-          <p className="execution-gap-section__eyebrow">THE EXECUTION GAP</p>
-          <h2 className="execution-gap-section__title" id="execution-gap-title">
+      <div className={styles.executionGapSectionInner}>
+        <header className={styles.executionGapSectionHeader}>
+          <p className={styles.executionGapSectionEyebrow}>THE EXECUTION GAP</p>
+          <h2 className={styles.executionGapSectionTitle} id="execution-gap-title">
             <span>Most Software isn&rsquo;t broken,</span>
             <span>
               It&rsquo;s just <strong>not yours.</strong>
@@ -86,13 +94,14 @@ export function ExecutionGapSection(): ReactNode {
           </h2>
         </header>
 
-        <div className="execution-gap-section__content">
-          <div className="execution-gap-section__media">
-            <picture className="execution-gap-section__picture">
+        <div className={styles.executionGapSectionContent} data-testid="execution-gap-content">
+          <div className={styles.executionGapSectionMedia} data-testid="execution-gap-media">
+            <picture className={styles.executionGapSectionPicture}>
               <source media="(max-width: 1199px)" srcSet={activeItem.mobileImageSrc} />
               <Image
                 alt={activeItem.imageAlt}
-                className="execution-gap-section__image is-active"
+                className={styles.executionGapSectionImage}
+                data-image-src={activeItem.imageSrc}
                 data-testid="execution-gap-image"
                 fill
                 key={activeItem.id}
@@ -100,25 +109,24 @@ export function ExecutionGapSection(): ReactNode {
                 priority={activeItem.id === initialItemId}
                 sizes="(max-width: 1199px) min(100vw - 2rem, 36rem), 466px"
                 src={activeItem.imageSrc}
-                unoptimized
               />
             </picture>
           </div>
 
-          <div className="execution-gap-section__details">
+          <div className={styles.executionGapSectionDetails} data-testid="execution-gap-details">
             <Image
               alt=""
               aria-hidden="true"
-              className="execution-gap-section__illustration"
+              className={styles.executionGapSectionIllustration}
+              data-testid="execution-gap-illustration"
               fill
-              unoptimized
               loading="lazy"
               sizes="(max-width: 767px) 70vw, 312px"
               src={executionGapIllustrationSrc}
             />
 
             <ButtonLink
-              className="execution-gap-section__learn-more"
+              className={styles.executionGapSectionLearnMore}
               href="/contact"
               trackingLabel="Learn More"
               trackingLocation="execution-gap"
@@ -127,7 +135,10 @@ export function ExecutionGapSection(): ReactNode {
               Learn More <span aria-hidden="true">&#8594;</span>
             </ButtonLink>
 
-            <div className="execution-gap-section__accordion">
+            <div
+              className={styles.executionGapSectionAccordion}
+              data-testid="execution-gap-accordion"
+            >
               {executionGapItems.map((item) => {
                 const isActive = item.id === activeItem.id;
                 const buttonId = "execution-gap-trigger-" + item.id;
@@ -135,20 +146,21 @@ export function ExecutionGapSection(): ReactNode {
 
                 return (
                   <article
-                    className={"execution-gap-section__item" + (isActive ? " is-active" : "")}
+                    className={styles.executionGapSectionItem}
+                    data-state={isActive ? "active" : "inactive"}
                     key={item.id}
                   >
-                    <h3 className="execution-gap-section__item-heading">
+                    <h3 className={styles.executionGapSectionItemHeading}>
                       <button
                         aria-controls={panelId}
                         aria-expanded={isActive}
-                        className="execution-gap-section__trigger"
+                        className={styles.executionGapSectionTrigger}
                         id={buttonId}
                         onClick={(): void => setActiveItemId(item.id)}
                         type="button"
                       >
                         <span>{item.heading}</span>
-                        <span aria-hidden="true" className="execution-gap-section__toggle">
+                        <span aria-hidden="true" className={styles.executionGapSectionToggle}>
                           {isActive ? "-" : "+"}
                         </span>
                       </button>
@@ -157,18 +169,19 @@ export function ExecutionGapSection(): ReactNode {
                     <div
                       aria-hidden={!isActive}
                       aria-labelledby={buttonId}
-                      className={"execution-gap-section__panel" + (isActive ? " is-open" : "")}
+                      className={styles.executionGapSectionPanel}
+                      data-state={isActive ? "open" : "closed"}
                       id={panelId}
                       role="region"
                     >
-                      <div className="execution-gap-section__panel-inner">
-                        <p className="execution-gap-section__copy">
+                      <div className={styles.executionGapSectionPanelInner}>
+                        <p className={styles.executionGapSectionCopy}>
                           <strong>Problem:</strong> {item.problem}
                         </p>
-                        <p className="execution-gap-section__solution-heading">
+                        <p className={styles.executionGapSectionSolutionHeading}>
                           HOW WE <strong>SOLVE IT</strong>
                         </p>
-                        <p className="execution-gap-section__copy">
+                        <p className={styles.executionGapSectionCopy}>
                           <strong>Solution:</strong> {item.solution}
                         </p>
                       </div>

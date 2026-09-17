@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { scaleClientLogos, scaleMetrics, scaleProjects } from "@/features/home/scale-data";
+import { scaleClientLogos, scaleMetrics, scaleProjects } from "@/features/home/scale/scale-data";
 
 describe("scale section data", () => {
   it("should expose the three approved metrics and projects", () => {

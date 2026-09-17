@@ -6,7 +6,7 @@ describe("site footer", () => {
   it("should expose the shared brand, navigation, social links, and utility controls", () => {
     render(<Footer />);
 
-    expect(screen.getByRole("contentinfo")).toHaveClass("site-footer");
+    expect(screen.getByRole("contentinfo")).toHaveAttribute("data-testid", "site-footer");
     expect(screen.getByRole("link", { name: "Zypher Software Solutions home" })).toHaveAttribute(
       "href",
       "/",
