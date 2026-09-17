@@ -85,41 +85,37 @@ test.describe("responsive Services hero", () => {
       page.getByTestId("site-header-nav-list").getByRole("link", { name: "Services" }),
     ).toHaveAttribute("aria-current", "page");
   });
-  test("should keep the shared footer video behind footer content", async ({ page }) => {
+  test("should keep the shared footer illustration behind footer content", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await openPage(page, "/services");
 
     const layers = await page.evaluate(() => {
       const footer = document.querySelector<HTMLElement>('[data-testid="site-footer"]');
-      const video = document.querySelector<HTMLVideoElement>('[data-testid="footer-video"]');
       const illustration = document.querySelector<HTMLElement>(
         '[data-testid="site-footer-illustration"]',
       );
+      const image = illustration?.querySelector<HTMLImageElement>("img");
       const main = document.querySelector<HTMLElement>('[data-testid="site-footer-main"]');
       const meta = document.querySelector<HTMLElement>('[data-testid="site-footer-meta"]');
 
-      if (!footer || !video || !illustration || !main || !meta) {
-        throw new Error("Missing shared footer video layers");
+      if (!footer || !illustration || !image || !main || !meta) {
+        throw new Error("Missing shared footer illustration layers");
       }
 
       return {
-        source: video.getAttribute("src"),
-        autoplay: video.autoplay,
-        loop: video.loop,
-        muted: video.muted,
-        playsInline: video.playsInline,
-        pointerEvents: getComputedStyle(video).pointerEvents,
+        source: illustration.getAttribute("data-image-src"),
+        imagePresent: Boolean(image),
+        pointerEvents: getComputedStyle(illustration).pointerEvents,
         illustrationZIndex: getComputedStyle(illustration).zIndex,
         mainZIndex: getComputedStyle(main).zIndex,
         metaZIndex: getComputedStyle(meta).zIndex,
       };
     });
 
-    expect(layers.source).toBe("https://media.zypher-solutions.com/footer/footer.mp4");
-    expect(layers.autoplay).toBe(true);
-    expect(layers.loop).toBe(true);
-    expect(layers.muted).toBe(true);
-    expect(layers.playsInline).toBe(true);
+    expect(layers.source).toBe(
+      "https://media.zypher-solutions.com/footer/Footer%20Illustration.png",
+    );
+    expect(layers.imagePresent).toBe(true);
     expect(layers.pointerEvents).toBe("none");
     expect(layers.illustrationZIndex).toBe("0");
     expect(layers.mainZIndex).toBe("1");

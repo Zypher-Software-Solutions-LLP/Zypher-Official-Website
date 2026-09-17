@@ -84,7 +84,7 @@ const footerSocialLinks = [
   },
 ] as const satisfies readonly FooterSocialLink[];
 
-const footerVideoSrc = "https://media.zypher-solutions.com/footer/footer.mp4";
+const footerIllustrationSrc = "https://media.zypher-solutions.com/footer/Footer%20Illustration.png";
 
 function FooterLinkItem({ link }: { link: FooterLink }): ReactNode {
   if (link.external) {
@@ -204,17 +204,15 @@ export function Footer(): ReactNode {
       <div
         aria-hidden="true"
         className={styles.siteFooterIllustration}
+        data-image-src={footerIllustrationSrc}
         data-testid="site-footer-illustration"
       >
-        <video
-          autoPlay
-          className={styles.siteFooterIllustrationVideo}
-          data-testid="footer-video"
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          src={footerVideoSrc}
+        <Image
+          alt=""
+          className={styles.siteFooterIllustrationImage}
+          fill
+          sizes="100vw"
+          src={footerIllustrationSrc}
         />
       </div>
     </footer>

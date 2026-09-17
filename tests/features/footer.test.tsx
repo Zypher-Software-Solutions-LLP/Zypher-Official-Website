@@ -49,16 +49,16 @@ describe("site footer", () => {
       "https://wa.me/918075725045",
     );
   });
-  it("should render the footer video as a decorative background layer", () => {
+  it("should render the supplied footer illustration as a decorative background layer", () => {
     render(<Footer />);
 
-    const video = screen.getByTestId("footer-video");
+    const illustration = screen.getByTestId("site-footer-illustration");
 
-    expect(video).toHaveAttribute("src", "https://media.zypher-solutions.com/footer/footer.mp4");
-    expect(video).toHaveAttribute("autoplay");
-    expect(video).toHaveAttribute("loop");
-    expect(video).toHaveProperty("muted", true);
-    expect(video).toHaveAttribute("playsinline");
-    expect(video.parentElement).toHaveAttribute("aria-hidden", "true");
+    expect(illustration).toHaveAttribute(
+      "data-image-src",
+      "https://media.zypher-solutions.com/footer/Footer%20Illustration.png",
+    );
+    expect(illustration.querySelector("img")).not.toBeNull();
+    expect(illustration).toHaveAttribute("aria-hidden", "true");
   });
 });
