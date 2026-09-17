@@ -102,6 +102,9 @@ test.describe("responsive Services hero", () => {
         throw new Error("Missing shared footer illustration layers");
       }
 
+      const footerRect = footer.getBoundingClientRect();
+      const illustrationRect = illustration.getBoundingClientRect();
+
       return {
         source: illustration.getAttribute("data-image-src"),
         imagePresent: Boolean(image),
@@ -109,6 +112,8 @@ test.describe("responsive Services hero", () => {
         imageOpacity: getComputedStyle(image).opacity,
         illustrationPosition: getComputedStyle(illustration).position,
         illustrationTop: Number.parseFloat(getComputedStyle(illustration).top),
+        illustrationRatio: illustrationRect.width / illustrationRect.height,
+        footerBottomGap: footerRect.bottom - illustrationRect.bottom,
         pointerEvents: getComputedStyle(illustration).pointerEvents,
         illustrationZIndex: getComputedStyle(illustration).zIndex,
         mainZIndex: getComputedStyle(main).zIndex,
@@ -124,6 +129,8 @@ test.describe("responsive Services hero", () => {
     expect(layers.imageOpacity).toBe("0.5");
     expect(layers.illustrationPosition).toBe("absolute");
     expect(layers.illustrationTop).toBeGreaterThan(0);
+    expect(layers.illustrationRatio).toBeCloseTo(1920 / 1088, 2);
+    expect(layers.footerBottomGap).toBeGreaterThan(0);
     expect(layers.pointerEvents).toBe("none");
     expect(layers.illustrationZIndex).toBe("0");
     expect(layers.mainZIndex).toBe("1");
