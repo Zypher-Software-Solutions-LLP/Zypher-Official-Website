@@ -54,7 +54,7 @@ export function AIAutomationSection(): ReactNode {
               alt=""
               className={styles.aiNodeWorkflowImage}
               fill
-              sizes="(max-width: 767px) 0px, 80vw"
+              sizes="(max-width: 767px) 288px, 80vw"
               src={NODE_WORKFLOW_SRC}
             />
           </div>
@@ -103,22 +103,22 @@ export function AIAutomationSection(): ReactNode {
               See How We Build With AI →
             </ButtonLink>
           </div>
-
-          <div
-            aria-hidden="true"
-            className={styles.aiLaptopArtwork}
-            data-image-src={LAPTOP_SRC}
-            data-testid="ai-automation-laptop"
-          >
-            <Image
-              alt=""
-              className={styles.aiLaptopImage}
-              fill
-              sizes="(max-width: 1023px) 0px, 64vw"
-              src={LAPTOP_SRC}
-            />
-          </div>
         </div>
+      </div>
+
+      <div
+        aria-hidden="true"
+        className={styles.aiLaptopArtwork}
+        data-image-src={LAPTOP_SRC}
+        data-testid="ai-automation-laptop"
+      >
+        <Image
+          alt=""
+          className={styles.aiLaptopImage}
+          fill
+          sizes="(max-width: 1023px) 0px, 64vw"
+          src={LAPTOP_SRC}
+        />
       </div>
     </section>
   );

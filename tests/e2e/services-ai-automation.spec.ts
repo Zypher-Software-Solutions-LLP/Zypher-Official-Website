@@ -51,8 +51,10 @@ test.describe("AI and LLM automation section", () => {
 
       return {
         gridWidth: grid.getBoundingClientRect().width,
+        gridRight: grid.getBoundingClientRect().right,
         laptopDisplay: getComputedStyle(laptop).display,
         laptopWidth: laptop.getBoundingClientRect().width,
+        laptopRight: laptop.getBoundingClientRect().right,
         laptopBottom: laptop.getBoundingClientRect().bottom,
         laptopPosition: getComputedStyle(laptop).position,
         laptopBottomOffset: Number.parseFloat(getComputedStyle(laptop).bottom),
@@ -75,10 +77,12 @@ test.describe("AI and LLM automation section", () => {
     expect(layout.gridWidth).toBeLessThan(1200);
     expect(layout.laptopDisplay).not.toBe("none");
     expect(layout.laptopWidth).toBeGreaterThan(700);
+    expect(layout.laptopRight).toBeGreaterThan(layout.gridRight + 32);
     expect(layout.laptopPosition).toBe("absolute");
     expect(layout.laptopBottomOffset).toBeLessThan(0);
     expect(layout.laptopBottom).toBeGreaterThan(layout.sectionBottom);
     expect(layout.sectionHeight).toBeLessThan(900);
+    expect(layout.sectionHeight).toBeGreaterThan(832);
     expect(layout.workflowDisplay).toBe("block");
     expect(layout.workflowImageSrc).toContain("services-page/section-2/Group%2022.png");
     expect(layout.pointOffsets[0]).toBeCloseTo(0.0626, 2);
@@ -101,17 +105,71 @@ test.describe("AI and LLM automation section", () => {
     await expect(page.getByTestId("ai-automation-laptop")).toBeVisible();
   });
 
+  test("should keep the tablet points close to the workflow artwork", async ({ page }) => {
+    await page.setViewportSize({ width: 820, height: 900 });
+    await openPage(page, "/services");
+
+    const geometry = await page.evaluate(() => {
+      const artwork = document.querySelector<HTMLElement>('[data-testid="ai-node-workflow-image"]');
+      const points = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-testid="ai-node-point"]'),
+      );
+
+      if (!artwork || points.length !== 5) {
+        throw new Error("Missing tablet workflow geometry");
+      }
+
+      const artworkRect = artwork.getBoundingClientRect();
+      const closestPointTop = Math.min(...points.map((point) => point.getBoundingClientRect().top));
+
+      return {
+        artworkBottom: artworkRect.bottom,
+        closestPointTop,
+      };
+    });
+
+    expect(geometry.closestPointTop).toBeLessThan(geometry.artworkBottom);
+  });
+
   test("should stack the node diagram and hide the laptop on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await openPage(page, "/services");
 
     const workflow = page.getByTestId("ai-node-workflow");
     await expect(page.getByTestId("ai-automation-laptop")).toBeHidden();
+    await expect(page.getByTestId("ai-node-workflow-image").locator("img")).toBeVisible();
     await expect(page.getByTestId("business-deliverable").first()).toBeVisible();
     await expect(workflow).toHaveAttribute("data-mobile-orientation", "vertical");
 
     await expect
       .poll(() => workflow.evaluate((element) => getComputedStyle(element).flexDirection))
       .toBe("column");
+
+    const mobileArtwork = await page.getByTestId("ai-node-workflow-image").evaluate((element) => {
+      const image = element.querySelector("img");
+      if (!image) {
+        throw new Error("Missing mobile workflow image");
+      }
+
+      const rect = image.getBoundingClientRect();
+      return {
+        height: rect.height,
+        transform: getComputedStyle(image).transform,
+      };
+    });
+
+    expect(mobileArtwork.height).toBeGreaterThan(0);
+    expect(mobileArtwork.transform).not.toBe("none");
+  });
+
+  test("should keep the mobile workflow CTA text on one line", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openPage(page, "/services");
+
+    const cta = page
+      .getByTestId("ai-automation-bottom-grid")
+      .getByRole("link", { name: "See How We Build With AI →" });
+    await expect(cta).toBeVisible();
+    await expect(cta).toHaveCSS("white-space", "nowrap");
   });
 });
