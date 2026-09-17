@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { usePageScrollController } from "@/components/motion/MotionProvider";
 import styles from "./HowWeWorkSection.module.css";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode, RefObject } from "react";
@@ -46,6 +47,7 @@ function useHowWeWorkNavigation(
   const [isDockVisible, setIsDockVisible] = useState(false);
   const panelRefs = useRef<Map<string, HTMLElement>>(new Map());
   const scrollTargetIdRef = useRef<string | null>(null);
+  const pageScrollController = usePageScrollController();
 
   const registerPanel = useCallback((panelId: string, node: HTMLElement | null): void => {
     if (node) {
@@ -55,19 +57,37 @@ function useHowWeWorkNavigation(
     }
   }, []);
 
-  const scrollToPanel = useCallback((panelId: string): void => {
-    const panel =
-      panelRefs.current.get(panelId) ?? document.getElementById(`how-we-work-panel-${panelId}`);
+  const scrollToPanel = useCallback(
+    (panelId: string): void => {
+      const panel =
+        panelRefs.current.get(panelId) ?? document.getElementById(`how-we-work-panel-${panelId}`);
 
-    setActivePanelId(panelId);
+      setActivePanelId(panelId);
 
-    if (!panel) {
-      return;
-    }
+      if (!panel) {
+        return;
+      }
 
-    scrollTargetIdRef.current = panelId;
-    panel.scrollIntoView?.({ behavior: getScrollBehavior(), block: "start" });
-  }, []);
+      const clearScrollTarget = (): void => {
+        if (scrollTargetIdRef.current === panelId) {
+          scrollTargetIdRef.current = null;
+        }
+      };
+
+      scrollTargetIdRef.current = panelId;
+
+      if (pageScrollController) {
+        pageScrollController.scrollTo(panel, {
+          behavior: getScrollBehavior(),
+          onComplete: clearScrollTarget,
+        });
+        return;
+      }
+
+      panel.scrollIntoView?.({ behavior: getScrollBehavior(), block: "start" });
+    },
+    [pageScrollController],
+  );
 
   useEffect((): (() => void) => {
     const section = sectionRef.current;
@@ -83,8 +103,11 @@ function useHowWeWorkNavigation(
       const finalPanelElement = finalPanel ? panelRefs.current.get(finalPanel.id) : undefined;
       const finalPanelRect = finalPanelElement?.getBoundingClientRect();
       const entryThreshold = window.innerHeight * 0.8;
-      const hasNotFinished = finalPanelRect ? finalPanelRect.bottom > 0 : sectionRect.bottom > 0;
-      const shouldShowDock = sectionRect.top <= entryThreshold && hasNotFinished;
+      const activePanelAnchor = window.innerHeight * 0.35;
+      const hasNotReachedFinalStage = finalPanelRect
+        ? finalPanelRect.top > activePanelAnchor
+        : sectionRect.bottom > 0;
+      const shouldShowDock = sectionRect.top <= entryThreshold && hasNotReachedFinalStage;
 
       setIsDockVisible((currentVisibility) =>
         currentVisibility === shouldShowDock ? currentVisibility : shouldShowDock,
@@ -152,24 +175,35 @@ function useHowWeWorkNavigation(
       animationFrame = window.requestAnimationFrame(updateActivePanel);
     };
 
+    const unsubscribeFromUserScrollIntent = pageScrollController?.subscribeToUserScrollIntent(
+      cancelProgrammaticNavigation,
+    );
+
     window.addEventListener("scroll", scheduleActivePanelUpdate, { passive: true });
     window.addEventListener("resize", scheduleActivePanelUpdate);
-    window.addEventListener("wheel", cancelProgrammaticNavigation, { passive: true });
-    window.addEventListener("touchmove", cancelProgrammaticNavigation, { passive: true });
+
+    if (!pageScrollController) {
+      window.addEventListener("wheel", cancelProgrammaticNavigation, { passive: true });
+      window.addEventListener("touchmove", cancelProgrammaticNavigation, { passive: true });
+    }
 
     updateDockVisibility();
 
     return (): void => {
       window.removeEventListener("scroll", scheduleActivePanelUpdate);
       window.removeEventListener("resize", scheduleActivePanelUpdate);
-      window.removeEventListener("wheel", cancelProgrammaticNavigation);
-      window.removeEventListener("touchmove", cancelProgrammaticNavigation);
+      unsubscribeFromUserScrollIntent?.();
+
+      if (!pageScrollController) {
+        window.removeEventListener("wheel", cancelProgrammaticNavigation);
+        window.removeEventListener("touchmove", cancelProgrammaticNavigation);
+      }
 
       if (animationFrame !== null && typeof window.cancelAnimationFrame === "function") {
         window.cancelAnimationFrame(animationFrame);
       }
     };
-  }, [panelRecords, sectionRef]);
+  }, [pageScrollController, panelRecords, sectionRef]);
 
   return { activePanelId, isDockVisible, registerPanel, scrollToPanel };
 }
