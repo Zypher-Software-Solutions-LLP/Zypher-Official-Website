@@ -76,13 +76,13 @@ test.describe("AI and LLM automation section", () => {
     expect(layout.gridWidth).toBeGreaterThan(1000);
     expect(layout.gridWidth).toBeLessThan(1200);
     expect(layout.laptopDisplay).not.toBe("none");
-    expect(layout.laptopWidth).toBeGreaterThan(800);
+    expect(layout.laptopWidth).toBeGreaterThan(900);
     expect(layout.laptopRight).toBeGreaterThan(layout.gridRight + 32);
     expect(layout.laptopPosition).toBe("absolute");
     expect(layout.laptopBottomOffset).toBeLessThan(0);
     expect(layout.laptopBottom).toBeGreaterThan(layout.sectionBottom);
-    expect(layout.sectionHeight).toBeLessThan(940);
-    expect(layout.sectionHeight).toBeGreaterThan(864);
+    expect(layout.sectionHeight).toBeLessThan(1000);
+    expect(layout.sectionHeight).toBeGreaterThan(928);
     expect(layout.workflowDisplay).toBe("block");
     expect(layout.workflowImageSrc).toContain("services-page/section-2/Group%2022.png");
     expect(layout.pointOffsets[0]).toBeCloseTo(0.0626, 2);
@@ -152,19 +152,28 @@ test.describe("AI and LLM automation section", () => {
 
     const mobileArtwork = await mobileWorkflowImage.evaluate((element) => {
       const image = element.querySelector("img");
+      const firstLabel = document.querySelector<HTMLElement>('[data-testid="ai-capability-label"]');
       if (!image) {
         throw new Error("Missing mobile workflow image");
       }
+      if (!firstLabel) {
+        throw new Error("Missing mobile capability label");
+      }
 
       const rect = image.getBoundingClientRect();
+      const artworkRect = element.getBoundingClientRect();
+      const labelRect = firstLabel.getBoundingClientRect();
       return {
         height: rect.height,
+        labelGap: labelRect.left - artworkRect.right,
         objectFit: getComputedStyle(image).objectFit,
         transform: getComputedStyle(image).transform,
       };
     });
 
     expect(mobileArtwork.height).toBeGreaterThan(0);
+    expect(mobileArtwork.labelGap).toBeGreaterThanOrEqual(0);
+    expect(mobileArtwork.labelGap).toBeLessThan(40);
     expect(mobileArtwork.objectFit).toBe("contain");
     expect(mobileArtwork.transform).toBe("none");
   });

@@ -84,8 +84,7 @@ const footerSocialLinks = [
   },
 ] as const satisfies readonly FooterSocialLink[];
 
-const footerIllustrationSrc =
-  "https://media.zypher-solutions.com/footer/Footer%20Illustration.png?v=2";
+const footerVideoSrc = "https://media.zypher-solutions.com/footer/footer.mp4";
 
 function FooterLinkItem({ link }: { link: FooterLink }): ReactNode {
   if (link.external) {
@@ -108,7 +107,7 @@ export function Footer(): ReactNode {
 
   return (
     <footer className={styles.siteFooter} data-testid="site-footer">
-      <div className={styles.siteFooterMain}>
+      <div className={styles.siteFooterMain} data-testid="site-footer-main">
         <div className={styles.siteFooterBrand}>
           <Link
             aria-label="Zypher Software Solutions home"
@@ -175,7 +174,7 @@ export function Footer(): ReactNode {
         </nav>
       </div>
 
-      <div className={styles.siteFooterMeta}>
+      <div className={styles.siteFooterMeta} data-testid="site-footer-meta">
         <div className={styles.siteFooterMetaInner}>
           <p className={styles.siteFooterCopyright}>
             © {currentYear} Zypher Software Solutions LLP.
@@ -202,13 +201,20 @@ export function Footer(): ReactNode {
         </div>
       </div>
 
-      <div aria-hidden="true" className={styles.siteFooterIllustration}>
-        <Image
-          alt=""
-          className={styles.siteFooterIllustrationImage}
-          fill
-          sizes="100vw"
-          src={footerIllustrationSrc}
+      <div
+        aria-hidden="true"
+        className={styles.siteFooterIllustration}
+        data-testid="site-footer-illustration"
+      >
+        <video
+          autoPlay
+          className={styles.siteFooterIllustrationVideo}
+          data-testid="footer-video"
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          src={footerVideoSrc}
         />
       </div>
     </footer>

@@ -94,7 +94,9 @@ export function AIAutomationSection(): ReactNode {
                   data-testid="ai-node-point"
                 />
                 <span className={styles.aiNodeNumber}>{capability.number}</span>
-                <p className={styles.aiNodeLabel}>{capability.label}</p>
+                <p className={styles.aiNodeLabel} data-testid="ai-capability-label">
+                  {capability.label}
+                </p>
               </li>
             ))}
           </ol>

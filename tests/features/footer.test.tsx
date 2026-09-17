@@ -49,4 +49,16 @@ describe("site footer", () => {
       "https://wa.me/918075725045",
     );
   });
+  it("should render the footer video as a decorative background layer", () => {
+    render(<Footer />);
+
+    const video = screen.getByTestId("footer-video");
+
+    expect(video).toHaveAttribute("src", "https://media.zypher-solutions.com/footer/footer.mp4");
+    expect(video).toHaveAttribute("autoplay");
+    expect(video).toHaveAttribute("loop");
+    expect(video).toHaveProperty("muted", true);
+    expect(video).toHaveAttribute("playsinline");
+    expect(video.parentElement).toHaveAttribute("aria-hidden", "true");
+  });
 });
