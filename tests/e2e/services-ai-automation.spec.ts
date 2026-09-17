@@ -76,13 +76,13 @@ test.describe("AI and LLM automation section", () => {
     expect(layout.gridWidth).toBeGreaterThan(1000);
     expect(layout.gridWidth).toBeLessThan(1200);
     expect(layout.laptopDisplay).not.toBe("none");
-    expect(layout.laptopWidth).toBeGreaterThan(700);
+    expect(layout.laptopWidth).toBeGreaterThan(800);
     expect(layout.laptopRight).toBeGreaterThan(layout.gridRight + 32);
     expect(layout.laptopPosition).toBe("absolute");
     expect(layout.laptopBottomOffset).toBeLessThan(0);
     expect(layout.laptopBottom).toBeGreaterThan(layout.sectionBottom);
-    expect(layout.sectionHeight).toBeLessThan(900);
-    expect(layout.sectionHeight).toBeGreaterThan(832);
+    expect(layout.sectionHeight).toBeLessThan(940);
+    expect(layout.sectionHeight).toBeGreaterThan(864);
     expect(layout.workflowDisplay).toBe("block");
     expect(layout.workflowImageSrc).toContain("services-page/section-2/Group%2022.png");
     expect(layout.pointOffsets[0]).toBeCloseTo(0.0626, 2);
@@ -137,7 +137,12 @@ test.describe("AI and LLM automation section", () => {
 
     const workflow = page.getByTestId("ai-node-workflow");
     await expect(page.getByTestId("ai-automation-laptop")).toBeHidden();
-    await expect(page.getByTestId("ai-node-workflow-image").locator("img")).toBeVisible();
+    const mobileWorkflowImage = page.getByTestId("ai-node-workflow-mobile-image");
+    await expect(mobileWorkflowImage).toBeVisible();
+    await expect(mobileWorkflowImage).toHaveAttribute(
+      "data-image-src",
+      expect.stringContaining("Group%2022%20-%20Mobile%20View.png"),
+    );
     await expect(page.getByTestId("business-deliverable").first()).toBeVisible();
     await expect(workflow).toHaveAttribute("data-mobile-orientation", "vertical");
 
@@ -145,7 +150,7 @@ test.describe("AI and LLM automation section", () => {
       .poll(() => workflow.evaluate((element) => getComputedStyle(element).flexDirection))
       .toBe("column");
 
-    const mobileArtwork = await page.getByTestId("ai-node-workflow-image").evaluate((element) => {
+    const mobileArtwork = await mobileWorkflowImage.evaluate((element) => {
       const image = element.querySelector("img");
       if (!image) {
         throw new Error("Missing mobile workflow image");
@@ -154,12 +159,14 @@ test.describe("AI and LLM automation section", () => {
       const rect = image.getBoundingClientRect();
       return {
         height: rect.height,
+        objectFit: getComputedStyle(image).objectFit,
         transform: getComputedStyle(image).transform,
       };
     });
 
     expect(mobileArtwork.height).toBeGreaterThan(0);
-    expect(mobileArtwork.transform).not.toBe("none");
+    expect(mobileArtwork.objectFit).toBe("contain");
+    expect(mobileArtwork.transform).toBe("none");
   });
 
   test("should keep the mobile workflow CTA text on one line", async ({ page }) => {

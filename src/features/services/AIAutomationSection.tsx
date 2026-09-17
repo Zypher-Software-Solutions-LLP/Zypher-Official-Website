@@ -6,6 +6,8 @@ import styles from "./AIAutomationSection.module.css";
 const LAPTOP_SRC = "https://media.zypher-solutions.com/services-page/section-2/Laptop.png";
 const NODE_WORKFLOW_SRC =
   "https://media.zypher-solutions.com/services-page/section-2/Group%2022.png";
+const NODE_WORKFLOW_MOBILE_SRC =
+  "https://media.zypher-solutions.com/services-page/section-2/Group%2022%20-%20Mobile%20View.png";
 
 const capabilities = [
   { number: "01", label: "Custom Chatbots & AI Assistants", glyph: "AI" },
@@ -56,6 +58,20 @@ export function AIAutomationSection(): ReactNode {
               fill
               sizes="(max-width: 767px) 288px, 80vw"
               src={NODE_WORKFLOW_SRC}
+            />
+          </div>
+          <div
+            aria-hidden="true"
+            className={styles.aiNodeWorkflowMobileArtwork}
+            data-image-src={NODE_WORKFLOW_MOBILE_SRC}
+            data-testid="ai-node-workflow-mobile-image"
+          >
+            <Image
+              alt=""
+              className={styles.aiNodeWorkflowMobileImage}
+              fill
+              sizes="80px"
+              src={NODE_WORKFLOW_MOBILE_SRC}
             />
           </div>
           <ol

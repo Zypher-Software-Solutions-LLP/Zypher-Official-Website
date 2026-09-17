@@ -25,6 +25,10 @@ describe("AI and LLM automation section", () => {
       "data-image-src",
       expect.stringContaining("services-page/section-2/Group%2022.png"),
     );
+    expect(screen.getByTestId("ai-node-workflow-mobile-image")).toHaveAttribute(
+      "data-image-src",
+      expect.stringContaining("services-page/section-2/Group%2022%20-%20Mobile%20View.png"),
+    );
     expect(screen.getAllByTestId("business-deliverable")).toHaveLength(4);
     expect(screen.getByTestId("business-deliverables-list")).toBeInTheDocument();
     expect(screen.getByTestId("ai-automation-laptop")).toHaveAttribute(

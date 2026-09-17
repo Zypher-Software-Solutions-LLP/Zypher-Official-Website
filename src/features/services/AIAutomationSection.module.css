@@ -1,7 +1,7 @@
 .aiAutomationSection {
   position: relative;
   isolation: isolate;
-  min-height: 54rem;
+  min-height: 56rem;
   overflow: hidden;
   border-radius: 0 0 1.875rem 1.875rem;
   background: var(--color-brand-dark);
@@ -11,7 +11,7 @@
 .aiAutomationGrid {
   display: grid;
   width: min(calc(100% - 2rem), 80vw, 72rem);
-  min-height: 54rem;
+  min-height: 56rem;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: clamp(12px, 1.6667vw, 24px);
   align-content: start;
@@ -73,6 +73,10 @@
   left: 0;
   height: 8.4375rem;
   pointer-events: none;
+}
+
+.aiNodeWorkflowMobileArtwork {
+  display: none;
 }
 
 .aiNodeWorkflowImage {
@@ -277,7 +281,7 @@
   z-index: 0;
   bottom: -7rem;
   right: -4rem;
-  width: min(50vw, 45rem);
+  width: min(58vw, 52rem);
   aspect-ratio: 654 / 482;
   opacity: 0;
   transform: translate3d(0, 3rem, 0);
@@ -317,7 +321,7 @@
 @media (max-width: 63.9375rem) {
   .aiAutomationSection,
   .aiAutomationGrid {
-    min-height: 52rem;
+    min-height: 54rem;
   }
 
   .aiAutomationGrid {
@@ -369,7 +373,7 @@
   .aiAutomationGrid {
     display: block;
     width: calc(100% - 2rem);
-    padding-block: 3.5rem 4.5rem;
+    padding-block: 3.5rem 5rem;
   }
 
   .aiAutomationIntro {
@@ -389,6 +393,10 @@
   }
 
   .aiNodeWorkflowArtwork {
+    display: none;
+  }
+
+  .aiNodeWorkflowMobileArtwork {
     position: relative;
     display: block;
     grid-column: 1;
@@ -398,18 +406,14 @@
     height: auto;
   }
 
-  .aiNodeWorkflowImage {
+  .aiNodeWorkflowMobileImage {
     position: absolute !important;
-    inset: auto !important;
-    top: 50% !important;
-    right: auto !important;
-    bottom: auto !important;
-    left: 50% !important;
-    width: 18rem !important;
-    height: auto !important;
-    max-width: none;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: contain;
-    transform: translate(-50%, -50%) rotate(90deg) scale(0.85);
+    object-position: center;
+    transform: none;
   }
 
   .aiNodeWorkflow {
