@@ -35,7 +35,10 @@ export function ServicesHeroSection(): ReactNode {
 
         <div className={styles.servicesHeroGrid} data-testid="services-hero-grid">
           <div className={styles.servicesHeroCopy}>
-            <p className={styles.servicesHeroEyebrow}>
+            <p
+              className={styles.servicesHeroEyebrow + " " + styles.servicesHeroFade}
+              data-testid="services-hero-eyebrow"
+            >
               <span data-testid="services-eyebrow-what">WHAT</span>{" "}
               <span
                 className={styles.servicesHeroEyebrowAccent}
@@ -51,14 +54,48 @@ export function ServicesHeroSection(): ReactNode {
               data-testid="services-hero-title"
               id="services-hero-title"
             >
-              <span className={styles.servicesHeroTitleAccent}>End to end software,</span>
-              <span>engineered with AI</span>
-              <span>at the core</span>
+              <span
+                className={
+                  styles.servicesHeroTitleAccent +
+                  " " +
+                  styles.servicesHeroFade +
+                  " " +
+                  styles.servicesHeroFadeDelay1
+                }
+              >
+                End to end software,
+              </span>
+              <span className={styles.servicesHeroFade + " " + styles.servicesHeroFadeDelay2}>
+                engineered with AI
+              </span>
+              <span className={styles.servicesHeroFade + " " + styles.servicesHeroFadeDelay3}>
+                at the core
+              </span>
             </h1>
 
-            <p className={styles.servicesHeroDescription}>{SERVICES_DESCRIPTION}</p>
+            <p
+              className={
+                styles.servicesHeroDescription +
+                " " +
+                styles.servicesHeroFade +
+                " " +
+                styles.servicesHeroFadeDelay4
+              }
+              data-testid="services-hero-description"
+            >
+              {SERVICES_DESCRIPTION}
+            </p>
 
-            <div className={styles.servicesHeroActions}>
+            <div
+              className={
+                styles.servicesHeroActions +
+                " " +
+                styles.servicesHeroFade +
+                " " +
+                styles.servicesHeroFadeDelay5
+              }
+              data-testid="services-hero-actions"
+            >
               <ButtonLink
                 className={styles.servicesHeroPrimaryButton}
                 href="#service-lines"

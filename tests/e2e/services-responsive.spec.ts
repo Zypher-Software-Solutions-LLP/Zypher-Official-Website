@@ -2,41 +2,58 @@ import { expect, test } from "@playwright/test";
 import { openPage } from "./helpers/site";
 
 test.describe("responsive Services hero", () => {
-  test("should keep the desktop heading to three lines and show the full hero composition", async ({
+  test("should keep the desktop heading to three lines and reveal the full composition at common PC widths", async ({
     page,
   }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await openPage(page, "/services");
+    for (const viewport of [1440, 1920, 2560, 3840]) {
+      await page.setViewportSize({ width: viewport, height: 900 });
+      await openPage(page, "/services");
 
-    const layout = await page.evaluate(() => {
-      const title = document.querySelector<HTMLElement>('[data-testid="services-hero-title"]');
-      const grid = document.querySelector<HTMLElement>('[data-testid="services-hero-grid"]');
-      const illustration = document.querySelector<HTMLElement>(
-        '[data-testid="services-hero-illustration"]',
+      const layout = await page.evaluate(() => {
+        const title = document.querySelector<HTMLElement>('[data-testid="services-hero-title"]');
+        const grid = document.querySelector<HTMLElement>('[data-testid="services-hero-grid"]');
+        const illustration = document.querySelector<HTMLElement>(
+          '[data-testid="services-hero-illustration"]',
+        );
+        const surface = document.querySelector<HTMLElement>(
+          '[data-testid="services-hero-surface"]',
+        );
+        const eyebrow = document.querySelector<HTMLElement>(
+          '[data-testid="services-hero-eyebrow"]',
+        );
+        const description = document.querySelector<HTMLElement>(
+          '[data-testid="services-hero-description"]',
+        );
+        const actions = document.querySelector<HTMLElement>(
+          '[data-testid="services-hero-actions"]',
+        );
+
+        if (!title || !grid || !illustration || !surface || !eyebrow || !description || !actions) {
+          throw new Error("Missing Services hero geometry");
+        }
+
+        const titleLines = [...title.querySelectorAll<HTMLElement>(":scope > span")];
+
+        return {
+          titleLineRects: titleLines.map((line) => line.getClientRects().length),
+          gridWidth: grid.getBoundingClientRect().width,
+          illustrationDisplay: getComputedStyle(illustration).display,
+          surfaceRadius: getComputedStyle(surface).borderBottomLeftRadius,
+          animationNames: [eyebrow, ...titleLines, description, actions].map(
+            (element) => getComputedStyle(element).animationName,
+          ),
+        };
+      });
+
+      expect(layout.titleLineRects).toEqual([1, 1, 1]);
+      expect(layout.gridWidth).toBeGreaterThan(1000);
+      expect(layout.gridWidth).toBeLessThan(1200);
+      expect(layout.illustrationDisplay).not.toBe("none");
+      expect(layout.surfaceRadius).not.toBe("0px");
+      expect(layout.animationNames.every((name) => name.endsWith("services-hero-fade-in"))).toBe(
+        true,
       );
-      const surface = document.querySelector<HTMLElement>('[data-testid="services-hero-surface"]');
-
-      if (!title || !grid || !illustration || !surface) {
-        throw new Error("Missing Services hero geometry");
-      }
-
-      const titleLineRects = [...title.querySelectorAll<HTMLElement>(":scope > span")].map(
-        (line) => line.getClientRects().length,
-      );
-
-      return {
-        titleLineRects,
-        gridWidth: grid.getBoundingClientRect().width,
-        illustrationDisplay: getComputedStyle(illustration).display,
-        surfaceRadius: getComputedStyle(surface).borderBottomLeftRadius,
-      };
-    });
-
-    expect(layout.titleLineRects).toEqual([1, 1, 1]);
-    expect(layout.gridWidth).toBeGreaterThan(1000);
-    expect(layout.gridWidth).toBeLessThan(1200);
-    expect(layout.illustrationDisplay).not.toBe("none");
-    expect(layout.surfaceRadius).not.toBe("0px");
+    }
   });
 
   test("should retain the background illustration but hide the distracting artwork on mobile", async ({
