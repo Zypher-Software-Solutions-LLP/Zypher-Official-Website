@@ -58,26 +58,37 @@
   margin-top: 3rem;
 }
 
-.aiNodeWorkflow {
+.aiNodeWorkflowFrame {
   position: relative;
-  display: grid;
   grid-column: 1 / -1;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(0.75rem, 1.6667vw, 1.5rem);
-  margin: 1.25rem 0 0;
-  padding: 0;
-  list-style: none;
+  min-height: 14.1875rem;
+  margin-top: 1.5rem;
 }
 
-.aiNodeWorkflow::before {
+.aiNodeWorkflowArtwork {
   position: absolute;
   z-index: 0;
-  top: 2.5rem;
-  right: 7%;
-  left: 7%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgb(244 248 246 / 0.8), transparent);
-  content: "";
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 8.4375rem;
+  pointer-events: none;
+}
+
+.aiNodeWorkflowImage {
+  object-fit: contain;
+  object-position: center top;
+}
+
+.aiNodeWorkflow {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.6667vw, 1.5rem);
+  margin: 0;
+  padding: 9.1875rem 0 0;
+  list-style: none;
 }
 
 .aiCapabilityNode {
@@ -92,7 +103,7 @@
 
 .aiNodeVisual {
   position: relative;
-  display: grid;
+  display: none;
   width: min(100%, 8.875rem);
   aspect-ratio: 142 / 80;
   place-items: center;
@@ -145,7 +156,7 @@
 .aiNodePoint {
   width: 0.75rem;
   height: 0.75rem;
-  margin-top: 0.75rem;
+  margin-top: 0;
   border: 1px solid var(--color-brand-slate);
   border-radius: 50%;
   background: var(--color-brand-neon);
@@ -190,7 +201,7 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: clamp(12px, 1.6667vw, 24px);
   align-items: end;
-  margin-top: 3.5rem;
+  margin-top: 2rem;
 }
 
 .aiDeliverables {
@@ -230,11 +241,12 @@
 
 .aiLaptopArtwork {
   position: relative;
-  grid-column: 7 / -1;
-  width: min(54vw, 41rem);
+  grid-column: 6 / -1;
+  width: min(64vw, 56rem);
   aspect-ratio: 654 / 482;
   justify-self: end;
-  margin-right: -4rem;
+  margin-right: -8rem;
+  margin-bottom: -5rem;
   opacity: 0;
   transform: translate3d(0, 3rem, 0);
   animation: ai-laptop-rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 180ms forwards;
@@ -282,7 +294,7 @@
 
   .aiAutomationHeader,
   .aiCapabilitiesTitle,
-  .aiNodeWorkflow,
+  .aiNodeWorkflowFrame,
   .aiAutomationBottomGrid {
     grid-column: 1 / -1;
   }
@@ -332,15 +344,25 @@
     margin-top: 2.75rem;
   }
 
+  .aiNodeWorkflowFrame {
+    min-height: 0;
+    margin-top: 1.5rem;
+  }
+
+  .aiNodeWorkflowArtwork {
+    display: none;
+  }
+
   .aiNodeWorkflow {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-top: 1.5rem;
-    padding-left: 1rem;
+    margin-top: 0;
+    padding: 0 0 0 1rem;
   }
 
   .aiNodeWorkflow::before {
+    display: block;
     top: 2rem;
     right: auto;
     bottom: 2rem;
@@ -359,6 +381,7 @@
   }
 
   .aiNodeVisual {
+    display: grid;
     grid-column: 1;
     grid-row: 1 / span 2;
     width: 4.25rem;
@@ -404,7 +427,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .aiNodeVisual,
-  .aiNodePoint {
+  .aiNodePoint,
+  .aiNodeWorkflowImage {
     transition: none;
     animation: none;
   }

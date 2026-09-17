@@ -13,16 +13,29 @@ test.describe("AI and LLM automation section", () => {
       const grid = document.querySelector<HTMLElement>('[data-testid="ai-automation-grid"]');
       const laptop = document.querySelector<HTMLElement>('[data-testid="ai-automation-laptop"]');
       const workflow = document.querySelector<HTMLElement>('[data-testid="ai-node-workflow"]');
+      const workflowImage = document.querySelector<HTMLElement>(
+        '[data-testid="ai-node-workflow-image"]',
+      );
+      const bottomGrid = document.querySelector<HTMLElement>(
+        '[data-testid="ai-automation-bottom-grid"]',
+      );
       const node = document.querySelector<HTMLElement>('[data-testid="ai-capability-node"]');
 
-      if (!section || !grid || !laptop || !workflow || !node) {
+      if (!section || !grid || !laptop || !workflow || !workflowImage || !bottomGrid || !node) {
         throw new Error("Missing AI automation section geometry");
       }
 
       return {
         gridWidth: grid.getBoundingClientRect().width,
         laptopDisplay: getComputedStyle(laptop).display,
+        laptopWidth: laptop.getBoundingClientRect().width,
+        laptopBottom: laptop.getBoundingClientRect().bottom,
+        laptopMarginBottom: Number.parseFloat(getComputedStyle(laptop).marginBottom),
+        sectionBottom: section.getBoundingClientRect().bottom,
         workflowColumns: getComputedStyle(workflow).gridTemplateColumns,
+        workflowImageSrc: workflowImage.getAttribute("data-image-src"),
+        deliverablesGap:
+          bottomGrid.getBoundingClientRect().top - workflow.getBoundingClientRect().bottom,
         nodeWidth: node.getBoundingClientRect().width,
         sectionRadius: getComputedStyle(section).borderBottomLeftRadius,
         laptopAnimationName: getComputedStyle(laptop).animationName,
@@ -32,7 +45,12 @@ test.describe("AI and LLM automation section", () => {
     expect(layout.gridWidth).toBeGreaterThan(1000);
     expect(layout.gridWidth).toBeLessThan(1200);
     expect(layout.laptopDisplay).not.toBe("none");
+    expect(layout.laptopWidth).toBeGreaterThan(700);
+    expect(layout.laptopMarginBottom).toBeLessThan(0);
+    expect(layout.laptopBottom).toBeGreaterThan(layout.sectionBottom);
     expect(layout.workflowColumns.split(" ")).toHaveLength(5);
+    expect(layout.workflowImageSrc).toContain("services-page/section-2/Group%2022.png");
+    expect(layout.deliverablesGap).toBeLessThan(48);
     expect(layout.nodeWidth).toBeGreaterThan(120);
     expect(layout.sectionRadius).not.toBe("0px");
     expect(layout.laptopAnimationName.endsWith("ai-laptop-rise-in")).toBe(true);
