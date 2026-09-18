@@ -2,43 +2,21 @@
 
 import Image from "next/image";
 import styles from "./ExecutionGapSection.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { executionGapItems } from "./execution-gap-data";
+import { useViewportReveal } from "@/components/motion/useViewportReveal";
 const executionGapIllustrationSrc =
   "https://media.zypher-solutions.com/home-page/section-3/Problem%20Overall%20Graphic.png";
 const initialItemId = executionGapItems[0].id;
 
 export function ExecutionGapSection(): ReactNode {
   const [activeItemId, setActiveItemId] = useState<string>(initialItemId);
-  const [hasEnteredViewport, setHasEnteredViewport] = useState<boolean>(true);
   const sectionRef = useRef<HTMLElement | null>(null);
+  const hasEnteredViewport = useViewportReveal(sectionRef);
   const activeItem =
     executionGapItems.find((item) => item.id === activeItemId) ?? executionGapItems[0];
-
-  useEffect((): (() => void) | void => {
-    const section = sectionRef.current;
-
-    if (!section || !("IntersectionObserver" in window)) {
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setHasEnteredViewport(Boolean(entry?.isIntersecting));
-
-        if (entry?.isIntersecting) {
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "0px 0px 20% 0px", threshold: 0.08 },
-    );
-
-    observer.observe(section);
-
-    return (): void => observer.disconnect();
-  }, []);
 
   return (
     <section

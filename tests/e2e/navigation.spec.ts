@@ -10,6 +10,20 @@ test("should navigate from the homepage to the work page", async ({ page }) => {
   ).toBeVisible();
 });
 
+test("should start the next route at the top after navigating while scrolled", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await openPage(page);
+
+  await page.evaluate(() => window.scrollTo({ behavior: "auto", top: document.body.scrollHeight }));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
+
+  await page.getByRole("link", { name: "Services", exact: true }).click();
+
+  await expect(page).toHaveURL(/\/services$/);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeLessThan(2);
+  await expect(page.getByTestId("services-hero")).toBeVisible();
+});
+
 test("should open and close the mobile navigation", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await openPage(page);

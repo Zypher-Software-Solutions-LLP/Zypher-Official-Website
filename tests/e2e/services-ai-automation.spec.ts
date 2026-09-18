@@ -2,6 +2,55 @@ import { expect, test } from "@playwright/test";
 import { openPage } from "./helpers/site";
 
 test.describe("AI and LLM automation section", () => {
+  test("should defer AI section animations until the section enters the viewport", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 700 });
+    await openPage(page, "/services");
+
+    const initialState = await page.evaluate(() => {
+      const section = document.querySelector<HTMLElement>('[data-testid="ai-automation-section"]');
+      const point = document.querySelector<HTMLElement>('[data-testid="ai-node-point"]');
+      const laptop = document.querySelector<HTMLElement>('[data-testid="ai-automation-laptop"]');
+
+      if (!section || !point || !laptop) {
+        throw new Error("AI animation elements are unavailable");
+      }
+
+      return {
+        sectionTop: section.getBoundingClientRect().top,
+        sectionState: section.dataset.revealState,
+        pointAnimationState: getComputedStyle(point).animationPlayState,
+        laptopAnimationState: getComputedStyle(laptop).animationPlayState,
+      };
+    });
+
+    expect(initialState.sectionTop).toBeGreaterThan(700);
+    expect(initialState.sectionState).toBe("hidden");
+    expect(initialState.pointAnimationState).toBe("paused");
+    expect(initialState.laptopAnimationState).toBe("paused");
+
+    await page.getByTestId("ai-automation-section").scrollIntoViewIfNeeded();
+    await expect
+      .poll(() => page.getByTestId("ai-automation-section").getAttribute("data-reveal-state"))
+      .toBe("visible");
+    await expect
+      .poll(() =>
+        page
+          .getByTestId("ai-node-point")
+          .first()
+          .evaluate((element) => getComputedStyle(element).animationPlayState),
+      )
+      .toBe("running");
+    await expect
+      .poll(() =>
+        page
+          .getByTestId("ai-automation-laptop")
+          .evaluate((element) => getComputedStyle(element).animationPlayState),
+      )
+      .toBe("running");
+  });
+
   test("should keep the desktop section inside the shared grid and show the laptop", async ({
     page,
   }) => {

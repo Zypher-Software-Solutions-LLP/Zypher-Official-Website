@@ -1,6 +1,7 @@
 "use client";
 
 import Lenis from "lenis";
+import { RouteScrollReset } from "./RouteScrollReset";
 import { createContext, useContext, useEffect, useMemo, useRef, type ReactNode } from "react";
 
 type PageScrollOptions = {
@@ -89,6 +90,9 @@ export function MotionProvider({ children }: { children: ReactNode }): ReactNode
   }, []);
 
   return (
-    <PageScrollContext.Provider value={pageScrollController}>{children}</PageScrollContext.Provider>
+    <PageScrollContext.Provider value={pageScrollController}>
+      <RouteScrollReset />
+      {children}
+    </PageScrollContext.Provider>
   );
 }

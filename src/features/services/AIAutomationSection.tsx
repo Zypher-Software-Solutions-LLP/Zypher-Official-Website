@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
 import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { useViewportReveal } from "@/components/motion/useViewportReveal";
 import styles from "./AIAutomationSection.module.css";
 
 const LAPTOP_SRC = "https://media.zypher-solutions.com/services-page/section-2/Laptop.png";
@@ -25,12 +29,17 @@ const deliverables = [
 ] as const;
 
 export function AIAutomationSection(): ReactNode {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const hasEnteredViewport = useViewportReveal(sectionRef);
+
   return (
     <section
       aria-labelledby="ai-automation-title"
       className={styles.aiAutomationSection}
+      data-reveal-state={hasEnteredViewport ? "visible" : "hidden"}
       data-testid="ai-automation-section"
       id="ai-automation"
+      ref={sectionRef}
     >
       <div className={styles.aiAutomationGrid} data-testid="ai-automation-grid">
         <div className={styles.aiAutomationHeader}>

@@ -257,6 +257,9 @@
   padding-bottom: 1.75rem;
 }
 
+.executionGapSection[data-reveal-state="hidden"] .executionGapSectionImage {
+  animation-play-state: paused;
+}
 .executionGapSection[data-reveal-state="hidden"] .executionGapSectionHeader,
 .executionGapSection[data-reveal-state="hidden"] .executionGapSectionContent {
   opacity: 0;

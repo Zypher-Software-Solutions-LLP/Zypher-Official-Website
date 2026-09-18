@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { ReactNode, RefObject } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { useViewportReveal } from "@/components/motion/useViewportReveal";
 import { scaleClientLogos, scaleMetrics, scaleProjects } from "./scale-data";
 type ScaleProjectRecord = (typeof scaleProjects)[number];
 type NavigationDirection = -1 | 1;
@@ -190,6 +191,8 @@ function ProjectCard({ project }: { project: ScaleProjectRecord }): ReactNode {
 }
 
 export function ScaleSection(): ReactNode {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const hasEnteredViewport = useViewportReveal(sectionRef);
   const {
     carouselEnabled,
     currentProjectIndex,
@@ -202,8 +205,10 @@ export function ScaleSection(): ReactNode {
     <section
       aria-labelledby="scale-section-title"
       className={styles.scaleSection}
+      data-reveal-state={hasEnteredViewport ? "visible" : "hidden"}
       data-testid="scale-section"
       id="scale"
+      ref={sectionRef}
     >
       <div className={styles.scaleSectionInner} data-testid="scale-section-inner">
         <div className={styles.scaleSectionTop}>
@@ -258,7 +263,7 @@ export function ScaleSection(): ReactNode {
           className={styles.scaleSectionLogoViewport}
           role="region"
         >
-          <div className={styles.scaleSectionLogoTrack}>
+          <div className={styles.scaleSectionLogoTrack} data-testid="scale-logo-track">
             <ul className={styles.scaleSectionLogoGroup} role="list">
               {scaleClientLogos.map((logo) => (
                 <li data-testid="scale-client-logo" key={logo.id}>

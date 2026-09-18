@@ -2,6 +2,55 @@ import { expect, test } from "@playwright/test";
 import { openPage } from "./helpers/site";
 
 test.describe("responsive homepage Scale section", () => {
+  test("should defer scale animations until the section enters the viewport", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await openPage(page);
+
+    const initialState = await page.evaluate(() => {
+      const section = document.querySelector<HTMLElement>('[data-testid="scale-section"]');
+      const metric = document.querySelector<HTMLElement>('[data-testid="scale-metric-card"]');
+      const logoTrack = document.querySelector<HTMLElement>('[data-testid="scale-logo-track"]');
+
+      if (!section || !metric || !logoTrack) {
+        throw new Error("Scale animation elements are unavailable");
+      }
+
+      return {
+        sectionTop: section.getBoundingClientRect().top,
+        sectionState: section.dataset.revealState,
+        metricAnimationState: getComputedStyle(metric).animationPlayState,
+        logoAnimationState: getComputedStyle(logoTrack).animationPlayState,
+      };
+    });
+
+    expect(initialState.sectionTop).toBeGreaterThanOrEqual(900);
+    expect(initialState.sectionState).toBe("hidden");
+    expect(initialState.metricAnimationState).toBe("paused");
+    expect(initialState.logoAnimationState).toBe("paused");
+
+    await page.getByTestId("scale-section").scrollIntoViewIfNeeded();
+    await expect
+      .poll(() => page.getByTestId("scale-section").getAttribute("data-reveal-state"))
+      .toBe("visible");
+
+    await expect
+      .poll(() =>
+        page
+          .getByTestId("scale-metric-card")
+          .first()
+          .evaluate((element) => getComputedStyle(element).animationPlayState),
+      )
+      .toBe("running");
+    await expect
+      .poll(() =>
+        page
+          .getByTestId("scale-section")
+          .getByTestId("scale-logo-track")
+          .evaluate((element) => getComputedStyle(element).animationPlayState),
+      )
+      .toBe("running");
+  });
+
   test("should preserve all metrics, projects, logos, and CTA on desktop", async ({ page }) => {
     await openPage(page);
 

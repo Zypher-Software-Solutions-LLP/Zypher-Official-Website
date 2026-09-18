@@ -226,6 +226,15 @@
   box-shadow: 0 0 1.5rem 0.5rem var(--color-brand-neon);
 }
 
+.aiAutomationSection[data-reveal-state="hidden"] .aiNodePoint,
+.aiAutomationSection[data-reveal-state="hidden"] .aiLaptopArtwork {
+  animation-play-state: paused;
+}
+
+.aiAutomationSection[data-reveal-state="visible"] .aiNodePoint,
+.aiAutomationSection[data-reveal-state="visible"] .aiLaptopArtwork {
+  animation-play-state: running;
+}
 .aiAutomationBottomGrid {
   display: grid;
   grid-column: 1 / -1;
