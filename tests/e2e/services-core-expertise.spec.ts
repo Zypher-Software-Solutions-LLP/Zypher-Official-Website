@@ -46,6 +46,7 @@ test.describe("Services core expertise", () => {
         imageSource: image.src,
         panelBottom: panelRect.bottom,
         panelBorderBottomLeftRadius: getComputedStyle(panel).borderBottomLeftRadius,
+        panelBorderBottomRightRadius: getComputedStyle(panel).borderBottomRightRadius,
         tabsAfterPanel: Boolean(
           panel.compareDocumentPosition(tabs) & Node.DOCUMENT_POSITION_FOLLOWING,
         ),
@@ -60,9 +61,31 @@ test.describe("Services core expertise", () => {
     expect(layout.imageSource).toContain("Custom%2520Web%2520Applications.png");
     expect(layout.tabsAfterPanel).toBe(true);
     expect(Math.abs(layout.tabsTop - layout.panelBottom)).toBeLessThanOrEqual(1);
-    expect(layout.panelBorderBottomLeftRadius).not.toBe("0px");
+    expect(layout.panelBorderBottomLeftRadius).toBe("0px");
+    expect(layout.panelBorderBottomRightRadius).toBe("0px");
     expect(Math.abs(layout.eyebrowTop - layout.titleTop)).toBeLessThan(8);
     expect(await page.locator("main").innerText()).not.toContain("—");
+
+    const panelLocator = section.getByTestId("core-expertise-panel");
+    const categoryLabels = [
+      "Software Development",
+      "Mobile App Development",
+      "Design & Creative",
+      "CRM/ERP Solutions",
+    ];
+    const panelHeights: number[] = [];
+
+    for (const categoryLabel of categoryLabels) {
+      await page.getByRole("button", { name: categoryLabel }).click();
+      await expect(section.getByRole("heading", { level: 2, name: categoryLabel })).toBeVisible();
+      panelHeights.push(
+        await panelLocator.evaluate((element) =>
+          Math.round(element.getBoundingClientRect().height),
+        ),
+      );
+    }
+
+    expect(new Set(panelHeights).size).toBe(1);
   });
 
   test("should keep the card hover transition stable while the reveal animation is starting", async ({
@@ -124,5 +147,51 @@ test.describe("Services core expertise", () => {
       .evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(" ").length);
 
     expect(cardColumns).toBe(2);
+
+    const mobileOrder = await section.evaluate((element) => {
+      const panel = element.querySelector<HTMLElement>('[data-testid="core-expertise-panel"]');
+      const tabs = element.querySelector<HTMLElement>('[data-testid="core-expertise-tabs"]');
+
+      if (!panel || !tabs) {
+        throw new Error("Missing mobile Core Expertise layout");
+      }
+
+      return {
+        panelTop: panel.getBoundingClientRect().top,
+        tabsBottom: tabs.getBoundingClientRect().bottom,
+      };
+    });
+
+    expect(mobileOrder.tabsBottom).toBeLessThanOrEqual(mobileOrder.panelTop);
+  });
+
+  test("should move the controls above a compact card grid on tablet", async ({ page }) => {
+    await page.setViewportSize({ width: 820, height: 1180 });
+    await openPage(page, "/services");
+
+    const section = page.getByTestId("core-expertise-section");
+    await section.scrollIntoViewIfNeeded();
+
+    const tabletLayout = await section.evaluate((element) => {
+      const panel = element.querySelector<HTMLElement>('[data-testid="core-expertise-panel"]');
+      const tabs = element.querySelector<HTMLElement>('[data-testid="core-expertise-tabs"]');
+      const cards = element.querySelector<HTMLElement>('[data-testid="core-expertise-cards"]');
+      const card = element.querySelector<HTMLElement>('[data-testid="core-expertise-card"]');
+
+      if (!panel || !tabs || !cards || !card) {
+        throw new Error("Missing tablet Core Expertise layout");
+      }
+
+      return {
+        panelTop: panel.getBoundingClientRect().top,
+        tabsBottom: tabs.getBoundingClientRect().bottom,
+        cardsWidth: cards.getBoundingClientRect().width,
+        cardWidth: card.getBoundingClientRect().width,
+      };
+    });
+
+    expect(tabletLayout.tabsBottom).toBeLessThanOrEqual(tabletLayout.panelTop);
+    expect(tabletLayout.cardsWidth).toBeLessThanOrEqual(544);
+    expect(tabletLayout.cardWidth).toBeLessThan(300);
   });
 });

@@ -296,7 +296,28 @@
   }
 }
 
+@media (min-width: 64rem) {
+  .panel {
+    height: clamp(39rem, 46.6667vw, 42rem);
+    border-radius: 1.875rem 1.875rem 0 0;
+  }
+}
+
 @media (max-width: 63.9375rem) {
+  .shell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tabs {
+    order: -1;
+    margin-bottom: 0.75rem;
+  }
+
+  .tab {
+    border-radius: 9999px;
+  }
+
   .headingGroup {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -308,7 +329,10 @@
   }
 
   .cards {
+    width: min(100%, 34rem);
+    max-width: 34rem;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-inline: auto;
   }
 }
 
@@ -371,6 +395,8 @@
 
   .cards {
     display: grid;
+    width: auto;
+    max-width: none;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
     margin-top: 1.75rem;
