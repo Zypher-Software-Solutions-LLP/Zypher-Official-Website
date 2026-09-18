@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CallToActionSection } from "@/components/ui/CallToActionSection";
 import { AIAutomationSection } from "@/features/services/AIAutomationSection";
+import { CoreExpertiseSection } from "@/features/services/core-expertise/CoreExpertiseSection";
 import { serviceDefinitions } from "@/features/services/service-data";
 import { ServicesHeroSection } from "@/features/services/ServicesHeroSection";
 import { buildPageMetadata } from "@/lib/seo";
@@ -18,6 +19,7 @@ export default function ServicesPage(): React.ReactNode {
     <main id="main-content">
       <ServicesHeroSection />
       <AIAutomationSection />
+      <CoreExpertiseSection />
       <section
         className="site-container grid gap-4 py-20 md:grid-cols-2 lg:grid-cols-3 sm:py-28"
         data-testid="service-lines"
