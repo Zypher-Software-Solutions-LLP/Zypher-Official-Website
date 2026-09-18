@@ -298,7 +298,7 @@
 
 @media (min-width: 64rem) {
   .panel {
-    height: clamp(39rem, 46.6667vw, 42rem);
+    height: clamp(47rem, 64vw, 54rem);
     border-radius: 1.875rem 1.875rem 0 0;
   }
 }
@@ -334,6 +334,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-inline: auto;
   }
+
+  .card {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 @media (max-width: 47.999rem) {
@@ -352,7 +356,7 @@
 
   .tab {
     min-height: 3rem;
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 9999px;
     padding-inline: 0.45rem;
     font-size: 0.7rem;
   }
@@ -403,6 +407,7 @@
   }
 
   .card {
+    aspect-ratio: 219 / 289;
     border-radius: 1rem;
   }
 

@@ -45,6 +45,8 @@ test.describe("Services core expertise", () => {
         deliverableColumns: getComputedStyle(deliverables).gridTemplateColumns.split(" ").length,
         imageSource: image.src,
         panelBottom: panelRect.bottom,
+        panelClientHeight: panel.clientHeight,
+        panelScrollHeight: panel.scrollHeight,
         panelBorderBottomLeftRadius: getComputedStyle(panel).borderBottomLeftRadius,
         panelBorderBottomRightRadius: getComputedStyle(panel).borderBottomRightRadius,
         tabsAfterPanel: Boolean(
@@ -63,6 +65,7 @@ test.describe("Services core expertise", () => {
     expect(Math.abs(layout.tabsTop - layout.panelBottom)).toBeLessThanOrEqual(1);
     expect(layout.panelBorderBottomLeftRadius).toBe("0px");
     expect(layout.panelBorderBottomRightRadius).toBe("0px");
+    expect(layout.panelScrollHeight).toBeLessThanOrEqual(layout.panelClientHeight);
     expect(Math.abs(layout.eyebrowTop - layout.titleTop)).toBeLessThan(8);
     expect(await page.locator("main").innerText()).not.toContain("—");
 
@@ -151,18 +154,21 @@ test.describe("Services core expertise", () => {
     const mobileOrder = await section.evaluate((element) => {
       const panel = element.querySelector<HTMLElement>('[data-testid="core-expertise-panel"]');
       const tabs = element.querySelector<HTMLElement>('[data-testid="core-expertise-tabs"]');
+      const firstTab = tabs?.querySelector("button");
 
-      if (!panel || !tabs) {
+      if (!panel || !tabs || !firstTab) {
         throw new Error("Missing mobile Core Expertise layout");
       }
 
       return {
         panelTop: panel.getBoundingClientRect().top,
         tabsBottom: tabs.getBoundingClientRect().bottom,
+        tabBorderTopLeftRadius: getComputedStyle(firstTab).borderTopLeftRadius,
       };
     });
 
     expect(mobileOrder.tabsBottom).toBeLessThanOrEqual(mobileOrder.panelTop);
+    expect(mobileOrder.tabBorderTopLeftRadius).not.toBe("0px");
   });
 
   test("should move the controls above a compact card grid on tablet", async ({ page }) => {
@@ -187,11 +193,13 @@ test.describe("Services core expertise", () => {
         tabsBottom: tabs.getBoundingClientRect().bottom,
         cardsWidth: cards.getBoundingClientRect().width,
         cardWidth: card.getBoundingClientRect().width,
+        cardHeight: card.getBoundingClientRect().height,
       };
     });
 
     expect(tabletLayout.tabsBottom).toBeLessThanOrEqual(tabletLayout.panelTop);
     expect(tabletLayout.cardsWidth).toBeLessThanOrEqual(544);
     expect(tabletLayout.cardWidth).toBeLessThan(300);
+    expect(tabletLayout.cardHeight).toBeLessThan(tabletLayout.cardWidth);
   });
 });
