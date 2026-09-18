@@ -44,7 +44,7 @@ export const coreExpertiseCategories: ReadonlyArray<CoreExpertiseCategory> = [
     ],
     deliverables: [
       "A production-ready application, not a prototype.",
-      "Documented APIs your team — or a future vendor — can build on without reverse-engineering it.",
+      "Documented APIs your team or a future vendor can build on without reverse-engineering it.",
       "A deployment pipeline that ships updates without downtime.",
     ],
     ctaLabel: "Explore Custom Software Builds",
@@ -54,7 +54,7 @@ export const coreExpertiseCategories: ReadonlyArray<CoreExpertiseCategory> = [
     id: "mobile-app-development",
     label: "Mobile App Development",
     description:
-      "Apps built for the platforms your customers actually use — native or cross-platform, whichever fits the job.",
+      "Apps built for the platforms your customers actually use, native or cross-platform, whichever fits the job.",
     capabilities: [
       {
         title: "Native iOS & Android",
@@ -123,7 +123,7 @@ export const coreExpertiseCategories: ReadonlyArray<CoreExpertiseCategory> = [
   {
     id: "crm-erp-solutions",
     label: "CRM/ERP Solutions",
-    description: "A CRM or ERP shaped around your workflow — not the other way around.",
+    description: "A CRM or ERP shaped around your workflow, not the other way around.",
     capabilities: [
       {
         title: "Custom CRM Builds",

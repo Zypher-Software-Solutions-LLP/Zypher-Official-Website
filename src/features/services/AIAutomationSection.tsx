@@ -47,7 +47,7 @@ export function AIAutomationSection(): ReactNode {
             AI &amp; LLM Automation
           </h2>
           <p className={styles.aiAutomationIntro}>
-            The service we lead with — because it&apos;s the one most businesses are asking about,
+            The service we lead with, because it&apos;s the one most businesses are asking about,
             and the one most agencies still bolt on as an afterthought.
           </p>
         </div>

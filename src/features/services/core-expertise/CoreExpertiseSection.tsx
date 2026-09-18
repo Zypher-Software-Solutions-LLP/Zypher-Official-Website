@@ -61,12 +61,6 @@ export function CoreExpertiseSection(): ReactNode {
       ref={sectionRef}
     >
       <div className={styles.shell}>
-        <CategoryTabs
-          activeCategoryId={activeCategory.id}
-          categories={coreExpertiseCategories}
-          onSelect={setActiveCategoryId}
-        />
-
         <div className={styles.panel} data-testid="core-expertise-panel">
           <div className={styles.grid} key={activeCategory.id}>
             <p className={styles.eyebrow}>Core expertise</p>
@@ -96,7 +90,6 @@ export function CoreExpertiseSection(): ReactNode {
                     alt={capability.imageAlt}
                     className={styles.cardImage}
                     fill
-
                     sizes="(max-width: 767px) 42vw, (max-width: 1100px) 20vw, 13rem"
                     src={capability.imageSrc}
                   />
@@ -123,6 +116,12 @@ export function CoreExpertiseSection(): ReactNode {
             </div>
           </div>
         </div>
+
+        <CategoryTabs
+          activeCategoryId={activeCategory.id}
+          categories={coreExpertiseCategories}
+          onSelect={setActiveCategoryId}
+        />
       </div>
     </section>
   );

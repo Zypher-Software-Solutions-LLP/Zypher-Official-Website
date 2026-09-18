@@ -16,7 +16,7 @@ describe("AI and LLM automation section", () => {
     ).toBeInTheDocument();
     expect(
       within(section).getByText(
-        "The service we lead with — because it's the one most businesses are asking about, and the one most agencies still bolt on as an afterthought.",
+        "The service we lead with, because it's the one most businesses are asking about, and the one most agencies still bolt on as an afterthought.",
       ),
     ).toBeInTheDocument();
     expect(screen.getAllByTestId("ai-capability-node")).toHaveLength(5);

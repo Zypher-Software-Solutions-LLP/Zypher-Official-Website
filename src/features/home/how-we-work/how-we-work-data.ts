@@ -29,7 +29,7 @@ export const howWeWorkSteps: readonly HowWeWorkStep[] = [
         label: "Discover",
         heading: "A Conversation, not a pitch",
         description:
-          "We start with a short call to understand what’s actually broken — not to sell you a package. No slides, no canned demo, just questions until we understand the real problem worth solving.",
+          "We start with a short call to understand what’s actually broken, not to sell you a package. No slides, no canned demo, just questions until we understand the real problem worth solving.",
         iconSrc: MEDIA_BASE_URL + "/Icon%20-%201.png",
         imageSrc: MEDIA_BASE_URL + "/Work%20-%201.png",
         imageAlt: "A founder speaking with a software team during a discovery call",
@@ -46,7 +46,7 @@ export const howWeWorkSteps: readonly HowWeWorkStep[] = [
         label: "Scope & Quote",
         heading: "Fixed scope & price before you commit to anything.",
         description:
-          'You get a written scope and one fixed quote — not a range, not a "starting from." If something changes later, you’re told before it affects cost, not after.',
+          'You get a written scope and one fixed quote, not a range, not a "starting from." If something changes later, you’re told before it affects cost, not after.',
         iconSrc: MEDIA_BASE_URL + "/Icon%20-%202.png",
         imageSrc: MEDIA_BASE_URL + "/Work%20-%202.png",
         imageAlt: "A founder reviewing a fixed project quote at a desk",
@@ -74,7 +74,7 @@ export const howWeWorkSteps: readonly HowWeWorkStep[] = [
         label: "Customized on existing platforms",
         heading: "Customized on existing platforms",
         description:
-          "For CRM and ERP work — we configure and extend proven platforms around your workflow instead of rebuilding what already works.",
+          "For CRM and ERP work, we configure and extend proven platforms around your workflow instead of rebuilding what already works.",
         iconSrc: MEDIA_BASE_URL + "/Icon%20-%203.2.png",
         imageSrc: MEDIA_BASE_URL + "/Work%20-%203.2.png",
         imageAlt: "A team customizing an existing software platform around a workflow",
@@ -84,7 +84,7 @@ export const howWeWorkSteps: readonly HowWeWorkStep[] = [
         label: "Automated & AI-Integrated",
         heading: "Automated & AI-Integrated",
         description:
-          "Where automation and AI genuinely save time, we build it in — targeted at the actual bottleneck, not added for the sake of a feature list.",
+          "Where automation and AI genuinely save time, we build it in, targeted at the actual bottleneck, not added for the sake of a feature list.",
         iconSrc: MEDIA_BASE_URL + "/Icon%20-%203.3.png",
         imageSrc: MEDIA_BASE_URL + "/Work%20-%203.3.png",
         imageAlt: "A team building targeted automation and AI into a software system",
@@ -101,7 +101,7 @@ export const howWeWorkSteps: readonly HowWeWorkStep[] = [
         label: "Launch & Stay On",
         heading: "Launch & Stay on",
         description:
-          "Support after handoff is part of the engagement, not an upsell — we stay reachable for the issues that only show up once real users start using it.",
+          "Support after handoff is part of the engagement, not an upsell, we stay reachable for the issues that only show up once real users start using it.",
         iconSrc: MEDIA_BASE_URL + "/Icon%20-%204.png",
         imageSrc: MEDIA_BASE_URL + "/Work%20-%204.png",
         imageAlt: "A software team supporting a product after it launches",

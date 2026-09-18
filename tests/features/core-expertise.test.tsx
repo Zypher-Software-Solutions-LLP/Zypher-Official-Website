@@ -29,4 +29,10 @@ describe("CoreExpertiseSection", () => {
     );
     expect(screen.getAllByTestId("core-expertise-card")).toHaveLength(4);
   });
+
+  it("keeps the Core Expertise copy free of em dashes", () => {
+    render(<CoreExpertiseSection />);
+
+    expect(screen.getByTestId("core-expertise-section").textContent).not.toContain("—");
+  });
 });
