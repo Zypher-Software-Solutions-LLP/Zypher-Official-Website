@@ -398,6 +398,10 @@ test.describe("homepage execution gap section", () => {
 
     expect(baseline.underlineDisplay).toBe("none");
 
+    await expect
+      .poll(() => learnMore.evaluate((element) => getComputedStyle(element).transition))
+      .toContain("padding");
+
     await learnMore.hover();
 
     await expect
