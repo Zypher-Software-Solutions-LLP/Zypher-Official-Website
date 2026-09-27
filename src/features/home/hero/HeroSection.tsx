@@ -65,8 +65,8 @@ export function HeroSection(): React.ReactNode {
             className={styles.heroDescription + " " + styles.heroFade + " " + styles.heroFadeDelay2}
             data-testid="hero-description"
           >
-            No templates, no bolt-on features you&apos;ll never touch, just systems shaped around
-            how you actually work, built by a team that stays in the room after launch.
+            Zypher builds custom AI Workflows, websites, software, mobile apps for businesses that
+            need solutions shaped around how they actually work.
           </p>
 
           <div

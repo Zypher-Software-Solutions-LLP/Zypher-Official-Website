@@ -15,7 +15,7 @@ describe("homepage hero", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "No templates, no bolt-on features you'll never touch, just systems shaped around how you actually work, built by a team that stays in the room after launch.",
+        "Zypher builds custom AI Workflows, websites, software, mobile apps for businesses that need solutions shaped around how they actually work.",
       ),
     ).toBeInTheDocument();
   });
