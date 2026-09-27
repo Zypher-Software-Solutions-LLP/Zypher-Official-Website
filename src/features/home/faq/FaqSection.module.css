@@ -15,6 +15,13 @@
   padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(2.25rem, 4vw, 4rem);
 }
 
+.faqSectionIntroPlain {
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-brand-dark);
+  padding: clamp(3rem, 6vw, 5rem) 0 0;
+}
+
 .faqSectionIntroInner,
 .faqSectionInner {
   width: min(calc(100% - 2rem), 80vw, 72rem);
@@ -32,6 +39,10 @@
   line-height: 0.98;
 }
 
+.faqSectionIntroPlain h2 {
+  color: var(--color-brand-dark);
+}
+
 .faqSectionIntro p {
   max-width: 48rem;
   margin: 1rem 0 0;
@@ -39,6 +50,10 @@
   font-family: var(--font-sans);
   font-size: clamp(1rem, 1.25vw, 1.125rem);
   line-height: 1.45;
+}
+
+.faqSectionIntroPlain p {
+  color: var(--color-brand-ink);
 }
 
 .faqSectionInner {
@@ -154,6 +169,19 @@
 
 .faqSectionAnswerDetail {
   margin-top: clamp(3rem, 5vw, 4.5rem);
+  animation: faq-answer-change 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes faq-answer-change {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .faqSectionAnswerNumber {
@@ -185,6 +213,8 @@
   font-family: var(--font-sans);
   font-size: clamp(1rem, 1.25vw, 1.125rem);
   line-height: 1.55;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 @media (max-width: 1199px) {
@@ -290,6 +320,10 @@
     padding: 2rem 0 2.5rem;
   }
 
+  .faqSectionIntroPlain {
+    padding: 2.5rem 0 0;
+  }
+
   .faqSectionIntroInner,
   .faqSectionInner {
     width: min(calc(100% - 2rem), 36rem);
@@ -323,9 +357,35 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .faqSectionAnswerDetail {
+    animation: none;
+  }
+}
+
 @media (min-width: 3000px) {
   .faqSectionIntroInner,
   .faqSectionInner {
     width: min(calc(100% - 2rem), 90rem);
+  }
+}
+
+/* Keep the section surfaces rendered; reveal only the intro and answer layout. */
+.faqSectionIntroInner,
+.faqSectionInner {
+  opacity: 0;
+  transition: opacity 540ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faqSection[data-reveal-state="visible"] .faqSectionIntroInner,
+.faqSection[data-reveal-state="visible"] .faqSectionInner {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faqSectionIntroInner,
+  .faqSectionInner {
+    opacity: 1;
+    transition: none;
   }
 }

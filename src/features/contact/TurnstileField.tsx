@@ -2,17 +2,34 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
+const TURNSTILE_SCRIPT_URL =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
+type TurnstileAppearance = "always" | "execute" | "interaction-only";
+
 type TurnstileFieldProps = {
+  action: string;
   onTokenChange: (token: string) => void;
+  appearance?: TurnstileAppearance;
+  resetSignal?: number;
+  showDevelopmentMessage?: boolean;
 };
 
-export function TurnstileField({ onTokenChange }: TurnstileFieldProps): ReactNode {
+export function TurnstileField({
+  action,
+  onTokenChange,
+  appearance = "execute",
+  resetSignal = 0,
+  showDevelopmentMessage = true,
+}: TurnstileFieldProps): ReactNode {
   const containerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | undefined>(undefined);
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const isProduction = process.env.NODE_ENV === "production";
 
   useEffect(() => {
     if (!siteKey) {
-      onTokenChange("local-development-token");
+      onTokenChange(isProduction ? "" : "local-development-token");
       return undefined;
     }
 
@@ -27,14 +44,17 @@ export function TurnstileField({ onTokenChange }: TurnstileFieldProps): ReactNod
 
       widgetId = window.turnstile.render(containerRef.current, {
         sitekey: siteKey,
+        action,
+        appearance,
         callback: onTokenChange,
         "expired-callback": () => onTokenChange(""),
         "error-callback": () => onTokenChange(""),
       });
+      widgetIdRef.current = widgetId;
     };
 
     const existingScript = document.querySelector<HTMLScriptElement>(
-      'script[src="https://challenges.cloudflare.com/turnstile/v0/api.js"]',
+      'script[src^="https://challenges.cloudflare.com/turnstile/v0/api.js"]',
     );
 
     if (existingScript) {
@@ -43,7 +63,7 @@ export function TurnstileField({ onTokenChange }: TurnstileFieldProps): ReactNod
       const script = document.createElement("script");
       script.async = true;
       script.defer = true;
-      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.src = TURNSTILE_SCRIPT_URL;
       script.addEventListener("load", renderWidget);
       document.head.appendChild(script);
     }
@@ -51,10 +71,31 @@ export function TurnstileField({ onTokenChange }: TurnstileFieldProps): ReactNod
     return () => {
       if (retryTimer) clearTimeout(retryTimer);
       if (widgetId && window.turnstile) window.turnstile.reset(widgetId);
+      widgetIdRef.current = undefined;
     };
-  }, [onTokenChange, siteKey]);
+  }, [action, appearance, isProduction, onTokenChange, siteKey]);
+
+  useEffect(() => {
+    if (resetSignal === 0 || !widgetIdRef.current || !window.turnstile) return;
+
+    window.turnstile.reset(widgetIdRef.current);
+    onTokenChange("");
+  }, [onTokenChange, resetSignal]);
 
   if (!siteKey) {
+    if (isProduction) {
+      return (
+        <p
+          aria-live="polite"
+          className="rounded-lg border border-mist-300/15 bg-ink-900 px-3 py-2 text-xs text-mist-500"
+        >
+          Spam protection is temporarily unavailable. Please try again later.
+        </p>
+      );
+    }
+
+    if (!showDevelopmentMessage) return null;
+
     return (
       <p className="rounded-lg border border-mist-300/15 bg-ink-900 px-3 py-2 text-xs text-mist-500">
         Spam protection is enabled automatically in production.
@@ -62,5 +103,7 @@ export function TurnstileField({ onTokenChange }: TurnstileFieldProps): ReactNod
     );
   }
 
-  return <div aria-label="Spam protection" ref={containerRef} />;
+  return (
+    <div aria-label="Spam protection" className="turnstileField" ref={containerRef} role="group" />
+  );
 }

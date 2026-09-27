@@ -1,46 +1,66 @@
 import type { NextConfig } from "next";
+import { createSecurityHeaders } from "./src/lib/security/content-security-policy";
+import { validateProductionEnvironment } from "./src/lib/env";
+
+const shouldValidateProductionEnvironment =
+  process.env.VERCEL_ENV === "production" || process.env.VALIDATE_PRODUCTION_ENV === "true";
+
+if (shouldValidateProductionEnvironment) {
+  const validation = validateProductionEnvironment(process.env);
+  if (!validation.ok) {
+    throw new Error(
+      `Production environment validation failed:\n- ${validation.issues.join("\n- ")}`,
+    );
+  }
+}
 
 const r2Hostname = process.env.NEXT_PUBLIC_R2_MEDIA_HOSTNAME;
-const r2ImagePattern = {
-  protocol: "https" as const,
-  hostname: r2Hostname || "*.r2.dev",
-};
-const r2Source = r2Hostname ? `https://${r2Hostname}` : "https://*.r2.dev";
-const mediaSource = "https://media.zypher-solutions.com";
-
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "DENY" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  {
-    key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(), payment=()",
-  },
-  {
-    key: "Strict-Transport-Security",
-    value: "max-age=31536000; includeSubDomains",
-  },
-  {
-    key: "Content-Security-Policy-Report-Only",
-    value: `default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://cdn.sanity.io ${mediaSource} ${r2Source} https://www.google-analytics.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.sanity.io https://challenges.cloudflare.com; frame-src https://www.googletagmanager.com https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';`,
-  },
-];
+const environment = process.env.NODE_ENV === "production" ? "production" : "development";
+const r2ImagePattern = r2Hostname ? [{ protocol: "https" as const, hostname: r2Hostname }] : [];
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    qualities: [75, 100],
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io" },
       { protocol: "https", hostname: "media.zypher-solutions.com" },
-      r2ImagePattern,
+      { protocol: "https", hostname: "flagcdn.com" },
+      ...r2ImagePattern,
     ],
   },
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      {
+        source: "/(.*)",
+        headers: createSecurityHeaders({ environment, r2Hostname }),
+      },
+      {
+        source: "/studio/:path*",
+        headers: createSecurityHeaders({ environment, route: "studio", r2Hostname }).filter(
+          ({ key }) => key === "X-Robots-Tag",
+        ),
+      },
+      {
+        source: "/api/:path*",
+        headers: createSecurityHeaders({ environment, route: "api", r2Hostname }).filter(
+          ({ key }) => key === "X-Robots-Tag",
+        ),
+      },
+    ];
   },
   async redirects() {
-    return [];
+    return [
+      { source: "/portfolio", destination: "/work", permanent: true },
+      { source: "/faq", destination: "/#faq", permanent: true },
+      {
+        source: "/services/ui-ux-design",
+        destination: "/services/design-creative",
+        permanent: true,
+      },
+      { source: "/terms-of-service", destination: "/terms-of-use", permanent: true },
+    ];
   },
 };
 

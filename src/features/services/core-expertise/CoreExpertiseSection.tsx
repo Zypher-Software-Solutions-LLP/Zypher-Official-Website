@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { useViewportReveal } from "@/components/motion/useViewportReveal";
 import { coreExpertiseCategories, type CoreExpertiseCategory } from "./core-expertise-data";
 import styles from "./CoreExpertiseSection.module.css";
 
@@ -44,9 +43,7 @@ function CategoryTabs({
 }
 
 export function CoreExpertiseSection(): ReactNode {
-  const sectionRef = useRef<HTMLElement | null>(null);
   const [activeCategoryId, setActiveCategoryId] = useState(coreExpertiseCategories[0].id);
-  const hasEnteredViewport = useViewportReveal(sectionRef);
   const activeCategory =
     coreExpertiseCategories.find((category) => category.id === activeCategoryId) ??
     coreExpertiseCategories[0];
@@ -55,10 +52,9 @@ export function CoreExpertiseSection(): ReactNode {
     <section
       aria-labelledby="core-expertise-title"
       className={styles.section}
-      data-reveal-state={hasEnteredViewport ? "visible" : "hidden"}
+      data-motion-section="true"
       data-testid="core-expertise-section"
       id="core-expertise"
-      ref={sectionRef}
     >
       <div className={styles.shell}>
         <div className={styles.panel} data-testid="core-expertise-panel">

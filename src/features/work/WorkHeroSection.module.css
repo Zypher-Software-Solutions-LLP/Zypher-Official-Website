@@ -1,0 +1,295 @@
+.workHeroSection {
+  --work-hero-copy-delay: 200ms;
+  --work-hero-copy-duration: 520ms;
+  --work-hero-visual-duration: 680ms;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 48rem;
+  overflow: hidden;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-dark);
+}
+
+.workHeroBackground,
+.workHeroVisual {
+  position: absolute;
+  pointer-events: none;
+}
+
+.workHeroBackground {
+  z-index: -2;
+  inset: 0;
+}
+
+.workHeroBackgroundImage {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.13;
+}
+
+.workHeroVisual {
+  z-index: -1;
+  top: clamp(3.25rem, 6.77vh, 5rem);
+  left: 50%;
+  width: min(92vw, 88rem);
+  aspect-ratio: 1408 / 792;
+  transform: translateX(-50%);
+  animation: work-hero-visual-in var(--work-hero-visual-duration) cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.workHeroPicture {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.workHeroAsset {
+  object-fit: contain;
+  object-position: center;
+}
+
+.workHeroContent {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(calc(100% - 2rem), 80vw, 72rem);
+  min-height: 48rem;
+  place-items: start center;
+  margin-inline: auto;
+  padding: clamp(11rem, 24.87vh, 13rem) 1rem 4rem;
+  text-align: center;
+}
+
+.workHeroCopy {
+  display: flex;
+  width: min(100%, 42rem);
+  flex-direction: column;
+  align-items: center;
+}
+
+.workHeroEyebrow {
+  margin: 0;
+  color: var(--color-brand-dark);
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 1.667vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.333em;
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  animation: work-hero-eyebrow-in var(--work-hero-copy-duration) var(--work-hero-copy-delay)
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.workHeroEyebrowAccent {
+  color: var(--color-brand-ink);
+}
+
+.workHeroScreenCopy {
+  display: flex;
+  width: min(100%, 34rem);
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.25rem;
+  opacity: 0;
+  transform: translateY(0.75rem);
+  animation: work-hero-screen-copy-in var(--work-hero-copy-duration) var(--work-hero-copy-delay)
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.workHeroTitle {
+  width: min(100%, 33.0625rem);
+  margin: 0;
+  background: linear-gradient(180deg, var(--color-brand-neon) 0%, var(--color-brand-dark) 68%);
+  background-clip: text;
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 2.8vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.1;
+}
+
+.workHeroButton {
+  min-width: 10.75rem;
+  min-height: 2.1875rem;
+  height: 2.1875rem;
+  margin-top: 1.25rem;
+  padding: 0 1.5rem;
+  font-size: 0.875rem;
+}
+
+.workHeroDescription {
+  width: min(100%, 28rem);
+  margin: 1rem 0 0;
+  color: var(--color-brand-dark);
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 1.111vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.125em;
+  line-height: 1.35;
+}
+
+@keyframes work-hero-visual-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes work-hero-eyebrow-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes work-hero-screen-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1199px) {
+  .workHeroContent {
+    width: min(calc(100% - 2rem), 80vw, 60rem);
+    padding-top: clamp(10.5rem, 24vh, 12rem);
+  }
+
+  .workHeroVisual {
+    top: clamp(3.25rem, 7vh, 5rem);
+    width: min(94vw, 88rem);
+  }
+
+  .workHeroTitle {
+    width: min(100%, 34rem);
+  }
+}
+
+@media (max-width: 899px) {
+  .workHeroSection {
+    min-height: 45rem;
+  }
+
+  .workHeroVisual {
+    top: 8.5rem;
+    width: min(130vw, 48rem);
+  }
+
+  .workHeroContent {
+    width: calc(100% - 2rem);
+    min-height: 45rem;
+    padding: 8rem 0 3rem;
+  }
+
+  .workHeroCopy {
+    width: 100%;
+  }
+
+  .workHeroEyebrow {
+    font-size: 1.125rem;
+    letter-spacing: 0.25em;
+  }
+
+  .workHeroScreenCopy {
+    width: min(100%, 22rem);
+    margin-top: 3.5rem;
+  }
+
+  .workHeroTitle {
+    width: 100%;
+    margin: 0;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    line-height: 1.08;
+  }
+
+  .workHeroButton {
+    margin-top: 1.25rem;
+  }
+
+  .workHeroDescription {
+    width: min(100%, 20rem);
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+@media (max-width: 767px) {
+  .workHeroVisual {
+    top: 8.75rem;
+    width: 132vw;
+    aspect-ratio: 0.82;
+  }
+
+  .workHeroContent {
+    padding-top: 7.5rem;
+  }
+
+  .workHeroScreenCopy {
+    width: calc(100% - 1.5rem);
+    margin-top: 9rem;
+  }
+
+  .workHeroTitle {
+    width: min(100%, 70vw, 18rem);
+    margin: 0;
+    font-size: clamp(1.25rem, 5.8vw, 1.6rem);
+    line-height: 1.08;
+  }
+
+  .workHeroButton {
+    min-width: 9rem;
+    min-height: 2rem;
+    height: 2rem;
+    margin-top: 1.125rem;
+    padding-inline: 1.1rem;
+    font-size: 0.75rem;
+  }
+
+  .workHeroDescription {
+    width: min(100%, 15rem);
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workHeroVisual {
+    opacity: 1;
+    transform: translateX(-50%);
+    animation: none;
+  }
+
+  .workHeroEyebrow {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .workHeroScreenCopy {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

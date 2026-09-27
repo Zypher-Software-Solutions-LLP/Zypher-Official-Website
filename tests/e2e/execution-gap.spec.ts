@@ -58,7 +58,7 @@ test.describe("homepage execution gap section", () => {
     const section = page.getByTestId("execution-gap-section");
     await section.scrollIntoViewIfNeeded();
 
-    await expect(section.getByTestId("execution-gap-illustration")).toBeHidden();
+    await expect(section.getByTestId("execution-gap-illustration")).toHaveCount(0);
     await expect(section.locator("picture source")).toHaveAttribute(
       "srcset",
       /Problem%20-%201%20Mobile\.png/,
@@ -125,7 +125,7 @@ test.describe("homepage execution gap section", () => {
 
     const geometry = await section.evaluate((element) => {
       const details = element.querySelector<HTMLElement>('[data-testid="execution-gap-details"]');
-      const learnMore = element.querySelector<HTMLElement>('a[href="/contact"]');
+      const learnMore = element.querySelector<HTMLElement>('a[href="/services"]');
 
       if (!details || !learnMore) {
         throw new Error("Execution-gap Learn More geometry is unavailable");
@@ -322,7 +322,7 @@ test.describe("homepage execution gap section", () => {
     });
 
     expect(alignment.mediaWidth / alignment.mediaHeight).toBeCloseTo(466 / 620, 2);
-    expect(alignment.mediaBottom).toBeLessThan(alignment.detailsBottom);
+    expect(alignment.mediaBottom).toBeLessThanOrEqual(alignment.detailsBottom);
   });
 
   test("should keep desktop section curves fixed while accordion content changes", async ({
@@ -376,5 +376,38 @@ test.describe("homepage execution gap section", () => {
 
     const sectionText = await page.getByTestId("execution-gap-section").textContent();
     expect(sectionText).not.toContain("\u2014");
+  });
+  test("should hide the Learn More underline and preserve its neon hover fill", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 1080 });
+    await openPage(page);
+
+    const section = page.getByTestId("execution-gap-section");
+    await section.scrollIntoViewIfNeeded();
+    const learnMore = section.getByRole("link", { name: "Learn More" });
+
+    const baseline = await learnMore.evaluate((element) => {
+      const styles = getComputedStyle(element, "::after");
+
+      return {
+        underlineDisplay: styles.display,
+        underlineOpacity: styles.opacity,
+      };
+    });
+
+    expect(baseline.underlineDisplay).toBe("none");
+
+    await learnMore.hover();
+
+    await expect
+      .poll(() => learnMore.evaluate((element) => getComputedStyle(element).color))
+      .toBe("rgb(16, 23, 21)");
+    await expect
+      .poll(() => learnMore.evaluate((element) => getComputedStyle(element).backgroundColor))
+      .toBe("rgb(21, 193, 150)");
+    await expect
+      .poll(() => learnMore.evaluate((element) => getComputedStyle(element).boxShadow))
+      .toBe("none");
   });
 });

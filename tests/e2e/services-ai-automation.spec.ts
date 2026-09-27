@@ -147,6 +147,28 @@ test.describe("AI and LLM automation section", () => {
     expect(layout.laptopAnimationName.endsWith("ai-laptop-rise-in")).toBe(true);
   });
 
+  test("should reveal the mist background behind the section curve", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await openPage(page, "/services");
+
+    const colors = await page.evaluate(() => {
+      const main = document.querySelector<HTMLElement>("#main-content");
+      const section = document.querySelector<HTMLElement>('[data-testid="ai-automation-section"]');
+
+      if (!main || !section) {
+        throw new Error("Missing Services page background elements");
+      }
+
+      return {
+        mainBackground: getComputedStyle(main).backgroundColor,
+        sectionBackground: getComputedStyle(section).backgroundColor,
+      };
+    });
+
+    expect(colors.mainBackground).toBe("rgb(244, 248, 246)");
+    expect(colors.sectionBackground).toBe("rgb(15, 71, 67)");
+  });
+
   test("should retain the laptop at a roomy tablet width", async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 900 });
     await openPage(page, "/services");

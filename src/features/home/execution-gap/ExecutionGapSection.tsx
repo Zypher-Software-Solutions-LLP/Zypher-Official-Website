@@ -2,19 +2,15 @@
 
 import Image from "next/image";
 import styles from "./ExecutionGapSection.module.css";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import type { ReactNode } from "react";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { executionGapItems } from "./execution-gap-data";
-import { useViewportReveal } from "@/components/motion/useViewportReveal";
-const executionGapIllustrationSrc =
-  "https://media.zypher-solutions.com/home-page/section-3/Problem%20Overall%20Graphic.png";
 const initialItemId = executionGapItems[0].id;
 
 export function ExecutionGapSection(): ReactNode {
   const [activeItemId, setActiveItemId] = useState<string>(initialItemId);
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const hasEnteredViewport = useViewportReveal(sectionRef);
   const activeItem =
     executionGapItems.find((item) => item.id === activeItemId) ?? executionGapItems[0];
 
@@ -22,10 +18,9 @@ export function ExecutionGapSection(): ReactNode {
     <section
       aria-labelledby="execution-gap-title"
       className={styles.executionGapSection}
-      data-reveal-state={hasEnteredViewport ? "visible" : "hidden"}
+      data-motion-section="true"
       data-testid="execution-gap-section"
       id="execution-gap"
-      ref={sectionRef}
     >
       <svg
         aria-hidden="true"
@@ -92,25 +87,14 @@ export function ExecutionGapSection(): ReactNode {
           </div>
 
           <div className={styles.executionGapSectionDetails} data-testid="execution-gap-details">
-            <Image
-              alt=""
-              aria-hidden="true"
-              className={styles.executionGapSectionIllustration}
-              data-testid="execution-gap-illustration"
-              fill
-              loading="lazy"
-              sizes="(max-width: 767px) 70vw, 312px"
-              src={executionGapIllustrationSrc}
-            />
-
             <ButtonLink
               className={styles.executionGapSectionLearnMore}
-              href="/contact"
+              href="/services"
               trackingLabel="Learn More"
               trackingLocation="execution-gap"
               variant="tertiary"
             >
-              Learn More <span aria-hidden="true">&#8594;</span>
+              Learn More <ArrowIcon />
             </ButtonLink>
 
             <div

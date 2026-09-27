@@ -1,0 +1,262 @@
+.section {
+  background: var(--color-brand-mist);
+  color: var(--color-brand-mist);
+}
+
+.surface {
+  min-height: 44.875rem;
+  overflow: hidden;
+  border-radius: 1.875rem;
+  background: var(--color-brand-dark);
+}
+
+.content {
+  display: flex;
+  width: min(calc(100% - 3rem), 59.75rem);
+  min-height: 44.875rem;
+  flex-direction: column;
+  margin-inline: auto;
+  padding-block: 1.5625rem 3.125rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 1.5rem;
+}
+
+.introduction {
+  max-width: 36.875rem;
+}
+
+.title {
+  display: flex;
+  max-width: 22.3125rem;
+  flex-direction: column;
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.title > span {
+  display: block;
+}
+
+.titleAccent {
+  color: var(--color-brand-neon);
+}
+
+.description {
+  max-width: 36.875rem;
+  margin: 1rem 0 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3125;
+}
+
+@media (min-width: 64rem) {
+  .description {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.surface .buildsLink {
+  width: fit-content;
+  min-width: 9.3125rem;
+  min-height: 2.1875rem;
+  margin-top: 1rem;
+  border-color: var(--color-brand-neon);
+  background: transparent;
+  padding: 0.5rem 1rem;
+  color: var(--color-brand-mist);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.surface .buildsLink:hover,
+.surface .buildsLink:focus-visible {
+  border-color: var(--color-brand-neon);
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+}
+
+.deliverablesTitle {
+  margin: 0 0 0.1875rem;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  height: 26.25rem;
+  grid-auto-rows: minmax(0, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.3125rem;
+  margin: 2.125rem 0 0;
+  border-radius: 0.9375rem;
+  background: var(--color-brand-slate);
+  padding: 0.3125rem;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.9375rem;
+  background: var(--color-brand-dark);
+  grid-column: span 4;
+}
+
+.artwork {
+  position: relative;
+  width: 8.4375rem;
+  height: 8.4375rem;
+  overflow: hidden;
+  flex: 0 0 8.4375rem;
+  align-self: center;
+}
+
+.image {
+  object-fit: contain;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .image {
+    transform: scale(1.06);
+  }
+}
+
+.cardDescription {
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2857;
+  padding: 0 1rem 0.5rem;
+}
+
+@media (max-width: 63.999rem) {
+  .surface,
+  .content {
+    min-height: 0;
+  }
+
+  .content {
+    padding-block: 3.25rem 4rem;
+  }
+
+  .title {
+    font-size: clamp(2.125rem, 4vw, 2.5rem);
+  }
+
+  .deliverablesTitle {
+    font-size: clamp(1.625rem, 3vw, 2rem);
+  }
+
+  .grid {
+    height: auto;
+    grid-auto-rows: minmax(12.6875rem, auto);
+    margin-top: 2rem;
+  }
+
+  .card {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .surface {
+    border-radius: 1.5rem;
+  }
+
+  .content {
+    width: calc(100% - 2rem);
+    padding-block: 2.5rem 3rem;
+  }
+
+  .header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .introduction {
+    max-width: none;
+  }
+
+  .title {
+    max-width: 100%;
+    font-size: clamp(2rem, 8.5vw, 2.375rem);
+    line-height: 1.05;
+  }
+
+  .description {
+    margin-top: 1.125rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .surface .buildsLink {
+    margin-top: 1.125rem;
+  }
+
+  .deliverablesTitle {
+    justify-self: start;
+    margin-top: 1.75rem;
+    font-size: 1.625rem;
+  }
+
+  .grid {
+    grid-auto-rows: auto;
+    gap: 0.25rem;
+    margin-top: 1.5rem;
+    padding: 0.25rem;
+  }
+
+  .card {
+    min-height: 0;
+    grid-column: 1 / -1;
+  }
+
+  .artwork {
+    width: clamp(6rem, 28vw, 7rem);
+    height: clamp(6rem, 28vw, 7rem);
+    flex-basis: clamp(6rem, 28vw, 7rem);
+  }
+
+  .cardDescription {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    padding: 0 0.875rem 0.875rem;
+  }
+}
+
+@media (pointer: coarse) {
+  .surface .buildsLink {
+    min-height: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface .buildsLink,
+  .image {
+    transition: none;
+  }
+}

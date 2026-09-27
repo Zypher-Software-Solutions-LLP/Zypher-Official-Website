@@ -1,0 +1,25 @@
+.designCreativeHeroTitle {
+  letter-spacing: -0.02em;
+  word-spacing: 0.025em;
+}
+
+.designCreativeSectionTwoTitle {
+  letter-spacing: -0.015em;
+  word-spacing: 0.02em;
+}
+
+h2.designCreativeSectionTwoTitle > .designCreativeSectionTwoFirstSentence {
+  color: inherit;
+}
+
+@media (max-width: 47.999rem) {
+  h2.designCreativeSectionTwoTitle {
+    font-size: clamp(0.8125rem, 4.3vw, 1.125rem);
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+  }
+
+  h2.designCreativeSectionTwoTitle > span {
+    white-space: nowrap;
+  }
+}

@@ -418,3 +418,61 @@
     font-size: 1.25rem;
   }
 }
+@media (min-width: 1200px) {
+  .howWeWorkNavigation {
+    max-width: 17rem;
+    gap: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  .howWeWorkNavigation::before {
+    left: 0.75rem;
+  }
+
+  .howWeWorkStepButton,
+  .howWeWorkSubstepButton {
+    font-size: 1.125rem;
+  }
+
+  .howWeWorkStepButton {
+    gap: 0.875rem;
+  }
+
+  .howWeWorkStepNumber {
+    width: 1.75rem;
+    height: 1.75rem;
+    flex-basis: 1.75rem;
+    font-size: 0.875rem;
+  }
+
+  .howWeWorkSubnavigation {
+    gap: 0.625rem;
+    padding-left: 2.5rem;
+  }
+}
+
+/* Keep the section surface rendered; reveal only its content. */
+.howWeWorkRail,
+.howWeWorkPanelHeader,
+.howWeWorkDescription,
+.howWeWorkMedia {
+  opacity: 0;
+  transition: opacity 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.howWeWorkSection[data-reveal-state="visible"] .howWeWorkRail,
+.howWeWorkSection[data-reveal-state="visible"] .howWeWorkPanelHeader,
+.howWeWorkSection[data-reveal-state="visible"] .howWeWorkDescription,
+.howWeWorkSection[data-reveal-state="visible"] .howWeWorkMedia {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .howWeWorkRail,
+  .howWeWorkPanelHeader,
+  .howWeWorkDescription,
+  .howWeWorkMedia {
+    opacity: 1;
+    transition: none;
+  }
+}

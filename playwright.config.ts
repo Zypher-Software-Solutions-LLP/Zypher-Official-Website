@@ -1,15 +1,21 @@
-import { defineConfig, devices } from "@playwright/test";
+import { defineConfig, devices, type ReporterDescription } from "@playwright/test";
+
+const ciReporters: ReporterDescription[] = [
+  ["github", {}],
+  ["html", { outputFolder: "playwright-report", open: "never" }],
+];
 
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: false,
   workers: 1,
   forbidOnly: Boolean(process.env.CI),
-  retries: 0,
-  reporter: process.env.CI ? "github" : "list",
+  retries: process.env.CI ? 1 : 0,
+  reporter: process.env.CI ? ciReporters : "list",
   use: {
     baseURL: "http://localhost:3000",
-    trace: "on-first-retry",
+    trace: process.env.CI ? "retain-on-failure" : "on-first-retry",
+    video: process.env.CI ? "retain-on-failure" : "off",
   },
   webServer: {
     command: "npm run dev",

@@ -118,7 +118,7 @@ export const coreExpertiseCategories: ReadonlyArray<CoreExpertiseCategory> = [
       "Reusable components that scale as your product grows, instead of one-off screens.",
     ],
     ctaLabel: "See Our Design Process",
-    ctaHref: "/services/ui-ux-design",
+    ctaHref: "/services/design-creative",
   },
   {
     id: "crm-erp-solutions",

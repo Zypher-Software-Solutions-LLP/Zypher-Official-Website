@@ -1,39 +1,28 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { BlogList } from "@/features/blog/BlogList";
-import { getFeaturedPosts } from "@/integrations/cms/sanity/queries";
-import { buildPageMetadata } from "@/lib/seo";
+import { BlogListingPage } from "@/features/blog/BlogListingPage";
+import { parseBlogSort } from "@/features/blog/blog-route";
+import { getStaticPageMetadata } from "@/lib/seo";
+import { notFound } from "next/navigation";
 
-export async function generateMetadata(): Promise<Metadata> {
+type BlogRouteProps = {
+  searchParams: Promise<{ sort?: string | string[] }>;
+};
+
+export async function generateMetadata({ searchParams }: BlogRouteProps): Promise<Metadata> {
+  const sort = parseBlogSort((await searchParams).sort);
+  if (!sort) notFound();
   const { isEnabled: isPreview } = await draftMode();
 
-  return buildPageMetadata({
-    title: "Blog",
-    description: "Practical perspectives on software, design, automation, and building for growth.",
-    path: "/blog",
-    noIndex: isPreview,
+  return getStaticPageMetadata("/blog", {
+    noIndex: isPreview || sort === "oldest",
+    noFollow: isPreview,
+    preview: isPreview,
   });
 }
 
-export default async function BlogPage(): Promise<React.ReactNode> {
-  const { isEnabled: isPreview } = await draftMode();
-  const posts = await getFeaturedPosts(12, { preview: isPreview });
-
-  return (
-    <main id="main-content">
-      <section className="border-b border-mist-300/10">
-        <div className="site-container py-24 sm:py-32">
-          <SectionHeading
-            eyebrow="From Zypher"
-            title="Useful ideas for the work ahead."
-            description="Notes, perspectives, and practical guidance for teams building better software and operations."
-          />
-        </div>
-      </section>
-      <section className="site-container py-20 sm:py-28">
-        <BlogList posts={posts} />
-      </section>
-    </main>
-  );
+export default async function BlogPage({ searchParams }: BlogRouteProps): Promise<React.ReactNode> {
+  const sort = parseBlogSort((await searchParams).sort);
+  if (!sort) notFound();
+  return <BlogListingPage page={1} sort={sort} />;
 }

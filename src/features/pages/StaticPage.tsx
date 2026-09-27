@@ -18,8 +18,8 @@ export function StaticPage({
     <main id="main-content">
       <RouteIntro eyebrow={eyebrow} title={title} description={description} />
       {body.length > 0 ? (
-        <section className="site-container max-w-3xl py-20 sm:py-28">
-          <div className="space-y-6 text-base leading-8 text-mist-300">
+        <section className="site-container max-w-3xl py-20 sm:py-28" data-motion-section="true">
+          <div className="space-y-6 text-base leading-8 text-mist-300" data-motion-item="true">
             {body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}

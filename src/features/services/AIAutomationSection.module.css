@@ -516,3 +516,28 @@
     animation: none;
   }
 }
+
+/* Services micro-interactions and readable copy */
+.aiAutomationIntro,
+.aiDeliverablesList {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.aiAutomationCta {
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+}
+
+.aiAutomationCta:hover,
+.aiAutomationCta:focus-visible {
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+}
+
+@media (min-width: 64rem) and (max-width: 74.999rem) {
+  .aiLaptopArtwork {
+    right: -10rem;
+    bottom: -9rem;
+  }
+}

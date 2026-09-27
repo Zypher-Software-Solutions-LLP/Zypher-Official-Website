@@ -1,13 +1,11 @@
 import Image from "next/image";
 import styles from "./HeroSection.module.css";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
-const BACKGROUND_GRID_URL =
-  "https://media.zypher-solutions.com/home-page/section-1/Background%20Grid.png";
-const HERO_SUBJECT_URL =
-  "https://media.zypher-solutions.com/home-page/section-1/Hero%20Section%20-%20Main%20Subject.png";
-const HERO_SUBJECT_MOBILE_URL =
-  "https://media.zypher-solutions.com/home-page/section-1/Hero%20section%20-%20Mobile.png";
+
+const HERO_BACKGROUND_URL =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20PC%20Image.png";
+const HERO_BACKGROUND_MOBILE_URL =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20Mobile%20Image.png";
 
 export function HeroSection(): React.ReactNode {
   return (
@@ -16,61 +14,31 @@ export function HeroSection(): React.ReactNode {
         aria-hidden="true"
         className={styles.heroBackground}
         data-layer="background-illustration"
-        data-opacity="0.13"
         data-position="background"
         data-testid="hero-background"
       >
-        <Image
-          alt=""
-          className={styles.heroBackgroundImage}
-          fill
-          priority
-          sizes="100vw"
-          src={BACKGROUND_ILLUSTRATION_SRC}
-        />
-      </div>
-
-      <div
-        aria-hidden="true"
-        className={styles.heroGridOverlay + " " + styles.heroGridOverlayTopLeft}
-        data-position="top-left"
-        data-testid="hero-grid-overlay"
-      >
-        <div className={styles.heroGridOverlayCrop}>
+        <picture className={styles.heroBackgroundPicture} data-testid="hero-background-picture">
+          <source
+            media="(max-width: 899px), (orientation: portrait) and (max-width: 1180px)"
+            srcSet={HERO_BACKGROUND_MOBILE_URL}
+          />
           <Image
             alt=""
-            className={styles.heroGridOverlayImage}
+            className={styles.heroBackgroundImage}
+            data-testid="hero-background-image"
             fill
-            sizes="(max-width: 900px) 75vw, 547px"
-            src={BACKGROUND_GRID_URL}
+            priority
+            sizes="100vw"
+            src={HERO_BACKGROUND_URL}
           />
-        </div>
+        </picture>
       </div>
 
       <div
-        aria-hidden="true"
-        className={styles.heroSubject + " " + styles.heroSubjectAnchored}
-        data-opacity="0.4"
-        data-position="anchored"
-        data-testid="hero-subject"
+        className={styles.heroGrid + " " + styles.heroContent}
+        data-motion-intro="true"
+        data-testid="hero-grid"
       >
-        <div className={styles.heroSubjectImageCrop} data-testid="hero-subject-image-crop">
-          <picture className={styles.heroSubjectPicture} data-testid="hero-subject-picture">
-            <source media="(max-width: 767px)" srcSet={HERO_SUBJECT_MOBILE_URL} />
-            <Image
-              alt=""
-              className={styles.heroSubjectImage}
-              data-testid="hero-subject-image"
-              fill
-              priority
-              sizes="(max-width: 480px) 180vw, (max-width: 899px) 120vw, 60.14vw"
-              src={HERO_SUBJECT_URL}
-            />
-          </picture>
-        </div>
-      </div>
-
-      <div className={styles.heroGrid + " " + styles.heroContent} data-testid="hero-grid">
         <div className={styles.heroCopy}>
           <h1
             aria-label="Solutions that move the way your business already does"
@@ -88,7 +56,8 @@ export function HeroSection(): React.ReactNode {
               data-testid="hero-title-main"
               className={styles.heroTitleMain + " " + styles.heroFade + " " + styles.heroFadeDelay1}
             >
-              the way your business already does
+              <span className={styles.heroTitleLine}>the way your business</span>
+              <span className={styles.heroTitleLine}>already does</span>
             </span>
           </h1>
 

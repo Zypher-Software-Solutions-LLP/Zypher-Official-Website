@@ -4,8 +4,8 @@ export const publicRoutes = [
   "/services/software-development",
   "/services/mobile-app-development",
   "/services/ai-llm-automation",
+  "/services/design-creative",
   "/services/crm-erp-solutions",
-  "/services/ui-ux-design",
   "/work",
   "/scale",
   "/about",
@@ -13,6 +13,6 @@ export const publicRoutes = [
   "/contact",
   "/careers",
   "/privacy-policy",
-  "/terms-of-service",
+  "/terms-of-use",
   "/cookie-policy",
 ] as const;

@@ -1,0 +1,346 @@
+.scaleIndustriesSection {
+  position: relative;
+  isolation: isolate;
+  min-height: 52rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-block: 0.8125rem 3.125rem;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+}
+
+.scaleIndustriesContainer {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 2rem), 72rem);
+  margin-inline: auto;
+}
+
+.scaleIndustriesTitle {
+  max-width: 52.625rem;
+  margin: 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.375rem, 3.3333vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1458;
+}
+
+.scaleIndustriesEyebrow {
+  margin: 1rem 0 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.6667vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.2917;
+}
+
+.scaleIndustriesGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.scaleIndustriesLines {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scaleIndustriesVerticalLines,
+.scaleIndustriesHorizontalLines {
+  position: absolute;
+  inset: 0;
+}
+
+.scaleIndustriesVerticalLine,
+.scaleIndustriesHorizontalLine {
+  position: absolute;
+  display: block;
+  background: rgb(92 107 103 / 0.7);
+}
+
+.scaleIndustriesVerticalLine {
+  width: 1px;
+  height: 15.3061%;
+}
+
+.scaleIndustriesVerticalLine:nth-child(1) {
+  top: 7.6531%;
+  left: 24.4792%;
+}
+
+.scaleIndustriesVerticalLine:nth-child(2) {
+  top: 7.6531%;
+  left: 50%;
+}
+
+.scaleIndustriesVerticalLine:nth-child(3) {
+  top: 7.6531%;
+  left: 75.5208%;
+}
+
+.scaleIndustriesVerticalLine:nth-child(4) {
+  top: 42.3469%;
+  left: 24.4792%;
+}
+
+.scaleIndustriesVerticalLine:nth-child(5) {
+  top: 42.3469%;
+  left: 50%;
+}
+
+.scaleIndustriesVerticalLine:nth-child(6) {
+  top: 42.3469%;
+  left: 75.5208%;
+}
+
+.scaleIndustriesVerticalLine:nth-child(7) {
+  top: 77.0408%;
+  left: 50%;
+}
+
+.scaleIndustriesHorizontalLine {
+  width: 11.7188%;
+  height: 1px;
+}
+
+.scaleIndustriesHorizontalLine:nth-child(1),
+.scaleIndustriesHorizontalLine:nth-child(5) {
+  left: 5.815%;
+}
+
+.scaleIndustriesHorizontalLine:nth-child(2),
+.scaleIndustriesHorizontalLine:nth-child(6) {
+  left: 31.3368%;
+}
+
+.scaleIndustriesHorizontalLine:nth-child(3),
+.scaleIndustriesHorizontalLine:nth-child(7) {
+  left: 56.8576%;
+}
+
+.scaleIndustriesHorizontalLine:nth-child(4),
+.scaleIndustriesHorizontalLine:nth-child(8) {
+  left: 82.3785%;
+}
+
+.scaleIndustriesHorizontalLine:nth-child(-n + 4) {
+  top: 32.6531%;
+}
+
+.scaleIndustriesHorizontalLine:nth-child(n + 5) {
+  top: 67.3469%;
+}
+
+.scaleIndustriesCard {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 1.875rem;
+  background: var(--color-brand-slate);
+  box-shadow: -2px 5px 7px rgb(0 0 0 / 50%);
+  cursor: default;
+  isolation: isolate;
+  outline: none;
+  animation: scale-industries-card-in 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.scaleIndustriesEducationCard {
+  grid-column: 2;
+}
+
+.scaleIndustriesProfessionalCard {
+  grid-column: 3;
+}
+
+.scaleIndustriesCard:nth-of-type(2) {
+  animation-delay: 45ms;
+}
+
+.scaleIndustriesCard:nth-of-type(3) {
+  animation-delay: 90ms;
+}
+
+.scaleIndustriesCard:nth-of-type(4) {
+  animation-delay: 135ms;
+}
+
+.scaleIndustriesCard:nth-of-type(5) {
+  animation-delay: 180ms;
+}
+
+.scaleIndustriesCard:nth-of-type(6) {
+  animation-delay: 225ms;
+}
+
+.scaleIndustriesCard:nth-of-type(7) {
+  animation-delay: 270ms;
+}
+
+.scaleIndustriesCard:nth-of-type(8) {
+  animation-delay: 315ms;
+}
+
+.scaleIndustriesCard:nth-of-type(9) {
+  animation-delay: 360ms;
+}
+
+.scaleIndustriesCard:nth-of-type(10) {
+  animation-delay: 405ms;
+}
+
+.scaleIndustriesImage,
+.scaleIndustriesOverlay {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+}
+
+.scaleIndustriesImage {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(0);
+  transform: scale(1);
+  transition:
+    filter 420ms ease,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scaleIndustriesOverlay {
+  z-index: 1;
+  background: rgb(0 0 0 / 50%);
+}
+
+.scaleIndustriesCardTitle {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.75rem;
+  left: 0.5rem;
+  z-index: 2;
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.6667vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.3333;
+  transition: color 280ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scaleIndustriesCard:hover .scaleIndustriesImage {
+    filter: blur(0.1875rem);
+    transform: scale(1.1);
+  }
+
+  .scaleIndustriesCard:hover .scaleIndustriesCardTitle {
+    color: var(--color-brand-neon);
+  }
+}
+
+.scaleIndustriesSection[data-reveal-state="hidden"] .scaleIndustriesCard {
+  animation-play-state: paused;
+}
+
+@keyframes scale-industries-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1199px) {
+  .scaleIndustriesSection {
+    min-height: 0;
+    padding-block: 3.5rem 4rem;
+  }
+
+  .scaleIndustriesContainer {
+    width: min(calc(100% - 4rem), 60rem);
+  }
+
+  .scaleIndustriesTitle {
+    max-width: 44rem;
+    font-size: clamp(2.25rem, 4.7vw, 3rem);
+  }
+
+  .scaleIndustriesGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .scaleIndustriesLines {
+    display: none;
+  }
+
+  .scaleIndustriesEducationCard,
+  .scaleIndustriesProfessionalCard {
+    grid-column: auto;
+  }
+
+  .scaleIndustriesCardTitle {
+    font-size: clamp(1rem, 2.1vw, 1.25rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .scaleIndustriesSection {
+    padding-block: 3rem 3.5rem;
+  }
+
+  .scaleIndustriesContainer {
+    width: calc(100% - 2rem);
+  }
+
+  .scaleIndustriesTitle {
+    max-width: none;
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    line-height: 1.08;
+  }
+
+  .scaleIndustriesEyebrow {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .scaleIndustriesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .scaleIndustriesCard {
+    border-radius: 1rem;
+  }
+
+  .scaleIndustriesCardTitle {
+    right: 0.65rem;
+    bottom: 0.65rem;
+    left: 0.65rem;
+    font-size: clamp(0.8rem, 3.6vw, 1rem);
+    line-height: 1.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scaleIndustriesCard,
+  .scaleIndustriesImage,
+  .scaleIndustriesCardTitle {
+    animation: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,576 @@
+.bannerLayer {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  animation: consentBannerIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: auto;
+}
+
+.bannerLayerClosing {
+  pointer-events: none;
+  animation: consentBannerOut 220ms ease-in both;
+}
+
+.bannerCard {
+  display: grid;
+  width: min(100%, 58rem);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  border: 1px solid rgb(15 71 67 / 0.2);
+  border-radius: 1.25rem;
+  background: #ffffff;
+  box-shadow: 0 1.5rem 4rem rgb(15 71 67 / 0.2);
+  color: var(--color-brand-ink);
+  padding: 1.25rem 1.5rem;
+  pointer-events: auto;
+  animation: consentBannerCardIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.bannerCopy {
+  min-width: 0;
+}
+
+.bannerTitle {
+  margin: 0.35rem 0 0;
+  color: var(--color-brand-dark);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.bannerDescription {
+  max-width: 42rem;
+  margin: 0.65rem 0 0;
+  color: var(--color-brand-slate);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.bannerActions {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.bannerLayerClosing .bannerCard {
+  animation: consentBannerCardOut 220ms ease-in both;
+}
+
+@keyframes consentBannerIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes consentBannerOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes consentBannerCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes consentBannerCardOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+.scrim {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  animation: consentScrimIn 220ms ease-out both;
+  background: rgb(244 248 246 / 0.72);
+  backdrop-filter: blur(0.45rem);
+}
+
+.dialog {
+  position: relative;
+  width: min(100%, 44rem);
+  max-height: min(90vh, 52rem);
+  overflow-y: auto;
+  border: 1px solid rgb(15 71 67 / 0.2);
+  border-radius: 1.25rem;
+  background: #ffffff;
+  box-shadow: 0 1.75rem 5rem rgb(15 71 67 / 0.2);
+  color: var(--color-brand-ink);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  scrollbar-color: var(--color-brand-dark) transparent;
+  animation: consentDialogIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.scrimClosing {
+  pointer-events: none;
+  animation: consentScrimOut 220ms ease-in both;
+}
+
+.scrimClosing .dialog {
+  animation: consentDialogOut 220ms ease-in both;
+}
+
+@keyframes consentScrimIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes consentScrimOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes consentDialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes consentDialogOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.985);
+  }
+}
+
+.dialogHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-brand-dark);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 32rem;
+  margin: 0.45rem 0 0;
+  color: var(--color-brand-dark);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.closeButton {
+  display: inline-flex;
+  position: relative;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(15 71 67 / 0.2);
+  border-radius: 9999px;
+  background: #ffffff;
+  color: var(--color-brand-dark);
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  border-color: var(--color-brand-neon);
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+}
+
+.closeButton span {
+  position: absolute;
+  width: 0.95rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.closeButton span:first-child {
+  transform: rotate(45deg);
+}
+
+.closeButton span:last-child {
+  transform: rotate(-45deg);
+}
+
+.description {
+  max-width: 40rem;
+  margin: 1rem 0 0;
+  color: var(--color-brand-slate);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.policyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  color: var(--color-brand-dark);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgb(15 71 67 / 0.3);
+  text-underline-offset: 0.25rem;
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+}
+
+.policyLink:hover,
+.policyLink:focus-visible {
+  color: var(--color-brand-neon);
+  text-decoration-color: currentColor;
+}
+
+.preferenceList {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+.preferenceCard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid rgb(15 71 67 / 0.14);
+  border-radius: 0.9rem;
+  background: var(--color-brand-mist);
+  padding: 1rem;
+}
+
+.preferenceCopy {
+  min-width: 0;
+}
+
+.preferenceTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+}
+
+.preferenceTitle h3 {
+  margin: 0;
+  color: var(--color-brand-dark);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.preferenceCopy p {
+  max-width: 37rem;
+  margin: 0.45rem 0 0;
+  color: var(--color-brand-slate);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.statusBadge {
+  display: inline-flex;
+  min-height: 1.5rem;
+  align-items: center;
+  border: 1px solid rgb(15 71 67 / 0.24);
+  border-radius: 9999px;
+  background: #ffffff;
+  color: var(--color-brand-dark);
+  padding: 0.2rem 0.55rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.toggle {
+  display: inline-flex;
+  position: relative;
+  flex: 0 0 auto;
+  width: 2.9rem;
+  height: 1.7rem;
+  align-items: center;
+  border: 1px solid rgb(15 71 67 / 0.28);
+  border-radius: 9999px;
+  background: #ffffff;
+  cursor: pointer;
+  padding: 0.18rem;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.toggle[aria-checked="true"] {
+  border-color: var(--color-brand-neon);
+  background: var(--color-brand-neon);
+}
+
+.toggleThumb {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 9999px;
+  background: var(--color-brand-slate);
+  box-shadow: 0 0.15rem 0.35rem rgb(15 71 67 / 0.18);
+  transform: translateX(0);
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.toggle[aria-checked="true"] .toggleThumb {
+  background: var(--color-brand-dark);
+  transform: translateX(1.18rem);
+}
+
+.actionBar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgb(15 71 67 / 0.14);
+  padding-top: 1.25rem;
+}
+
+.revisitNote {
+  max-width: 15rem;
+  margin: 0;
+  color: var(--color-brand-slate);
+  font-size: 0.6875rem;
+  line-height: 1.45;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.secondaryButton,
+.primaryButton {
+  min-height: 2.75rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  padding: 0.7rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease;
+}
+
+.secondaryButton {
+  border: 1px solid var(--color-brand-dark);
+  background: #ffffff;
+  color: var(--color-brand-dark);
+  box-shadow: 0 0.35rem 0.8rem rgb(15 71 67 / 0.08);
+}
+
+.secondaryButton:hover,
+.secondaryButton:focus-visible {
+  border-color: var(--color-brand-neon);
+  background: var(--color-brand-neon);
+  color: var(--color-brand-dark);
+  box-shadow: -2px 5px 7px rgb(0 0 0 / 0.18);
+}
+
+.primaryButton:hover,
+.primaryButton:focus-visible {
+  border-color: var(--color-brand-dark);
+  background: #ffffff;
+  color: var(--color-brand-dark);
+  box-shadow: none;
+}
+
+.primaryButton {
+  border: 1px solid var(--color-brand-neon);
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+  box-shadow: -2px 5px 7px rgb(0 0 0 / 0.18);
+}
+
+@media (min-width: 768px) {
+  .scrim {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .bannerLayer {
+    justify-content: flex-end;
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .scrim,
+  .bannerLayer {
+    justify-content: center;
+    padding: 0.75rem;
+  }
+
+  .bannerCard {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .bannerActions {
+    justify-content: stretch;
+  }
+
+  .bannerActions .secondaryButton,
+  .bannerActions .primaryButton {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .dialog {
+    max-height: 92vh;
+    border-radius: 1.1rem;
+  }
+
+  .preferenceCard {
+    gap: 0.75rem;
+  }
+
+  .actionBar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .revisitNote {
+    max-width: none;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .secondaryButton,
+  .primaryButton {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .dialog {
+    padding: 1rem;
+  }
+
+  .preferenceCard {
+    flex-direction: column;
+  }
+
+  .toggle {
+    align-self: flex-end;
+  }
+
+  .bannerActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .bannerActions .secondaryButton,
+  .bannerActions .primaryButton {
+    width: 100%;
+  }
+
+  .actions {
+    justify-content: flex-start;
+    gap: 0.35rem;
+    overflow-x: auto;
+    padding-bottom: 0.2rem;
+  }
+
+  .secondaryButton,
+  .primaryButton {
+    flex: 0 0 auto;
+    min-height: 2.5rem;
+    padding-inline: 0.7rem;
+    white-space: nowrap;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bannerLayer,
+  .bannerCard,
+  .bannerLayerClosing,
+  .bannerLayerClosing .bannerCard,
+  .scrim,
+  .dialog,
+  .scrimClosing,
+  .scrimClosing .dialog {
+    animation-duration: 0.01ms;
+  }
+}

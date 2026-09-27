@@ -19,6 +19,8 @@ const validPayload = {
   email: "hank@example.com",
   company: "Zypher",
   phone: "+918075725045",
+  serviceInterest: "Software Development",
+  budgetRange: "Under 30000 INR",
   subject: "Project enquiry",
   message: "I would like to discuss a tailored software project for our team.",
   consentAcknowledged: true,
@@ -69,6 +71,34 @@ describe("contact route", () => {
       error: "Please check your form details.",
       code: "PAYLOAD_TOO_LARGE",
     });
+  });
+
+  it("should reject oversized payloads when the content-length header is missing", async () => {
+    const response = await POST(createRequest(`{"message":"${"a".repeat(32_769)}"}`));
+
+    expect(response.status).toBe(413);
+    expect(await response.json()).toEqual({
+      error: "Please check your form details.",
+      code: "PAYLOAD_TOO_LARGE",
+    });
+    expect(mockedVerifyTurnstile).not.toHaveBeenCalled();
+  });
+
+  it("should reject non-JSON requests", async () => {
+    const response = await POST(
+      new Request("http://localhost/api/contact", {
+        method: "POST",
+        headers: { "content-type": "text/plain" },
+        body: JSON.stringify(validPayload),
+      }),
+    );
+
+    expect(response.status).toBe(415);
+    expect(await response.json()).toEqual({
+      error: "Please check your form details.",
+      code: "UNSUPPORTED_MEDIA_TYPE",
+    });
+    expect(mockedVerifyTurnstile).not.toHaveBeenCalled();
   });
 
   it("should reject schema validation errors", async () => {

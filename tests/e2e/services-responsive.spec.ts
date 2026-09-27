@@ -67,6 +67,21 @@ test.describe("responsive Services hero", () => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   });
 
+  test("should keep the mobile Services headline within three lines", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openPage(page, "/services");
+
+    const titleHeight = await page.getByTestId("services-hero-title").evaluate((title) => {
+      const styles = getComputedStyle(title);
+      return {
+        height: title.getBoundingClientRect().height,
+        lineHeight: Number.parseFloat(styles.lineHeight),
+      };
+    });
+
+    expect(titleHeight.height / titleHeight.lineHeight).toBeLessThanOrEqual(3.1);
+  });
+
   test("should preserve the main artwork on a roomy tablet viewport", async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 });
     await openPage(page, "/services");
@@ -74,22 +89,24 @@ test.describe("responsive Services hero", () => {
     await expect(page.getByTestId("services-hero-illustration")).toBeVisible();
   });
 
-  test("should keep the service lines and shared CTA on the Services route", async ({ page }) => {
+  test("should keep the Services FAQ and shared CTA on the Services route", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await openPage(page, "/services");
 
-    await expect(page.getByTestId("service-lines")).toBeVisible();
+    await expect(page.getByTestId("services-faq-section")).toBeVisible();
     await expect(page.getByTestId("cta-section")).toBeVisible();
     await expect(page.getByTestId("site-footer")).toBeVisible();
     await expect(
       page.getByTestId("site-header-nav-list").getByRole("link", { name: "Services" }),
     ).toHaveAttribute("aria-current", "page");
   });
-  test("should keep the shared footer illustration behind footer content", async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
+  test("should keep a bounded footer viewport with a movable uncropped illustration", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 2560, height: 1440 });
     await openPage(page, "/services");
 
-    const layers = await page.evaluate(() => {
+    const layers = await page.evaluate(async () => {
       const footer = document.querySelector<HTMLElement>('[data-testid="site-footer"]');
       const illustration = document.querySelector<HTMLElement>(
         '[data-testid="site-footer-illustration"]',
@@ -102,8 +119,15 @@ test.describe("responsive Services hero", () => {
         throw new Error("Missing shared footer illustration layers");
       }
 
-      const footerRect = footer.getBoundingClientRect();
-      const illustrationRect = illustration.getBoundingClientRect();
+      const initialFooterRect = footer.getBoundingClientRect();
+      const initialIllustrationRect = illustration.getBoundingClientRect();
+
+      footer.style.setProperty("--site-footer-artwork-y", "2rem");
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+
+      const shiftedFooterRect = footer.getBoundingClientRect();
+      const shiftedIllustrationRect = illustration.getBoundingClientRect();
+      footer.style.removeProperty("--site-footer-artwork-y");
 
       return {
         source: illustration.getAttribute("data-image-src"),
@@ -112,10 +136,13 @@ test.describe("responsive Services hero", () => {
         imageObjectPosition: getComputedStyle(image).objectPosition,
         imageOpacity: getComputedStyle(image).opacity,
         illustrationPosition: getComputedStyle(illustration).position,
-        illustrationTop: Number.parseFloat(getComputedStyle(illustration).top),
-        illustrationRatio: illustrationRect.width / illustrationRect.height,
-        footerHeight: footerRect.height,
-        footerBottomGap: footerRect.bottom - illustrationRect.bottom,
+        illustrationOverflow: getComputedStyle(illustration).overflow,
+        illustrationRatio: initialIllustrationRect.width / initialIllustrationRect.height,
+        illustrationHeight: initialIllustrationRect.height,
+        initialFooterHeight: initialFooterRect.height,
+        shiftedFooterHeight: shiftedFooterRect.height,
+        initialIllustrationTop: initialIllustrationRect.top,
+        shiftedIllustrationTop: shiftedIllustrationRect.top,
         pointerEvents: getComputedStyle(illustration).pointerEvents,
         illustrationZIndex: getComputedStyle(illustration).zIndex,
         mainZIndex: getComputedStyle(main).zIndex,
@@ -127,16 +154,19 @@ test.describe("responsive Services hero", () => {
       "https://media.zypher-solutions.com/footer/Footer%20Illustration.png",
     );
     expect(layers.imagePresent).toBe(true);
-    expect(layers.imageObjectFit).toBe("cover");
+    expect(layers.imageObjectFit).toBe("contain");
     expect(layers.imageObjectPosition).toBe("50% 0%");
-    expect(layers.imageOpacity).toBe("0.35");
+    expect(layers.imageOpacity).toBe("0.15");
     expect(layers.illustrationPosition).toBe("absolute");
-    expect(layers.illustrationTop).toBeGreaterThan(48);
-    expect(layers.illustrationTop).toBeLessThan(96);
-    expect(layers.illustrationRatio).toBeCloseTo(3, 2);
-    expect(layers.footerHeight).toBeGreaterThan(540);
-    expect(layers.footerHeight).toBeLessThan(800);
-    expect(layers.footerBottomGap).toBe(0);
+    expect(layers.illustrationOverflow).toBe("visible");
+    expect(layers.illustrationRatio).toBeCloseTo(1920 / 1088, 2);
+    expect(layers.initialFooterHeight).toBeGreaterThan(600);
+    expect(layers.initialFooterHeight).toBeLessThan(660);
+    expect(layers.illustrationHeight).toBeGreaterThan(layers.initialFooterHeight);
+    expect(layers.shiftedFooterHeight).toBeCloseTo(layers.initialFooterHeight, 1);
+    const artworkOffset = layers.shiftedIllustrationTop - layers.initialIllustrationTop;
+    expect(artworkOffset).toBeGreaterThan(0);
+    expect(artworkOffset).toBeLessThan(320);
     expect(layers.pointerEvents).toBe("none");
     expect(layers.illustrationZIndex).toBe("0");
     expect(layers.mainZIndex).toBe("1");

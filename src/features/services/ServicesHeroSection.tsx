@@ -34,7 +34,7 @@ export function ServicesHeroSection(): ReactNode {
         </div>
 
         <div className={styles.servicesHeroGrid} data-testid="services-hero-grid">
-          <div className={styles.servicesHeroCopy}>
+          <div className={styles.servicesHeroCopy} data-motion-intro="true">
             <p
               className={styles.servicesHeroEyebrow + " " + styles.servicesHeroFade}
               data-testid="services-hero-eyebrow"
@@ -98,7 +98,7 @@ export function ServicesHeroSection(): ReactNode {
             >
               <ButtonLink
                 className={styles.servicesHeroPrimaryButton}
-                href="#service-lines"
+                href="#ai-automation"
                 trackingLabel="See Our Services"
                 trackingLocation="services-hero"
               >

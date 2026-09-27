@@ -76,9 +76,8 @@ test.describe("homepage final CTA", () => {
     await expect(page).toHaveTitle("Your Vision, Our Code | Zypher Software Solutions");
 
     const section = page.getByTestId("cta-section");
-    const buttons = await section.getByRole("button").all();
-    const whatsapp = section.getByRole("link", { name: "WhatsApp Us" });
-    const boxes = await Promise.all([...buttons, whatsapp].map((control) => control.boundingBox()));
+    const controls = await section.getByRole("link").all();
+    const boxes = await Promise.all(controls.map((control) => control.boundingBox()));
 
     const [first, second, third] = boxes;
 

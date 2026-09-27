@@ -1,17 +1,43 @@
 import type { Metadata } from "next";
-import { ServicePage } from "@/features/services/ServicePage";
+import { CallToActionSection } from "@/components/ui/CallToActionSection";
+import { AiLlmAutomationHeroSection } from "@/features/services/AiLlmAutomationHeroSection";
+import { AiLlmAutomationSectionFour } from "@/features/services/AiLlmAutomationSectionFour";
+import { AiLlmAutomationSectionFive } from "@/features/services/AiLlmAutomationSectionFive";
+import { AiLlmAutomationSectionThree } from "@/features/services/AiLlmAutomationSectionThree";
+import { AiLlmAutomationSectionTwo } from "@/features/services/AiLlmAutomationSectionTwo";
+import { AiLlmAutomationFaqSection } from "@/features/services/faq/AiLlmAutomationFaqSection";
 import { getServiceDefinition } from "@/features/services/service-data";
-import { buildPageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/lib/schema";
+import { getStaticPageMetadata } from "@/lib/seo";
 
 const service = getServiceDefinition("ai-llm-automation");
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "AI & LLM Automation",
-  description: "Practical AI and automation systems designed around your team’s real work.",
-  path: "/services/ai-llm-automation",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return getStaticPageMetadata("/services/ai-llm-automation");
+}
 
 export default function AiLlmAutomationPage(): React.ReactNode {
   if (!service) return null;
-  return <ServicePage service={service} />;
+
+  return (
+    <>
+      <ServiceJsonLd service={service} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: service.name, path: `/services/${service.slug}` },
+        ]}
+      />
+      <main id="main-content">
+        <AiLlmAutomationHeroSection />
+        <AiLlmAutomationSectionTwo />
+        <AiLlmAutomationSectionThree />
+        <AiLlmAutomationSectionFour />
+        <AiLlmAutomationSectionFive />
+        <AiLlmAutomationFaqSection />
+        <CallToActionSection />
+      </main>
+    </>
+  );
 }

@@ -69,25 +69,25 @@ test.describe("responsive homepage Scale section", () => {
     await expect(section.getByRole("button", { name: "Next projects" })).toBeDisabled();
   });
 
-  test("should render valid arrow glyphs for scale controls and cards", async ({ page }) => {
+  test("should render device-independent SVG arrows for scale controls and cards", async ({
+    page,
+  }) => {
     await openPage(page);
 
-    const rightArrow = String.fromCodePoint(0x2192);
-    const leftArrow = String.fromCodePoint(0x2190);
-    const northEastArrow = String.fromCodePoint(0x2197);
     const section = page.getByTestId("scale-section");
 
-    await expect(section.getByTestId("scale-project-arrow").first()).toHaveText(northEastArrow);
-    await expect(section.getByTestId("scale-project-arrow").first()).not.toContainText(
-      String.fromCodePoint(0xfffd),
+    await expect(section.getByTestId("scale-project-arrow").first().locator("svg")).toHaveCount(1);
+    await expect(section.getByRole("link", { name: "View All Works" }).locator("svg")).toHaveCount(
+      1,
     );
-    await expect(section.getByRole("link", { name: "View All Works" }).locator("span")).toHaveText(
-      rightArrow,
+    await expect(
+      section.getByRole("button", { name: "Previous projects" }).locator("svg"),
+    ).toHaveCount(1);
+    await expect(section.getByRole("button", { name: "Next projects" }).locator("svg")).toHaveCount(
+      1,
     );
-    await expect(section.getByRole("button", { name: "Previous projects" })).toHaveText(leftArrow);
-    await expect(section.getByRole("button", { name: "Next projects" })).toHaveText(rightArrow);
+    await expect(section.getByTestId("scale-project-arrow").first()).not.toContainText("�");
   });
-
   test("should align 368px project cards to the desktop content grid", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1080 });
     await openPage(page);
@@ -362,7 +362,9 @@ test.describe("responsive homepage Scale section", () => {
   }) => {
     await openPage(page);
 
-    const cta = page.getByRole("link", { name: "Book a Discovery Call" });
+    const cta = page
+      .getByTestId("hero-section")
+      .getByRole("link", { name: "Book a Discovery Call" });
     const documentTop = await cta.evaluate(
       (element) => element.getBoundingClientRect().top + window.scrollY,
     );

@@ -1,0 +1,259 @@
+.careersHeroSection {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-dark);
+}
+
+.careersHeroBackground {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.careersHeroBackgroundImage {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.12;
+}
+
+.careersHeroGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(calc(100% - 2rem), 80rem);
+  min-height: 100svh;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 1.6667vw, 1.5rem);
+  align-items: center;
+  margin-inline: auto;
+  padding-block: clamp(7rem, 11vh, 9rem) clamp(3rem, 6vh, 5rem);
+}
+
+.careersHeroCopy {
+  grid-column: 1 / span 5;
+  align-self: center;
+  justify-self: center;
+  width: min(100%, 34rem);
+  padding-top: 1rem;
+}
+
+.careersHeroTitle {
+  width: 100%;
+  margin: 0;
+  background: linear-gradient(180deg, var(--color-brand-neon) 0%, var(--color-brand-dark) 58%);
+  background-clip: text;
+  color: transparent;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 2.8vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.careersHeroTitle span {
+  display: block;
+}
+
+.careersHeroDescription {
+  max-width: 29rem;
+  margin: clamp(2.75rem, 4.5vw, 4rem) 0 0;
+  color: var(--color-brand-dark);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  line-height: 1.55;
+}
+
+.careersHeroButton {
+  display: flex;
+  width: max-content;
+  min-width: clamp(11rem, 12vw, 12.5rem);
+  min-height: clamp(2.75rem, 3vw, 3.25rem);
+  margin: clamp(2.5rem, 4vw, 3.5rem) auto 0;
+  padding-inline: 1.25rem;
+  font-size: clamp(0.875rem, 1vw, 1rem);
+}
+
+.careersHeroApplicationNote {
+  position: relative;
+  width: min(100%, 18rem);
+  margin: 1.75rem auto 0;
+  padding-top: 0;
+}
+
+.careersHeroApplicationNote::before {
+  display: block;
+  width: 7rem;
+  height: 1px;
+  margin: 0 auto 1rem;
+  background: rgb(15 71 67 / 0.35);
+  content: "";
+}
+.careersHeroApplicationNote p {
+  margin: 0;
+  color: var(--color-brand-slate);
+  font-size: clamp(0.75rem, 0.8333vw, 0.875rem);
+  line-height: 1.35;
+  text-align: left;
+}
+
+.careersHeroVisual {
+  grid-column: 7 / -1;
+  align-self: center;
+  min-width: 0;
+  text-align: center;
+}
+
+.careersHeroVisualLabel {
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1.125rem, 1.6667vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  line-height: 1.25;
+}
+
+.careersHeroJoinTitle {
+  width: 100%;
+  margin: 0;
+  background-image: url("https://media.zypher-solutions.com/careers-page/Careers.png");
+  background-position: center;
+  background-size: cover;
+  background-clip: text;
+  color: var(--color-brand-dark);
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 16.75vw, 15.625rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.82;
+  text-shadow: -2px 5px 7px rgb(0 0 0 / 0.5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (min-width: 1200px) {
+  .careersHeroTitle {
+    font-size: clamp(1.85rem, 2.3vw, 2.8rem);
+  }
+
+  .careersHeroTitle span:first-child,
+  .careersHeroTitle span:last-child {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 899px) {
+  .careersHeroGrid {
+    display: block;
+    width: min(calc(100% - 2rem), 42rem);
+    min-height: 100svh;
+    padding-block: 7.5rem 4rem;
+  }
+
+  .careersHeroCopy {
+    width: min(100%, 34rem);
+    margin-inline: auto;
+    padding-top: 1rem;
+    text-align: center;
+  }
+
+  .careersHeroTitle,
+  .careersHeroDescription {
+    margin-inline: auto;
+  }
+
+  .careersHeroButton {
+    margin: 2.25rem auto 0;
+  }
+
+  .careersHeroApplicationNote {
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .careersHeroVisual {
+    width: min(100%, 44rem);
+    margin: clamp(4rem, 9vw, 6rem) auto 0;
+  }
+
+  .careersHeroJoinTitle {
+    font-size: clamp(7rem, 17vw, 12rem);
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .careersHeroSection {
+    min-height: 100svh;
+  }
+
+  .careersHeroGrid {
+    width: calc(100% - 2rem);
+    padding-block: 7rem 3rem;
+  }
+
+  .careersHeroTitle {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    line-height: 1.02;
+  }
+
+  .careersHeroDescription {
+    margin-top: 2.25rem;
+    font-size: 0.9375rem;
+    letter-spacing: 0.075em;
+    line-height: 1.55;
+  }
+
+  .careersHeroButton {
+    width: min(100%, 14rem);
+    margin: 2rem auto 0;
+  }
+
+  .careersHeroApplicationNote {
+    width: min(100%, 20rem);
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .careersHeroVisual {
+    margin-top: 3.5rem;
+  }
+
+  .careersHeroVisualLabel {
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+  }
+
+  .careersHeroJoinTitle {
+    font-size: clamp(5.25rem, 24vw, 8rem);
+    line-height: 0.86;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .careersHeroCopy,
+  .careersHeroVisual {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+    animation: careers-hero-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .careersHeroVisual {
+    animation-delay: 120ms;
+  }
+}
+
+@keyframes careers-hero-in {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

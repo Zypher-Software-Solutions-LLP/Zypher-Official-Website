@@ -23,6 +23,8 @@ export function renderContactEmail(input: ContactEmailProps): string {
     <p><strong>Email:</strong> ${escapeHtml(input.email)}</p>
     <p><strong>Company:</strong> ${escapeHtml(input.company)}</p>
     <p><strong>Phone:</strong> ${escapeHtml(input.phone)}</p>
+    <p><strong>Service interest:</strong> ${escapeHtml(input.serviceInterest)}</p>
+    <p><strong>Budget range:</strong> ${escapeHtml(input.budgetRange)}</p>
     <p><strong>Subject:</strong> ${escapeHtml(input.subject)}</p>
     <p><strong>Message:</strong></p>
     <p>${escapeHtml(input.message).replaceAll("\n", "<br />")}</p>

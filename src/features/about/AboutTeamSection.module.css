@@ -1,0 +1,466 @@
+.aboutTeamSection {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+  padding: 4rem 0 5.5rem;
+}
+
+.aboutTeamShell {
+  width: min(calc(100% - 2rem), 72rem);
+  margin-inline: auto;
+}
+
+.aboutTeamEyebrow {
+  margin: 0;
+  color: var(--color-brand-slate);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.aboutTeamEyebrow strong {
+  color: var(--color-brand-dark);
+  font-weight: 700;
+}
+
+.aboutTeamTitle {
+  margin: 0.5rem 0 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.2vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+.aboutTeamTitle strong {
+  color: var(--color-brand-neon);
+  font-weight: inherit;
+}
+
+.aboutTeamGrid,
+.aboutTeamFooter {
+  display: grid;
+  --team-frame-size: 16.875rem;
+  --team-frame-offset: calc(var(--team-frame-size) * 0.11);
+  grid-template-columns: repeat(3, var(--team-frame-size));
+  justify-content: center;
+  column-gap: 2rem;
+}
+
+.aboutTeamGrid {
+  row-gap: 3.75rem;
+  margin-top: 3.875rem;
+}
+
+.aboutTeamCard {
+  min-width: 0;
+}
+
+.aboutTeamVisual,
+.aboutTeamAnonymousVisual {
+  position: relative;
+  width: var(--team-frame-size);
+  height: calc(var(--team-frame-size) + var(--team-frame-offset));
+}
+
+.aboutTeamFrame,
+.aboutTeamAnonymousFrame {
+  position: absolute;
+  z-index: 1;
+  top: var(--team-frame-offset);
+  left: 0;
+  width: var(--team-frame-size);
+  height: var(--team-frame-size);
+  overflow: hidden;
+  border-radius: 1.25rem;
+}
+
+.aboutTeamFrame {
+  border: 1px solid var(--color-brand-dark);
+  background: url("https://media.zypher-solutions.com/about-page/section-5/Gradient.png") center /
+    cover no-repeat;
+  box-shadow: 0 1.125rem 2.375rem rgb(15 71 67 / 0.16);
+}
+
+.aboutTeamAnonymousFrame {
+  background: rgb(16 23 21 / 0.08);
+}
+
+.aboutTeamAnonymousImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.aboutTeamArc {
+  position: absolute;
+  z-index: 4;
+  width: 3.125rem;
+  height: 3.125rem;
+  border: 1px solid var(--color-brand-dark);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.aboutTeamArcTop {
+  top: 0.6875rem;
+  left: -0.625rem;
+  clip-path: inset(0 50% 50% 0);
+}
+
+.aboutTeamArcBottom {
+  right: -1rem;
+  bottom: -0.5rem;
+  clip-path: inset(50% 0 0 50%);
+}
+
+.aboutTeamPortraitInsideMask {
+  position: absolute;
+  z-index: 2;
+  top: var(--team-frame-offset);
+  left: 0;
+  width: var(--team-frame-size);
+  height: var(--team-frame-size);
+  overflow: hidden;
+  border-radius: 1.25rem;
+  pointer-events: none;
+}
+
+.aboutTeamPortraitStage {
+  position: absolute;
+  z-index: 2;
+  top: var(--portrait-top);
+  left: var(--portrait-left);
+  width: var(--portrait-width);
+  height: var(--portrait-height);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.aboutTeamPortraitPopoutMask {
+  position: absolute;
+  z-index: 3;
+  top: var(--team-frame-offset);
+  left: 0;
+  width: var(--team-frame-size);
+  height: var(--team-frame-size);
+  overflow: visible;
+  clip-path: inset(calc(var(--team-frame-offset) * -1) 0 calc(100% - 2px) 0);
+  pointer-events: none;
+}
+
+.aboutTeamPortrait {
+  object-fit: contain;
+  object-position: center;
+}
+
+.aboutTeamCard[data-member="rehen"] {
+  --portrait-width: calc(var(--team-frame-size) * 0.844);
+  --portrait-height: calc(var(--team-frame-size) * 1.502);
+  --portrait-left: calc(var(--team-frame-size) * 0.078);
+  --portrait-top: calc(var(--team-frame-size) * -0.392);
+}
+
+.aboutTeamCard[data-member="sanjana"] {
+  --portrait-width: calc(var(--team-frame-size) * 1.477);
+  --portrait-height: calc(var(--team-frame-size) * 1.969);
+  --portrait-left: calc(var(--team-frame-size) * -0.251);
+  --portrait-top: calc(var(--team-frame-size) * -0.685);
+}
+
+.aboutTeamCard[data-member="keerthana"] {
+  --portrait-width: calc(var(--team-frame-size) * 0.784);
+  --portrait-height: calc(var(--team-frame-size) * 1.401);
+  --portrait-left: calc(var(--team-frame-size) * 0.121);
+  --portrait-top: calc(var(--team-frame-size) * -0.083);
+}
+
+.aboutTeamCard[data-member="hanna"] {
+  --portrait-width: calc(var(--team-frame-size) * 1.272);
+  --portrait-height: calc(var(--team-frame-size) * 1.906);
+  --portrait-left: calc(var(--team-frame-size) * -0.133);
+  --portrait-top: calc(var(--team-frame-size) * -0.657);
+}
+
+.aboutTeamCard[data-member="vivek"] {
+  --portrait-width: calc(var(--team-frame-size) * 0.959);
+  --portrait-height: calc(var(--team-frame-size) * 1.709);
+  --portrait-left: calc(var(--team-frame-size) * -0.1);
+  --portrait-top: calc(var(--team-frame-size) * -0.39);
+}
+
+.aboutTeamCard[data-member="divin"] {
+  --portrait-width: calc(var(--team-frame-size) * 2.043);
+  --portrait-height: calc(var(--team-frame-size) * 2.724);
+  --portrait-left: calc(var(--team-frame-size) * -0.795);
+  --portrait-top: calc(var(--team-frame-size) * -1.034);
+}
+.aboutTeamDetails {
+  position: relative;
+  z-index: 5;
+  width: var(--team-frame-size);
+  margin-top: 0.375rem;
+}
+
+.aboutTeamName {
+  margin: 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.375;
+}
+
+.aboutTeamRole {
+  margin: 0.125rem 0 0;
+  color: var(--color-brand-slate);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.aboutTeamSocials {
+  display: flex;
+  width: 1.5625rem;
+  align-items: center;
+  margin-top: 0.75rem;
+  border-top: 1px solid rgb(15 71 67 / 0.28);
+  padding-top: 0.75rem;
+}
+
+.aboutTeamSocialLink {
+  display: inline-flex;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  color: var(--color-brand-neon);
+}
+
+.aboutTeamSocialLink:focus-visible {
+  outline: 2px solid var(--color-brand-dark);
+  outline-offset: 0.2rem;
+}
+
+.aboutTeamLinkedInIcon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-brand-neon);
+  mask: url("/footer/linkedin.svg") center / contain no-repeat;
+  transition: background-color 180ms ease;
+}
+
+.aboutTeamSocialLink:hover .aboutTeamLinkedInIcon,
+.aboutTeamSocialLink:focus-visible .aboutTeamLinkedInIcon {
+  background-color: var(--color-brand-ink);
+}
+
+.aboutTeamFooter {
+  align-items: start;
+  margin-top: 3.625rem;
+}
+
+.aboutTeamInvitation {
+  grid-column: 1;
+}
+
+.aboutTeamInvitationTitle {
+  margin: 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.03;
+}
+
+.aboutTeamInvitationTitle strong {
+  color: var(--color-brand-neon);
+  font-weight: inherit;
+}
+
+.aboutTeamInvitationCopy {
+  max-width: 12.5625rem;
+  margin: 1.125rem 0 0;
+  color: var(--color-brand-slate);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.aboutTeamResume {
+  grid-column: 3;
+  padding-top: 0.75rem;
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.aboutTeamResume p {
+  margin: 0;
+}
+
+.aboutTeamResume a {
+  position: relative;
+  display: inline-block;
+  color: var(--color-brand-dark);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.aboutTeamResume a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.18em;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.aboutTeamResume a:hover,
+.aboutTeamResume a:focus-visible {
+  color: var(--color-brand-neon);
+}
+
+.aboutTeamResume a:hover::after,
+.aboutTeamResume a:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.aboutTeamResume a:focus-visible {
+  outline: 2px solid var(--color-brand-dark);
+  outline-offset: 0.2rem;
+}
+
+@media (max-width: 63.9375rem) {
+  .aboutTeamSection {
+    padding-block: 3.5rem 4.5rem;
+  }
+
+  .aboutTeamShell {
+    width: min(calc(100% - 3rem), 28rem);
+  }
+
+  .aboutTeamEyebrow,
+  .aboutTeamTitle {
+    text-align: center;
+  }
+
+  .aboutTeamGrid,
+  .aboutTeamFooter {
+    --team-frame-size: min(14rem, calc((100vw - 5rem) / 2));
+    grid-template-columns: repeat(2, var(--team-frame-size));
+    column-gap: 1.5rem;
+  }
+
+  .aboutTeamGrid {
+    row-gap: 3.75rem;
+  }
+
+  .aboutTeamCard:nth-child(odd) {
+    justify-self: end;
+  }
+
+  .aboutTeamCard:nth-child(even) {
+    justify-self: start;
+  }
+
+  .aboutTeamFooter {
+    row-gap: 3rem;
+  }
+
+  .aboutTeamFooter .aboutTeamCard {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  .aboutTeamResume {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .aboutTeamSection {
+    padding-block: 3.25rem 4rem;
+  }
+
+  .aboutTeamShell {
+    width: min(calc(100% - 2rem), 20rem);
+  }
+
+  .aboutTeamEyebrow {
+    font-size: 0.75rem;
+  }
+
+  .aboutTeamTitle {
+    font-size: clamp(2.25rem, 12vw, 3rem);
+  }
+
+  .aboutTeamGrid,
+  .aboutTeamFooter {
+    --team-frame-size: min(12.5rem, calc(100vw - 2rem));
+    grid-template-columns: var(--team-frame-size);
+    justify-content: center;
+  }
+
+  .aboutTeamGrid {
+    margin-top: 3.5rem;
+  }
+
+  .aboutTeamCard:nth-child(odd),
+  .aboutTeamCard:nth-child(even) {
+    justify-self: center;
+  }
+
+  .aboutTeamFooter .aboutTeamCard,
+  .aboutTeamResume {
+    grid-column: auto;
+  }
+
+  .aboutTeamInvitation {
+    justify-self: center;
+    text-align: center;
+  }
+
+  .aboutTeamInvitationCopy {
+    margin-inline: auto;
+  }
+
+  .aboutTeamResume {
+    justify-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutTeamLinkedInIcon,
+  .aboutTeamResume a,
+  .aboutTeamResume a::after {
+    transition: none;
+  }
+}
+
+.aboutTeamInvitationCopy {
+  text-align: justify;
+  text-justify: inter-word;
+}

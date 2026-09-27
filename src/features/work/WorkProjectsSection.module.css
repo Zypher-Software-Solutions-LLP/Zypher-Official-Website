@@ -1,0 +1,326 @@
+.workProjectsSection {
+  --work-projects-curve-depth: clamp(5.5rem, 7vw, 8.75rem);
+
+  position: relative;
+  isolation: isolate;
+  min-height: 90rem;
+  overflow: hidden;
+  padding: 3.5rem 0 6rem;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-mist);
+}
+
+.workProjectsSurface {
+  position: absolute;
+  z-index: 0;
+  inset: calc(var(--work-projects-curve-depth) - 3px) 0 0;
+  background: var(--color-brand-dark);
+  pointer-events: none;
+}
+
+.workProjectsBoundary {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: var(--work-projects-curve-depth);
+  pointer-events: none;
+}
+
+.workProjectsInner {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 2rem), 72rem);
+  margin-inline: auto;
+}
+
+.workProjectsTitle {
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 2.2223vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.15625;
+}
+
+.workProjectsFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.75rem;
+  margin-top: 0.75rem;
+}
+
+.workProjectsFilter {
+  position: relative;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--color-brand-slate);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.6667vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.54;
+  text-align: left;
+  transition:
+    color 260ms ease,
+    opacity 260ms ease;
+}
+
+.workProjectsFilter::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.14em;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    opacity 260ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.workProjectsFilter:hover,
+.workProjectsFilter:focus-visible,
+.workProjectsFilterActive {
+  color: var(--color-brand-mist);
+}
+
+.workProjectsFilter:hover::after,
+.workProjectsFilter:focus-visible::after,
+.workProjectsFilterActive::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.workProjectsFilter:focus-visible,
+.workProjectCard:focus-visible {
+  outline: 2px solid var(--color-brand-neon);
+  outline-offset: 3px;
+}
+
+.workProjectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 1.4375rem;
+  row-gap: 2.75rem;
+  margin-top: 1.875rem;
+}
+
+.workProjectCard {
+  min-width: 0;
+  outline: none;
+  animation: work-project-card-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.workProjectMedia {
+  position: relative;
+  aspect-ratio: 368 / 280;
+  overflow: hidden;
+  border-radius: 1.875rem;
+  background: var(--color-brand-slate);
+  box-shadow: -2px 5px 7px rgb(0 0 0 / 50%);
+}
+
+.workProjectImage {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1);
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.workProjectImage[data-image-position="top"] {
+  object-position: center top;
+}
+
+.workProjectTitle {
+  overflow: hidden;
+  margin: 0.9rem 0 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1.6667vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.54;
+  text-overflow: ellipsis;
+  transition: color 280ms ease;
+  white-space: nowrap;
+}
+
+.workProjectDescription {
+  display: -webkit-box;
+  overflow: hidden;
+  min-height: 2rem;
+  margin: 0.15rem 0 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.3333;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.workProjectTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workProjectTag {
+  border-radius: 9999px;
+  padding: 0.2rem 0.55rem;
+  background: var(--color-brand-slate);
+  color: var(--color-brand-mist);
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.workProjectCard:hover .workProjectImage,
+.workProjectCard:focus-within .workProjectImage {
+  transform: scale(1.045);
+}
+
+.workProjectCard:hover .workProjectTitle,
+.workProjectCard:focus-within .workProjectTitle {
+  color: var(--color-brand-neon);
+}
+
+.workProjectCard:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.workProjectCard:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.workProjectCard:nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.workProjectCard:nth-child(5) {
+  animation-delay: 280ms;
+}
+
+.workProjectCard:nth-child(6) {
+  animation-delay: 350ms;
+}
+
+.workProjectCard:nth-child(7) {
+  animation-delay: 420ms;
+}
+
+.workProjectCard:nth-child(8) {
+  animation-delay: 490ms;
+}
+
+@keyframes work-project-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1199px) {
+  .workProjectsSection {
+    min-height: 0;
+    padding-block: 3.25rem 4.5rem;
+  }
+
+  .workProjectsInner {
+    width: min(calc(100% - 4rem), 60rem);
+  }
+
+  .workProjectsFilters {
+    gap: 0.15rem 1.25rem;
+  }
+
+  .workProjectsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2.5rem;
+  }
+
+  .workProjectTitle {
+    font-size: clamp(1.05rem, 2.1vw, 1.25rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .workProjectsSection {
+    margin-top: -1px;
+  }
+}
+
+@media (max-width: 767px) {
+  .workProjectsSection {
+    padding-block: 3rem 4rem;
+  }
+
+  .workProjectsInner {
+    width: calc(100% - 2rem);
+  }
+
+  .workProjectsTitle {
+    font-size: clamp(1.85rem, 8vw, 2.25rem);
+  }
+
+  .workProjectsFilters {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+    overflow-x: auto;
+    padding: 0.1rem 0.5rem 0.4rem;
+    scrollbar-width: none;
+  }
+
+  .workProjectsFilters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .workProjectsFilter {
+    flex: 0 0 auto;
+    font-size: 1rem;
+  }
+
+  .workProjectsGrid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2.25rem;
+    margin-top: 1.75rem;
+  }
+
+  .workProjectTitle {
+    margin-top: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .workProjectDescription {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workProjectsFilter,
+  .workProjectsFilter::after,
+  .workProjectCard,
+  .workProjectImage,
+  .workProjectTitle {
+    animation: none;
+    transition: none;
+  }
+}

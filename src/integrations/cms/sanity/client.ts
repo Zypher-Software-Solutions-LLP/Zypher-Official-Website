@@ -1,4 +1,4 @@
-import { createClient, type SanityClient } from "@sanity/client";
+import { createClient, type SanityClient } from "next-sanity";
 import { getEnvironment } from "@/lib/env";
 
 type SanityClientOptions = {

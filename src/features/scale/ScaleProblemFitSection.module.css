@@ -1,0 +1,432 @@
+.scaleProblemFitSection {
+  --scale-problem-fit-curve-depth: clamp(5.5rem, 7vw, 12rem);
+
+  position: relative;
+  isolation: isolate;
+  min-height: 57rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-mist);
+}
+
+.scaleProblemFitSurface {
+  position: absolute;
+  z-index: 0;
+  inset: calc(var(--scale-problem-fit-curve-depth) - 3px) 0;
+  background: var(--color-brand-dark);
+  pointer-events: none;
+}
+
+.scaleProblemFitBoundary {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: var(--scale-problem-fit-curve-depth);
+  pointer-events: none;
+}
+
+.scaleProblemFitBoundaryTop {
+  top: 0;
+}
+
+.scaleProblemFitBoundaryBottom {
+  bottom: 0;
+}
+
+.scaleProblemFitGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 1.6667vw, 1.5rem);
+  width: min(calc(100% - 2rem), 72rem);
+  min-height: 57rem;
+  margin-inline: auto;
+  padding-top: 6.5rem;
+  box-sizing: border-box;
+}
+
+.scaleProblemFitCopy {
+  grid-column: 1 / span 8;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.scaleProblemFitTitle {
+  width: 50.25rem;
+  max-width: none;
+  margin: 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 3.3333vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1458;
+}
+
+.scaleProblemFitIntro {
+  width: 52.8125rem;
+  max-width: none;
+  margin: 2rem 0 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 1.6667vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.005em;
+  line-height: 1.2917;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.scaleProblemFitChoices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 18rem));
+  column-gap: 1.5rem;
+  row-gap: 2.1875rem;
+  max-width: 40rem;
+  margin-top: 4rem;
+}
+
+.scaleProblemFitTrigger {
+  position: relative;
+  display: block;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--color-brand-slate);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.8056vw, 1.625rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+  text-align: left;
+  transition: color 220ms ease;
+}
+
+.scaleProblemFitTrigger:hover,
+.scaleProblemFitTrigger:focus-visible,
+.scaleProblemFitTrigger[data-state="active"] {
+  color: var(--color-brand-mist);
+}
+
+.scaleProblemFitTrigger:focus-visible {
+  outline: 2px solid var(--color-brand-neon);
+  outline-offset: 0.35rem;
+}
+
+.scaleProblemFitDetails {
+  width: 33.8125rem;
+  margin: 2rem 0 0 3.0625rem;
+  animation: scale-problem-fit-detail-in 360ms ease both;
+}
+
+.scaleProblemFitDivider {
+  width: 20rem;
+  height: 1px;
+  margin-left: 6.9375rem;
+  background: var(--color-brand-mist);
+  opacity: 0.9;
+}
+
+.scaleProblemFitDescription {
+  margin: 1.875rem 0 0;
+  color: var(--color-brand-mist);
+  font-family: var(--font-sans);
+  font-size: clamp(1.125rem, 1.5278vw, 1.375rem);
+  font-weight: 300;
+  letter-spacing: 0.005em;
+  line-height: 1.3182;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.scaleProblemFitMedia {
+  position: relative;
+  grid-column: 8 / span 4;
+  grid-row: 1;
+  align-self: start;
+  justify-self: end;
+  width: 100%;
+  aspect-ratio: 368 / 457;
+  margin-top: 13.4375rem;
+  overflow: hidden;
+  border-radius: 1.875rem;
+  background: var(--color-brand-slate);
+  box-shadow: -2px 5px 7px rgb(0 0 0 / 50%);
+}
+
+.scaleProblemFitImage {
+  object-fit: cover;
+  animation: scale-problem-fit-image-in 460ms ease both;
+}
+
+.scaleProblemFitMobileCarousel {
+  display: none;
+}
+
+.scaleProblemFitSection[data-reveal-state="hidden"] .scaleProblemFitCopy,
+.scaleProblemFitSection[data-reveal-state="hidden"] .scaleProblemFitMedia {
+  opacity: 0;
+  transform: translateY(2rem);
+  visibility: hidden;
+}
+
+.scaleProblemFitCopy,
+.scaleProblemFitMedia {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    opacity 520ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear;
+}
+
+@keyframes scale-problem-fit-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-problem-fit-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 1920px) {
+  .scaleProblemFitSection,
+  .scaleProblemFitGrid {
+    min-height: 58.5rem;
+  }
+
+  .scaleProblemFitGrid {
+    padding-top: 8rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  .scaleProblemFitSection {
+    min-height: 0;
+    padding-block: 6.5rem 8.5rem;
+  }
+
+  .scaleProblemFitGrid {
+    display: flex;
+    width: min(calc(100% - 4rem), 60rem);
+    min-height: 0;
+    flex-direction: column;
+    padding-top: 0;
+  }
+
+  .scaleProblemFitCopy {
+    width: 100%;
+  }
+
+  .scaleProblemFitTitle,
+  .scaleProblemFitIntro {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .scaleProblemFitTitle {
+    font-size: clamp(2.5rem, 4.7vw, 3rem);
+  }
+
+  .scaleProblemFitChoices {
+    max-width: 42rem;
+  }
+
+  .scaleProblemFitDetails {
+    width: min(33.8125rem, 100%);
+    margin-left: 0;
+  }
+
+  .scaleProblemFitMedia {
+    width: min(100%, 36rem);
+    margin: 3.5rem auto 0;
+    border-radius: 1.5rem;
+  }
+
+  .scaleProblemFitDivider {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .scaleProblemFitChoices,
+  .scaleProblemFitDetails {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .scaleProblemFitTrigger,
+  .scaleProblemFitDescription {
+    text-align: center;
+    text-justify: auto;
+  }
+
+  .scaleProblemFitDivider {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .scaleProblemFitSection {
+    padding-block: 5.5rem 7.5rem;
+  }
+
+  .scaleProblemFitGrid {
+    width: min(calc(100% - 2rem), 36rem);
+  }
+
+  .scaleProblemFitTitle {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    letter-spacing: -0.05em;
+    line-height: 1.08;
+  }
+
+  .scaleProblemFitIntro {
+    margin-top: 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.45;
+  }
+
+  .scaleProblemFitChoices,
+  .scaleProblemFitDetails,
+  .scaleProblemFitDesktopMedia {
+    display: none;
+  }
+
+  .scaleProblemFitMobileCarousel {
+    display: block;
+    margin-top: 2.75rem;
+    touch-action: pan-y;
+    user-select: none;
+  }
+
+  .scaleProblemFitMobileHeadingRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .scaleProblemFitMobileTitle {
+    min-width: 0;
+    margin: 0;
+    color: var(--color-brand-mist);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 6vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .scaleProblemFitMobileControls {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.5rem;
+  }
+
+  .scaleProblemFitMobileArrow {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid rgb(215 225 225 / 65%);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-brand-mist);
+    cursor: pointer;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .scaleProblemFitMobileArrow:active {
+    border-color: var(--color-brand-neon);
+    background: var(--color-brand-neon);
+    color: var(--color-brand-dark);
+  }
+
+  .scaleProblemFitMobileArrow:focus-visible {
+    outline: 2px solid var(--color-brand-neon);
+    outline-offset: 0.25rem;
+  }
+
+  .scaleProblemFitMobileArrow svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .scaleProblemFitMobilePanel {
+    animation: scale-problem-fit-detail-in 360ms ease both;
+  }
+
+  .scaleProblemFitMobileDivider {
+    width: 100%;
+    height: 1px;
+    margin-top: 1.25rem;
+    background: var(--color-brand-mist);
+    opacity: 0.75;
+  }
+
+  .scaleProblemFitMobileDescription {
+    margin: 1.5rem 0 0;
+    color: var(--color-brand-mist);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.005em;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .scaleProblemFitMobileMedia {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 2rem;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: var(--color-brand-slate);
+    box-shadow: -2px 5px 7px rgb(0 0 0 / 50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scaleProblemFitCopy,
+  .scaleProblemFitMedia,
+  .scaleProblemFitDetails,
+  .scaleProblemFitImage,
+  .scaleProblemFitTrigger,
+  .scaleProblemFitMobilePanel,
+  .scaleProblemFitMobileArrow {
+    animation: none;
+    transition: none;
+  }
+}

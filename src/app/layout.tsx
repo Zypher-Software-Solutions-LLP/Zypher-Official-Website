@@ -4,29 +4,28 @@ import type { ReactNode } from "react";
 import { ConsentManager } from "@/components/privacy/ConsentManager";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/lib/schema";
-import { buildPageMetadata } from "@/lib/seo";
 import "@/styles/globals.css";
 
 const generalSans = localFont({
   display: "swap",
   src: [
     {
-      path: "../../public/fonts/GeneralSans-Regular.otf",
+      path: "../../public/fonts/GeneralSans-Regular.woff2",
       style: "normal",
       weight: "400",
     },
     {
-      path: "../../public/fonts/GeneralSans-Medium.otf",
+      path: "../../public/fonts/GeneralSans-Medium.woff2",
       style: "normal",
       weight: "500",
     },
     {
-      path: "../../public/fonts/GeneralSans-Semibold.otf",
+      path: "../../public/fonts/GeneralSans-Semibold.woff2",
       style: "normal",
       weight: "600",
     },
     {
-      path: "../../public/fonts/GeneralSans-Bold.otf",
+      path: "../../public/fonts/GeneralSans-Bold.woff2",
       style: "normal",
       weight: "700",
     },
@@ -38,13 +37,6 @@ const hankenGrotesk = Hanken_Grotesk({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-hanken-grotesk",
-});
-
-export const metadata = buildPageMetadata({
-  title: "Your Vision, Our Code",
-  description:
-    "Software development, automation, CRM/ERP, mobile, and UI/UX solutions for teams ready to scale.",
-  path: "/",
 });
 
 export default function RootLayout({ children }: { children: ReactNode }): ReactNode {

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { trackEvent } from "@/integrations/analytics/events";
 import styles from "./CallToActionSection.module.css";
@@ -29,6 +30,7 @@ export function CallToActionSection(): ReactNode {
     <section
       aria-labelledby="cta-title"
       className={styles.ctaSection}
+      data-motion-section="true"
       data-testid="cta-section"
       id="contact-cta"
     >
@@ -62,20 +64,38 @@ export function CallToActionSection(): ReactNode {
 
         <div className={styles.ctaActions}>
           <div className={styles.ctaPrimaryActions}>
-            <button
+            <Link
               className={`${styles.ctaButton} ${styles.ctaButtonPrimary}`}
-              disabled
-              type="button"
+              href="/contact"
+              onClick={(): void => {
+                trackEvent({
+                  name: "cta_clicked",
+                  properties: {
+                    label: "Book a Discovery Call",
+                    location: "final-cta",
+                    destination: "/contact",
+                  },
+                });
+              }}
             >
               Book a Discovery Call
-            </button>
-            <button
+            </Link>
+            <Link
               className={`${styles.ctaButton} ${styles.ctaButtonSecondary}`}
-              disabled
-              type="button"
+              href="/work"
+              onClick={(): void => {
+                trackEvent({
+                  name: "cta_clicked",
+                  properties: {
+                    label: "See Our Work",
+                    location: "final-cta",
+                    destination: "/work",
+                  },
+                });
+              }}
             >
               See Our Work
-            </button>
+            </Link>
           </div>
           <a
             className={`${styles.ctaButton} ${styles.ctaButtonWhatsApp}`}

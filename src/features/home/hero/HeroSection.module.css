@@ -7,82 +7,32 @@
   color: var(--color-brand-dark);
 }
 
-.heroBackground,
-.heroGridOverlay,
-.heroSubject {
+.heroBackground {
   position: absolute;
+  z-index: -1;
+  inset: 0;
   pointer-events: none;
 }
 
-.heroBackground {
-  z-index: -3;
-  top: 0;
-  left: -45.56vw;
-  width: 154.65vw;
-  height: max(100%, 103.06vw);
+.heroBackground::after {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: clamp(5rem, 12svh, 9rem);
+  background: linear-gradient(to bottom, transparent, var(--color-brand-mist));
+  content: "";
+}
+
+.heroBackgroundPicture {
+  position: absolute;
+  display: block;
+  inset: -3.25%;
+  transform: translate3d(0, clamp(2.75rem, 7svh, 6rem), 0);
 }
 
 .heroBackgroundImage {
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.13;
-}
-
-.heroGridOverlay {
-  z-index: -2;
-  top: 0;
-  right: auto;
-  left: -38px;
-  width: 547px;
-  height: 318px;
-  overflow: hidden;
-  opacity: 0.3;
-}
-
-.heroGridOverlayCrop {
-  position: absolute;
-  top: -0.04%;
-  left: 0;
-  width: 149.81%;
-  height: 147.18%;
-}
-
-.heroGridOverlayImage {
-  object-fit: fill;
-  object-position: center;
-}
-
-.heroSubject {
-  z-index: -1;
-  top: calc(50% + clamp(4rem, 4.5833vw, 11rem));
-  right: auto;
-  bottom: auto;
-  left: 50%;
-  width: clamp(54.125rem, 50vw, 118.75rem);
-  height: auto;
-  aspect-ratio: 866 / 822;
-  overflow: hidden;
-  opacity: 0;
-  transform: translate3d(-50%, calc(-50% + 4rem), 0) scale(0.98);
-  animation: hero-subject-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) 100ms forwards;
-}
-
-.heroSubjectImageCrop {
-  position: absolute;
-  top: -3.28%;
-  left: -20.96%;
-  width: 147.04%;
-  height: 103.32%;
-}
-
-.heroSubjectPicture {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.heroSubjectImage {
   object-fit: cover;
   object-position: center;
 }
@@ -98,9 +48,9 @@
 .heroContent {
   position: relative;
   z-index: 1;
-  min-height: 100svh;
+  min-height: max(100svh, 40rem);
   align-items: center;
-  padding-block: 7rem 4rem;
+  padding-block: 7.25rem 4rem;
 }
 
 .heroCopy {
@@ -112,7 +62,7 @@
 }
 
 .heroTitle {
-  width: min(68vw, 76rem);
+  width: 100%;
   max-width: calc(100% - 2rem);
   margin: 0;
   font-size: clamp(2.5rem, 3.8889vw, 4.5rem);
@@ -122,8 +72,14 @@
 }
 
 .heroTitleAccent,
-.heroTitleMain {
+.heroTitleMain,
+.heroTitleLine {
   display: block;
+}
+
+.heroTitleAccent,
+.heroTitleLine {
+  white-space: nowrap;
 }
 
 .heroTitleAccent {
@@ -142,7 +98,7 @@
 }
 
 .heroDescription {
-  width: min(64.44vw, 58rem, calc(100% - 2rem));
+  width: min(100%, 31rem);
   max-width: none;
   margin: clamp(1.25rem, 1.3889vw, 2rem) auto 0;
   color: var(--color-brand-dark);
@@ -171,6 +127,7 @@
 }
 
 .heroPrimaryButton {
+  color: var(--color-brand-ink);
   min-width: clamp(10.75rem, 11.9444vw, 14rem);
 }
 
@@ -196,18 +153,6 @@
   animation-delay: 280ms;
 }
 
-@keyframes hero-subject-in {
-  from {
-    opacity: 0;
-    transform: translate3d(-50%, calc(-50% + 4rem), 0) scale(0.98);
-  }
-
-  to {
-    opacity: 0.4;
-    transform: translate3d(-50%, -50%, 0) scale(1);
-  }
-}
-
 @keyframes hero-fade-in {
   from {
     opacity: 0;
@@ -221,59 +166,34 @@
 }
 
 @media (min-width: 900px) {
-  .heroCopy {
-    grid-column: 2 / span 10;
+  .heroBackgroundPicture {
+    inset: -2.25%;
+    transform: translate3d(0, clamp(0.75rem, 1.2svh, 1.25rem), 0);
   }
 
-  .heroTitleAccent,
-  .heroTitleMain {
-    white-space: nowrap;
+  .heroCopy {
+    grid-column: 3 / span 8;
   }
 }
+
 @media (max-width: 899px) {
+  .heroSection {
+    background: #fff;
+  }
+
   .heroContent {
-    padding-block: 8rem 5rem;
+    padding-block: clamp(6.5rem, 13svh, 8rem);
   }
 
   .heroGrid {
     width: calc(100% - 2rem);
   }
 
-  .heroSubject {
-    top: 50%;
-    right: auto;
-    bottom: auto;
-    left: 50%;
-    width: 100%;
-    height: 100svh;
-    aspect-ratio: auto;
-    opacity: 0;
-  }
-
-  .heroSubjectImageCrop {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .heroSubjectImage {
-    object-fit: contain;
-  }
-
-  .heroGridOverlay {
-    top: 0;
-    right: auto;
-    left: -38px;
-    width: min(75vw, 547px);
-    height: auto;
-    aspect-ratio: 547 / 318;
-    opacity: 0.3;
-  }
-
   .heroTitle {
-    width: calc(100% - 2rem);
-    font-size: clamp(2.25rem, 10.5vw, 3.5rem);
+    width: min(100%, 40rem);
+    max-width: 100%;
+    font-size: clamp(1.75rem, 8vw, 3rem);
+    text-wrap: balance;
     letter-spacing: -0.045em;
   }
 
@@ -282,25 +202,89 @@
     max-width: 36rem;
     font-size: 0.9375rem;
     letter-spacing: 0.08em;
+    line-height: 1.55;
+    text-wrap: balance;
   }
 
   .heroActions {
     gap: 0.75rem;
   }
 }
-@media (max-width: 480px) and (orientation: portrait) {
-  .heroSubject {
-    top: 50%;
+
+@media (min-width: 900px) and (max-width: 1180px) and (orientation: portrait) {
+  .heroSection {
+    background: #fff;
+  }
+
+  .heroContent {
+    padding-block: clamp(7rem, 12svh, 8rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .heroContent {
+    min-height: max(100svh, 40rem);
+    padding-block: clamp(5.5rem, 12svh, 7rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .heroBackgroundPicture {
+    transform: translate3d(0, clamp(5rem, 14svh, 10rem), 0);
+  }
+}
+
+@media (max-width: 767px) and (max-height: 700px) {
+  .heroContent {
+    min-height: max(100svh, 38rem);
+    padding-block: 5.5rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(1.625rem, 7.25vw, 1.75rem);
+  }
+
+  .heroDescription {
     width: 100%;
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.065em;
+    line-height: 1.45;
+  }
+
+  .heroActions {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .heroPrimaryButton,
+  .heroSecondaryButton {
+    min-height: 44px;
+    height: 44px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 359px) and (max-height: 700px) {
+  .heroActions {
+    gap: 0.5rem;
+  }
+
+  .heroPrimaryButton,
+  .heroSecondaryButton {
+    font-size: 0.75rem;
+  }
+
+  .heroPrimaryButton {
+    min-width: 9.5rem;
+  }
+
+  .heroSecondaryButton {
+    min-width: 7.5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroSubject {
-    opacity: 0.4;
-    transform: translate3d(-50%, -50%, 0) scale(1);
-  }
-
   .heroFade {
     opacity: 1;
     transform: none;

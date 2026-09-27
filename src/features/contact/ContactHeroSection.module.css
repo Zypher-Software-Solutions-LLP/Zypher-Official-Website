@@ -1,0 +1,441 @@
+.contactHero {
+  --contact-mist: #f4f8f6;
+  --contact-ink: #0f4743;
+  --contact-neon: #15c196;
+  position: relative;
+  min-height: 52rem;
+  overflow: hidden;
+  background: var(--contact-mist);
+  color: var(--contact-ink);
+}
+
+.contactHeroBackground {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.12;
+}
+
+.contactHeroInner {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2rem, 62.75rem);
+  min-height: 52rem;
+  margin: 0 auto;
+}
+
+.contactHeroGridLines {
+  position: absolute;
+  z-index: 2;
+  top: 10.4375rem;
+  right: max(1rem, calc((100% - 62.75rem) / 2));
+  bottom: 1.5rem;
+  left: max(1rem, calc((100% - 62.75rem) / 2));
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.contactHeroGridLines span {
+  width: 1px;
+  background: color-mix(in srgb, var(--contact-ink) 18%, transparent);
+}
+
+.contactHeroIllustration {
+  position: absolute;
+  top: 11.16rem;
+  left: 13.65%;
+  width: 14rem;
+  height: 15rem;
+  transform: rotate(-8.17deg);
+  transform-origin: center;
+}
+
+.contactHeroIllustration img {
+  object-fit: contain;
+}
+
+.contactHeroCopy {
+  position: absolute;
+  z-index: 2;
+  top: 26.75rem;
+  left: 4.38%;
+  width: min(26.9375rem, 43%);
+}
+
+.contactHeroTitle {
+  max-width: 31rem;
+  margin: 0;
+  font-family: var(--font-general-sans), sans-serif;
+  font-size: clamp(2rem, 2.222vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(180deg, var(--contact-neon) 0%, var(--contact-ink) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contactHeroTitle span {
+  display: block;
+}
+
+.contactHeroDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  margin-top: 1rem;
+}
+
+.contactDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.contactDetailLabel,
+.contactHeroSocialLabel {
+  font-family: var(--font-general-sans), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contactDetailLink {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  color: var(--contact-ink);
+  font-family: var(--font-hanken-grotesk), sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.contactDetailLink:hover,
+.contactDetailLink:focus-visible {
+  color: var(--contact-neon);
+  text-decoration: none;
+}
+
+.contactDetailLink::after,
+.contactDetailLink:focus-visible::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.18em;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    opacity 260ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contactDetailLink:hover::after,
+.contactDetailLink:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.contactHeroSocials {
+  margin-top: 2rem;
+}
+
+.contactHeroSocialLinks {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.contactHeroSocialLink {
+  display: inline-flex;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  color: var(--contact-ink);
+  opacity: 0.9;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.contactHeroSocialLink:hover,
+.contactHeroSocialLink:focus-visible {
+  color: var(--contact-neon);
+  opacity: 1;
+  transform: translateY(-0.125rem);
+}
+
+.contactHeroSocialIcon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--contact-ink);
+  mask: var(--contact-social-icon) center / contain no-repeat;
+  -webkit-mask: var(--contact-social-icon) center / contain no-repeat;
+  transition: background-color 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contactHeroSocialLink:hover .contactHeroSocialIcon,
+.contactHeroSocialLink:focus-visible .contactHeroSocialIcon {
+  background-color: var(--contact-neon);
+}
+
+.contactHeroBooking {
+  position: absolute;
+  z-index: 0;
+  top: 13.875rem;
+  left: 50%;
+  width: 50%;
+  text-align: center;
+}
+
+.contactHeroBookingIntro,
+.contactHeroFormPrompt {
+  margin: 0;
+  font-family: var(--font-hanken-grotesk), sans-serif;
+  color: var(--contact-ink);
+}
+
+.contactHeroBookingIntro {
+  width: min(100%, 28.3125rem);
+  min-height: 3.5rem;
+  margin-inline: auto;
+  font-family: var(--font-sans), sans-serif;
+  font-size: clamp(0.875rem, 1.1111vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.125em;
+  line-height: 1.3125;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.contactHeroCalFrame {
+  aspect-ratio: 1.36;
+  min-height: 20rem;
+  margin-top: 3.25rem;
+  width: calc(100% + 6rem);
+  margin-left: -3rem;
+  overflow: hidden;
+
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--contact-mist) 48%, transparent);
+}
+
+.contactHeroCalWidget {
+  --cal-source-scale: 0.62;
+  --cal-display-scale: 0.62;
+  position: relative;
+  width: calc(100% / var(--cal-source-scale));
+  height: calc(100% / var(--cal-source-scale));
+  overflow: hidden;
+  transform: scale(var(--cal-display-scale));
+  transform-origin: top left;
+  border-radius: 1.25rem;
+}
+
+.contactHeroCalWidget :global(cal-inline) {
+  position: absolute;
+  inset: 0;
+  display: block !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  max-height: none !important;
+  overflow: hidden;
+  border-radius: 1.25rem;
+}
+
+.contactHeroCalWidget :global(.cal-embed) {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 1.25rem;
+}
+
+.contactHeroFormPrompt {
+  margin-top: 1.25rem;
+  color: var(--contact-ink);
+  font-family: var(--font-general-sans), sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.contactHeroFormPromptAccent {
+  color: var(--contact-neon);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .contactHeroCopy,
+  .contactHeroBooking {
+    animation: contact-hero-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .contactHeroIllustration {
+    animation: contact-hero-illustration-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes contact-hero-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes contact-hero-illustration-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1199px) {
+  .contactHeroCalFrame {
+    width: 100%;
+    margin-left: 0;
+  }
+  .contactHeroCalWidget {
+    --cal-source-scale: 0.54;
+    --cal-display-scale: 0.54;
+  }
+
+  .contactHeroCopy {
+    left: 4%;
+    width: min(28rem, 44%);
+  }
+
+  .contactHeroBooking {
+    left: 50%;
+    width: 50%;
+  }
+}
+
+@media (max-width: 899px) {
+  .contactHero {
+    min-height: auto;
+    padding: 7.5rem 2rem 5.5rem;
+  }
+
+  .contactHeroInner {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .contactHeroGridLines {
+    display: none;
+  }
+
+  .contactHeroIllustration,
+  .contactHeroCopy,
+  .contactHeroBooking {
+    position: relative;
+    inset: auto;
+    left: auto;
+    top: auto;
+    width: min(100%, 30rem);
+  }
+
+  .contactHeroIllustration {
+    order: 0;
+    width: 13.5rem;
+    height: 14.5rem;
+    margin: 0 auto;
+  }
+
+  .contactHeroCopy {
+    order: 1;
+    text-align: center;
+  }
+
+  .contactHeroTitle {
+    max-width: 100%;
+    font-size: clamp(2rem, 5.5vw, 2.75rem);
+  }
+
+  .contactHeroTitle span {
+    display: inline;
+  }
+
+  .contactHeroDetails {
+    align-items: center;
+  }
+
+  .contactHeroSocials {
+    margin-top: 2rem;
+  }
+
+  .contactHeroSocialLinks {
+    justify-content: center;
+  }
+
+  .contactHeroBooking {
+    order: 2;
+    text-align: center;
+  }
+
+  .contactHeroCalFrame {
+    aspect-ratio: auto;
+    height: 24rem;
+    margin-top: 2rem;
+  }
+
+  .contactHeroCalWidget {
+    --cal-source-scale: 1;
+    --cal-display-scale: 1;
+    width: 100%;
+    height: 100%;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactHero {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .contactHeroTitle {
+    font-size: clamp(1.8rem, 8vw, 2.25rem);
+  }
+
+  .contactHeroBookingIntro,
+  .contactHeroFormPrompt,
+  .contactDetailLink {
+    font-size: 0.9375rem;
+  }
+
+  .contactHeroBookingIntro {
+    letter-spacing: 0.07em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contactDetailLink,
+  .contactDetailLink::after,
+  .contactHeroSocialLink,
+  .contactHeroSocialIcon {
+    transition: none;
+  }
+}

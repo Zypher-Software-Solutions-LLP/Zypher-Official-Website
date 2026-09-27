@@ -5,8 +5,8 @@ import styles from "./ScaleSection.module.css";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { ReactNode, RefObject } from "react";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { useViewportReveal } from "@/components/motion/useViewportReveal";
 import { scaleClientLogos, scaleMetrics, scaleProjects } from "./scale-data";
 type ScaleProjectRecord = (typeof scaleProjects)[number];
 type NavigationDirection = -1 | 1;
@@ -182,7 +182,7 @@ function ProjectCard({ project }: { project: ScaleProjectRecord }): ReactNode {
             className={styles.scaleSectionProjectArrow}
             data-testid="scale-project-arrow"
           >
-            &#8599;
+            <ArrowIcon direction="north-east" />
           </span>
         </div>
       </Link>
@@ -192,7 +192,6 @@ function ProjectCard({ project }: { project: ScaleProjectRecord }): ReactNode {
 
 export function ScaleSection(): ReactNode {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const hasEnteredViewport = useViewportReveal(sectionRef);
   const {
     carouselEnabled,
     currentProjectIndex,
@@ -205,7 +204,7 @@ export function ScaleSection(): ReactNode {
     <section
       aria-labelledby="scale-section-title"
       className={styles.scaleSection}
-      data-reveal-state={hasEnteredViewport ? "visible" : "hidden"}
+      data-motion-section="true"
       data-testid="scale-section"
       id="scale"
       ref={sectionRef}
@@ -288,7 +287,7 @@ export function ScaleSection(): ReactNode {
             trackingLabel="View All Works"
             trackingLocation="scale"
           >
-            View All Works <span aria-hidden="true">&#8594;</span>
+            View All Works <ArrowIcon />
           </ButtonLink>
           <h3 className={styles.scaleSectionProjectsTitle} data-testid="scale-projects-title">
             <span>TAILORED SOLUTIONS, BUILT FOR</span>
@@ -304,7 +303,7 @@ export function ScaleSection(): ReactNode {
             onClick={() => handleProjectNavigation(-1)}
             type="button"
           >
-            &#8592;
+            <ArrowIcon direction="left" />
           </button>
           <div
             aria-label="Featured projects"
@@ -334,7 +333,7 @@ export function ScaleSection(): ReactNode {
             onClick={() => handleProjectNavigation(1)}
             type="button"
           >
-            &#8594;
+            <ArrowIcon />
           </button>
         </div>
       </div>

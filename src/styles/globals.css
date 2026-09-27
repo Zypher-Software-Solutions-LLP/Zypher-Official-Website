@@ -27,15 +27,54 @@
   background: var(--color-ink-950);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  --motion-intro-duration: 650ms;
+  --motion-reveal-duration: 540ms;
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-reveal-distance: 1rem;
+  --motion-stagger-step: 80ms;
 }
 
 * {
   box-sizing: border-box;
+  scrollbar-color: var(--color-brand-neon) white;
+  scrollbar-width: thin;
 }
 
 html {
   background: var(--color-ink-950);
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  scrollbar-color: var(--color-brand-neon) white;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+*::-webkit-scrollbar-track {
+  margin-block: 0.3rem;
+  border-radius: 999px;
+  background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+  min-height: 2rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background-color: var(--color-brand-neon);
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
 }
 
 body {
@@ -72,6 +111,19 @@ textarea {
   color: var(--color-brand-ink);
 }
 
+.turnstileField {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
 .site-container {
   width: min(100% - 2rem, 80rem);
   margin-inline: auto;
@@ -103,6 +155,83 @@ textarea {
   backdrop-filter: blur(1rem);
 }
 
+@keyframes motion-page-intro {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes motion-section-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-reveal-distance), 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+[data-motion-intro] {
+  animation: motion-page-intro var(--motion-intro-duration) var(--motion-ease-out) both;
+}
+
+[data-motion-intro][data-motion-order="2"] {
+  animation-delay: var(--motion-stagger-step);
+}
+
+[data-motion-intro][data-motion-order="3"] {
+  animation-delay: calc(var(--motion-stagger-step) * 2);
+}
+
+[data-motion-section] [data-motion-item] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity var(--motion-reveal-duration) var(--motion-ease-out),
+    transform var(--motion-reveal-duration) var(--motion-ease-out);
+}
+
+[data-motion-section]:not([data-reveal-state="visible"]) [data-motion-item] {
+  opacity: 0;
+  transform: none;
+}
+
+[data-motion-section][data-reveal-state="visible"] [data-motion-item] {
+  opacity: 1;
+  animation: motion-section-reveal var(--motion-reveal-duration) var(--motion-ease-out) both;
+}
+
+[data-motion-section][data-reveal-state="visible"] [data-motion-item][data-motion-order="2"] {
+  transition-delay: var(--motion-stagger-step);
+  animation-delay: var(--motion-stagger-step);
+}
+
+[data-motion-section][data-reveal-state="visible"] [data-motion-item][data-motion-order="3"] {
+  transition-delay: calc(var(--motion-stagger-step) * 2);
+  animation-delay: calc(var(--motion-stagger-step) * 2);
+}
+
+[data-motion-section][data-motion-skip] [data-motion-item] {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+html[data-motion-skip] [data-motion-intro] {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -116,9 +245,31 @@ textarea {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+
+  [data-motion-intro],
+  [data-motion-section] [data-motion-item],
+  [data-motion-section][data-reveal-state="hidden"] [data-motion-item] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (min-width: 768px) {
+  .turnstileField {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+  }
+
   .site-container {
     width: min(100% - 4rem, 80rem);
   }

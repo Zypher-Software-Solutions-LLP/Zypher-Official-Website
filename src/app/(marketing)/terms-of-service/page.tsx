@@ -1,19 +1,29 @@
 import type { Metadata } from "next";
-import { StaticPage } from "@/features/pages/StaticPage";
-import { buildPageMetadata } from "@/lib/seo";
+import { LegalPolicyPage } from "@/features/legal/LegalPolicyPage";
+import {
+  TERMS_OF_USE_LAST_UPDATED,
+  termsOfUseIntroduction,
+  termsOfUseSections,
+} from "@/features/legal/terms-of-use-content";
+import { getStaticPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Terms of Service",
-  description: "The terms governing use of the Zypher website.",
-  path: "/terms-of-service",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return getStaticPageMetadata("/terms-of-use");
+}
 
-export default function TermsOfServicePage(): React.ReactNode {
+export default function TermsOfUsePage(): React.ReactNode {
   return (
-    <StaticPage
-      description="This page will contain the approved terms of service for the Zypher website."
+    <LegalPolicyPage
+      bodyLabel="Terms of Use content"
       eyebrow="Legal"
-      title="Terms of Service"
+      heroDescription="The terms governing use of the Zypher website."
+      indexLabel="Terms of Use sections"
+      intro={termsOfUseIntroduction}
+      lastUpdated={TERMS_OF_USE_LAST_UPDATED}
+      lastUpdatedLabel="Last Updated"
+      pageKey="terms-of-use"
+      sections={termsOfUseSections}
+      title="Terms of Use"
     />
   );
 }

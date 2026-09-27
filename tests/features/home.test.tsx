@@ -23,19 +23,28 @@ describe("homepage hero", () => {
   it("should route the hero calls to action to contact and work", () => {
     render(<HomePage />);
 
-    expect(screen.getByRole("link", { name: "Book a Discovery Call" })).toHaveAttribute(
-      "href",
-      "/contact",
-    );
-    expect(screen.getByRole("link", { name: "See Our Work" })).toHaveAttribute("href", "/work");
+    expect(
+      within(screen.getByTestId("hero-section")).getByRole("link", {
+        name: "Book a Discovery Call",
+      }),
+    ).toHaveAttribute("href", "/contact");
+    expect(
+      within(screen.getByTestId("hero-section")).getByRole("link", { name: "See Our Work" }),
+    ).toHaveAttribute("href", "/work");
     expect(screen.getByTestId("hero-background")).toHaveAttribute(
       "data-layer",
       "background-illustration",
     );
-    expect(screen.getByTestId("hero-background")).toHaveAttribute("data-opacity", "0.13");
-    expect(screen.getByTestId("hero-subject")).toHaveAttribute("data-position", "anchored");
-    expect(screen.getByTestId("hero-subject")).toHaveAttribute("data-opacity", "0.4");
-    expect(screen.getByTestId("hero-grid-overlay")).toHaveAttribute("data-position", "top-left");
+    expect(screen.getByTestId("hero-background-picture").querySelector("source")).toHaveAttribute(
+      "srcset",
+      expect.stringContaining("Background%20Mobile%20Image.png"),
+    );
+    expect(screen.getByTestId("hero-background-image")).toHaveAttribute(
+      "src",
+      expect.stringContaining("Background%2520PC%2520Image.png"),
+    );
+    expect(screen.queryByTestId("hero-grid-overlay")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("hero-subject")).not.toBeInTheDocument();
   });
 });
 

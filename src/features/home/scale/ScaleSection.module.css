@@ -78,8 +78,7 @@
   box-shadow: -2px 5px 7px rgb(92 107 103 / 0.5);
   padding: clamp(1rem, 1.1111vw, 1.25rem);
   opacity: 0;
-  transform: translate3d(0, 2rem, 0);
-  animation: scale-card-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: scale-card-in 360ms ease forwards;
 }
 
 .scaleSection[data-reveal-state="hidden"] .scaleSectionMetricCard,
@@ -99,6 +98,20 @@
   animation-delay: 180ms;
 }
 
+.scaleSectionTop,
+.scaleSectionLogoViewport,
+.scaleSectionProjectsHeader,
+.scaleSectionProjectsRow {
+  opacity: 0;
+  transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scaleSection[data-reveal-state="visible"] .scaleSectionTop,
+.scaleSection[data-reveal-state="visible"] .scaleSectionLogoViewport,
+.scaleSection[data-reveal-state="visible"] .scaleSectionProjectsHeader,
+.scaleSection[data-reveal-state="visible"] .scaleSectionProjectsRow {
+  opacity: 1;
+}
 .scaleSectionMetricTitle {
   max-width: 14rem;
   margin: 0;
@@ -433,12 +446,10 @@
 @keyframes scale-card-in {
   from {
     opacity: 0;
-    transform: translate3d(0, 2rem, 0);
   }
 
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -493,7 +504,7 @@
   .scaleSectionProjectsTitle {
     order: 1;
     max-width: 100%;
-    text-align: center;
+    text-align: left;
   }
 
   .scaleSectionViewAll {
@@ -535,6 +546,10 @@
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+  .scaleSectionIllustration {
+    opacity: 0.42;
+  }
+
   .scaleSectionMetrics {
     width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -548,6 +563,19 @@
 }
 
 @media (max-width: 767px) {
+  .scaleSectionTitle {
+    font-size: clamp(1.75rem, 7.1vw, 2.25rem);
+    text-wrap: balance;
+  }
+
+  .scaleSectionTitle span {
+    white-space: nowrap;
+  }
+
+  .scaleSectionIllustration {
+    opacity: 0.3;
+  }
+
   .scaleSectionTop {
     min-height: clamp(14rem, 52vw, 20rem);
   }
@@ -562,6 +590,7 @@
 
   .scaleSectionProjectsTitle {
     font-size: clamp(1rem, 5.6vw, 2rem);
+    text-align: left;
   }
 
   .scaleSectionProjectsTitle span,
@@ -729,5 +758,56 @@
 @media (prefers-reduced-motion: reduce) {
   .scaleSectionProjectsViewport {
     scroll-behavior: auto;
+  }
+
+  .scaleSectionTop,
+  .scaleSectionLogoViewport,
+  .scaleSectionProjectsHeader,
+  .scaleSectionProjectsRow {
+    opacity: 1;
+    transition: none;
+  }
+
+  .scaleSectionMetricCard,
+  .scaleSectionLogoTrack {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* Home interaction refinements */
+.scaleSectionViewAll {
+  color: var(--color-brand-ink);
+}
+
+.scaleSectionProjectCard:focus-visible::after {
+  box-shadow: 0 0 0 1px rgb(20 214 170 / 0.28);
+}
+
+.scaleSectionProjectArrow .arrowIcon {
+  width: 1.15em;
+  height: 1.15em;
+}
+
+/* Touch devices keep the carousel draggable instead of applying desktop hover choreography. */
+@media (hover: none), (pointer: coarse) {
+  .scaleSectionProjectCard:hover .scaleSectionProjectImage {
+    filter: none;
+    transform: none;
+  }
+
+  .scaleSectionProjectCard:hover .scaleSectionProjectEyebrow,
+  .scaleSectionProjectCard:hover .scaleSectionProjectTitle {
+    transform: none;
+  }
+
+  .scaleSectionProjectCard:hover .scaleSectionProjectDescription {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+  }
+
+  .scaleSectionProjectCard:hover .scaleSectionProjectArrow {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0) scale(0.8);
   }
 }

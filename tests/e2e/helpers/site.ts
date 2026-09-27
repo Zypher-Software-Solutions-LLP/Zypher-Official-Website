@@ -15,6 +15,7 @@ export async function dismissConsent(page: Page): Promise<void> {
   const rejectButton = consentDialog.getByRole("button", { name: "Reject optional" });
   await expect(rejectButton).toBeEnabled();
   await rejectButton.click();
+  await expect(consentDialog).toBeHidden();
 }
 
 export async function openPage(page: Page, path = "/"): Promise<void> {

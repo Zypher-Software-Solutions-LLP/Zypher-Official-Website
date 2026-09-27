@@ -12,8 +12,12 @@ validated server-side. Resend requests use an idempotency key.
 
 ## CSP
 
-The initial policy is report-only while GTM, Sanity, R2, Turnstile, and Resend origins are verified.
-It must be enforced before the production domain cutover.
+The application emits an enforced, static-compatible Content Security Policy. It
+allows only the provider origins currently required by GTM, Sanity, R2, Turnstile,
+Google Maps, and Cal.com; an unconfigured R2 host is never widened to a wildcard.
+The policy retains narrowly scoped inline script/style allowances required by the
+current static Next.js/provider integration. Review the policy after any provider
+or analytics change.
 
 ## Dependency hygiene
 

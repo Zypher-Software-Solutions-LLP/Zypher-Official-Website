@@ -1,0 +1,337 @@
+.aboutFoundersSection {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
+  padding: 3.5rem 0 2.6875rem;
+}
+
+.aboutFoundersShell {
+  width: min(calc(100% - 2rem), 72rem);
+  margin-inline: auto;
+}
+
+.aboutFoundersTitle {
+  margin: 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 3.8889vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.0833;
+}
+
+.aboutFoundersTitle span {
+  display: block;
+}
+
+.aboutFoundersTitle strong {
+  color: var(--color-brand-neon);
+  font-weight: inherit;
+}
+
+.aboutFoundersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 16.875rem));
+  justify-content: center;
+  column-gap: 2rem;
+  margin-top: clamp(5.5rem, 6.8vw, 6.125rem);
+}
+
+.aboutFounderCard {
+  display: flex;
+  width: 16.875rem;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.aboutFounderVisual {
+  --founder-card-shape: path(
+    "M 20 23.61 L 250 1.89 Q 270 0 270 20 L 270 329.5 Q 270 349.5 250 351.39 L 20 373.11 Q 0 375 0 355 L 0 45.5 Q 0 25.5 20 23.61 Z"
+  );
+
+  position: relative;
+  width: 16.875rem;
+  height: 23.4375rem;
+}
+
+.aboutFounderFrame {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  clip-path: var(--founder-card-shape);
+  background: url("https://media.zypher-solutions.com/about-page/section-4/Gradient.png") center /
+    cover no-repeat;
+  filter: drop-shadow(0 1.125rem 2.375rem rgb(15 71 67 / 0.16));
+}
+
+.aboutFounderArcTop,
+.aboutFounderArcBottom {
+  position: absolute;
+  z-index: 0;
+  width: 3.125rem;
+  height: 3.125rem;
+  border: 1px solid var(--color-brand-dark);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.aboutFounderArcTop {
+  top: -0.6875rem;
+  left: -0.625rem;
+  clip-path: inset(0 50% 50% 0);
+}
+
+.aboutFounderArcBottom {
+  right: -1rem;
+  bottom: -0.5rem;
+  clip-path: inset(50% 0 0 50%);
+}
+
+.aboutFounderPortraitInsideMask {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  overflow: hidden;
+  clip-path: var(--founder-card-shape);
+  pointer-events: none;
+}
+
+.aboutFounderPortraitStage {
+  position: absolute;
+  z-index: 2;
+  top: var(--portrait-top);
+  left: var(--portrait-left);
+  width: var(--portrait-width);
+  height: var(--portrait-height);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.aboutFounderPortraitPopoutMask {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: visible;
+  clip-path: inset(-8rem 0 calc(100% - 1.5rem) 0);
+  pointer-events: none;
+}
+
+.aboutFounderPortraitPopoutCanvas {
+  position: absolute;
+  inset: 0;
+}
+
+.aboutFounderPortrait {
+  object-fit: contain;
+  object-position: center;
+}
+
+.aboutFounderCard[data-founder="hasheem"] {
+  --portrait-width: calc(16.875rem * 1.046);
+  --portrait-height: calc(16.875rem * 1.57);
+  --portrait-left: calc(16.875rem * -0.047);
+  --portrait-top: calc(16.875rem * -0.183);
+}
+
+.aboutFounderCard[data-founder="ziyan"] {
+  --portrait-width: calc(16.875rem * 1.08);
+  --portrait-height: calc(16.875rem * 2.527);
+  --portrait-left: calc(16.875rem * -0.047);
+  --portrait-top: calc(16.875rem * -0.117);
+}
+
+.aboutFounderCard[data-founder="hank"] {
+  --portrait-width: calc(16.875rem * 1.202);
+  --portrait-height: calc(16.875rem * 2.137);
+  --portrait-left: calc(16.875rem * -0.051);
+  --portrait-top: calc(16.875rem * -0.746);
+}
+.aboutFounderDetails {
+  display: flex;
+  width: 16.875rem;
+  min-height: 0;
+  margin-top: 1rem;
+  flex: 1;
+  flex-direction: column;
+}
+
+.aboutFounderName {
+  margin: 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.6875rem;
+}
+
+.aboutFounderNameHighlight {
+  color: var(--color-brand-dark);
+}
+
+.aboutFounderRole {
+  margin: 0.25rem 0 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.25rem;
+  line-height: 0.8125rem;
+  text-transform: uppercase;
+}
+
+.aboutFounderDescription {
+  max-width: 15.5rem;
+  min-height: 6rem;
+  margin: 1rem 0 0;
+  color: var(--color-brand-ink);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+.aboutFounderCard[data-founder="hasheem"] .aboutFounderDescription {
+  max-width: 13.75rem;
+}
+
+.aboutFounderCard[data-founder="hank"] .aboutFounderDescription {
+  max-width: 16.1875rem;
+}
+
+.aboutFounderSocials {
+  display: flex;
+  width: 8rem;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: auto;
+  border-top: 1px solid rgb(15 71 67 / 0.28);
+  padding-top: 0.8125rem;
+}
+
+.aboutFounderSocialLink {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  color: var(--color-brand-neon);
+}
+
+.aboutFounderSocialLink:first-child {
+  width: 1.5625rem;
+  height: 1.5625rem;
+}
+
+.aboutFounderSocialLink:last-child {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+.aboutFounderSocialLink:focus-visible {
+  outline: 2px solid var(--color-brand-dark);
+  outline-offset: 0.2rem;
+}
+
+.aboutFounderLinkedInIcon,
+.aboutFounderPortfolioIcon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-brand-neon);
+  transition: background-color 180ms ease;
+}
+
+.aboutFounderLinkedInIcon {
+  mask: url("/footer/linkedin.svg") center / contain no-repeat;
+}
+
+.aboutFounderPortfolioIcon {
+  mask: url("/about/portfolio.png") center / contain no-repeat;
+}
+
+.aboutFounderSocialLink:hover .aboutFounderLinkedInIcon,
+.aboutFounderSocialLink:hover .aboutFounderPortfolioIcon,
+.aboutFounderSocialLink:focus-visible .aboutFounderLinkedInIcon,
+.aboutFounderSocialLink:focus-visible .aboutFounderPortfolioIcon {
+  background-color: var(--color-brand-ink);
+}
+
+@media (max-width: 63.9375rem) {
+  .aboutFoundersSection {
+    padding-block: 3.5rem 4rem;
+  }
+
+  .aboutFoundersShell {
+    width: calc(100% - 4rem);
+  }
+
+  .aboutFoundersTitle {
+    text-align: center;
+  }
+
+  .aboutFoundersGrid {
+    grid-template-columns: repeat(2, minmax(0, 16.875rem));
+    gap: 5rem 2rem;
+    margin-top: 6.125rem;
+  }
+
+  .aboutFounderCard:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .aboutFoundersSection {
+    padding-block: 3.25rem 3.75rem;
+  }
+
+  .aboutFoundersShell {
+    width: calc(100% - 2rem);
+  }
+
+  .aboutFoundersTitle {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    text-align: center;
+  }
+
+  .aboutFoundersGrid {
+    grid-template-columns: minmax(0, 16.875rem);
+    gap: 5.5rem;
+    margin-top: 6.125rem;
+  }
+
+  .aboutFounderCard:last-child {
+    grid-column: auto;
+  }
+
+  .aboutFounderDescription {
+    font-size: 0.8125rem;
+    line-height: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutFounderLinkedInIcon,
+  .aboutFounderPortfolioIcon {
+    transition: none;
+  }
+}
+
+.aboutFounderDescription {
+  text-align: justify;
+  text-justify: inter-word;
+}
+@media (min-width: 64rem) {
+  .aboutFounderCard[data-founder="ziyan"] .aboutFounderSocials {
+    margin-top: 1.5rem;
+  }
+}
+@media (max-width: 47.999rem) {
+  .aboutFounderSocials {
+    margin-top: 1.5rem;
+  }
+}

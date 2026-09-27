@@ -1,27 +1,41 @@
 import { NextResponse } from "next/server";
 import { sendContactEmail } from "@/integrations/email/resend";
 import { verifyTurnstile } from "@/integrations/security/turnstile";
+import { readBoundedBody } from "@/lib/http/read-bounded-body";
 import { ContactPayloadSchema } from "@/lib/validation/contact";
 
 export const runtime = "nodejs";
 
 const MAX_CONTACT_REQUEST_BYTES = 32_768;
+const JSON_CONTENT_TYPE = "application/json";
 
 export async function POST(request: Request): Promise<NextResponse> {
   const requestId = crypto.randomUUID();
-  const contentLength = Number(request.headers.get("content-length"));
+  const contentType = request.headers.get("content-type")?.split(";", 1)[0].trim().toLowerCase();
 
-  if (Number.isFinite(contentLength) && contentLength > MAX_CONTACT_REQUEST_BYTES) {
+  if (contentType !== JSON_CONTENT_TYPE) {
     return NextResponse.json(
-      { error: "Please check your form details.", code: "PAYLOAD_TOO_LARGE" },
-      { status: 413 },
+      { error: "Please check your form details.", code: "UNSUPPORTED_MEDIA_TYPE" },
+      { status: 415 },
     );
   }
 
   let input: unknown;
 
   try {
-    input = await request.json();
+    const requestBody = await readBoundedBody(request, MAX_CONTACT_REQUEST_BYTES);
+    if (requestBody.status === "payload-too-large") {
+      return NextResponse.json(
+        { error: "Please check your form details.", code: "PAYLOAD_TOO_LARGE" },
+        { status: 413 },
+      );
+    }
+
+    if (requestBody.status !== "ok") {
+      throw new Error("Request body could not be decoded");
+    }
+
+    input = JSON.parse(requestBody.body) as unknown;
   } catch {
     return NextResponse.json(
       { error: "Please check your form details.", code: "INVALID_INPUT" },

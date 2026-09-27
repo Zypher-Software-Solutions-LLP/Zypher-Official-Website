@@ -28,10 +28,13 @@ describe("site footer", () => {
     expect(screen.getByRole("button", { name: "Cookie settings" })).toBeInTheDocument();
   });
 
-  it("should preserve the supplied social destinations and the empty Facebook placeholder", () => {
+  it("should preserve the supplied social destinations", () => {
     render(<Footer />);
 
-    expect(screen.getByRole("link", { name: "Facebook" })).toHaveAttribute("href", "#");
+    expect(screen.getByRole("link", { name: "Facebook" })).toHaveAttribute(
+      "href",
+      "https://www.facebook.com/profile.php?id=61594146397661",
+    );
     expect(screen.getByRole("link", { name: "X" })).toHaveAttribute(
       "href",
       "https://x.com/ZyphersSolution",

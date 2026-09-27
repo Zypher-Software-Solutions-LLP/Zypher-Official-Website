@@ -3,7 +3,7 @@
   isolation: isolate;
   min-height: 48rem;
   overflow: hidden;
-  background: var(--color-brand-dark);
+  background: var(--color-brand-mist);
   color: var(--color-brand-ink);
 }
 
@@ -261,5 +261,47 @@
 
   .servicesHeroSection * {
     scroll-behavior: auto;
+  }
+}
+
+/* Services micro-interactions and readable copy */
+.servicesHeroDescription {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.servicesHeroPrimaryButton {
+  color: var(--color-brand-ink);
+}
+
+.servicesHeroPrimaryButton:hover,
+.servicesHeroPrimaryButton:focus-visible {
+  color: var(--color-brand-ink);
+}
+
+@media (max-width: 47.999rem) {
+  .servicesHeroDescription {
+    letter-spacing: 0.03em;
+  }
+
+  .servicesHeroActions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .servicesHeroPrimaryButton,
+  .servicesHeroSecondaryButton {
+    width: min(100%, 15rem);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .servicesHeroTitle {
+    width: min(100%, 25rem);
+    font-size: clamp(2rem, 8.4vw, 3rem);
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+    text-wrap: balance;
   }
 }

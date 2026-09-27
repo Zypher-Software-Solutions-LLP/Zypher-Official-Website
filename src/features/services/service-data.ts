@@ -22,14 +22,15 @@ export const serviceDefinitions: ServiceDefinition[] = [
     description: "Practical AI and automation systems designed around your team’s real work.",
   },
   {
+    slug: "design-creative",
+    name: "Design & Creative",
+    description:
+      "Research-led product design and creative production built to work in the real world.",
+  },
+  {
     slug: "crm-erp-solutions",
     name: "CRM/ERP Solutions",
     description: "Connected operational systems that give teams better visibility and control.",
-  },
-  {
-    slug: "ui-ux-design",
-    name: "UI/UX Design",
-    description: "Clear product experiences that help people understand, choose, and act.",
   },
 ];
 

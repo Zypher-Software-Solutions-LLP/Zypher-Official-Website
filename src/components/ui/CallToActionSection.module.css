@@ -112,10 +112,25 @@
   box-shadow: -2px 5px 7px rgb(0 0 0 / 50%);
 }
 
+.ctaButtonPrimary:hover,
+.ctaButtonPrimary:focus-visible {
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+  transform: translateY(-1px);
+}
+
 .ctaButtonSecondary {
   border: 1px solid var(--color-brand-neon);
   background: transparent;
   color: var(--color-brand-mist);
+}
+
+.ctaButtonSecondary:hover,
+.ctaButtonSecondary:focus-visible {
+  border-color: var(--color-brand-neon);
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+  transform: translateY(-1px);
 }
 
 .ctaButtonWhatsApp {
@@ -176,6 +191,23 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ctaButton {
+    transition: none;
+  }
+}
+
+/* Keep the image and overlay visible; reveal only the CTA content. */
+.ctaContent {
+  opacity: 0;
+  transition: opacity 540ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ctaSection[data-reveal-state="visible"] .ctaContent {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaContent {
+    opacity: 1;
     transition: none;
   }
 }

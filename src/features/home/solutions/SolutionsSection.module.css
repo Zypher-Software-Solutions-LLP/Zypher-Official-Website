@@ -225,13 +225,16 @@
 
   .solutionsSectionCopy {
     order: 1;
-    text-align: center;
+    text-align: left;
   }
 
   .solutionsSectionTitle {
+    width: 100%;
     max-width: none;
     font-size: clamp(2rem, 9vw, 2.75rem);
     line-height: 1.08;
+    text-align: left;
+    transform: none;
   }
 
   .solutionsSectionSubtitle {
@@ -324,21 +327,86 @@
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+  .solutionsSectionCopy {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
   .solutionsSectionTitle {
-    width: 165%;
+    width: 100%;
     max-width: none;
     text-align: center;
-    transform: translateX(-39.5%);
+    transform: none;
   }
 
   .solutionsSectionSubtitle {
     margin-top: 1.5rem;
+    text-align: right;
+  }
+
+  .solutionsSectionCta {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    margin-top: 0.25rem;
   }
 }
 
 @media (min-width: 768px) and (max-width: 899px) {
   .solutionsSectionTitle {
     font-size: clamp(2rem, 3.2vw, 2.5rem);
-    transform: translateX(-39.75%);
+    transform: none;
+  }
+}
+
+/* Home interaction refinements */
+.solutionsSectionCta {
+  width: clamp(10rem, 10.5vw, 12rem);
+  min-height: clamp(2.25rem, 2.4306vw, 3rem);
+  height: clamp(2.25rem, 2.4306vw, 3rem);
+  font-size: 1rem;
+}
+
+.solutionsCard {
+  border: 1px solid transparent;
+  transition:
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .solutionsCard:hover {
+    border-color: var(--color-brand-neon);
+    box-shadow:
+      0 0 0 1px rgb(20 214 170 / 0.32),
+      -2px 9px 18px rgb(15 71 67 / 0.22);
+    transform: translateY(-0.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solutionsCard {
+    transition: none;
+  }
+}
+/* Keep the section surface rendered; reveal only lightweight content layers. */
+.solutionsSectionHeader,
+.solutionsSection[data-reveal-state="hidden"] .solutionsCard {
+  opacity: 0;
+  transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.solutionsSection[data-reveal-state="visible"] .solutionsSectionHeader,
+.solutionsSection[data-reveal-state="visible"] .solutionsCard {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solutionsSectionHeader,
+  .solutionsCard {
+    opacity: 1;
+    transition: none;
   }
 }

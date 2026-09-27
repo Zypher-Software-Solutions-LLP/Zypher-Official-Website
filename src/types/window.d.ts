@@ -8,6 +8,8 @@ declare global {
         element: HTMLElement,
         options: {
           sitekey: string;
+          action?: string;
+          appearance?: "always" | "execute" | "interaction-only";
           callback: (token: string) => void;
           "expired-callback"?: () => void;
           "error-callback"?: () => void;

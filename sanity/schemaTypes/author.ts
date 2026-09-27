@@ -11,6 +11,12 @@ export const author = defineType({
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "url",
+      title: "Profile URL",
+      type: "url",
+      validation: (Rule) => Rule.uri({ allowRelative: false, scheme: ["http", "https"] }),
+    }),
     defineField({ name: "role", title: "Role", type: "string" }),
     defineField({
       name: "bio",

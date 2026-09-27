@@ -1,18 +1,28 @@
 import type { Metadata } from "next";
-import { StaticPage } from "@/features/pages/StaticPage";
-import { buildPageMetadata } from "@/lib/seo";
+import { LegalPolicyPage } from "@/features/legal/LegalPolicyPage";
+import {
+  COOKIE_POLICY_LAST_UPDATED,
+  cookiePolicyIntroduction,
+  cookiePolicySections,
+} from "@/features/legal/cookie-policy-content";
+import { getStaticPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Cookie Policy",
-  description: "How cookies and optional analytics are used on the Zypher website.",
-  path: "/cookie-policy",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return getStaticPageMetadata("/cookie-policy");
+}
 
 export default function CookiePolicyPage(): React.ReactNode {
   return (
-    <StaticPage
-      description="This page will contain the approved cookie policy and consent details for the Zypher website."
+    <LegalPolicyPage
+      bodyLabel="Cookie Policy content"
       eyebrow="Legal"
+      heroDescription="How cookies and optional analytics are used on the Zypher website."
+      indexLabel="Cookie Policy sections"
+      intro={cookiePolicyIntroduction}
+      lastUpdated={COOKIE_POLICY_LAST_UPDATED}
+      lastUpdatedLabel="Last Updated"
+      pageKey="cookie-policy"
+      sections={cookiePolicySections}
       title="Cookie Policy"
     />
   );

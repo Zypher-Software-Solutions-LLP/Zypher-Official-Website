@@ -9,6 +9,7 @@ type SubmissionStatus = "idle" | "submitting" | "success" | "error";
 export function ContactForm(): ReactNode {
   const [status, setStatus] = useState<SubmissionStatus>("idle");
   const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileResetSignal, setTurnstileResetSignal] = useState(0);
   const hasStarted = useRef(false);
 
   const handleTokenChange = useCallback((token: string): void => {
@@ -23,9 +24,10 @@ export function ContactForm(): ReactNode {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
+    const form = event.currentTarget;
     setStatus("submitting");
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     const payload = {
       name: String(formData.get("name") || ""),
       email: String(formData.get("email") || ""),
@@ -49,7 +51,7 @@ export function ContactForm(): ReactNode {
         throw new Error("Contact submission failed");
       }
 
-      event.currentTarget.reset();
+      form.reset();
       setTurnstileToken("");
       setStatus("success");
       trackEvent({ name: "contact_form_submitted", properties: { form_name: "contact" } });
@@ -59,6 +61,9 @@ export function ContactForm(): ReactNode {
         name: "contact_form_failed",
         properties: { form_name: "contact", reason: "delivery_or_validation" },
       });
+    } finally {
+      setTurnstileToken("");
+      setTurnstileResetSignal((signal) => signal + 1);
     }
   }
 
@@ -138,7 +143,11 @@ export function ContactForm(): ReactNode {
           .
         </span>
       </label>
-      <TurnstileField onTokenChange={handleTokenChange} />
+      <TurnstileField
+        action="contact"
+        onTokenChange={handleTokenChange}
+        resetSignal={turnstileResetSignal}
+      />
       <button
         className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-ink-950 transition-colors hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         disabled={status === "submitting"}

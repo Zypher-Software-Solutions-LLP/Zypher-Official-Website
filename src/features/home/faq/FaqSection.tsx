@@ -1,9 +1,23 @@
 "use client";
 
-import styles from "./FaqSection.module.css";
 import { useState } from "react";
 import type { ChangeEvent, ReactNode } from "react";
+import type { FaqItem } from "./faq-data";
 import { faqItems } from "./faq-data";
+import styles from "./FaqSection.module.css";
+
+type FaqSectionProps = {
+  items?: readonly FaqItem[];
+  sectionId?: string;
+  title?: string;
+  intro?: string | null;
+  variant?: "default" | "plain";
+};
+
+const DEFAULT_TITLE = "Questions you’re probably already asking";
+const DEFAULT_INTRO =
+  "No generic answers, just what you’d actually want to know before reaching out.";
+
 function formatQuestionNumber(index: number): string {
   return String(index + 1).padStart(2, "0");
 }
@@ -12,31 +26,45 @@ function formatQuestionListNumber(index: number): string {
   return String(index + 1) + ".";
 }
 
-export function FaqSection(): ReactNode {
-  const firstFaqItem = faqItems[0];
+export function FaqSection({
+  items = faqItems,
+  sectionId = "faq",
+  title = DEFAULT_TITLE,
+  intro = DEFAULT_INTRO,
+  variant = "default",
+}: FaqSectionProps = {}): ReactNode {
+  const firstFaqItem = items[0];
   const [activeFaqId, setActiveFaqId] = useState(firstFaqItem?.id ?? "");
-  const activeFaqItem = faqItems.find((item) => item.id === activeFaqId) ?? firstFaqItem;
+  const activeFaqItem = items.find((item) => item.id === activeFaqId) ?? firstFaqItem;
 
   if (!activeFaqItem) {
     return null;
   }
 
-  const activeFaqIndex = faqItems.indexOf(activeFaqItem);
+  const activeFaqIndex = items.indexOf(activeFaqItem);
+  const answerId = `${sectionId}-answer`;
+  const questionSelectId = `${sectionId}-question-select`;
+  const titleId = `${sectionId}-title`;
+  const introClassName =
+    variant === "plain"
+      ? styles.faqSectionIntro + " " + styles.faqSectionIntroPlain
+      : styles.faqSectionIntro;
   const handleFaqChange = (event: ChangeEvent<HTMLSelectElement>): void => {
     setActiveFaqId(event.target.value);
   };
 
   return (
     <section
-      aria-labelledby="faq-title"
+      aria-labelledby={titleId}
       className={styles.faqSection}
-      data-testid="faq-section"
-      id="faq"
+      data-motion-section="true"
+      data-testid={`${sectionId}-section`}
+      id={sectionId}
     >
-      <header className={styles.faqSectionIntro}>
+      <header className={introClassName}>
         <div className={styles.faqSectionIntroInner}>
-          <h2 id="faq-title">Questions you’re probably already asking</h2>
-          <p>No generic answers, just what you’d actually want to know before reaching out.</p>
+          <h2 id={titleId}>{title}</h2>
+          {intro ? <p>{intro}</p> : null}
         </div>
       </header>
 
@@ -48,12 +76,12 @@ export function FaqSection(): ReactNode {
               className={styles.faqSectionNavigation}
               data-testid="faq-question-navigation"
             >
-              {faqItems.map((item, index) => {
+              {items.map((item, index) => {
                 const isActive = item.id === activeFaqItem.id;
 
                 return (
                   <button
-                    aria-controls="faq-answer"
+                    aria-controls={answerId}
                     aria-current={isActive ? "true" : undefined}
                     className={styles.faqSectionQuestionButton}
                     data-testid="faq-question"
@@ -73,17 +101,17 @@ export function FaqSection(): ReactNode {
 
           <div className={styles.faqSectionContent}>
             <div className={styles.faqSectionSelectorWrap}>
-              <label className="sr-only" htmlFor="faq-question-select">
+              <label className="sr-only" htmlFor={questionSelectId}>
                 Choose a frequently asked question
               </label>
               <select
                 aria-label="Choose a frequently asked question"
                 className={styles.faqSectionSelector}
-                id="faq-question-select"
+                id={questionSelectId}
                 onChange={handleFaqChange}
                 value={activeFaqItem.id}
               >
-                {faqItems.map((item) => (
+                {items.map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.question}
                   </option>
@@ -96,10 +124,10 @@ export function FaqSection(): ReactNode {
               aria-live="polite"
               className={styles.faqSectionAnswer}
               data-testid="faq-answer"
-              id="faq-answer"
+              id={answerId}
             >
               <h3 className={styles.faqSectionAnswerTitle}>The Answers to the Questions</h3>
-              <div className={styles.faqSectionAnswerDetail}>
+              <div className={styles.faqSectionAnswerDetail} key={activeFaqItem.id}>
                 <div className={styles.faqSectionAnswerQuestion} data-testid="faq-answer-question">
                   <p className={styles.faqSectionAnswerNumber} data-testid="faq-answer-number">
                     {formatQuestionNumber(activeFaqIndex)}

@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./SolutionsSection.module.css";
 import type { ReactNode } from "react";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { solutionCards } from "./solutions-data";
 export function SolutionsSection(): ReactNode {
@@ -8,6 +11,7 @@ export function SolutionsSection(): ReactNode {
     <section
       aria-labelledby="solutions-section-title"
       className={styles.solutionsSection}
+      data-motion-section="true"
       data-testid="solutions-section"
       id="solutions"
     >
@@ -42,7 +46,7 @@ export function SolutionsSection(): ReactNode {
             trackingLocation="solutions"
             variant="secondary"
           >
-            About Zypher <span aria-hidden="true">&#8594;</span>
+            About Zypher <ArrowIcon />
           </ButtonLink>
         </header>
 

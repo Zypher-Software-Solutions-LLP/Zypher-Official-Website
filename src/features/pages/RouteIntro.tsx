@@ -18,7 +18,7 @@ export function RouteIntro({
 }: RouteIntroProps): React.ReactNode {
   return (
     <section className="border-b border-mist-300/10">
-      <div className="site-container py-24 sm:py-32">
+      <div className="site-container py-24 sm:py-32" data-motion-intro="true">
         <SectionHeading eyebrow={eyebrow} title={title} description={description} />
         <ButtonLink className="mt-8" href={actionHref}>
           {actionLabel}

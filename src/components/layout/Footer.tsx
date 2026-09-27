@@ -42,7 +42,7 @@ const footerGroups = [
       { label: "Software / Website Dev", href: "/services/software-development" },
       { label: "Mobile App Dev.", href: "/services/mobile-app-development" },
       { label: "CRM/ERP Solutions", href: "/services/crm-erp-solutions" },
-      { label: "Digital Marketing", href: "/contact" },
+      { label: "Design & Creative", href: "/services/design-creative" },
     ],
   },
   {
@@ -61,7 +61,11 @@ const footerGroups = [
 ] as const satisfies readonly FooterLinkGroup[];
 
 const footerSocialLinks = [
-  { label: "Facebook", href: "#", iconSrc: "/footer/facebook.svg" },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61594146397661",
+    iconSrc: "/footer/facebook.svg",
+  },
   {
     label: "X",
     href: "https://x.com/ZyphersSolution",
@@ -144,8 +148,8 @@ export function Footer(): ReactNode {
                   className={styles.siteFooterSocialLink}
                   href={social.href}
                   key={social.label}
-                  rel={social.href === "#" ? undefined : "noreferrer"}
-                  target={social.href === "#" ? undefined : "_blank"}
+                  rel="noreferrer"
+                  target="_blank"
                 >
                   <span
                     aria-hidden="true"

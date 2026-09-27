@@ -1,7 +1,7 @@
 .section {
   background: var(--color-brand-mist);
   color: var(--color-brand-ink);
-  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+  padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(1.5rem, 3.5vw, 3.25rem);
 }
 
 .shell {
@@ -75,7 +75,7 @@
   align-self: start;
   margin: 0;
   padding-top: 0.15rem;
-  color: rgb(244 248 246 / 0.5);
+  color: rgb(244 248 246 / 0.75);
   font-family: var(--font-sans);
   font-size: clamp(1.25rem, 2.15vw, 2rem);
   font-weight: 400;
@@ -458,4 +458,25 @@
     animation: none;
     transition: none;
   }
+}
+
+/* Services micro-interactions and readable copy */
+.description,
+.deliverable,
+.deliverable:nth-child(1),
+.deliverable:nth-child(2),
+.deliverable:nth-child(3) {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.cta {
+  background: var(--color-brand-neon);
+  color: var(--color-brand-ink);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: var(--color-brand-mist);
+  color: var(--color-brand-ink);
 }

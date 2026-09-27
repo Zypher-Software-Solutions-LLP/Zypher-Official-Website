@@ -20,6 +20,10 @@ const richText = {
         { title: "Heading 3", value: "h3" },
         { title: "Quote", value: "blockquote" },
       ],
+      lists: [
+        { title: "Bullet list", value: "bullet" },
+        { title: "Numbered list", value: "number" },
+      ],
       marks: {
         annotations: [
           {
@@ -57,7 +61,7 @@ export const blogPost = defineType({
       title: "Excerpt",
       type: "text",
       rows: 3,
-      validation: (Rule) => Rule.required().max(240),
+      validation: (Rule) => Rule.required().min(40).max(240),
     }),
     defineField({
       name: "author",
@@ -71,6 +75,7 @@ export const blogPost = defineType({
       title: "Categories",
       type: "array",
       of: [{ type: "reference", to: [{ type: "category" }] }],
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: "image",
@@ -78,6 +83,7 @@ export const blogPost = defineType({
       type: "image",
       options: { hotspot: true },
       fields: editorialImageFields,
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "publishedAt",
@@ -90,7 +96,7 @@ export const blogPost = defineType({
       name: "body",
       title: "Body",
       ...richText,
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().min(1),
     }),
     defineField({
       name: "seo",

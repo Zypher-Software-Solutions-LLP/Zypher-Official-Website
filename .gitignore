@@ -9,5 +9,7 @@ test-results/
 !.env.example
 .vercel/
 .sanity/
+.impeccable/
+.superpowers/
 *.log
 *.tsbuildinfo

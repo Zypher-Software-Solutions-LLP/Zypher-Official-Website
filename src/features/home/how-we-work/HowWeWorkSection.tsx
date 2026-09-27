@@ -254,6 +254,7 @@ export function HowWeWorkSection(): ReactNode {
     <section
       aria-labelledby="how-we-work-title"
       className={styles.howWeWorkSection}
+      data-motion-section="true"
       data-testid="how-we-work-section"
       id="how-we-work"
       ref={sectionRef}

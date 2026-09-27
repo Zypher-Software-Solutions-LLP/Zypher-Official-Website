@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { HomePage } from "@/features/home/HomePage";
 
@@ -27,11 +27,17 @@ describe("homepage CTA section", () => {
     );
   });
 
-  it("should keep future CTAs inactive and route WhatsApp to the supplied number", () => {
+  it("should route the final CTAs and WhatsApp to their destinations", () => {
     render(<HomePage />);
 
-    expect(screen.getByRole("button", { name: "Book a Discovery Call" })).toBeDisabled();
-    expect(screen.getByRole("button", { name: "See Our Work" })).toBeDisabled();
+    expect(
+      within(screen.getByTestId("cta-section")).getByRole("link", {
+        name: "Book a Discovery Call",
+      }),
+    ).toHaveAttribute("href", "/contact");
+    expect(
+      within(screen.getByTestId("cta-section")).getByRole("link", { name: "See Our Work" }),
+    ).toHaveAttribute("href", "/work");
 
     const whatsappLink = screen.getByRole("link", { name: "WhatsApp Us" });
     expect(whatsappLink).toHaveAttribute(

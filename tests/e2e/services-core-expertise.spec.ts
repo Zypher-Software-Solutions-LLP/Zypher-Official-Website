@@ -79,7 +79,10 @@ test.describe("Services core expertise", () => {
     const panelHeights: number[] = [];
 
     for (const categoryLabel of categoryLabels) {
-      await page.getByRole("button", { name: categoryLabel }).click();
+      await section
+        .getByTestId("core-expertise-tabs")
+        .getByRole("button", { name: categoryLabel })
+        .click();
       await expect(section.getByRole("heading", { level: 2, name: categoryLabel })).toBeVisible();
       panelHeights.push(
         await panelLocator.evaluate((element) =>

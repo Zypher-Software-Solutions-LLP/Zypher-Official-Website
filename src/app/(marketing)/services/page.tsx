@@ -1,42 +1,27 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CallToActionSection } from "@/components/ui/CallToActionSection";
 import { AIAutomationSection } from "@/features/services/AIAutomationSection";
 import { CoreExpertiseSection } from "@/features/services/core-expertise/CoreExpertiseSection";
-import { serviceDefinitions } from "@/features/services/service-data";
+import { ExtendedCapabilitiesSection } from "@/features/services/extended-capabilities/ExtendedCapabilitiesSection";
+import { ServicesFaqSection } from "@/features/services/faq/ServicesFaqSection";
+import { ScopeApproachSection } from "@/features/services/scope-approach/ScopeApproachSection";
 import { ServicesHeroSection } from "@/features/services/ServicesHeroSection";
-import { buildPageMetadata } from "@/lib/seo";
+import { getStaticPageMetadata } from "@/lib/seo";
+import styles from "./ServicesPage.module.css";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Services",
-  description:
-    "End-to-end software, engineered with AI at the core, from your first idea to production.",
-  path: "/services",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return getStaticPageMetadata("/services");
+}
 
 export default function ServicesPage(): React.ReactNode {
   return (
-    <main id="main-content">
+    <main className={styles.servicesPage} id="main-content">
       <ServicesHeroSection />
       <AIAutomationSection />
       <CoreExpertiseSection />
-      <section
-        className="site-container grid gap-4 py-20 md:grid-cols-2 lg:grid-cols-3 sm:py-28"
-        data-testid="service-lines"
-        id="service-lines"
-      >
-        {serviceDefinitions.map((service) => (
-          <Link
-            className="rounded-3xl border border-mist-300/15 p-6 transition-colors hover:border-cyan-300/60 hover:bg-ink-900"
-            href={`/services/${service.slug}`}
-            key={service.slug}
-          >
-            <p className="eyebrow">Service</p>
-            <h2 className="mt-5 text-xl font-semibold text-mist-100">{service.name}</h2>
-            <p className="mt-3 text-sm leading-6 text-mist-300">{service.description}</p>
-          </Link>
-        ))}
-      </section>
+      <ExtendedCapabilitiesSection />
+      <ScopeApproachSection />
+      <ServicesFaqSection />
       <CallToActionSection />
     </main>
   );

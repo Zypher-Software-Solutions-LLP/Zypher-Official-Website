@@ -22,7 +22,7 @@ describe("services hero", () => {
     expect(screen.getByText(servicesDescription)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "See Our Services →" })).toHaveAttribute(
       "href",
-      "#service-lines",
+      "#ai-automation",
     );
     expect(screen.getByRole("link", { name: "See How We Build With AI →" })).toHaveAttribute(
       "href",
