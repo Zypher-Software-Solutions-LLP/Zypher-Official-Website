@@ -1,6 +1,20 @@
 import { expect, test } from "@playwright/test";
 import { openPage } from "./helpers/site";
 
+test("should keep site navigation clickable while the consent banner is open", async ({ page }) => {
+  await page.context().clearCookies();
+  await page.goto("/");
+
+  const consentDialog = page.getByRole("dialog", { name: "Cookie consent" });
+  await expect(consentDialog).toBeVisible();
+  await expect(consentDialog).toHaveAttribute("aria-modal", "false");
+
+  await page.getByRole("link", { name: "Services", exact: true }).click();
+
+  await expect(page).toHaveURL(/\/services$/);
+  await expect(page.getByTestId("services-hero")).toBeVisible();
+});
+
 test("should navigate from the homepage to the work page", async ({ page }) => {
   await openPage(page);
   await page.getByTestId("hero-section").getByRole("link", { name: "See Our Work" }).click();

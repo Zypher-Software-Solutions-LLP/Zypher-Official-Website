@@ -222,7 +222,7 @@ export function ConsentManager(): ReactNode {
         <section
           aria-describedby="zypher-consent-banner-description"
           aria-label="Cookie consent"
-          aria-modal="true"
+          aria-modal="false"
           className={styles.bannerCard}
           role="dialog"
         >
