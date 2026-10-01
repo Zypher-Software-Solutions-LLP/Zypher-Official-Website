@@ -15,18 +15,42 @@ if (shouldValidateProductionEnvironment) {
 }
 
 const r2Hostname = process.env.NEXT_PUBLIC_R2_MEDIA_HOSTNAME;
+const sanityProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const sanityDataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 const environment = process.env.NODE_ENV === "production" ? "production" : "development";
-const r2ImagePattern = r2Hostname ? [{ protocol: "https" as const, hostname: r2Hostname }] : [];
+const imageCacheTtlSeconds = 31 * 24 * 60 * 60;
+const r2ImagePattern = r2Hostname
+  ? [{ protocol: "https" as const, hostname: r2Hostname, port: "", pathname: "/**", search: "" }]
+  : [];
+const sanityImagePattern = sanityProjectId
+  ? [
+      {
+        protocol: "https" as const,
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: `/images/${sanityProjectId}/${sanityDataset}/**`,
+        search: "",
+      },
+    ]
+  : [];
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    // Marketing assets use stable URLs. Change an R2 URL or purge its cache when replacing a file.
+    minimumCacheTTL: imageCacheTtlSeconds,
     qualities: [75, 100],
+    localPatterns: [{ pathname: "/home/section-1/background-illustration.png", search: "" }],
     remotePatterns: [
-      { protocol: "https", hostname: "cdn.sanity.io" },
-      { protocol: "https", hostname: "media.zypher-solutions.com" },
-      { protocol: "https", hostname: "flagcdn.com" },
+      ...sanityImagePattern,
+      {
+        protocol: "https",
+        hostname: "media.zypher-solutions.com",
+        port: "",
+        pathname: "/**",
+        search: "",
+      },
       ...r2ImagePattern,
     ],
   },
