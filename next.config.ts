@@ -38,6 +38,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    unoptimized: true,
     // Marketing assets use stable URLs. Change an R2 URL or purge its cache when replacing a file.
     minimumCacheTTL: imageCacheTtlSeconds,
     qualities: [75, 100],
