@@ -60,7 +60,7 @@ test.describe("Services core expertise", () => {
 
     expect(layout.cardColumns).toBe(4);
     expect(layout.deliverableColumns).toBe(3);
-    expect(layout.imageSource).toContain("Custom%2520Web%2520Applications.png");
+    expect(layout.imageSource).toContain("Custom%20Web%20Applications.png");
     expect(layout.tabsAfterPanel).toBe(true);
     expect(Math.abs(layout.tabsTop - layout.panelBottom)).toBeLessThanOrEqual(1);
     expect(layout.panelBorderBottomLeftRadius).toBe("0px");

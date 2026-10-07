@@ -88,7 +88,7 @@ test.describe("Services extended capabilities", () => {
     expect(desktopLayout.contentWidth).toBeGreaterThan(200);
     expect(desktopLayout.iconWidth).toBeGreaterThan(48);
     expect(desktopLayout.activeControlColor).toBe("rgb(16, 23, 21)");
-    expect(desktopLayout.imageSource).toContain("Cybersecurity%2520-%2520Thumbnail.png");
+    expect(desktopLayout.imageSource).toContain("Cybersecurity%20-%20Thumbnail.png");
     expect(desktopLayout.mediaBeforeContent).toBe(true);
 
     const cta = section.getByRole("link", { name: "Get In Touch →" });
