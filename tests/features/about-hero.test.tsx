@@ -21,11 +21,11 @@ describe("About hero section", () => {
     ).toBeInTheDocument();
     expect(screen.getByTestId("about-hero-background")).toHaveAttribute(
       "data-image-src",
-      "/home/section-1/background-illustration.png",
+      "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp",
     );
     expect(screen.getByTestId("about-hero-illustration")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/about-page/section-1/Hero%20Section.png",
+      "https://media.zypher-solutions.com/about-page/section-1/Hero%20Section.webp",
     );
     expect(within(hero).getByRole("link", { name: "Book a Discovery Call" })).toHaveAttribute(
       "href",

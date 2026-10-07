@@ -49,7 +49,7 @@ describe("CRM/ERP Solutions service page", () => {
     );
     expect(within(hero).getByTestId("crm-erp-solutions-hero-illustration")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/05-services-page/section-1/Hero%20Section.png",
+      "https://media.zypher-solutions.com/05-services-page/section-1/Hero%20Section.webp",
     );
 
     expect(within(sectionTwo).getByRole("heading", { level: 2 })).toHaveTextContent(
@@ -59,7 +59,7 @@ describe("CRM/ERP Solutions service page", () => {
       within(sectionTwo).getByTestId("crm-erp-solutions-section-two-illustration"),
     ).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/05-services-page/section-2/Wide%20Section%202%20Illustration.png",
+      "https://media.zypher-solutions.com/05-services-page/section-2/Wide%20Section%202%20Illustration.webp",
     );
 
     expect(within(sectionThree).getByRole("heading", { level: 2 })).toHaveTextContent(

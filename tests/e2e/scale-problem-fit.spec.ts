@@ -46,7 +46,7 @@ test.describe("Scale problem fit section", () => {
     await section.getByRole("button", { name: "Openness to Process" }).click();
     await expect(section.getByTestId("scale-problem-fit-image")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/scale-page/section-4/Openness%20to%20Process.png",
+      "https://media.zypher-solutions.com/scale-page/section-4/Openness%20to%20Process.webp",
     );
   });
 

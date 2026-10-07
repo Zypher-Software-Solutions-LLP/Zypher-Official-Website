@@ -3,9 +3,10 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./AiLlmAutomationHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const SOFTWARE_DEVELOPMENT_HERO_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/02-services-page/section-1/Hero%20Section.png";
+  "https://media.zypher-solutions.com/02-services-page/section-1/Hero%20Section.webp";
 const SOFTWARE_DEVELOPMENT_DESCRIPTION =
   "From a single internal tool to a full-scale platform, we build software that fits your actual process, connects to your existing systems, and ships ready to run in production, not just in a demo environment.";
 

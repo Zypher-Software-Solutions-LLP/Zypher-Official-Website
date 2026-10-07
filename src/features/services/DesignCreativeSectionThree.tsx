@@ -14,36 +14,36 @@ const DESIGN_CREATIVE_SECTION_THREE_CARDS: CapabilityCard[] = [
     title: "User Research & Prototyping",
     description:
       "We study the people using your product before designing a single screen. Behavioral patterns, pain points, and what competitors get wrong.",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/User%20Research.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/User%20Research.webp",
   },
   {
     title: "Product Design (Web & Mobile)",
     description:
       "Interfaces designed for how people actually navigate, thumb zones, scroll behavior, and moments where users decide to stay or leave. Built for the platform, not adapted after.",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/Product%20Design.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/Product%20Design.webp",
   },
   {
     title: "Design Systems & Libraries",
     description:
       "A single source of truth for every visual decision in your product. Components, tokens, spacing rules, and interaction patterns. Documented and ready for developers.",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/Design%20Systems.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/Design%20Systems.webp",
   },
   {
     title: "Motion, Video & Creative",
     description:
       "Video editing, motion graphics, 3D rendering, and animation from social content to brand films. Built in After Effects, DaVinci Resolve, and Lottie.",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/Motion.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/Motion.webp",
   },
   {
     title: "Branding & Creative Production",
     description:
       "Logo, color system, typography, brand guidelines, graphic design, and print, built from scratch or refined from what exists.",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/Branding.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-3/Branding.webp",
   },
 ];
 
 const DESIGN_CREATIVE_SECTION_THREE_CTA_IMAGE_SRC =
-  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.png";
+  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.webp";
 
 const IMAGE_SIZES =
   "(max-width: 39.999rem) calc(100vw - 2rem), (max-width: 48rem) calc((100vw - 3rem) / 2), (max-width: 63.999rem) calc((100vw - 6.5rem) / 3), 270px";

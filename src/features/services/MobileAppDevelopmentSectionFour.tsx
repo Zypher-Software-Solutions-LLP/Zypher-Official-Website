@@ -24,7 +24,7 @@ const MOBILE_APP_DEVELOPMENT_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Discovery",
     description:
       "We start by understanding the problem the app needs to solve, not by collecting a list of screens you want. Who uses it, how they use it, what they're doing before and after they open it, and what success looks like in six months. Platform choice, backend requirements, and third-party integrations all get mapped here. No proposal before this conversation is done.",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-4/Discovery.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-4/Discovery.webp",
     imageAlt: "Illustration for the discovery stage",
   },
   {
@@ -34,7 +34,7 @@ const MOBILE_APP_DEVELOPMENT_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Architecture & Scope",
     description:
       "We design the system before we design the screens. Backend architecture, API structure, authentication, data models, and the Flutter or native decision, all confirmed and documented before any UI work begins. You get a scoped brief and a fixed quote. One number, not a range. Scope and price are locked here before anything is built.",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-4/Architecture.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-4/Architecture.webp",
     imageAlt: "Illustration for the architecture and scope stage",
   },
   {
@@ -45,7 +45,7 @@ const MOBILE_APP_DEVELOPMENT_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "Engineering and design run in parallel. As screens are built, they're tested on real iOS and Android devices, not just simulators. Edge cases, device-specific behaviour, OS version compatibility, and app store submission requirements are all addressed before launch, not discovered after. You see working builds throughout the process, not just at the end.",
     imageSrc:
-      "https://media.zypher-solutions.com/03-services-page/section-4/Build%20%26%20Integration.png",
+      "https://media.zypher-solutions.com/03-services-page/section-4/Build%20%26%20Integration.webp",
     imageAlt: "Illustration for the build and platform testing stage",
   },
   {
@@ -56,7 +56,7 @@ const MOBILE_APP_DEVELOPMENT_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "App store submission, approval, and launch are handled as part of the engagement, not handed back to you as a final task. Full ownership transfers at handoff: codebase, credentials, store accounts, and documentation written for the people maintaining the app. Post-launch support scope is agreed before the build starts, not introduced after.",
     imageSrc:
-      "https://media.zypher-solutions.com/03-services-page/section-4/Handoff%20%26%20Documentation.png",
+      "https://media.zypher-solutions.com/03-services-page/section-4/Handoff%20%26%20Documentation.webp",
     imageAlt: "Illustration for the handoff and documentation stage",
   },
 ];

@@ -3,9 +3,10 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./AboutHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const ABOUT_HERO_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/about-page/section-1/Hero%20Section.png";
+  "https://media.zypher-solutions.com/about-page/section-1/Hero%20Section.webp";
 const ABOUT_HERO_TITLE =
   "We started fixing things nobody asked us to fix. That part never changed.";
 const ABOUT_HERO_DESCRIPTION =

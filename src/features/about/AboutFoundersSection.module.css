@@ -60,7 +60,7 @@
   z-index: 1;
   inset: 0;
   clip-path: var(--founder-card-shape);
-  background: url("https://media.zypher-solutions.com/about-page/section-4/Gradient.png") center /
+  background: url("https://media.zypher-solutions.com/about-page/section-4/Gradient.webp") center /
     cover no-repeat;
   filter: drop-shadow(0 1.125rem 2.375rem rgb(15 71 67 / 0.16));
 }
@@ -249,7 +249,8 @@
 }
 
 .aboutFounderPortfolioIcon {
-  mask: url("/about/portfolio.png") center / contain no-repeat;
+  mask: url("https://media.zypher-solutions.com/about-page/section-4/Portfolio.webp") center /
+    contain no-repeat;
 }
 
 .aboutFounderSocialLink:hover .aboutFounderLinkedInIcon,

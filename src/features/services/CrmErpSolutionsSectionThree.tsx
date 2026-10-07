@@ -15,38 +15,38 @@ const CRM_ERP_SOLUTIONS_SECTION_THREE_CARDS: CapabilityCard[] = [
     description:
       "Salesforce, HubSpot, Monday.com, Odoo, and other major platforms, configured to how your team actually sells, follows up, and manages relationships.",
     imageSrc:
-      "https://media.zypher-solutions.com/05-services-page/section-3/CRM%20Implementation.png",
+      "https://media.zypher-solutions.com/05-services-page/section-3/CRM%20Implementation.webp",
   },
   {
     title: "Custom CRM Development",
     description:
       "When off-the-shelf platforms don't fit your process or cost more to configure than to build, we develop a CRM from the ground up.",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-3/Custom%20CRM.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-3/Custom%20CRM.webp",
   },
   {
     title: "ERP Implementation & Setup",
     description:
       "End-to-end ERP configuration connecting your finance, inventory, procurement, and operations into one system. Mapped to your business processes.",
     imageSrc:
-      "https://media.zypher-solutions.com/05-services-page/section-3/ERP%20Implementaation.png",
+      "https://media.zypher-solutions.com/05-services-page/section-3/ERP%20Implementaation.webp",
   },
   {
     title: "Data Migration",
     description:
       "Moving your existing data, contacts, deals, history, and documents into a new system without losing relationships or breaking records.",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-3/Data%20Migration.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-3/Data%20Migration.webp",
   },
   {
     title: "Systems Integration",
     description:
       "Connecting your CRM or ERP to the rest of your stack, marketing tools, finance software, communication platforms, and custom APIs.",
     imageSrc:
-      "https://media.zypher-solutions.com/05-services-page/section-3/Systems%20Integration.png",
+      "https://media.zypher-solutions.com/05-services-page/section-3/Systems%20Integration.webp",
   },
 ];
 
 const CRM_ERP_SOLUTIONS_SECTION_THREE_CTA_IMAGE_SRC =
-  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.png";
+  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.webp";
 
 const IMAGE_SIZES =
   "(max-width: 39.999rem) calc(100vw - 2rem), (max-width: 48rem) calc((100vw - 3rem) / 2), (max-width: 63.999rem) calc((100vw - 6.5rem) / 3), 270px";

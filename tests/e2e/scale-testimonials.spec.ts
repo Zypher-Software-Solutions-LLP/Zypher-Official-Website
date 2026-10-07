@@ -86,7 +86,7 @@ test.describe("Scale testimonials section", () => {
 
     await expect(section.locator('img[data-image-src*="Umair%20Moideen"]').first()).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/scale-page/section-5/Umair%20Moideen.jpeg",
+      "https://media.zypher-solutions.com/scale-page/section-5/Umair%20Moideen.webp",
     );
 
     const baseAnimation = await primaryTrack.evaluate((element) => {

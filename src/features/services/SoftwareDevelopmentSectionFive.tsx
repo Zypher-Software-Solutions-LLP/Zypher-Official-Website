@@ -13,37 +13,37 @@ const DELIVERABLES: readonly Deliverable[] = [
   {
     description: "A working AI system scoped for production, not a proof of concept",
     imageAlt: "Production-scoped software system",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%201.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%201.webp",
   },
   {
     description:
       "Full codebase ownership, no vendor lock-in, no proprietary framework that traps you",
     imageAlt: "Codebase prepared for full ownership",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%202.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%202.webp",
   },
   {
     description:
       "Documented APIs your team or future partners can build on without reverse engineering",
     imageAlt: "Documented APIs for future development",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%203.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%203.webp",
   },
   {
     description:
       "A deployment pipeline that ships updates without downtime & catches problems before production",
     imageAlt: "Deployment pipeline for production updates",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%204.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%204.webp",
   },
   {
     description:
       "Environment configs, credentials, & infrastructure documentation your team controls",
     imageAlt: "Infrastructure documentation under team control",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%205.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%205.webp",
   },
   {
     description:
       "Handoff documentation written for the people maintaining the system, not the ones who built it",
     imageAlt: "Handoff documentation for the maintaining team",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%206.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-5/Pt%20-%206.webp",
   },
 ];
 

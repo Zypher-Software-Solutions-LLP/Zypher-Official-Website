@@ -5,31 +5,31 @@ import AiLlmAutomationPage from "@/app/(marketing)/services/ai-llm-automation/pa
 const deliverables = [
   {
     description: "A working AI system scoped for production, not a proof of concept",
-    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%201.png",
+    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%201.webp",
   },
   {
     description:
       "Full ownership at handoff: code, prompts, configs, everything. No lock-in, no ongoing dependency on us.",
-    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%202.png",
+    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%202.webp",
   },
   {
     description:
       "Integration with your existing tools and data sources, tested against real inputs",
-    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%203.png",
+    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%203.webp",
   },
   {
     description: "Documented prompts, configs, and system logic your team can read and modify",
-    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%204.png",
+    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%204.webp",
   },
   {
     description:
       "Defined fail-safes and edge case handling, the system knows what to do when the unexpected happens",
-    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%205.png",
+    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%205.webp",
   },
   {
     description:
       "Handoff documentation written for the people maintaining it, not the people who built it",
-    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%206.png",
+    image: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%206.webp",
   },
 ] as const;
 

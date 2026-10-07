@@ -7,7 +7,7 @@ import { trackEvent } from "@/integrations/analytics/events";
 import styles from "./CallToActionSection.module.css";
 
 const backgroundSrc =
-  "https://media.zypher-solutions.com/home-page/section-7/Background%20Image.png";
+  "https://media.zypher-solutions.com/home-page/section-7/Background%20Image.webp";
 const whatsappMessage = encodeURIComponent("Hi Zypher, I'd like to discuss a project.").replaceAll(
   "'",
   "%27",

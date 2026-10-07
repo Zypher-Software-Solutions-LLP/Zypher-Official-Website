@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import styles from "./ScaleEngagementSection.module.css";
 
 const PORTRAIT_SRC =
-  "https://media.zypher-solutions.com/scale-page/section-2/Section%202%20HOW%20WE%20ENGAGE.png";
+  "https://media.zypher-solutions.com/scale-page/section-2/Section%202%20HOW%20WE%20ENGAGE.webp";
 
 export function ScaleEngagementSection(): ReactNode {
   return (

@@ -26,11 +26,11 @@ describe("Careers page", () => {
     );
     expect(screen.getByTestId("careers-hero-background")).toHaveAttribute(
       "data-image-src",
-      "/home/section-1/background-illustration.png",
+      "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp",
     );
     expect(screen.getByTestId("careers-hero-join-title")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/careers-page/Careers.png",
+      "https://media.zypher-solutions.com/careers-page/Careers.webp",
     );
   });
 });

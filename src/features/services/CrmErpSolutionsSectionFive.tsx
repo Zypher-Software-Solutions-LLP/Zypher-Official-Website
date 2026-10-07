@@ -14,36 +14,36 @@ const DELIVERABLES: readonly Deliverable[] = [
     description:
       "A CRM or ERP set up around your actual workflow, not the vendor's default template",
     imageAlt: "CRM or ERP configured around the actual workflow",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%201.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%201.webp",
   },
   {
     description:
       "Your existing contacts, deals, and history migrated, cleaned, and validated, with nothing lost",
     imageAlt: "Migrated and validated business data",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%202.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%202.webp",
   },
   {
     description:
       "Your CRM or ERP connected to the tools your team already uses, with one data source",
     imageAlt: "CRM or ERP connected to existing business tools",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%203.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%203.webp",
   },
   {
     description:
       "Full admin access, credentials, and configs, with no dependency on us to make changes",
     imageAlt: "Administrative access and system configuration",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%204.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%204.webp",
   },
   {
     description:
       "Your team trained before handoff. Documentation written for the people using it, not us",
     imageAlt: "Team training and system documentation",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%205.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%205.webp",
   },
   {
     description: "Post-launch support scoped and priced upfront, with no surprises after go-live",
     imageAlt: "Post-launch support plan",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%206.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-5/Pt%20-%206.webp",
   },
 ];
 

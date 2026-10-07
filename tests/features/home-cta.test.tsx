@@ -23,7 +23,7 @@ describe("homepage CTA section", () => {
     ).toBeInTheDocument();
     expect(section.querySelector("img")).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("section-7/Background%20Image.png"),
+      expect.stringContaining("section-7/Background%20Image.webp"),
     );
   });
 

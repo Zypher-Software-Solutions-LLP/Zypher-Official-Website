@@ -13,7 +13,7 @@ describe("scale problem fit section", () => {
     expect(screen.getAllByTestId("scale-problem-fit-trigger")).toHaveLength(4);
     expect(screen.getByTestId("scale-problem-fit-image")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/scale-page/section-4/Problem%20Clarity.png",
+      "https://media.zypher-solutions.com/scale-page/section-4/Problem%20Clarity.webp",
     );
     expect(screen.getByTestId("scale-problem-fit-description")).toHaveTextContent(
       "You've identified something costing you time, money, customers, or growth.",
@@ -36,7 +36,7 @@ describe("scale problem fit section", () => {
     );
     expect(screen.getByTestId("scale-problem-fit-image")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/scale-page/section-4/Direct%20Communication.png",
+      "https://media.zypher-solutions.com/scale-page/section-4/Direct%20Communication.webp",
     );
     expect(screen.getByTestId("scale-problem-fit-description")).toHaveTextContent(
       "Our clients talk directly to the people building their product.",
@@ -63,7 +63,7 @@ describe("scale problem fit section", () => {
     expect(mobileTitle).toHaveTextContent("Problem Clarity");
     expect(screen.getByTestId("scale-problem-fit-mobile-image")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/scale-page/section-4/Problem%20Clarity.png",
+      "https://media.zypher-solutions.com/scale-page/section-4/Problem%20Clarity.webp",
     );
   });
 });

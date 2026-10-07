@@ -33,7 +33,7 @@ test.describe("homepage final CTA", () => {
     expect(geometry.sectionWidth).toBeCloseTo(1440, 0);
     expect(geometry.titleCenter).toBeCloseTo(geometry.viewportCenter, 0);
     expect(geometry.titleLines).toBe(2);
-    expect(geometry.imageSource).toContain("section-7/Background%20Image.png");
+    expect(geometry.imageSource).toContain("section-7/Background%20Image.webp");
     await expect(section.getByRole("link", { name: "WhatsApp Us" })).toHaveAttribute(
       "href",
       "https://wa.me/918075725045?text=Hi%20Zypher%2C%20I%27d%20like%20to%20discuss%20a%20project.",

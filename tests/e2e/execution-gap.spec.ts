@@ -17,7 +17,7 @@ test.describe("homepage execution gap section", () => {
     await expect(buttons.nth(1)).toHaveAttribute("aria-expanded", "false");
     await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
       "data-image-src",
-      /Problem%20-%201\.png/,
+      /Problem%20-%201\.webp/,
     );
 
     await buttons.nth(1).click();
@@ -26,7 +26,7 @@ test.describe("homepage execution gap section", () => {
     await expect(buttons.nth(1)).toHaveAttribute("aria-expanded", "true");
     await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
       "data-image-src",
-      /Problem%20-%202\.png/,
+      /Problem%20-%202\.webp/,
     );
     await expect(section.getByText(/Scope and price are fixed before work starts/)).toBeVisible();
   });
@@ -61,7 +61,7 @@ test.describe("homepage execution gap section", () => {
     await expect(section.getByTestId("execution-gap-illustration")).toHaveCount(0);
     await expect(section.locator("picture source")).toHaveAttribute(
       "srcset",
-      /Problem%20-%201%20Mobile\.png/,
+      /Problem%20-%201%20Mobile\.webp/,
     );
 
     const firstBox = await section.getByTestId("execution-gap-media").boundingBox();
@@ -98,7 +98,7 @@ test.describe("homepage execution gap section", () => {
       .evaluate((button) => (button as HTMLButtonElement).click());
     await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
       "data-image-src",
-      /Problem%20-%202\.png/,
+      /Problem%20-%202\.webp/,
     );
     await page.waitForTimeout(600);
 
@@ -166,7 +166,7 @@ test.describe("homepage execution gap section", () => {
       .evaluate((button) => (button as HTMLButtonElement).click());
     await expect(section.getByTestId("execution-gap-image")).toHaveAttribute(
       "data-image-src",
-      /Problem%20-%202\.png/,
+      /Problem%20-%202\.webp/,
     );
     await page.waitForTimeout(600);
     const secondBox = await media.boundingBox();

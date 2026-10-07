@@ -3,9 +3,10 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./ScaleHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const SCALE_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/scale-page/section-1/Hero%20Section%20Illustration.png";
+  "https://media.zypher-solutions.com/scale-page/section-1/Hero%20Section%20Illustration.webp";
 
 export function ScaleHeroSection(): ReactNode {
   return (

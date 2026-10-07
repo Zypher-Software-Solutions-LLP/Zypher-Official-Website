@@ -14,40 +14,40 @@ const MOBILE_APP_DEVELOPMENT_SECTION_THREE_CARDS: CapabilityCard[] = [
     title: "Cross Platform Mobile Apps",
     description:
       "Flutter first development that ships to iOS and Android from a single codebase. Near-native performance without the cost of maintaining two separate builds.",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-3/Cross%20Platform.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-3/Cross%20Platform.webp",
   },
   {
     title: "Native iOS & Android",
     description:
       "Swift for iOS, Kotlin for Android, when platform-specific performance, hardware access, or deep OS integration makes native the right call.",
     imageSrc:
-      "https://media.zypher-solutions.com/03-services-page/section-3/Native%20iOS%20%26%20Android.png",
+      "https://media.zypher-solutions.com/03-services-page/section-3/Native%20iOS%20%26%20Android.webp",
   },
   {
     title: "App & Web Integration",
     description:
       "The same backend powering your app and your website. One data source, one authentication layer, one admin panel. Both your products working as one.",
     imageSrc:
-      "https://media.zypher-solutions.com/03-services-page/section-3/App%20%26%20Web%20Integration.png",
+      "https://media.zypher-solutions.com/03-services-page/section-3/App%20%26%20Web%20Integration.webp",
   },
   {
     title: "Mobile UI UX Design",
     description:
       "Interfaces designed for how people actually use their phones, thumb-reach zones, gesture patterns, loading states and empty states that guide rather than confuse.",
     imageSrc:
-      "https://media.zypher-solutions.com/03-services-page/section-3/Mobile%20UI%20UX%20Design.png",
+      "https://media.zypher-solutions.com/03-services-page/section-3/Mobile%20UI%20UX%20Design.webp",
   },
   {
     title: "Post Launch Support & Updates",
     description:
       "OS updates break things. User behavior reveals gaps. New features get requested. We offer defined post-launch support scopes so your app stays functional.",
     imageSrc:
-      "https://media.zypher-solutions.com/03-services-page/section-3/Post%20Launch%20Support.png",
+      "https://media.zypher-solutions.com/03-services-page/section-3/Post%20Launch%20Support.webp",
   },
 ];
 
 const MOBILE_APP_DEVELOPMENT_SECTION_THREE_CTA_IMAGE_SRC =
-  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.png";
+  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.webp";
 
 const IMAGE_SIZES =
   "(max-width: 39.999rem) calc(100vw - 2rem), (max-width: 48rem) calc((100vw - 3rem) / 2), (max-width: 63.999rem) calc((100vw - 6.5rem) / 3), 270px";

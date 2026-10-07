@@ -24,7 +24,7 @@ export const scaleTestimonials: readonly ScaleTestimonial[] = [
     quote:
       "Zypher delivered a site we're proud to send clients to. Clean, fast, and exactly what we asked for, no chasing, no surprises.",
     imageAlt: "Portrait of Divin Siby",
-    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Divin%20Siby.jpeg",
+    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Divin%20Siby.webp",
   },
   {
     id: "kenzy-attia",
@@ -34,7 +34,7 @@ export const scaleTestimonials: readonly ScaleTestimonial[] = [
     quote:
       "They asked the right questions before touching anything. The result communicates what we do better than anything we had before.",
     imageAlt: "Portrait of Kenzy Attia",
-    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Kenzy%20Attia.jpg",
+    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Kenzy%20Attia.webp",
   },
   {
     id: "andrew-kong",
@@ -44,7 +44,7 @@ export const scaleTestimonials: readonly ScaleTestimonial[] = [
     quote:
       "Built around how our team actually works, not the other way around. The CRM has run cleanly since day one.",
     imageAlt: "Portrait of Andrew Kong",
-    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Andrew%20Kong.jpeg",
+    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Andrew%20Kong.webp",
   },
   {
     id: "muhammed-shuhaib",
@@ -54,7 +54,7 @@ export const scaleTestimonials: readonly ScaleTestimonial[] = [
     quote:
       "The product site gives our catalogue the presence it deserves. Structured, fast, and reflects the quality of what we sell.",
     imageAlt: "Portrait of Muhammed Shuhaib",
-    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Muhammed%20Shuhaib.jpeg",
+    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Muhammed%20Shuhaib.webp",
   },
   {
     id: "bharat-kaistha",
@@ -64,7 +64,7 @@ export const scaleTestimonials: readonly ScaleTestimonial[] = [
     quote:
       "Solid platform, real documentation, no hand-holding required. Zypher built the VMS to handle actual workloads and delivered on time.",
     imageAlt: "Portrait of Bharat Kaistha",
-    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Bharat%20Kaistha.png",
+    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Bharat%20Kaistha.webp",
   },
   {
     id: "umair-moideen",
@@ -74,7 +74,7 @@ export const scaleTestimonials: readonly ScaleTestimonial[] = [
     quote:
       "They shaped everything around our niche, not a generic template. The branding and marketing work has been consistent and measurable.",
     imageAlt: "Portrait of Umair Moideen",
-    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Umair%20Moideen.jpeg",
+    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Umair%20Moideen.webp",
   },
   {
     id: "shaji-parakandi",
@@ -84,6 +84,6 @@ export const scaleTestimonials: readonly ScaleTestimonial[] = [
     quote:
       "Early access to the rental system and it already handles everything we need. Thoughtful build, responsive team, clear communication throughout.",
     imageAlt: "Portrait of Shaji Parakandi",
-    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Shaji%20Parakandi.jpeg",
+    imageSrc: "https://media.zypher-solutions.com/scale-page/section-5/Shaji%20Parakandi.webp",
   },
 ];

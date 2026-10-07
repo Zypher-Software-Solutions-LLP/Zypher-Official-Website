@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import AboutPage from "@/app/(marketing)/about/page";
 
 const STORY_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/about-page/section-2/Section%202%20Illustration.png";
+  "https://media.zypher-solutions.com/about-page/section-2/Section%202%20Illustration.webp";
 const STORY_COPY_ONE =
   "Three founders met in their first year of college and quickly fell into the same pattern: noticing problems " +
   "in the people and places around them, then building something to fix it, not because anyone asked, but because " +

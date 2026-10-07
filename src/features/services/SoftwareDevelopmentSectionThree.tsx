@@ -15,36 +15,37 @@ const SOFTWARE_DEVELOPMENT_SECTION_THREE_CARDS: CapabilityCard[] = [
     description:
       "Built around your business logic, not a template’s limitations. From internal tools to customer-facing platforms. Scope to what you actually need.",
     imageSrc:
-      "https://media.zypher-solutions.com/02-services-page/section-3/Custom%20Web%20Applications.png",
+      "https://media.zypher-solutions.com/02-services-page/section-3/Custom%20Web%20Applications.webp",
   },
   {
     title: "API Development & Integration",
     description:
       "APIs your team can build on and your partners can connect to. Documented, versioned, and designed to handle what actually happens in production.",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-3/API%20Development.png",
+    imageSrc:
+      "https://media.zypher-solutions.com/02-services-page/section-3/API%20Development.webp",
   },
   {
     title: "Cloud Native Infrastructure",
     description:
       "Infrastructure built to scale with the product, not retrofitted after it breaks. Designed for the load you will have in the future, not just today.",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-3/Cloud%20Native.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-3/Cloud%20Native.webp",
   },
   {
     title: "DevOps & CI/CD",
     description:
       "Deployment pipelines that ship updates without downtime and catch problems before they reach production.",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-3/DevOps.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-3/DevOps.webp",
   },
   {
     title: "Legacy System Modernisation",
     description:
       "Replacing or extending a system that’s become a bottleneck without burning down what already works. We migrate incrementally.",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-3/Legacy%20System.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-3/Legacy%20System.webp",
   },
 ];
 
 const SOFTWARE_DEVELOPMENT_SECTION_THREE_CTA_IMAGE_SRC =
-  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.png";
+  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.webp";
 
 const IMAGE_SIZES =
   "(max-width: 39.999rem) calc(100vw - 2rem), (max-width: 48rem) calc((100vw - 3rem) / 2), (max-width: 63.999rem) calc((100vw - 6.5rem) / 3), 270px";

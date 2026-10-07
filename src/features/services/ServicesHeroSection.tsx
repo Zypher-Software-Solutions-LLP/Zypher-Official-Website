@@ -3,9 +3,10 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./ServicesHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const SERVICES_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/services-page/hero-section/Hero%20Section%20Illustration.png";
+  "https://media.zypher-solutions.com/services-page/hero-section/Hero%20Section%20Illustration.webp";
 const SERVICES_DESCRIPTION =
   "From your first idea to the system running in production, every capability below works together under one team, not ten different vendors stitched into your project.";
 

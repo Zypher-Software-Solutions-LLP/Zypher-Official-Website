@@ -9,31 +9,31 @@ const VALUES = [
     title: "Family First, Agency Second",
     description:
       "We work as people before we work as colleagues. Space, trust, and honesty come before the actual output.",
-    image: "https://media.zypher-solutions.com/about-page/section-3/Family%20First.png",
+    image: "https://media.zypher-solutions.com/about-page/section-3/Family%20First.webp",
   },
   {
     title: "Zero Shortcuts",
     description:
       "Every decision gets made properly, not quickly. Precision isn't optional, it is the baseline foundation at Zypher.",
-    image: "https://media.zypher-solutions.com/about-page/section-3/Zero%20Shortcuts.png",
+    image: "https://media.zypher-solutions.com/about-page/section-3/Zero%20Shortcuts.webp",
   },
   {
     title: "Direct Always",
     description:
       "No hierarchy blocking the conversation. Internally or with clients, you talk to the person, not just a layer.",
-    image: "https://media.zypher-solutions.com/about-page/section-3/Direct.png",
+    image: "https://media.zypher-solutions.com/about-page/section-3/Direct.webp",
   },
   {
     title: "Space to Grow",
     description:
       "Room to breathe when you need it. A commitment to upskilling when you're ready for more.",
-    image: "https://media.zypher-solutions.com/about-page/section-3/Space.png",
+    image: "https://media.zypher-solutions.com/about-page/section-3/Space.webp",
   },
   {
     title: "Built to Last",
     description:
       "Everything we make, internally and externally, is built to survive, not to impress in the moment.",
-    image: "https://media.zypher-solutions.com/about-page/section-3/Built.png",
+    image: "https://media.zypher-solutions.com/about-page/section-3/Built.webp",
   },
 ] as const;
 

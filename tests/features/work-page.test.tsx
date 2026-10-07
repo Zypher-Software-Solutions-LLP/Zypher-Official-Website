@@ -20,11 +20,11 @@ describe("work page", () => {
     expect(desktopImage).toHaveAttribute("data-image-quality", "100");
     expect(desktopImage).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("work-page/section-1/Hero%20Section.png"),
+      expect.stringContaining("work-page/section-1/Hero%20Section.webp"),
     );
     expect(picture.querySelector("source")).toHaveAttribute(
       "srcset",
-      expect.stringContaining("work-page/section-1/Hero%20Section%20-%20Mobile.png"),
+      expect.stringContaining("work-page/section-1/Hero%20Section%20-%20Mobile.webp"),
     );
     expect(screen.getByTestId("work-projects-section")).toBeInTheDocument();
   });

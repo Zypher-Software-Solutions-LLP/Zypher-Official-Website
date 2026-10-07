@@ -39,7 +39,7 @@ describe("scale testimonials section", () => {
     );
     expect(
       primaryTrack.querySelector(
-        '[data-image-src="https://media.zypher-solutions.com/scale-page/section-5/Umair%20Moideen.jpeg"]',
+        '[data-image-src="https://media.zypher-solutions.com/scale-page/section-5/Umair%20Moideen.webp"]',
       ),
     ).not.toBeNull();
   });

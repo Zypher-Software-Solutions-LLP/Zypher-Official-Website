@@ -3,9 +3,10 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./AiLlmAutomationHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const MOBILE_APP_DEVELOPMENT_HERO_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/03-services-page/section-1/Hero%20Section.png";
+  "https://media.zypher-solutions.com/03-services-page/section-1/Hero%20Section.webp";
 const MOBILE_APP_DEVELOPMENT_DESCRIPTION =
   "From an idea on a napkin to a fully integrated app on iOS and Android, we build mobile products that connect to your existing systems, survive real usage, and don't need a full rebuild every time the OS updates.";
 

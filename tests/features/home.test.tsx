@@ -37,11 +37,11 @@ describe("homepage hero", () => {
     );
     expect(screen.getByTestId("hero-background-picture").querySelector("source")).toHaveAttribute(
       "srcset",
-      expect.stringContaining("Background%20Mobile%20Image.png"),
+      expect.stringContaining("Background%20Mobile%20Image.webp"),
     );
     expect(screen.getByTestId("hero-background-image")).toHaveAttribute(
       "src",
-      expect.stringContaining("Background%2520PC%2520Image.png"),
+      expect.stringContaining("Background%2520PC%2520Image.webp"),
     );
     expect(screen.queryByTestId("hero-grid-overlay")).not.toBeInTheDocument();
     expect(screen.queryByTestId("hero-subject")).not.toBeInTheDocument();
@@ -120,7 +120,7 @@ describe("homepage scale section", () => {
     expect(screen.getByText(/Most software is built for the average customer/)).toBeVisible();
     expect(screen.getByTestId("execution-gap-image")).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("Problem%20-%201.png"),
+      expect.stringContaining("Problem%20-%201.webp"),
     );
   });
 
@@ -139,7 +139,7 @@ describe("homepage scale section", () => {
     expect(screen.getByText(/Scope and price are fixed before work starts/)).toBeVisible();
     expect(screen.getByTestId("execution-gap-image")).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("Problem%20-%202.png"),
+      expect.stringContaining("Problem%20-%202.webp"),
     );
   });
 });
@@ -185,7 +185,7 @@ describe("homepage solutions section", () => {
     cards.forEach((card, index) => {
       expect(card.querySelector("img")).toHaveAttribute(
         "data-image-src",
-        expect.stringContaining("Solution%20-%20" + (index + 1) + ".png"),
+        expect.stringContaining("Solution%20-%20" + (index + 1) + ".webp"),
       );
     });
   });

@@ -4,7 +4,8 @@ import type { BlogPostSummary } from "@/integrations/cms/sanity/types";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./BlogHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const HERO_TITLE = "Notes from the team actually building this.";
 const HERO_DESCRIPTION =
   "Practical notes from the team building software, automation, and systems for real businesses.";

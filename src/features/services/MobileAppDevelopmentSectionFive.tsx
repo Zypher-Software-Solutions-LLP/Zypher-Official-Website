@@ -13,33 +13,33 @@ const DELIVERABLES: readonly Deliverable[] = [
   {
     description: "A production ready app live in App Store and Google Play, not a TestFlight build",
     imageAlt: "Production-ready mobile app live in both stores",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%201.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%201.webp",
   },
   {
     description:
       "Full codebase ownership, Flutter or native, no proprietary wrapper that locks you in",
     imageAlt: "Mobile codebase prepared for full ownership",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%202.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%202.webp",
   },
   {
     description: "Backend and API documentation your team or future developers can build on",
     imageAlt: "Backend and API documentation for future development",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%203.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%203.webp",
   },
   {
     description: "App store assets, metadata and submission handled as part of the engagement",
     imageAlt: "App store assets and submission materials",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%204.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%204.webp",
   },
   {
     description: "Tested across real devices and OS versions, not just emulators",
     imageAlt: "Mobile app tested across real devices",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%205.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-%205.webp",
   },
   {
     description: "Handoff-ready documentation and post-launch support defined upfront",
     imageAlt: "Handoff documentation and post-launch support plan",
-    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-6.png",
+    imageSrc: "https://media.zypher-solutions.com/03-services-page/section-5/Pt%20-6.webp",
   },
 ];
 

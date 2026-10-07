@@ -4,7 +4,7 @@ import styles from "./AiLlmAutomationSectionTwo.module.css";
 import designStyles from "./DesignCreativeTypography.module.css";
 
 const DESIGN_CREATIVE_SECTION_TWO_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/04-services-page/section-2/Wide%20Section%202%20Illustration.png";
+  "https://media.zypher-solutions.com/04-services-page/section-2/Wide%20Section%202%20Illustration.webp";
 
 const DESIGN_CREATIVE_SECTION_TWO_COPY = {
   firstParagraph:

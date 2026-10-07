@@ -3,9 +3,10 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./AiLlmAutomationHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const CRM_ERP_SOLUTIONS_HERO_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/05-services-page/section-1/Hero%20Section.png";
+  "https://media.zypher-solutions.com/05-services-page/section-1/Hero%20Section.webp";
 const CRM_ERP_SOLUTIONS_DESCRIPTION =
   "Whether you need a platform configured to how your business actually runs or a system built from scratch, we map your workflow first, then build or configure around it.";
 

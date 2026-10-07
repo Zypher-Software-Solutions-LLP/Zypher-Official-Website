@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import styles from "./AiLlmAutomationSectionTwo.module.css";
 
 const AI_LLM_SECTION_TWO_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/01-services-page/section-2/Wide%20Section%202%20Illustration.png";
+  "https://media.zypher-solutions.com/01-services-page/section-2/Wide%20Section%202%20Illustration.webp";
 
 const AI_LLM_SECTION_TWO_COPY = {
   firstParagraph:

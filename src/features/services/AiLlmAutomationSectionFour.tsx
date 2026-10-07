@@ -24,7 +24,7 @@ const AI_LLM_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Discovery",
     description:
       'We start by understanding the process, not the technology. What\'s actually happening, where the friction is, what data exists, and what "working" looks like for your team. No proposal before this is done.',
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-4/Discovery.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-4/Discovery.webp",
     imageAlt: "Illustration for the discovery stage",
   },
   {
@@ -34,7 +34,7 @@ const AI_LLM_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Architecture & Scope",
     description:
       "We map the system before we build it: which model, which orchestration approach, which integrations, and which fail-safes. Scope and price are locked before anything is built.",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-4/Architecture.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-4/Architecture.webp",
     imageAlt: "Illustration for the architecture and scope stage",
   },
   {
@@ -45,7 +45,7 @@ const AI_LLM_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "Engineering starts. The system is built to connect to your real data and real tools, not a sandboxed demo environment. Edge cases are scoped and handled before launch, not after.",
     imageSrc:
-      "https://media.zypher-solutions.com/01-services-page/section-4/Build%20%26%20Integration.png",
+      "https://media.zypher-solutions.com/01-services-page/section-4/Build%20%26%20Integration.webp",
     imageAlt: "Illustration for the build and integration stage",
   },
   {
@@ -56,7 +56,7 @@ const AI_LLM_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "Full ownership transfers at handoff: code, prompts, configs, credentials. Documentation is written for the people maintaining it, not the people who built it. What happens after launch is scoped before we start.",
     imageSrc:
-      "https://media.zypher-solutions.com/01-services-page/section-4/Handoff%20%26%20Documentation.png",
+      "https://media.zypher-solutions.com/01-services-page/section-4/Handoff%20%26%20Documentation.webp",
     imageAlt: "Illustration for the handoff and documentation stage",
   },
 ];

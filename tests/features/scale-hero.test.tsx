@@ -26,11 +26,11 @@ describe("scale hero", () => {
     );
     expect(screen.getByTestId("scale-hero-background")).toHaveAttribute(
       "data-image-src",
-      "/home/section-1/background-illustration.png",
+      "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp",
     );
     expect(screen.getByTestId("scale-hero-illustration")).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("scale-page/section-1/Hero%20Section%20Illustration.png"),
+      expect.stringContaining("scale-page/section-1/Hero%20Section%20Illustration.webp"),
     );
     expect(hero.querySelectorAll('[data-testid="scale-hero-ellipse"]')).toHaveLength(1);
   });

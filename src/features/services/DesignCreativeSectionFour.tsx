@@ -24,7 +24,7 @@ const DESIGN_CREATIVE_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Discovery",
     description:
       "We start by understanding the business context, the target user, and what already exists, whether that's a product, a brand, or just an idea. What's working, what isn't, and what the design needs to achieve for the business, not just look like. No proposal before this conversation is done.",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-4/Discovery.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-4/Discovery.webp",
     imageAlt: "Illustration for the discovery stage",
   },
   {
@@ -35,7 +35,7 @@ const DESIGN_CREATIVE_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "User research, competitive analysis, and a technical study of the field you're building in. We look at what works in similar contexts, where users get stuck, and what decisions need to be made before anything is designed. This is where the scope is confirmed and the design direction is locked, not guessed at.",
     imageSrc:
-      "https://media.zypher-solutions.com/04-services-page/section-4/Research%20%26%20Strategy.png",
+      "https://media.zypher-solutions.com/04-services-page/section-4/Research%20%26%20Strategy.webp",
     imageAlt: "Illustration for the research and strategy stage",
   },
   {
@@ -46,7 +46,7 @@ const DESIGN_CREATIVE_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "Wireframes, prototypes, and visual design built in Figma, iteratively, with your feedback at each stage. Not one big reveal at the end. Motion, interaction states, empty states, error states, and responsive behaviour are all designed explicitly, not left for the developer to interpret. We use AI tools where they accelerate iteration, the judgment behind every decision is ours.",
     imageSrc:
-      "https://media.zypher-solutions.com/04-services-page/section-4/Design%20%26%20Iteration.png",
+      "https://media.zypher-solutions.com/04-services-page/section-4/Design%20%26%20Iteration.webp",
     imageAlt: "Illustration for the design and iteration stage",
   },
   {
@@ -56,7 +56,7 @@ const DESIGN_CREATIVE_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Handoff",
     description:
       "Developer-ready Figma files, annotated components, design tokens, and a documented design system your team can maintain and extend. For brand engagements: full brand guidelines, asset exports, and usage documentation. Everything organised so whoever builds from it doesn't need to come back and ask questions.",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-4/Handoff.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-4/Handoff.webp",
     imageAlt: "Illustration for the handoff stage",
   },
 ];

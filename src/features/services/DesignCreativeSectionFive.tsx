@@ -14,36 +14,36 @@ const DELIVERABLES: readonly Deliverable[] = [
     description:
       "Developer-ready Figma files. Every component named, designed, and ready to build without interpretation",
     imageAlt: "Developer-ready Figma design files",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%201.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%201.webp",
   },
   {
     description:
       "Color tokens, typography scale, spacing rules, and a library your team can extend",
     imageAlt: "Design tokens and component library",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%202.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%202.webp",
   },
   {
     description:
       "Edited video files, motion graphics, and animation exports, production-ready in the formats your platforms need",
     imageAlt: "Production-ready motion and video exports",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%203.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%203.webp",
   },
   {
     description:
       "Logo, color system, typography, and brand guidelines documented for consistent use",
     imageAlt: "Documented brand identity system",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%204.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%204.webp",
   },
   {
     description:
       "Interaction specs, Lottie animations, and motion files, documented and exported, ready to implement without guesswork",
     imageAlt: "Interaction and motion specifications",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%205.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%205.webp",
   },
   {
     description: "Every asset exported in the formats your team needs",
     imageAlt: "Exported creative assets",
-    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%206.png",
+    imageSrc: "https://media.zypher-solutions.com/04-services-page/section-5/Pt%20-%206.webp",
   },
 ];
 

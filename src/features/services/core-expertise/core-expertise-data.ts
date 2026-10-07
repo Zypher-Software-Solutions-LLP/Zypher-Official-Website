@@ -23,22 +23,22 @@ export const coreExpertiseCategories: ReadonlyArray<CoreExpertiseCategory> = [
     capabilities: [
       {
         title: "Custom Web Applications",
-        imageSrc: `${SECTION_3_ASSET_BASE}/software-dev/Custom%20Web%20Applications.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/software-dev/Custom%20Web%20Applications.webp`,
         imageAlt: "Custom web application interface",
       },
       {
         title: "API Development & Integration",
-        imageSrc: `${SECTION_3_ASSET_BASE}/software-dev/API%20Development.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/software-dev/API%20Development.webp`,
         imageAlt: "API development and integration interface",
       },
       {
         title: "Cloud-native Infrastructure",
-        imageSrc: `${SECTION_3_ASSET_BASE}/software-dev/Cloud%20Native%20Infrastructure.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/software-dev/Cloud%20Native%20Infrastructure.webp`,
         imageAlt: "Cloud-native infrastructure environment",
       },
       {
         title: "DevOps & CI/CD",
-        imageSrc: `${SECTION_3_ASSET_BASE}/software-dev/DevOps.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/software-dev/DevOps.webp`,
         imageAlt: "DevOps and continuous delivery interface",
       },
     ],
@@ -58,22 +58,22 @@ export const coreExpertiseCategories: ReadonlyArray<CoreExpertiseCategory> = [
     capabilities: [
       {
         title: "Native iOS & Android",
-        imageSrc: `${SECTION_3_ASSET_BASE}/mobile-app-dev/Native%20iOS%20%26%20Android.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/mobile-app-dev/Native%20iOS%20%26%20Android.webp`,
         imageAlt: "Native mobile app interface",
       },
       {
         title: "Cross-platform Builds",
-        imageSrc: `${SECTION_3_ASSET_BASE}/mobile-app-dev/Cross-platform%20builds.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/mobile-app-dev/Cross-platform%20builds.webp`,
         imageAlt: "Cross-platform app interface",
       },
       {
         title: "App Maintenance & Scaling",
-        imageSrc: `${SECTION_3_ASSET_BASE}/mobile-app-dev/App%20Maintenance%20%26%20Scaling.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/mobile-app-dev/App%20Maintenance%20%26%20Scaling.webp`,
         imageAlt: "Mobile app maintenance and scaling interface",
       },
       {
         title: "App Store / Play Store Deployment",
-        imageSrc: `${SECTION_3_ASSET_BASE}/mobile-app-dev/App%20Store%20-%20Playstore%20Deployment.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/mobile-app-dev/App%20Store%20-%20Playstore%20Deployment.webp`,
         imageAlt: "App store and Play Store deployment interface",
       },
     ],
@@ -93,22 +93,22 @@ export const coreExpertiseCategories: ReadonlyArray<CoreExpertiseCategory> = [
     capabilities: [
       {
         title: "User Research & Prototyping",
-        imageSrc: `${SECTION_3_ASSET_BASE}/design-creative/User%20Research.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/design-creative/User%20Research.webp`,
         imageAlt: "User research and prototyping workspace",
       },
       {
         title: "Product Design",
-        imageSrc: `${SECTION_3_ASSET_BASE}/design-creative/Product%20Design.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/design-creative/Product%20Design.webp`,
         imageAlt: "Product design interface",
       },
       {
         title: "Design Systems",
-        imageSrc: `${SECTION_3_ASSET_BASE}/design-creative/Design%20Systems.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/design-creative/Design%20Systems.webp`,
         imageAlt: "Design system interface",
       },
       {
         title: "Usability Testing",
-        imageSrc: `${SECTION_3_ASSET_BASE}/design-creative/Usability%20Testing.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/design-creative/Usability%20Testing.webp`,
         imageAlt: "Usability testing workspace",
       },
     ],
@@ -127,22 +127,22 @@ export const coreExpertiseCategories: ReadonlyArray<CoreExpertiseCategory> = [
     capabilities: [
       {
         title: "Custom CRM Builds",
-        imageSrc: `${SECTION_3_ASSET_BASE}/crm-erp-sols/Custom%20CRM.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/crm-erp-sols/Custom%20CRM.webp`,
         imageAlt: "Custom CRM interface",
       },
       {
         title: "ERP Implementation",
-        imageSrc: `${SECTION_3_ASSET_BASE}/crm-erp-sols/ERP%20Implementation.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/crm-erp-sols/ERP%20Implementation.webp`,
         imageAlt: "ERP implementation interface",
       },
       {
         title: "Workflow & Process Automation",
-        imageSrc: `${SECTION_3_ASSET_BASE}/crm-erp-sols/Workflow.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/crm-erp-sols/Workflow.webp`,
         imageAlt: "Workflow automation interface",
       },
       {
         title: "Third-party Integrations",
-        imageSrc: `${SECTION_3_ASSET_BASE}/crm-erp-sols/Third%20Party.png`,
+        imageSrc: `${SECTION_3_ASSET_BASE}/crm-erp-sols/Third%20Party.webp`,
         imageAlt: "Third-party integration interface",
       },
     ],

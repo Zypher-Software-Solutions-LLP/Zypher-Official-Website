@@ -24,7 +24,7 @@ const CRM_ERP_SOLUTIONS_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Discovery",
     description:
       "We start by understanding your actual workflow, not what your org chart says it is, but how your team operates day to day. Where data lives, what gets missed, what needs to connect, and what working looks like for the people using the system. No proposal before this is done.",
-    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-4/Discovery.png",
+    imageSrc: "https://media.zypher-solutions.com/05-services-page/section-4/Discovery.webp",
     imageAlt: "Illustration for the discovery stage",
   },
   {
@@ -35,7 +35,7 @@ const CRM_ERP_SOLUTIONS_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "We design the system around your workflow, pipeline stages, custom fields, automation rules, user permissions, and integrations all mapped before anything is built or configured. For custom builds, this is where architecture is locked. For platform implementations, this is where the configuration blueprint is confirmed. Scope and price are fixed here.",
     imageSrc:
-      "https://media.zypher-solutions.com/05-services-page/section-4/System%20Mapping%20%26%20Config.png",
+      "https://media.zypher-solutions.com/05-services-page/section-4/System%20Mapping%20%26%20Config.webp",
     imageAlt: "Illustration for the system mapping and configuration stage",
   },
   {
@@ -46,7 +46,7 @@ const CRM_ERP_SOLUTIONS_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "Existing data is cleaned, validated, and migrated into the new system, contacts, deal history, documents, and records all verified before go-live. Third-party integrations are connected and tested against real data, not sample sets. Nothing goes live until it works end to end.",
     imageSrc:
-      "https://media.zypher-solutions.com/05-services-page/section-4/Data%20Migration%20%26%20Integration.png",
+      "https://media.zypher-solutions.com/05-services-page/section-4/Data%20Migration%20%26%20Integration.webp",
     imageAlt: "Illustration for the data migration and integration stage",
   },
   {
@@ -57,7 +57,7 @@ const CRM_ERP_SOLUTIONS_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "Your team is trained on the system before handoff, not after. Documentation covers how to use it, how to maintain it, and how to extend it without breaking what works. Post-launch support scope is agreed before the build starts.",
     imageSrc:
-      "https://media.zypher-solutions.com/05-services-page/section-4/Training%20%26%20Handoff.png",
+      "https://media.zypher-solutions.com/05-services-page/section-4/Training%20%26%20Handoff.webp",
     imageAlt: "Illustration for the training and handoff stage",
   },
 ];

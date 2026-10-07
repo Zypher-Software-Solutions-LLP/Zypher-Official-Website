@@ -5,11 +5,11 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./AIAutomationSection.module.css";
 
-const LAPTOP_SRC = "https://media.zypher-solutions.com/services-page/section-2/Laptop.png";
+const LAPTOP_SRC = "https://media.zypher-solutions.com/services-page/section-2/Laptop.webp";
 const NODE_WORKFLOW_SRC =
-  "https://media.zypher-solutions.com/services-page/section-2/Group%2022.png";
+  "https://media.zypher-solutions.com/services-page/section-2/Group%2022.webp";
 const NODE_WORKFLOW_MOBILE_SRC =
-  "https://media.zypher-solutions.com/services-page/section-2/Group%2022%20-%20Mobile%20View.png";
+  "https://media.zypher-solutions.com/services-page/section-2/Group%2022%20-%20Mobile%20view.webp";
 
 const capabilities = [
   { number: "01", label: "Custom Chatbots & AI Assistants", glyph: "AI" },

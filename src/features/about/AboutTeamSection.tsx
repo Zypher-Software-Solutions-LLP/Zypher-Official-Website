@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import styles from "./AboutTeamSection.module.css";
 
-const GRADIENT_SRC = "https://media.zypher-solutions.com/about-page/section-5/Gradient.png";
+const GRADIENT_SRC = "https://media.zypher-solutions.com/about-page/section-5/Gradient.webp";
 const ANONYMOUS_SRC = "https://media.zypher-solutions.com/about-page/section-5/Anonymous.jpg";
 const RESUME_EMAIL = "info@zypher-solutions.com";
 
@@ -11,42 +11,42 @@ const TEAM_MEMBERS = [
     id: "rehen",
     name: "Rehen Manoy",
     role: "AI Backend Engineer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Rehen.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Rehen.webp",
     linkedin: "https://www.linkedin.com/in/rehenmanoy/",
   },
   {
     id: "sanjana",
     name: "Sanjana Dev",
     role: "Software Developer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Sanjana.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Sanjana.webp",
     linkedin: "https://www.linkedin.com/in/sanjana-dev-658aa4324/",
   },
   {
     id: "keerthana",
     name: "Keerthana Abhilash",
     role: "QA Engineer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Keerthana.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Keerthana.webp",
     linkedin: "https://www.linkedin.com/in/keerthana-abhilash-7b8350322/",
   },
   {
     id: "hanna",
     name: "Hanna Ann Renju",
     role: "Frontend Developer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Hanna.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Hanna.webp",
     linkedin: "https://www.linkedin.com/in/hannarenju/",
   },
   {
     id: "vivek",
     name: "Vivek Vinod",
     role: "Product Designer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Vivek.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Vivek.webp",
     linkedin: "https://www.linkedin.com/in/viwvwek/",
   },
   {
     id: "divin",
     name: "Divin Siby",
     role: "Head of Marketing",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Divin.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Divin.webp",
     linkedin: "https://www.linkedin.com/in/divin-siby-7862b0363/",
   },
 ] as const;

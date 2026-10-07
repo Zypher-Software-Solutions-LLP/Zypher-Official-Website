@@ -13,36 +13,36 @@ const DELIVERABLES: readonly Deliverable[] = [
   {
     description: "A working AI system scoped for production, not a proof of concept",
     imageAlt: "Server stack representing a production-scoped AI system",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%201.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%201.webp",
   },
   {
     description:
       "Full ownership at handoff: code, prompts, configs, everything. No lock-in, no ongoing dependency on us.",
     imageAlt: "Code and configuration prepared for handoff",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%202.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%202.webp",
   },
   {
     description:
       "Integration with your existing tools and data sources, tested against real inputs",
     imageAlt: "AI system connected to existing tools and data sources",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%203.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%203.webp",
   },
   {
     description: "Documented prompts, configs, and system logic your team can read and modify",
     imageAlt: "Readable prompts, configurations, and system documentation",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%204.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%204.webp",
   },
   {
     description:
       "Defined fail-safes and edge case handling, the system knows what to do when the unexpected happens",
     imageAlt: "Workflow safeguards for unexpected cases",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%205.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%205.webp",
   },
   {
     description:
       "Handoff documentation written for the people maintaining it, not the people who built it",
     imageAlt: "Documentation prepared for the team maintaining the system",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%206.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-5/Pt%20-%206.webp",
   },
 ];
 

@@ -3,11 +3,11 @@ import { describe, expect, it } from "vitest";
 import AboutPage from "@/app/(marketing)/about/page";
 
 const VALUE_ASSETS = [
-  "https://media.zypher-solutions.com/about-page/section-3/Family%20First.png",
-  "https://media.zypher-solutions.com/about-page/section-3/Zero%20Shortcuts.png",
-  "https://media.zypher-solutions.com/about-page/section-3/Direct.png",
-  "https://media.zypher-solutions.com/about-page/section-3/Space.png",
-  "https://media.zypher-solutions.com/about-page/section-3/Built.png",
+  "https://media.zypher-solutions.com/about-page/section-3/Family%20First.webp",
+  "https://media.zypher-solutions.com/about-page/section-3/Zero%20Shortcuts.webp",
+  "https://media.zypher-solutions.com/about-page/section-3/Direct.webp",
+  "https://media.zypher-solutions.com/about-page/section-3/Space.webp",
+  "https://media.zypher-solutions.com/about-page/section-3/Built.webp",
 ];
 
 describe("About values section", () => {

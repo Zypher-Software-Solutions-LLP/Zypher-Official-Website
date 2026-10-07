@@ -3,8 +3,9 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./CareersHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
-const CAREERS_LETTERING_IMAGE_SRC = "https://media.zypher-solutions.com/careers-page/Careers.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
+const CAREERS_LETTERING_IMAGE_SRC = "https://media.zypher-solutions.com/careers-page/Careers.webp";
 const APPLICATION_EMAIL =
   "mailto:info@zypher-solutions.com?subject=Career%20Application%20-%20Zypher";
 

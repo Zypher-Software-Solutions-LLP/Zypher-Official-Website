@@ -3,9 +3,9 @@ import styles from "./HeroSection.module.css";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
 const HERO_BACKGROUND_URL =
-  "https://media.zypher-solutions.com/home-page/section-1/Background%20PC%20Image.png";
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20PC%20Image.webp";
 const HERO_BACKGROUND_MOBILE_URL =
-  "https://media.zypher-solutions.com/home-page/section-1/Background%20Mobile%20Image.png";
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20Mobile%20Image.webp";
 
 export function HeroSection(): React.ReactNode {
   return (

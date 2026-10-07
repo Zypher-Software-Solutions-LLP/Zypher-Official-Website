@@ -27,7 +27,7 @@ describe("contact page", () => {
     ).toBeInTheDocument();
     expect(within(hero).getByTestId("contact-hero-illustration")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/contact-us/section-1/3d%20Illustration.png",
+      "https://media.zypher-solutions.com/contact-us/section-1/3d%20Illustration.webp",
     );
     expect(within(hero).getByTestId("contact-hero-illustration")).toHaveAttribute(
       "data-rotation",

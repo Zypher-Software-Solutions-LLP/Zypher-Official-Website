@@ -3,11 +3,12 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./WorkHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const WORK_HERO_DESKTOP_SRC =
-  "https://media.zypher-solutions.com/work-page/section-1/Hero%20Section.png";
+  "https://media.zypher-solutions.com/work-page/section-1/Hero%20Section.webp";
 const WORK_HERO_MOBILE_SRC =
-  "https://media.zypher-solutions.com/work-page/section-1/Hero%20Section%20-%20Mobile.png";
+  "https://media.zypher-solutions.com/work-page/section-1/Hero%20Section%20-%20Mobile.webp";
 
 export function WorkHeroSection(): ReactNode {
   return (

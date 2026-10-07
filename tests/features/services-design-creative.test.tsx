@@ -52,7 +52,7 @@ describe("Design & Creative service page", () => {
     );
     expect(within(hero).getByTestId("design-creative-hero-illustration")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/04-services-page/section-1/Hero%20Section.png",
+      "https://media.zypher-solutions.com/04-services-page/section-1/Hero%20Section.webp",
     );
 
     expect(within(sectionTwo).getByRole("heading", { level: 2 })).toHaveTextContent(
@@ -62,7 +62,7 @@ describe("Design & Creative service page", () => {
       within(sectionTwo).getByTestId("design-creative-section-two-illustration"),
     ).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/04-services-page/section-2/Wide%20Section%202%20Illustration.png",
+      "https://media.zypher-solutions.com/04-services-page/section-2/Wide%20Section%202%20Illustration.webp",
     );
 
     expect(within(sectionThree).getByRole("heading", { level: 2 })).toHaveTextContent(

@@ -4,9 +4,10 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./AiLlmAutomationHeroSection.module.css";
 import designStyles from "./DesignCreativeTypography.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const DESIGN_CREATIVE_HERO_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/04-services-page/section-1/Hero%20Section.png";
+  "https://media.zypher-solutions.com/04-services-page/section-1/Hero%20Section.webp";
 const DESIGN_CREATIVE_DESCRIPTION =
   "From wireframe to brand identity, we design products and visuals that work for the people using them, not just the people approving them. Research first. Craft second. Delivered ready to build or go live.";
 

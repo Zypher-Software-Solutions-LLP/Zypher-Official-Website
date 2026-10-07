@@ -60,7 +60,7 @@ export const scaleProjects = [
     title: "Custom CRM",
     description:
       "A custom CRM connecting one client's business end-to-end, with automation replacing manual work.",
-    imageSrc: MEDIA_BASE_URL + "/2.png",
+    imageSrc: MEDIA_BASE_URL + "/2.webp",
     imageAlt: "Custom CRM dashboard showing connected business operations",
   },
   {
@@ -69,7 +69,7 @@ export const scaleProjects = [
     eyebrow: "CYBERSECURITY",
     title: "VMS - Platform",
     description: "A cybersecurity platform catching vulnerabilities before they become incidents.",
-    imageSrc: MEDIA_BASE_URL + "/5.png",
+    imageSrc: MEDIA_BASE_URL + "/5.webp",
     imageAlt: "VMS cybersecurity platform dashboard showing security controls",
   },
   {
@@ -78,7 +78,7 @@ export const scaleProjects = [
     eyebrow: "RETAIL OPS",
     title: "Rental System",
     description: "A rental platform that gave a two-branch business one place to run both.",
-    imageSrc: MEDIA_BASE_URL + "/3.png",
+    imageSrc: MEDIA_BASE_URL + "/3.webp",
     imageAlt: "Rental System retail operations interface",
   },
 ] as const satisfies readonly ScaleProject[];

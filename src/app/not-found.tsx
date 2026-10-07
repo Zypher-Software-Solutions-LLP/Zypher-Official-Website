@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header";
 import styles from "./NotFoundPage.module.css";
 
 const notFoundIllustrationSrc =
-  "https://media.zypher-solutions.com/404-page/404%20Illustration.png";
+  "https://media.zypher-solutions.com/404-page/404%20Illustration.webp";
 
 export default function NotFound(): ReactNode {
   return (

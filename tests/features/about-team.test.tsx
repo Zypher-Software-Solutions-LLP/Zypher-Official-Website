@@ -6,37 +6,37 @@ const TEAM_MEMBERS = [
   {
     name: "Rehen Manoy",
     role: "AI Backend Engineer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Rehen.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Rehen.webp",
     linkedin: "https://www.linkedin.com/in/rehenmanoy/",
   },
   {
     name: "Sanjana Dev",
     role: "Software Developer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Sanjana.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Sanjana.webp",
     linkedin: "https://www.linkedin.com/in/sanjana-dev-658aa4324/",
   },
   {
     name: "Keerthana Abhilash",
     role: "QA Engineer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Keerthana.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Keerthana.webp",
     linkedin: "https://www.linkedin.com/in/keerthana-abhilash-7b8350322/",
   },
   {
     name: "Hanna Ann Renju",
     role: "Frontend Developer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Hanna.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Hanna.webp",
     linkedin: "https://www.linkedin.com/in/hannarenju/",
   },
   {
     name: "Vivek Vinod",
     role: "Product Designer",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Vivek.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Vivek.webp",
     linkedin: "https://www.linkedin.com/in/viwvwek/",
   },
   {
     name: "Divin Siby",
     role: "Head of Marketing",
-    image: "https://media.zypher-solutions.com/about-page/section-5/Divin.png",
+    image: "https://media.zypher-solutions.com/about-page/section-5/Divin.webp",
     linkedin: "https://www.linkedin.com/in/divin-siby-7862b0363/",
   },
 ] as const;

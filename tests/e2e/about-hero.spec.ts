@@ -66,7 +66,9 @@ test.describe("About hero section", () => {
     expect(layout.imageTop).toBeLessThan(132);
     expect(Math.abs(layout.illustrationBottom - layout.heroBottom)).toBeLessThanOrEqual(1);
     expect(layout.heroBackground).toBe("rgb(244, 248, 246)");
-    expect(layout.backgroundSource).toBe("/home/section-1/background-illustration.png");
+    expect(layout.backgroundSource).toBe(
+      "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp",
+    );
     expect(layout.primaryButtonBackground).toBe("rgb(21, 193, 150)");
     expect(layout.primaryButtonColor).toBe("rgb(16, 23, 21)");
     expect(layout.primaryButtonOpacity).toBe("1");

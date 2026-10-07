@@ -24,7 +24,7 @@ describe("AI and LLM automation Section 2", () => {
     ).toBeInTheDocument();
     expect(screen.getByTestId("ai-llm-section-two-illustration")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/01-services-page/section-2/Wide%20Section%202%20Illustration.png",
+      "https://media.zypher-solutions.com/01-services-page/section-2/Wide%20Section%202%20Illustration.webp",
     );
   });
 });

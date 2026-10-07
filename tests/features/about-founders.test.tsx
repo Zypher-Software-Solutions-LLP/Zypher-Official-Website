@@ -18,19 +18,19 @@ describe("About founders section", () => {
       {
         name: "Muhammed Hasheem",
         role: "CO-FOUNDER & CEO",
-        image: "https://media.zypher-solutions.com/about-page/section-4/Hasheem.png",
+        image: "https://media.zypher-solutions.com/about-page/section-4/Hasheem.webp",
         linkedin: "https://www.linkedin.com/in/muhammedhasheem/",
       },
       {
         name: "Mohammed Ziyan",
         role: "CO-FOUNDER & COO",
-        image: "https://media.zypher-solutions.com/about-page/section-4/Ziyan.png",
+        image: "https://media.zypher-solutions.com/about-page/section-4/Ziyan.webp",
         linkedin: "https://www.linkedin.com/in/mohammedziyan7/",
       },
       {
         name: "Hank Emmanuel Nixon",
         role: "CO-FOUNDER & CTO",
-        image: "https://media.zypher-solutions.com/about-page/section-4/Hank.png",
+        image: "https://media.zypher-solutions.com/about-page/section-4/Hank.webp",
         linkedin: "https://www.linkedin.com/in/hanknixon/",
       },
     ];

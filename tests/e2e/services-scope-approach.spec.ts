@@ -58,7 +58,7 @@ test.describe("Services scope approach", () => {
     expect(layout.bottomPath).toContain("M0 86 C220 66 430 66 690 106");
     expect(layout.mediaWidth).toBeGreaterThan(300);
     expect(layout.mediaHeight).toBeGreaterThan(layout.mediaWidth);
-    expect(layout.imageSource).toContain("Illustration.png");
+    expect(layout.imageSource).toContain("Illustration.webp");
     expect(layout.surfaceBackground).toBe("rgb(15, 71, 67)");
     expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth);
   });

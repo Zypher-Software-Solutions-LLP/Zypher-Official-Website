@@ -16,7 +16,7 @@ export const extendedCapabilities: readonly ExtendedCapability[] = [
     id: "cybersecurity",
     label: "Cybersecurity",
     iconSrc: `${SECTION_4_ASSET_BASE}/Cybersecurity%20-%20Icon.png`,
-    thumbnailSrc: `${SECTION_4_ASSET_BASE}/Cybersecurity%20-%20Thumbnail.png`,
+    thumbnailSrc: `${SECTION_4_ASSET_BASE}/Cybersecurity%20-%20Thumbnail.webp`,
     description:
       "Security audits, penetration testing, and compliance setup (SOC2, GDPR) so vulnerabilities get found by us, not by an attacker. Every engagement ends with a remediation report your team can act on immediately, not a generic scorecard.",
     deliverables: [
@@ -31,7 +31,7 @@ export const extendedCapabilities: readonly ExtendedCapability[] = [
     id: "data-analytics",
     label: "Data Analytics & Data Science",
     iconSrc: `${SECTION_4_ASSET_BASE}/Data%20Analytics%20%26%20Data%20Science%20-%20Icon.png`,
-    thumbnailSrc: `${SECTION_4_ASSET_BASE}/Data%20Analytics%20%26%20Data%20Science%20-%20Thumbnail.png`,
+    thumbnailSrc: `${SECTION_4_ASSET_BASE}/Data%20Analytics%20%26%20Data%20Science%20-%20Thumbnail.webp`,
     description:
       "Predictive models, BI dashboards, and reporting built from data your business already has but isn't using. The goal is decisions made faster, not more data to stare at.",
     deliverables: [
@@ -48,7 +48,7 @@ export const extendedCapabilities: readonly ExtendedCapability[] = [
     iconSrc:
       "https://media.zypher-solutions.com/services-page/section-4/Digital%20Marketing%20-%20Icon.png",
     thumbnailSrc:
-      "https://media.zypher-solutions.com/services-page/section-4/Digital%20Marketing%20-%20Thumbnail.png",
+      "https://media.zypher-solutions.com/services-page/section-4/Digital%20Marketing%20-%20Thumbnail.webp",
     description:
       "Paid, organic, and lifecycle campaigns built around the audience you need to reach, with reporting tied to business outcomes rather than vanity metrics.",
     deliverables: [
@@ -63,7 +63,7 @@ export const extendedCapabilities: readonly ExtendedCapability[] = [
     id: "seo-aeo-geo",
     label: "SEO, AEO & GEO",
     iconSrc: `${SECTION_4_ASSET_BASE}/SEO%2C%20AEO%2C%20GEO%20-%20Icon.png`,
-    thumbnailSrc: `${SECTION_4_ASSET_BASE}/SEO%20AEO%20GEO%20-%20Thumbnail.png`,
+    thumbnailSrc: `${SECTION_4_ASSET_BASE}/SEO%20AEO%20GEO%20-%20Thumbnail.webp`,
     description:
       "Technical and content SEO, plus optimization for how AI engines like ChatGPT and Perplexity find and cite your business, the same discipline applied to Zypher's own site, so it's a claim backed by practice, not a pitch. Ranking in traditional search and being cited in AI-generated answers are now two different problems that need to be solved together.",
     deliverables: [
@@ -78,7 +78,7 @@ export const extendedCapabilities: readonly ExtendedCapability[] = [
     id: "cloud-infrastructure",
     label: "Cloud & Infrastructure",
     iconSrc: `${SECTION_4_ASSET_BASE}/Cloud%20%26%20Infrastructure%20-%20Icon.png`,
-    thumbnailSrc: `${SECTION_4_ASSET_BASE}/Cloud%20Infrastructure%20-%20Thumbnail.png`,
+    thumbnailSrc: `${SECTION_4_ASSET_BASE}/Cloud%20Infrastructure%20-%20Thumbnail.webp`,
     description:
       "Migration, scaling, and monitoring so your infrastructure isn't the reason something breaks at the worst time. Every system is handed back with runbooks, not just a working deployment.",
     deliverables: [

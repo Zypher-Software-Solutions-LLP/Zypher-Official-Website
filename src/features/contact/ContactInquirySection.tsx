@@ -31,7 +31,7 @@ import {
 import styles from "./ContactInquirySection.module.css";
 
 const CONTACT_BACKGROUND_SRC =
-  "https://media.zypher-solutions.com/contact-us/section-2/Contact%20us%20Background.png";
+  "https://media.zypher-solutions.com/contact-us/section-2/Contact%20us%20Background.webp";
 const MINIMUM_E164_DIGITS = 7;
 
 type SubmissionStatus = "idle" | "submitting" | "success" | "error";

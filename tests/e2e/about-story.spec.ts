@@ -251,7 +251,7 @@ test.describe("About story section", () => {
     await expect(illustration).toBeVisible();
     await expect(illustration).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/about-page/section-2/Section%202%20Illustration.png",
+      "https://media.zypher-solutions.com/about-page/section-2/Section%202%20Illustration.webp",
     );
     await expect(divider).toHaveCSS("display", "block");
 

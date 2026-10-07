@@ -40,7 +40,7 @@ describe("scale industries section", () => {
     expect(section.querySelectorAll("img")).toHaveLength(industryTitles.length);
     expect(screen.getByTestId("scale-industry-image-fintech")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/scale-page/section-3/Fintech.png",
+      "https://media.zypher-solutions.com/scale-page/section-3/Fintech.webp",
     );
   });
 });

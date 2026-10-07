@@ -26,7 +26,7 @@ describe("not-found page", () => {
     ).toBeInTheDocument();
     expect(screen.getByTestId("not-found-background-illustration")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/404-page/404%20Illustration.png",
+      "https://media.zypher-solutions.com/404-page/404%20Illustration.webp",
     );
     expect(screen.getByTestId("not-found-image-overlay")).toHaveAttribute("aria-hidden", "true");
     expect(screen.getByTestId("not-found-number")).toHaveTextContent("404");

@@ -4,9 +4,10 @@ import type { CSSProperties, ReactNode } from "react";
 
 import styles from "./ContactHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const CONTACT_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/contact-us/section-1/3d%20Illustration.png";
+  "https://media.zypher-solutions.com/contact-us/section-1/3d%20Illustration.webp";
 const CAL_EMBED_SCRIPT = [
   "(function (C, A, L) {",
   "  let p = function (a, ar) { a.q.push(ar); };",

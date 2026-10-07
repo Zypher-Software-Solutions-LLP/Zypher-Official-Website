@@ -151,7 +151,7 @@ test.describe("responsive Services hero", () => {
     });
 
     expect(layers.source).toBe(
-      "https://media.zypher-solutions.com/footer/Footer%20Illustration.png",
+      "https://media.zypher-solutions.com/footer/Footer%20Illustration.webp",
     );
     expect(layers.imagePresent).toBe(true);
     expect(layers.imageObjectFit).toBe("contain");

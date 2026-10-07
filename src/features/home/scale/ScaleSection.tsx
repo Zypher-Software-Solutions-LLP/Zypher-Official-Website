@@ -231,7 +231,7 @@ export function ScaleSection(): ReactNode {
               className={styles.scaleSectionIllustrationImage}
               fill
               sizes="(max-width: 767px) 90vw, (max-width: 1199px) 45vw, 578px"
-              src="https://media.zypher-solutions.com/home-page/section-2/Scale%20Section.png"
+              src="https://media.zypher-solutions.com/home-page/section-2/Scale%20Section.webp"
             />
           </div>
         </div>

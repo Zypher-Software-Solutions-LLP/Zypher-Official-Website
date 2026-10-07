@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import styles from "./AboutFoundersSection.module.css";
 
-const GRADIENT_SRC = "https://media.zypher-solutions.com/about-page/section-4/Gradient.png";
+const GRADIENT_SRC = "https://media.zypher-solutions.com/about-page/section-4/Gradient.webp";
 
 const FOUNDERS = [
   {
@@ -13,7 +13,7 @@ const FOUNDERS = [
     role: "CO-FOUNDER & CEO",
     description:
       "The driving force behind how Zypher operates, client relationships, company structure, and keeping every part of the business pointed in the same direction. Bold, direct, and unusually structured for someone who moves as fast as he does.",
-    image: "https://media.zypher-solutions.com/about-page/section-4/Hasheem.png",
+    image: "https://media.zypher-solutions.com/about-page/section-4/Hasheem.webp",
     linkedin: "https://www.linkedin.com/in/muhammedhasheem/",
     portfolio: "https://www.muhammed-hasheem.me/",
   },
@@ -25,7 +25,7 @@ const FOUNDERS = [
     role: "CO-FOUNDER & COO",
     description:
       "Runs the operational backbone of Zypher, finance, documentation, client mapping, and marketing. Background spans internship experience and hands-on work with a cybersecurity firm. Precise in execution, unconventional in thinking. The reason everything else runs without friction.",
-    image: "https://media.zypher-solutions.com/about-page/section-4/Ziyan.png",
+    image: "https://media.zypher-solutions.com/about-page/section-4/Ziyan.webp",
     linkedin: "https://www.linkedin.com/in/mohammedziyan7/",
     portfolio: "https://www.mohammedziyan.me/",
   },
@@ -37,7 +37,7 @@ const FOUNDERS = [
     role: "CO-FOUNDER & CTO",
     description:
       "Leads Zypher's technical direction, architecture, stack decisions, and the quality bar every build is held to. Four years freelancing and two years of internship experience building systems for real organizations. Precise by nature, accountable by choice. The technical vision at Zypher is his.",
-    image: "https://media.zypher-solutions.com/about-page/section-4/Hank.png",
+    image: "https://media.zypher-solutions.com/about-page/section-4/Hank.webp",
     linkedin: "https://www.linkedin.com/in/hanknixon/",
     portfolio: "https://www.hanknixon.online/",
   },

@@ -24,7 +24,7 @@ const SOFTWARE_DEVELOPMENT_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Discovery",
     description:
       "We start by understanding how your business actually operates, not by collecting a feature list. What's the real process, where does it break down, what does the software need to connect to, and what does success look like for the people using it every day. No proposal before this is done.",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-4/Discovery.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-4/Discovery.webp",
     imageAlt: "Illustration for the discovery stage",
   },
   {
@@ -34,7 +34,7 @@ const SOFTWARE_DEVELOPMENT_AUTOMATION_STAGES: readonly ProcessStage[] = [
     heading: "Architecture & Scope",
     description:
       "We design the system before we build it, data models, integration points, infrastructure approach, and the tech stack that fits the problem. Not the stack we're most familiar with. Not the most popular framework. The one that fits your scale, your team, and your long-term maintenance reality. Scope and price are locked here. One fixed quote, not a range.",
-    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-4/Architecture.png",
+    imageSrc: "https://media.zypher-solutions.com/02-services-page/section-4/Architecture.webp",
     imageAlt: "Illustration for the architecture and scope stage",
   },
   {
@@ -45,7 +45,7 @@ const SOFTWARE_DEVELOPMENT_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "Engineering starts with the real codebase, not a sandbox. You're talking to the engineers throughout, not receiving weekly status reports through an intermediary. Integration with your existing systems is tested against live data, not assumed to work. Edge cases are handled before launch, not logged as post-launch tickets.",
     imageSrc:
-      "https://media.zypher-solutions.com/02-services-page/section-4/Build%20%26%20Integration.png",
+      "https://media.zypher-solutions.com/02-services-page/section-4/Build%20%26%20Integration.webp",
     imageAlt: "Illustration for the build and integration stage",
   },
   {
@@ -56,7 +56,7 @@ const SOFTWARE_DEVELOPMENT_AUTOMATION_STAGES: readonly ProcessStage[] = [
     description:
       "Full ownership transfers at handoff. Codebase, environment configs, deployment pipelines, API documentation, everything your team needs to run and extend the system without depending on us. Documentation is written for the people maintaining it. What happens after launch is scoped before the build starts.",
     imageSrc:
-      "https://media.zypher-solutions.com/02-services-page/section-4/Handoff%20%26%20Documentation.png",
+      "https://media.zypher-solutions.com/02-services-page/section-4/Handoff%20%26%20Documentation.webp",
     imageAlt: "Illustration for the handoff and documentation stage",
   },
 ];

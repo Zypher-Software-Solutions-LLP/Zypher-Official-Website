@@ -41,7 +41,7 @@ describe("image optimization", () => {
 
     expect(
       isAllowed(
-        "https://media.zypher-solutions.com/home-page/section-1/Background%20PC%20Image.png",
+        "https://media.zypher-solutions.com/home-page/section-1/Background%20PC%20Image.webp",
       ),
     ).toBe(true);
     expect(isAllowed("https://media.example.r2.dev/home-page/hero.png")).toBe(true);
@@ -50,7 +50,7 @@ describe("image optimization", () => {
     );
     expect(
       isAllowed(
-        "https://media.zypher-solutions.com/home-page/section-1/Background%20PC%20Image.png?v=1",
+        "https://media.zypher-solutions.com/home-page/section-1/Background%20PC%20Image.webp?v=1",
       ),
     ).toBe(false);
     expect(isAllowed("https://cdn.sanity.io/images/anotherproject/production/asset.png")).toBe(

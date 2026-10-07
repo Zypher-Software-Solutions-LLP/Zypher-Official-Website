@@ -3,9 +3,10 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./AiLlmAutomationHeroSection.module.css";
 
-const BACKGROUND_ILLUSTRATION_SRC = "/home/section-1/background-illustration.png";
+const BACKGROUND_ILLUSTRATION_SRC =
+  "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp";
 const AI_LLM_HERO_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/01-services-page/section-1/Hero%20Section.png";
+  "https://media.zypher-solutions.com/01-services-page/section-1/Hero%20Section.webp";
 const AI_LLM_DESCRIPTION =
   "From automating the manual work your team shouldn’t be doing to building intelligent systems that connect your entire operation, We engineer AI that fits how your business actually runs.";
 

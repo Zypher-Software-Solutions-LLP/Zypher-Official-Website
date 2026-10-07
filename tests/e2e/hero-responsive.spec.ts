@@ -60,7 +60,7 @@ test.describe("responsive homepage hero", () => {
 
       await expect(page.getByTestId("hero-background-picture").locator("source")).toHaveAttribute(
         "srcset",
-        /Background%20Mobile%20Image\.png/,
+        /Background%20Mobile%20Image\.webp/,
       );
       await expect
         .poll(() =>
@@ -72,7 +72,7 @@ test.describe("responsive homepage hero", () => {
             return image.currentSrc;
           }),
         )
-        .toContain("Background%20Mobile%20Image.png");
+        .toContain("Background%20Mobile%20Image.webp");
     }
   });
 

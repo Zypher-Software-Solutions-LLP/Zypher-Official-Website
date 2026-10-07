@@ -14,38 +14,40 @@ const AI_LLM_SECTION_THREE_CARDS: CapabilityCard[] = [
     title: "Custom Chatbots & Assistants",
     description:
       "Trained on your data. Scope to your use case. Not a generic assistant, a system that knows your products, your processes, and how your customers talk.",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-3/Custom%20Chatbots.png",
+    imageSrc:
+      "https://media.zypher-solutions.com/01-services-page/section-3/Custom%20Chatbots.webp",
   },
   {
     title: "Custom Workflow Automation",
     description:
       "End to end process automation that removes the manual handoffs slowing your team down. We find the real bottleneck first, then automate that.",
     imageSrc:
-      "https://media.zypher-solutions.com/01-services-page/section-3/Custom%20Workflow%20Automation.png",
+      "https://media.zypher-solutions.com/01-services-page/section-3/Custom%20Workflow%20Automation.webp",
   },
   {
     title: "LLM Integration",
     description:
       "AI embedded into your existing product, not bolted on as a feature. Engineered to sit inside your current architecture and operate as part of the system.",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-3/LLM%20Integration.png",
+    imageSrc:
+      "https://media.zypher-solutions.com/01-services-page/section-3/LLM%20Integration.webp",
   },
   {
     title: "RAG Systems & Knowledge Base",
     description:
       "Your documents, policies and institutional knowledge made queryable. Your team gets answers from your actual data.",
-    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-3/RAG%20Systems.png",
+    imageSrc: "https://media.zypher-solutions.com/01-services-page/section-3/RAG%20Systems.webp",
   },
   {
     title: "AI-Powered Internal Tools",
     description:
       "Tools built around how your team actually works not how a generic SaaS product assumes they work. Maintained without needing an engineer.",
     imageSrc:
-      "https://media.zypher-solutions.com/01-services-page/section-3/AI%20Powered%20Tools.png",
+      "https://media.zypher-solutions.com/01-services-page/section-3/AI%20Powered%20Tools.webp",
   },
 ];
 
 const AI_LLM_SECTION_THREE_CTA_IMAGE_SRC =
-  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.png";
+  "https://media.zypher-solutions.com/01-services-page/section-3/Something%20else%20entirely.webp";
 
 const IMAGE_SIZES =
   "(max-width: 39.999rem) calc(100vw - 2rem), (max-width: 48rem) calc((100vw - 3rem) / 2), (max-width: 63.999rem) calc((100vw - 6.5rem) / 3), 270px";

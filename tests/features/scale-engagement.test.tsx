@@ -26,7 +26,7 @@ describe("scale engagement section", () => {
     }
     expect(screen.getByTestId("scale-engagement-image")).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/scale-page/section-2/Section%202%20HOW%20WE%20ENGAGE.png",
+      "https://media.zypher-solutions.com/scale-page/section-2/Section%202%20HOW%20WE%20ENGAGE.webp",
     );
     expect(screen.getByTestId("scale-engagement-boundary-bottom")).toBeInTheDocument();
   });

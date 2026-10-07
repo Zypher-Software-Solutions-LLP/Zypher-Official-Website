@@ -59,7 +59,7 @@ describe("site footer", () => {
 
     expect(illustration).toHaveAttribute(
       "data-image-src",
-      "https://media.zypher-solutions.com/footer/Footer%20Illustration.png",
+      "https://media.zypher-solutions.com/footer/Footer%20Illustration.webp",
     );
     expect(illustration.querySelector("img")).not.toBeNull();
     expect(illustration).toHaveAttribute("aria-hidden", "true");

@@ -133,7 +133,7 @@ test.describe("AI and LLM automation section", () => {
     expect(layout.sectionHeight).toBeLessThan(1000);
     expect(layout.sectionHeight).toBeGreaterThan(928);
     expect(layout.workflowDisplay).toBe("block");
-    expect(layout.workflowImageSrc).toContain("services-page/section-2/Group%2022.png");
+    expect(layout.workflowImageSrc).toContain("services-page/section-2/Group%2022.webp");
     expect(layout.pointOffsets[0]).toBeCloseTo(0.0626, 2);
     expect(layout.pointOffsets[1]).toBeCloseTo(0.2783, 2);
     expect(layout.pointOffsets[2]).toBeCloseTo(0.4957, 2);
@@ -254,7 +254,7 @@ test.describe("AI and LLM automation section", () => {
     await expect(mobileWorkflowImage).toBeVisible();
     await expect(mobileWorkflowImage).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("Group%2022%20-%20Mobile%20View.png"),
+      expect.stringContaining("Group%2022%20-%20Mobile%20view.webp"),
     );
     await expect(page.getByTestId("business-deliverable").first()).toBeVisible();
     await expect(workflow).toHaveAttribute("data-mobile-orientation", "vertical");

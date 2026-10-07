@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import styles from "./AboutStorySection.module.css";
 
 const STORY_ILLUSTRATION_SRC =
-  "https://media.zypher-solutions.com/about-page/section-2/Section%202%20Illustration.png";
+  "https://media.zypher-solutions.com/about-page/section-2/Section%202%20Illustration.webp";
 
 const STORY_STEPS = [
   {

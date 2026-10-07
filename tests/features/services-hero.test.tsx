@@ -30,11 +30,11 @@ describe("services hero", () => {
     );
     expect(screen.getByTestId("services-hero-background")).toHaveAttribute(
       "data-image-src",
-      "/home/section-1/background-illustration.png",
+      "https://media.zypher-solutions.com/home-page/section-1/Background%20-%20Hero%20section.webp",
     );
     expect(screen.getByTestId("services-hero-illustration")).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("services-page/hero-section/Hero%20Section%20Illustration.png"),
+      expect.stringContaining("services-page/hero-section/Hero%20Section%20Illustration.webp"),
     );
   });
 });

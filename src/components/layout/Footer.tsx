@@ -88,7 +88,8 @@ const footerSocialLinks = [
   },
 ] as const satisfies readonly FooterSocialLink[];
 
-const footerIllustrationSrc = "https://media.zypher-solutions.com/footer/Footer%20Illustration.png";
+const footerIllustrationSrc =
+  "https://media.zypher-solutions.com/footer/Footer%20Illustration.webp";
 
 function FooterLinkItem({ link }: { link: FooterLink }): ReactNode {
   if (link.external) {

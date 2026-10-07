@@ -23,17 +23,17 @@ describe("AI and LLM automation section", () => {
     expect(screen.getAllByTestId("ai-node-point")).toHaveLength(5);
     expect(screen.getByTestId("ai-node-workflow-image")).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("services-page/section-2/Group%2022.png"),
+      expect.stringContaining("services-page/section-2/Group%2022.webp"),
     );
     expect(screen.getByTestId("ai-node-workflow-mobile-image")).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("services-page/section-2/Group%2022%20-%20Mobile%20View.png"),
+      expect.stringContaining("services-page/section-2/Group%2022%20-%20Mobile%20view.webp"),
     );
     expect(screen.getAllByTestId("business-deliverable")).toHaveLength(4);
     expect(screen.getByTestId("business-deliverables-list")).toBeInTheDocument();
     expect(screen.getByTestId("ai-automation-laptop")).toHaveAttribute(
       "data-image-src",
-      expect.stringContaining("services-page/section-2/Laptop.png"),
+      expect.stringContaining("services-page/section-2/Laptop.webp"),
     );
     expect(
       within(section).getByRole("link", { name: "See How We Build With AI →" }),

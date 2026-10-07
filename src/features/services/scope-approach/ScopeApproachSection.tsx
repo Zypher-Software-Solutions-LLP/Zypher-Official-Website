@@ -6,7 +6,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import styles from "./ScopeApproachSection.module.css";
 
 const illustrationSrc =
-  "https://media.zypher-solutions.com/services-page/section-5/Illustration.png";
+  "https://media.zypher-solutions.com/services-page/section-5/Illustration.webp";
 
 export function ScopeApproachSection(): ReactNode {
   return (
