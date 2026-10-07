@@ -38,6 +38,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    // Disabled to prevent hitting Vercel's free tier Image Optimization limits.
+    // Images are served directly from Cloudflare R2 and Sanity.
     unoptimized: true,
     // Marketing assets use stable URLs. Change an R2 URL or purge its cache when replacing a file.
     minimumCacheTTL: imageCacheTtlSeconds,
