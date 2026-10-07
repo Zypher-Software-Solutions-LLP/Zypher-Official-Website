@@ -10,6 +10,9 @@ export const DEFAULT_SOCIAL_IMAGE_ALT = SITE_NAME;
 export const DEFAULT_SOCIAL_IMAGE_WIDTH = 1200;
 export const DEFAULT_SOCIAL_IMAGE_HEIGHT = 630;
 
+const NON_CANONICAL_SITE_HOST = "zypher-solutions.com";
+const CANONICAL_SITE_HOST = "www.zypher-solutions.com";
+
 export type PageMetadataInput = {
   title: string;
   description: string;
@@ -29,7 +32,13 @@ export type BlogMetadataImage = {
 };
 
 export function getSiteUrl(): URL {
-  return new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000");
+  const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000");
+
+  if (siteUrl.hostname === NON_CANONICAL_SITE_HOST) {
+    siteUrl.hostname = CANONICAL_SITE_HOST;
+  }
+
+  return siteUrl;
 }
 
 export function absoluteUrl(path: string): string {
