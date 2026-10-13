@@ -208,10 +208,13 @@ describe("contact page", () => {
     expect(within(section).getByText("If it’s a fit, we schedule a call")).toBeInTheDocument();
     expect(within(section).getByText("If it’s not a fit, we’ll tell you")).toBeInTheDocument();
 
-    expect(within(section).getByTitle("Work Well Coworking office location map")).toHaveAttribute(
-      "src",
-      "https://www.google.com/maps?q=WORK%20WELL%20COWORKING&output=embed",
+    const map = within(section).getByTitle("Work Well Coworking office location map");
+    const mapUrl = new URL(map.getAttribute("src")!);
+    expect(mapUrl.origin).toBe("https://www.google.com");
+    expect(mapUrl.searchParams.get("q")).toBe(
+      "Work Well Coworking, 5th Floor, C.M Mathew Brothers Arcade, Kannur Rd, West Nadakkave, Kozhikode, Kerala 673006, India",
     );
+    expect(mapUrl.searchParams.get("output")).toBe("embed");
   });
 
   it("should not render an extra process-section ellipse", () => {

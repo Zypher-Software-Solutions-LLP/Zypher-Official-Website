@@ -233,10 +233,15 @@ test.describe("Contact page", () => {
       await expect(
         section.getByRole("heading", { name: "What happens after you hit send?" }),
       ).toBeVisible();
-      await expect(section.getByTitle("Work Well Coworking office location map")).toHaveAttribute(
-        "src",
-        "https://www.google.com/maps?q=WORK%20WELL%20COWORKING&output=embed",
+      const mapSrc = await section
+        .getByTitle("Work Well Coworking office location map")
+        .getAttribute("src");
+      const mapUrl = new URL(mapSrc!);
+      expect(mapUrl.origin).toBe("https://www.google.com");
+      expect(mapUrl.searchParams.get("q")).toBe(
+        "Work Well Coworking, 5th Floor, C.M Mathew Brothers Arcade, Kannur Rd, West Nadakkave, Kozhikode, Kerala 673006, India",
       );
+      expect(mapUrl.searchParams.get("output")).toBe("embed");
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
         viewport.width,
       );

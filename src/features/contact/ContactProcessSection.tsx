@@ -4,7 +4,9 @@ import Image from "next/image";
 import { useState, type ReactNode } from "react";
 import styles from "./ContactProcessSection.module.css";
 
-const OFFICE_MAP_SRC = "https://www.google.com/maps?q=WORK%20WELL%20COWORKING&output=embed";
+const OFFICE_MAP_QUERY =
+  "Work Well Coworking, 5th Floor, C.M Mathew Brothers Arcade, Kannur Rd, West Nadakkave, Kozhikode, Kerala 673006, India";
+const OFFICE_MAP_SRC = `https://www.google.com/maps?q=${encodeURIComponent(OFFICE_MAP_QUERY)}&output=embed`;
 
 const processSteps = [
   {
