@@ -12,7 +12,6 @@ const ORGANIZATION_PROFILES = [
   "https://x.com/ZyphersSolution",
   "https://www.instagram.com/zyphersolutions/",
   "https://www.linkedin.com/company/zypher-solutions/",
-  "https://wa.me/918075725045",
 ];
 const LOGO_URL = absoluteUrl("/icon-512.png");
 

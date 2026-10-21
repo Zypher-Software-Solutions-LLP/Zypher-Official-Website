@@ -88,5 +88,6 @@ describe("OrganizationJsonLd", () => {
     });
     expect(data.areaServed).toBe("Worldwide");
     expect(data.sameAs).toContain("https://x.com/ZyphersSolution");
+    expect(data.sameAs).not.toContain("https://wa.me/918075725045");
   });
 });
