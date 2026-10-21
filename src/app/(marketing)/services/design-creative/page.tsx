@@ -6,8 +6,9 @@ import { DesignCreativeSectionFive } from "@/features/services/DesignCreativeSec
 import { DesignCreativeSectionThree } from "@/features/services/DesignCreativeSectionThree";
 import { DesignCreativeSectionTwo } from "@/features/services/DesignCreativeSectionTwo";
 import { DesignCreativeFaqSection } from "@/features/services/faq/DesignCreativeFaqSection";
+import { designCreativeFaqItems } from "@/features/services/faq/design-creative-faq-data";
 import { getServiceDefinition } from "@/features/services/service-data";
-import { BreadcrumbJsonLd, ServiceJsonLd } from "@/lib/schema";
+import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/schema";
 import { getStaticPageMetadata } from "@/lib/seo";
 
 const service = getServiceDefinition("design-creative");
@@ -29,6 +30,7 @@ export default function DesignCreativePage(): React.ReactNode {
           { name: service.name, path: "/services/" + service.slug },
         ]}
       />
+      <FaqJsonLd items={designCreativeFaqItems} />
       <main id="main-content">
         <DesignCreativeHeroSection />
         <DesignCreativeSectionTwo />

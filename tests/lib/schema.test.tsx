@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { BlogPostingJsonLd } from "@/lib/schema";
+import { BlogPostingJsonLd, FaqJsonLd, OrganizationJsonLd } from "@/lib/schema";
 import type { BlogPostDetail } from "@/integrations/cms/sanity/types";
 
 const article: BlogPostDetail = {
@@ -41,5 +41,52 @@ describe("BlogPostingJsonLd", () => {
     });
     expect(data.publisher["@id"]).toBe("http://localhost:3000/#organization");
     expect(data.publisher.logo.url).toBe("http://localhost:3000/icon-512.png");
+  });
+});
+
+describe("FaqJsonLd", () => {
+  it("should expose every FAQ item as an escaped FAQPage question", () => {
+    const items = [
+      { id: "cost", question: "How much does it cost?", answer: "It depends on scope." },
+      { id: "markup", question: "Is </script> escaped?", answer: "Yes, <b>always</b>." },
+    ];
+
+    render(<FaqJsonLd items={items} />);
+    const script = document.querySelector('script[type="application/ld+json"]');
+    const rawJson = script?.innerHTML || "";
+    const data = JSON.parse(rawJson || "{}");
+
+    expect(rawJson).not.toContain("<");
+    expect(data["@type"]).toBe("FAQPage");
+    expect(data.mainEntity).toEqual(
+      items.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    );
+  });
+});
+
+describe("OrganizationJsonLd", () => {
+  it("should expose the description, office address, service area, and profiles", () => {
+    render(<OrganizationJsonLd />);
+    const script = document.querySelector('script[type="application/ld+json"]');
+    const data = JSON.parse(script?.textContent || "{}");
+
+    expect(data.description).toBe(
+      "Zypher Software Solutions is an AI and automation company building custom software, AI automation, mobile apps and CRM/ERP systems for businesses worldwide.",
+    );
+    expect(data.address).toEqual({
+      "@type": "PostalAddress",
+      streetAddress:
+        "Work Well Coworking, 5th Floor, C.M Mathew Brothers Arcade, Kannur Rd, West Nadakkave",
+      addressLocality: "Kozhikode (Calicut)",
+      addressRegion: "Kerala",
+      postalCode: "673006",
+      addressCountry: "IN",
+    });
+    expect(data.areaServed).toBe("Worldwide");
+    expect(data.sameAs).toContain("https://x.com/ZyphersSolution");
   });
 });

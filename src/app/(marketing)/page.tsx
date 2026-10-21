@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { faqItems } from "@/features/home/faq/faq-data";
 import { HomePage } from "@/features/home/HomePage";
+import { FaqJsonLd } from "@/lib/schema";
 import { getStaticPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -7,5 +9,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Page(): React.ReactNode {
-  return <HomePage />;
+  return (
+    <>
+      <FaqJsonLd items={faqItems} />
+      <HomePage />
+    </>
+  );
 }

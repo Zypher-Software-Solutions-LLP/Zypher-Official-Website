@@ -6,8 +6,9 @@ import { MobileAppDevelopmentSectionFive } from "@/features/services/MobileAppDe
 import { MobileAppDevelopmentSectionThree } from "@/features/services/MobileAppDevelopmentSectionThree";
 import { MobileAppDevelopmentSectionTwo } from "@/features/services/MobileAppDevelopmentSectionTwo";
 import { MobileAppDevelopmentFaqSection } from "@/features/services/faq/MobileAppDevelopmentFaqSection";
+import { mobileAppDevelopmentFaqItems } from "@/features/services/faq/mobile-app-development-faq-data";
 import { getServiceDefinition } from "@/features/services/service-data";
-import { BreadcrumbJsonLd, ServiceJsonLd } from "@/lib/schema";
+import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/schema";
 import { getStaticPageMetadata } from "@/lib/seo";
 
 const service = getServiceDefinition("mobile-app-development");
@@ -29,6 +30,7 @@ export default function MobileAppDevelopmentPage(): React.ReactNode {
           { name: service.name, path: `/services/${service.slug}` },
         ]}
       />
+      <FaqJsonLd items={mobileAppDevelopmentFaqItems} />
       <main id="main-content">
         <MobileAppDevelopmentHeroSection />
         <MobileAppDevelopmentSectionTwo />

@@ -41,7 +41,6 @@ export function FaqSection({
     return null;
   }
 
-  const activeFaqIndex = items.indexOf(activeFaqItem);
   const answerId = `${sectionId}-answer`;
   const questionSelectId = `${sectionId}-question-select`;
   const titleId = `${sectionId}-title`;
@@ -127,22 +126,43 @@ export function FaqSection({
               id={answerId}
             >
               <h3 className={styles.faqSectionAnswerTitle}>The Answers to the Questions</h3>
-              <div className={styles.faqSectionAnswerDetail} key={activeFaqItem.id}>
-                <div className={styles.faqSectionAnswerQuestion} data-testid="faq-answer-question">
-                  <p className={styles.faqSectionAnswerNumber} data-testid="faq-answer-number">
-                    {formatQuestionNumber(activeFaqIndex)}
-                  </p>
-                  <p
-                    className={styles.faqSectionAnswerQuestionText}
-                    data-testid="faq-answer-question-text"
+              {/* Every answer is server-rendered; inactive ones stay hidden until selected. */}
+              {items.map((item, index) => {
+                const isActive = item.id === activeFaqItem.id;
+
+                return (
+                  <div
+                    className={styles.faqSectionAnswerDetail}
+                    data-testid="faq-answer-panel"
+                    hidden={!isActive}
+                    key={item.id}
                   >
-                    {activeFaqItem.question}
-                  </p>
-                </div>
-                <p className={styles.faqSectionAnswerCopy} data-testid="faq-answer-copy">
-                  {activeFaqItem.answer}
-                </p>
-              </div>
+                    <div
+                      className={styles.faqSectionAnswerQuestion}
+                      data-testid={isActive ? "faq-answer-question" : undefined}
+                    >
+                      <p
+                        className={styles.faqSectionAnswerNumber}
+                        data-testid={isActive ? "faq-answer-number" : undefined}
+                      >
+                        {formatQuestionNumber(index)}
+                      </p>
+                      <p
+                        className={styles.faqSectionAnswerQuestionText}
+                        data-testid={isActive ? "faq-answer-question-text" : undefined}
+                      >
+                        {item.question}
+                      </p>
+                    </div>
+                    <p
+                      className={styles.faqSectionAnswerCopy}
+                      data-testid={isActive ? "faq-answer-copy" : undefined}
+                    >
+                      {item.answer}
+                    </p>
+                  </div>
+                );
+              })}
             </article>
           </div>
         </div>

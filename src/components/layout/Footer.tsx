@@ -189,7 +189,7 @@ export function Footer(): ReactNode {
               Privacy
             </Link>
             <span aria-hidden="true">•</span>
-            <Link className={styles.siteFooterUtilityLink} href="/terms-of-service">
+            <Link className={styles.siteFooterUtilityLink} href="/terms-of-use">
               Terms
             </Link>
             <span aria-hidden="true">•</span>

@@ -6,8 +6,9 @@ import { CrmErpSolutionsSectionFive } from "@/features/services/CrmErpSolutionsS
 import { CrmErpSolutionsSectionThree } from "@/features/services/CrmErpSolutionsSectionThree";
 import { CrmErpSolutionsSectionTwo } from "@/features/services/CrmErpSolutionsSectionTwo";
 import { CrmErpSolutionsFaqSection } from "@/features/services/faq/CrmErpSolutionsFaqSection";
+import { crmErpSolutionsFaqItems } from "@/features/services/faq/crm-erp-solutions-faq-data";
 import { getServiceDefinition } from "@/features/services/service-data";
-import { BreadcrumbJsonLd, ServiceJsonLd } from "@/lib/schema";
+import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/schema";
 import { getStaticPageMetadata } from "@/lib/seo";
 
 const service = getServiceDefinition("crm-erp-solutions");
@@ -29,6 +30,7 @@ export default function CrmErpSolutionsPage(): React.ReactNode {
           { name: service.name, path: "/services/" + service.slug },
         ]}
       />
+      <FaqJsonLd items={crmErpSolutionsFaqItems} />
       <main id="main-content">
         <CrmErpSolutionsHeroSection />
         <CrmErpSolutionsSectionTwo />

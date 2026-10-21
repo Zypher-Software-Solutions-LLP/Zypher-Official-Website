@@ -46,8 +46,12 @@ describe("services FAQ section", () => {
     await user.click(questionButton);
 
     expect(questionButton).toHaveAttribute("aria-current", "true");
-    expect(within(section).getByTestId("faq-answer")).toHaveTextContent(
+    expect(within(section).getByTestId("faq-answer-copy")).toHaveTextContent(
       "That's what the discovery call is for",
     );
+    expect(within(section).getByText(/That's what the discovery call is for/)).toBeVisible();
+    expect(
+      within(section).getByText(/Most AI & LLM Automation work is integrated into a product/),
+    ).not.toBeVisible();
   });
 });

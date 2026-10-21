@@ -25,6 +25,7 @@ describe("site footer", () => {
     expect(screen.getByRole("navigation", { name: "Utility navigation" })).toHaveTextContent(
       "Privacy",
     );
+    expect(screen.getByRole("link", { name: "Terms" })).toHaveAttribute("href", "/terms-of-use");
     expect(screen.getByRole("button", { name: "Cookie settings" })).toBeInTheDocument();
   });
 

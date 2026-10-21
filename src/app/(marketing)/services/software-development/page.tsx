@@ -6,8 +6,9 @@ import { SoftwareDevelopmentSectionFive } from "@/features/services/SoftwareDeve
 import { SoftwareDevelopmentSectionThree } from "@/features/services/SoftwareDevelopmentSectionThree";
 import { SoftwareDevelopmentSectionTwo } from "@/features/services/SoftwareDevelopmentSectionTwo";
 import { SoftwareDevelopmentFaqSection } from "@/features/services/faq/SoftwareDevelopmentFaqSection";
+import { softwareDevelopmentFaqItems } from "@/features/services/faq/software-development-faq-data";
 import { getServiceDefinition } from "@/features/services/service-data";
-import { BreadcrumbJsonLd, ServiceJsonLd } from "@/lib/schema";
+import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/schema";
 import { getStaticPageMetadata } from "@/lib/seo";
 
 const service = getServiceDefinition("software-development");
@@ -29,6 +30,7 @@ export default function SoftwareDevelopmentPage(): React.ReactNode {
           { name: service.name, path: `/services/${service.slug}` },
         ]}
       />
+      <FaqJsonLd items={softwareDevelopmentFaqItems} />
       <main id="main-content">
         <SoftwareDevelopmentHeroSection />
         <SoftwareDevelopmentSectionTwo />

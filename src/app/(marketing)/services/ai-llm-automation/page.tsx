@@ -6,8 +6,9 @@ import { AiLlmAutomationSectionFive } from "@/features/services/AiLlmAutomationS
 import { AiLlmAutomationSectionThree } from "@/features/services/AiLlmAutomationSectionThree";
 import { AiLlmAutomationSectionTwo } from "@/features/services/AiLlmAutomationSectionTwo";
 import { AiLlmAutomationFaqSection } from "@/features/services/faq/AiLlmAutomationFaqSection";
+import { aiLlmAutomationFaqItems } from "@/features/services/faq/ai-llm-automation-faq-data";
 import { getServiceDefinition } from "@/features/services/service-data";
-import { BreadcrumbJsonLd, ServiceJsonLd } from "@/lib/schema";
+import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/lib/schema";
 import { getStaticPageMetadata } from "@/lib/seo";
 
 const service = getServiceDefinition("ai-llm-automation");
@@ -29,6 +30,7 @@ export default function AiLlmAutomationPage(): React.ReactNode {
           { name: service.name, path: `/services/${service.slug}` },
         ]}
       />
+      <FaqJsonLd items={aiLlmAutomationFaqItems} />
       <main id="main-content">
         <AiLlmAutomationHeroSection />
         <AiLlmAutomationSectionTwo />

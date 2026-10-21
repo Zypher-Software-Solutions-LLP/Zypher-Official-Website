@@ -50,6 +50,20 @@ describe("homepage FAQ section", () => {
     expect(within(answerQuestion).queryByRole("heading")).not.toBeInTheDocument();
   });
 
+  it("should render every answer in the markup while only showing the selected one", () => {
+    render(<HomePage />);
+
+    const section = screen.getByTestId("faq-section");
+    const panels = within(section).getAllByTestId("faq-answer-panel");
+
+    expect(panels).toHaveLength(faqItems.length);
+    faqItems.forEach((item, index) => {
+      expect(panels[index]).toHaveTextContent(item.answer);
+    });
+    expect(panels[0]).toBeVisible();
+    expect(panels.slice(1).every((panel) => panel.hidden)).toBe(true);
+  });
+
   it("should contain no em dashes in FAQ answers", () => {
     expect(faqItems.every((item) => !item.answer.includes("—"))).toBe(true);
   });
@@ -66,9 +80,11 @@ describe("homepage FAQ section", () => {
     await user.click(questionButton);
 
     expect(questionButton).toHaveAttribute("aria-current", "true");
-    expect(within(section).getByTestId("faq-answer")).toHaveTextContent(
+    expect(within(section).getByTestId("faq-answer-copy")).toHaveTextContent(
       "Timeline depends on scope the same way cost does",
     );
+    expect(within(section).getByText(/Timeline depends on scope the same way cost does/)).toBeVisible();
+    expect(within(section).getByText(/There's no fixed package price/)).not.toBeVisible();
   });
 
   it("should switch the compact answer when the dropdown value changes", async () => {
@@ -83,6 +99,7 @@ describe("homepage FAQ section", () => {
     await user.selectOptions(select, "data-security");
 
     expect(select).toHaveValue("data-security");
-    expect(within(section).getByTestId("faq-answer")).toHaveTextContent("Your data stays yours");
+    expect(within(section).getByTestId("faq-answer-copy")).toHaveTextContent("Your data stays yours");
+    expect(within(section).getByText(/Your data stays yours/)).toBeVisible();
   });
 });

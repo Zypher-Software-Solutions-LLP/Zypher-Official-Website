@@ -62,10 +62,10 @@ describe("homepage scale section", () => {
       screen.getByRole("heading", { level: 3, name: "25+ Projects Delivered" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { level: 3, name: "20+ Clients Served" }),
+      screen.getByRole("heading", { level: 3, name: "15+ Clients Served" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { level: 3, name: "Across 10+ Countries" }),
+      screen.getByRole("heading", { level: 3, name: "Across 5+ Countries" }),
     ).toBeInTheDocument();
     expect(screen.getAllByTestId("scale-project-card")).toHaveLength(3);
     expect(screen.getByRole("link", { name: "View All Works" })).toHaveAttribute("href", "/work");
