@@ -83,7 +83,9 @@ describe("homepage FAQ section", () => {
     expect(within(section).getByTestId("faq-answer-copy")).toHaveTextContent(
       "Timeline depends on scope the same way cost does",
     );
-    expect(within(section).getByText(/Timeline depends on scope the same way cost does/)).toBeVisible();
+    expect(
+      within(section).getByText(/Timeline depends on scope the same way cost does/),
+    ).toBeVisible();
     expect(within(section).getByText(/There's no fixed package price/)).not.toBeVisible();
   });
 
@@ -99,7 +101,9 @@ describe("homepage FAQ section", () => {
     await user.selectOptions(select, "data-security");
 
     expect(select).toHaveValue("data-security");
-    expect(within(section).getByTestId("faq-answer-copy")).toHaveTextContent("Your data stays yours");
+    expect(within(section).getByTestId("faq-answer-copy")).toHaveTextContent(
+      "Your data stays yours",
+    );
     expect(within(section).getByText(/Your data stays yours/)).toBeVisible();
   });
 });
