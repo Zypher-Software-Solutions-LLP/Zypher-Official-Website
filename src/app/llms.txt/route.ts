@@ -1,8 +1,12 @@
+import { serviceDefinitions } from "@/features/services/service-data";
 import { getBlogSitemapEntries } from "@/integrations/cms/sanity/queries";
 import type { BlogSitemapEntry } from "@/integrations/cms/sanity/types";
 import { absoluteUrl } from "@/lib/seo";
 
 export const revalidate = 3600;
+
+const ABOUT_TEXT =
+  "Zypher Software Solutions (legally Zypher Software Solutions LLP) is an AI and automation company based in Kozhikode (Calicut), Kerala, India, founded in December 2025 by Muhammed Hasheem (CEO), Mohammed Ziyan (COO) and Hank Emmanuel Nixon (CTO). Zypher builds custom software, AI and LLM automation, mobile apps and CRM/ERP systems for clients in the UAE, Qatar, the USA, the UK, India, the Netherlands and other countries.";
 
 const CANONICAL_PAGES = [
   ["Home", "/"],
@@ -22,6 +26,10 @@ function singleLine(value: string): string {
   return value.replaceAll(/\s+/g, " ").trim();
 }
 
+function serviceLine(service: (typeof serviceDefinitions)[number]): string {
+  return `- [${escapeMarkdownLabel(service.name)}](${absoluteUrl(`/services/${service.slug}`)}): ${service.definition}`;
+}
+
 function articleLine(post: BlogSitemapEntry): string {
   const title = escapeMarkdownLabel(singleLine(post.title));
   const description = singleLine(post.excerpt);
@@ -35,6 +43,17 @@ export async function GET(): Promise<Response> {
   const lines = [
     "# Zypher Software Solutions",
     "> Software development, automation, CRM/ERP, mobile, and UI/UX solutions for teams ready to scale.",
+    "",
+    "## About",
+    ABOUT_TEXT,
+    "",
+    "## Services",
+    ...serviceDefinitions.map(serviceLine),
+    "",
+    "## Contact",
+    "- Email: info@zypher-solutions.com",
+    "- Phone: +91 80757 25045",
+    "- Address: Work Well Coworking, 5th Floor, C.M Mathew Brothers Arcade, Kannur Rd, West Nadakkave, Kozhikode (Calicut), Kerala 673006, India",
     "",
     "## Canonical pages",
     ...CANONICAL_PAGES.map(([name, path]) => `- [${name}](${absoluteUrl(path)})`),

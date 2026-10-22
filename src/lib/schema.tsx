@@ -13,6 +13,31 @@ const ORGANIZATION_PROFILES = [
   "https://www.instagram.com/zyphersolutions/",
   "https://www.linkedin.com/company/zypher-solutions/",
 ];
+const ORGANIZATION_FOUNDERS = [
+  {
+    name: "Muhammed Hasheem",
+    jobTitle: "Co-founder & CEO",
+    linkedin: "https://www.linkedin.com/in/muhammedhasheem/",
+  },
+  {
+    name: "Mohammed Ziyan",
+    jobTitle: "Co-founder & COO",
+    linkedin: "https://www.linkedin.com/in/mohammedziyan7/",
+  },
+  {
+    name: "Hank Emmanuel Nixon",
+    jobTitle: "Co-founder & CTO",
+    linkedin: "https://www.linkedin.com/in/hanknixon/",
+  },
+];
+const ORGANIZATION_KNOWS_ABOUT = [
+  "AI automation",
+  "LLM integration",
+  "Custom software development",
+  "Mobile app development",
+  "CRM and ERP systems",
+  "Product design",
+];
 const LOGO_URL = absoluteUrl("/icon-512.png");
 
 function serializeJsonLd(value: unknown): string {
@@ -36,7 +61,17 @@ export function OrganizationJsonLd(): ReactNode {
         "@type": "ProfessionalService",
         "@id": ORGANIZATION_ID,
         name: SITE_NAME,
+        legalName: "Zypher Software Solutions LLP",
+        alternateName: ["Zypher", "Zypher Software Solutions LLP"],
         description: ORGANIZATION_DESCRIPTION,
+        foundingDate: "2025-12-09",
+        founder: ORGANIZATION_FOUNDERS.map((founder) => ({
+          "@type": "Person",
+          name: founder.name,
+          jobTitle: founder.jobTitle,
+          sameAs: [founder.linkedin],
+        })),
+        knowsAbout: ORGANIZATION_KNOWS_ABOUT,
         url: absoluteUrl("/"),
         logo: LOGO_URL,
         email: "info@zypher-solutions.com",
@@ -96,7 +131,8 @@ export function ServiceJsonLd({ service }: { service: ServiceDefinition }): Reac
         "@context": "https://schema.org",
         "@type": "Service",
         name: service.name,
-        description: service.description,
+        description: service.definition,
+        areaServed: "Worldwide",
         serviceType: service.name,
         provider: {
           "@type": "ProfessionalService",
