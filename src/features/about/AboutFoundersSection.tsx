@@ -34,9 +34,9 @@ const FOUNDERS = [
     name: "Hank Emmanuel Nixon",
     namePrefix: "Hank ",
     nameHighlight: "Emmanuel Nixon",
-    role: "CO-FOUNDER & CTO",
+    role: "CO-FOUNDER",
     description:
-      "Leads Zypher's technical direction, architecture, stack decisions, and the quality bar every build is held to. Four years freelancing and two years of internship experience building systems for real organizations. Precise by nature, accountable by choice. The technical vision at Zypher is his.",
+      "Co-founded Zypher Software Solutions and contributes to building the company's vision, products, and technical capabilities. Focused on developing practical software solutions and driving innovation.",
     image: "https://media.zypher-solutions.com/about-page/section-4/Hank.webp",
     linkedin: "https://www.linkedin.com/in/hanknixon/",
     portfolio: "https://www.hanknixon.online/",
