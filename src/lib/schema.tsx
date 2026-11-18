@@ -16,17 +16,17 @@ const ORGANIZATION_PROFILES = [
 const ORGANIZATION_FOUNDERS = [
   {
     name: "Muhammed Hasheem",
-    jobTitle: "Co-founder & CEO",
+    jobTitle: "Co-founder",
     linkedin: "https://www.linkedin.com/in/muhammedhasheem/",
   },
   {
     name: "Mohammed Ziyan",
-    jobTitle: "Co-founder & COO",
+    jobTitle: "Co-founder",
     linkedin: "https://www.linkedin.com/in/mohammedziyan7/",
   },
   {
     name: "Hank Emmanuel Nixon",
-    jobTitle: "Co-founder & CTO",
+    jobTitle: "Co-founder",
     linkedin: "https://www.linkedin.com/in/hanknixon/",
   },
 ];

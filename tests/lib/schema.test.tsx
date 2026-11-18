@@ -110,19 +110,19 @@ describe("OrganizationJsonLd", () => {
       {
         "@type": "Person",
         name: "Muhammed Hasheem",
-        jobTitle: "Co-founder & CEO",
+        jobTitle: "Co-founder",
         sameAs: ["https://www.linkedin.com/in/muhammedhasheem/"],
       },
       {
         "@type": "Person",
         name: "Mohammed Ziyan",
-        jobTitle: "Co-founder & COO",
+        jobTitle: "Co-founder",
         sameAs: ["https://www.linkedin.com/in/mohammedziyan7/"],
       },
       {
         "@type": "Person",
         name: "Hank Emmanuel Nixon",
-        jobTitle: "Co-founder & CTO",
+        jobTitle: "Co-founder",
         sameAs: ["https://www.linkedin.com/in/hanknixon/"],
       },
     ]);

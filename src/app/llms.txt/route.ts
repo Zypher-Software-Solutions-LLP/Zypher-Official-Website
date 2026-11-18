@@ -6,7 +6,7 @@ import { absoluteUrl } from "@/lib/seo";
 export const revalidate = 3600;
 
 const ABOUT_TEXT =
-  "Zypher Software Solutions (legally Zypher Software Solutions LLP) is an AI and automation company based in Kozhikode (Calicut), Kerala, India, founded in December 2025 by Muhammed Hasheem (CEO), Mohammed Ziyan (COO) and Hank Emmanuel Nixon (CTO). Zypher builds custom software, AI and LLM automation, mobile apps and CRM/ERP systems for clients in the UAE, Qatar, the USA, the UK, India, the Netherlands and other countries.";
+  "Zypher Software Solutions (legally Zypher Software Solutions LLP) is an AI and automation company based in Kozhikode (Calicut), Kerala, India, founded in December 2025 by co-founders Muhammed Hasheem, Mohammed Ziyan and Hank Emmanuel Nixon. Zypher builds custom software, AI and LLM automation, mobile apps and CRM/ERP systems for clients in the UAE, Qatar, the USA, the UK, India, the Netherlands and other countries.";
 
 const CANONICAL_PAGES = [
   ["Home", "/"],

@@ -10,9 +10,9 @@ const FOUNDERS = [
     name: "Muhammed Hasheem",
     namePrefix: "Muhammed ",
     nameHighlight: "Hasheem",
-    role: "CO-FOUNDER & CEO",
+    role: "CO-FOUNDER",
     description:
-      "The driving force behind how Zypher operates, client relationships, company structure, and keeping every part of the business pointed in the same direction. Bold, direct, and unusually structured for someone who moves as fast as he does.",
+      "Co-founded Zypher Software Solutions and contributes to full-stack engineering, product development, and client solutions. Focused on building scalable applications and delivering impactful digital experiences.",
     image: "https://media.zypher-solutions.com/about-page/section-4/Hasheem.webp",
     linkedin: "https://www.linkedin.com/in/muhammedhasheem/",
     portfolio: "https://www.muhammed-hasheem.me/",
@@ -22,9 +22,9 @@ const FOUNDERS = [
     name: "Mohammed Ziyan",
     namePrefix: "Mohammed ",
     nameHighlight: "Ziyan",
-    role: "CO-FOUNDER & COO",
+    role: "CO-FOUNDER",
     description:
-      "Runs the operational backbone of Zypher, finance, documentation, client mapping, and marketing. Background spans internship experience and hands-on work with a cybersecurity firm. Precise in execution, unconventional in thinking. The reason everything else runs without friction.",
+      "Co-founded Zypher Software Solutions and contributes to operations, client relations, and project execution. Background spans cybersecurity and systems analysis. Focused on streamlining processes and driving reliable solutions.",
     image: "https://media.zypher-solutions.com/about-page/section-4/Ziyan.webp",
     linkedin: "https://www.linkedin.com/in/mohammedziyan7/",
     portfolio: "https://www.mohammedziyan.me/",

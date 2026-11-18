@@ -17,19 +17,19 @@ describe("About founders section", () => {
     const founders = [
       {
         name: "Muhammed Hasheem",
-        role: "CO-FOUNDER & CEO",
+        role: "CO-FOUNDER",
         image: "https://media.zypher-solutions.com/about-page/section-4/Hasheem.webp",
         linkedin: "https://www.linkedin.com/in/muhammedhasheem/",
       },
       {
         name: "Mohammed Ziyan",
-        role: "CO-FOUNDER & COO",
+        role: "CO-FOUNDER",
         image: "https://media.zypher-solutions.com/about-page/section-4/Ziyan.webp",
         linkedin: "https://www.linkedin.com/in/mohammedziyan7/",
       },
       {
         name: "Hank Emmanuel Nixon",
-        role: "CO-FOUNDER & CTO",
+        role: "CO-FOUNDER",
         image: "https://media.zypher-solutions.com/about-page/section-4/Hank.webp",
         linkedin: "https://www.linkedin.com/in/hanknixon/",
       },
